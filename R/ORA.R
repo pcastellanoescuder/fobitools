@@ -14,6 +14,8 @@
 #' @importFrom crayon green
 #' @importFrom crayon blue
 #' @importFrom purrr map
+#' @importFrom tibble add_column
+#' @importFrom tidyr crossing
 #' @import dplyr
 #'
 #' @export

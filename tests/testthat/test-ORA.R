@@ -13,10 +13,10 @@ test_that("ORA works", {
 
   data <- data.frame(A = metabolites[1:4], B = metabolites[5:8])
 
-  a <- ORA(metabolites = metabolites)
-  b <- ORA(metabolites = metabolites, method = "fdr")
-  c <- ORA(metabolites = metabolites, method = "bonferroni")
-  d <- ORA(metabolites = metabolites[1:6], method = "bonferroni")
+  a <- FOBIEnrichR::ORA(metabolites = metabolites)
+  b <- FOBIEnrichR::ORA(metabolites = metabolites, method = "fdr")
+  c <- FOBIEnrichR::ORA(metabolites = metabolites, method = "bonferroni")
+  d <- FOBIEnrichR::ORA(metabolites = metabolites[1:6], method = "bonferroni")
 
   ##
 
@@ -31,10 +31,10 @@ test_that("ORA works", {
 
   ##
 
-  expect_warning(ORA(metabolites))
-  expect_error(ORA(metabolites, method = "fd"))
-  expect_error(ORA())
-  expect_error(ORA(data))
+  expect_warning(FOBIEnrichR::ORA(metabolites))
+  expect_error(FOBIEnrichR::ORA(metabolites, method = "fd"))
+  expect_error(FOBIEnrichR::ORA())
+  expect_error(FOBIEnrichR::ORA(data))
 
 })
 

@@ -17,10 +17,11 @@ Imports:
     ontologyIndex,
     clisymbols, 
     crayon,
-    purrr
+    purrr,
+    tibble,
+    tidyr
 Suggests: 
     covr,
     tidyverse,
-    ontologyIndex,
     testthat (>= 2.1.0)
 RoxygenNote: 7.0.0
