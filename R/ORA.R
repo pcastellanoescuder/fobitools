@@ -38,7 +38,7 @@ ORA <- function(metabolites, method = c("bonferroni", "fdr")){
 
   path <- "ontology/FOBI_old.obo"
 
-  ontology <- ontologyIndex::get_ontology(path, extract_tags = "everything")
+  ontology <- get_ontology(path, extract_tags = "everything")
 
   ####
 
