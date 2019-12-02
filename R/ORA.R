@@ -8,14 +8,12 @@
 #' @return A data frame with results.
 #'
 #' @importFrom magrittr %>%
-#' @importFrom ontologyIndex get_ontology
 #' @importFrom clisymbols symbol
 #' @importFrom crayon red
 #' @importFrom crayon green
 #' @importFrom crayon blue
-#' @importFrom purrr map
-#' @importFrom tibble add_column
 #' @importFrom tidyr crossing
+#' @importFrom readr read_csv
 #' @import dplyr
 #'
 #' @export
@@ -38,30 +36,32 @@ ORA <- function(metabolites, method = c("bonferroni", "fdr")){
 
   ####
 
-  path <- "ontology/FOBI_old.obo"
+  fobi_rel <- readr::read_csv("ontology/191202_fobi_relations.csv")
 
-  ontology <- get_ontology(path, extract_tags = "everything")
+  # path <- "ontology/FOBI_old.obo"
+  #
+  # ontology <- get_ontology(path, extract_tags = "everything")
+  #
+  # BiomarkerOf <- ontology$`FOBI:00422` %>%
+  #   map(as_tibble) %>%
+  #   bind_rows(.id = "metabolite_ID") %>%
+  #   add_column(type = "BiomarkerOf", metabolite = NA, food = NA)
+  #
+  # names <- ontology$name %>%
+  #   map(as_tibble) %>%
+  #   bind_rows(.id = "ID") %>%
+  #   rename(value = value)
+  #
+  # for (i in 1:nrow(BiomarkerOf)){
+  #
+  #   BiomarkerOf$metabolite[i] <- names$value[names$ID == BiomarkerOf$metabolite_ID[i]]
+  #   BiomarkerOf$food[i] <- names$value[names$ID == BiomarkerOf$value[i]]
+  #
+  # }
+  #
+  # TABLE <- aggregate(BiomarkerOf$metabolite, list(BiomarkerOf$food), function(x) paste0(unique(x)))
 
-  ####
-
-  BiomarkerOf <- ontology$`FOBI:00422` %>%
-    map(as_tibble) %>%
-    bind_rows(.id = "metabolite_ID") %>%
-    add_column(type = "BiomarkerOf", metabolite = NA, food = NA)
-
-  names <- ontology$name %>%
-    map(as_tibble) %>%
-    bind_rows(.id = "ID") %>%
-    rename(value = value)
-
-  for (i in 1:nrow(BiomarkerOf)){
-
-    BiomarkerOf$metabolite[i] <- names$value[names$ID == BiomarkerOf$metabolite_ID[i]]
-    BiomarkerOf$food[i] <- names$value[names$ID == BiomarkerOf$value[i]]
-
-  }
-
-  TABLE <- aggregate(BiomarkerOf$metabolite, list(BiomarkerOf$food), function(x) paste0(unique(x)))
+  TABLE <- aggregate(fobi_rel$metabolite, list(fobi_rel$food), function(x) paste0(unique(x)))
 
   sig_metabolites <- metabolites[metabolites %in% unlist(TABLE$x)]
   out <- metabolites[!(metabolites %in% unlist(TABLE$x))]

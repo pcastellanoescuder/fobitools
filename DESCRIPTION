@@ -14,12 +14,10 @@ LazyData: true
 Imports:
     magrittr,
     dplyr,
-    ontologyIndex,
     clisymbols, 
     crayon,
-    purrr,
-    tibble,
-    tidyr
+    tidyr,
+    readr
 Suggests: 
     covr,
     tidyverse,
