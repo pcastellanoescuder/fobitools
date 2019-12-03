@@ -14,3 +14,6 @@ coverage](https://codecov.io/gh/pcastellanoescuder/FOBIEnrichR/branch/master/gra
 [![License: GPL
 v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 <!-- badges: end -->
+
+This package allows users to perform an enrichment analysis using FOBI
+(Food-Biomarker Ontology).

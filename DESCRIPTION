@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "polcaes@gmail.com",
            comment = c(ORCID = "0000-0001-6466-877X"))
-Description: What the package does (one paragraph).
+Description: This package allows users to perform a metabolomic enrichment analysis using FOBI (Food-Biomarker Ontology).
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

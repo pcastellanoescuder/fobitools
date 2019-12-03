@@ -15,7 +15,7 @@ ORA(metabolites, method = c("bonferroni", "fdr"))
 A data frame with results.
 }
 \description{
-This function performs an ORA (Over Representation Analysis) using FOBI (Food-Biomarker Ontology) given a list of metabolites. FOBIEnrich allows users to explore over represented food groups by set of metabolites.
+This function performs an ORA (Over Representation Analysis) using FOBI (Food-Biomarker Ontology) given a list of metabolites. ORA allows users to explore over represented food groups by set of metabolites.
 }
 \author{
 Pol Castellano-Escuder

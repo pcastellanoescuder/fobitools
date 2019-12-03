@@ -1,6 +1,6 @@
 #' ORA
 #'
-#' @description This function performs an ORA (Over Representation Analysis) using FOBI (Food-Biomarker Ontology) given a list of metabolites. FOBIEnrich allows users to explore over represented food groups by set of metabolites.
+#' @description This function performs an ORA (Over Representation Analysis) using FOBI (Food-Biomarker Ontology) given a list of metabolites. ORA allows users to explore over represented food groups by set of metabolites.
 #'
 #' @param metabolites Vector with metabolite names.
 #' @param method Method for multiple test adjustment.
