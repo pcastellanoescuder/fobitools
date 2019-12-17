@@ -14,3 +14,10 @@ output: github_document
 
 This package allows users to perform an enrichment analysis using FOBI (Food-Biomarker Ontology).
 
+# Installation
+
+```{r, eval = F}
+# install.packages("devtools")
+devtools::install_github("pcastellanoescuder/FOBIEnrichR")
+```
+

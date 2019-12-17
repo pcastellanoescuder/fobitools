@@ -17,3 +17,10 @@ v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/li
 
 This package allows users to perform an enrichment analysis using FOBI
 (Food-Biomarker Ontology).
+
+# Installation
+
+``` r
+# install.packages("devtools")
+devtools::install_github("pcastellanoescuder/FOBIEnrichR")
+```
