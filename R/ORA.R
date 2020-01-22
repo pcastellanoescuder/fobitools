@@ -13,7 +13,6 @@
 #' @importFrom crayon green
 #' @importFrom crayon blue
 #' @importFrom tidyr crossing
-#' @importFrom readr read_csv
 #' @import dplyr
 #'
 #' @export
@@ -36,30 +35,8 @@ ORA <- function(metabolites, method = c("bonferroni", "fdr")){
 
   ####
 
-  fobi_rel <- readr::read_csv("ontology/191202_fobi_relations.csv")
-
-  # path <- "ontology/FOBI_old.obo"
-  #
-  # ontology <- get_ontology(path, extract_tags = "everything")
-  #
-  # BiomarkerOf <- ontology$`FOBI:00422` %>%
-  #   map(as_tibble) %>%
-  #   bind_rows(.id = "metabolite_ID") %>%
-  #   add_column(type = "BiomarkerOf", metabolite = NA, food = NA)
-  #
-  # names <- ontology$name %>%
-  #   map(as_tibble) %>%
-  #   bind_rows(.id = "ID") %>%
-  #   rename(value = value)
-  #
-  # for (i in 1:nrow(BiomarkerOf)){
-  #
-  #   BiomarkerOf$metabolite[i] <- names$value[names$ID == BiomarkerOf$metabolite_ID[i]]
-  #   BiomarkerOf$food[i] <- names$value[names$ID == BiomarkerOf$value[i]]
-  #
-  # }
-  #
-  # TABLE <- aggregate(BiomarkerOf$metabolite, list(BiomarkerOf$food), function(x) paste0(unique(x)))
+  data("fobi_relations_191202")
+  fobi_rel <- fobi_relations_191202
 
   TABLE <- aggregate(fobi_rel$metabolite, list(fobi_rel$food), function(x) paste0(unique(x)))
 
