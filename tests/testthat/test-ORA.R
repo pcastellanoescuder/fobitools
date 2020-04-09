@@ -1,22 +1,18 @@
-context("ORA")
+context("ora")
 
-test_that("ORA works", {
+test_that("ora works", {
 
-  metabolites <- c("acesulfame k",
-                   "saccharin",
-                   "ergothioneine",
-                   "3-methylxanthine",
-                   "3-hydroxybenzoic acid sulfate",
-                   "3-hydroxyphenylacetic acid sulfate",
-                   "4-hydroxyphenylacetic acid glucuronide",
-                   "5-(3'-methoxy-4'-hydroxyphenyl)-γ-valerolactone sulfate")
+  data("idmap")
 
-  data <- data.frame(A = metabolites[1:4], B = metabolites[5:8])
+  idx <- sample(1:nrow(idmap), 100)
+  metabolites <- idmap$InChIKey[idx]
 
-  a <- FOBIEnrichR::ORA(metabolites = metabolites)
-  b <- FOBIEnrichR::ORA(metabolites = metabolites, method = "fdr")
-  c <- FOBIEnrichR::ORA(metabolites = metabolites, method = "bonferroni")
-  d <- FOBIEnrichR::ORA(metabolites = metabolites[1:6], method = "bonferroni")
+  data <- data.frame(A = metabolites[1:50], B = metabolites[51:100])
+
+  a <- fobienrich::ora(metabolites = metabolites)
+  b <- fobienrich::ora(metabolites = metabolites, method = "fdr")
+  c <- fobienrich::ora(metabolites = metabolites, method = "bonferroni")
+  d <- fobienrich::ora(metabolites = metabolites[1:50], method = "bonferroni")
 
   ##
 
@@ -31,10 +27,10 @@ test_that("ORA works", {
 
   ##
 
-  expect_warning(FOBIEnrichR::ORA(metabolites))
-  expect_error(FOBIEnrichR::ORA(metabolites, method = "fd"))
-  expect_error(FOBIEnrichR::ORA())
-  expect_error(FOBIEnrichR::ORA(data))
+  expect_warning(fobienrich::ora(metabolites))
+  expect_error(fobienrich::ora(metabolites, method = "fd"))
+  expect_error(fobienrich::ora())
+  expect_error(fobienrich::ora(data))
 
 })
 

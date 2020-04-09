@@ -1,5 +1,5 @@
-Package: FOBIEnrichR
-Title: R Package for Enrichment Analysis in Nutrimetabolomic Studies using FOBI
+Package: fobienrich
+Title: R Package for Enrichment Analysis in Nutrimetabolomic Studies using Food-Biomarker Ontology.
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Pol",
@@ -13,11 +13,13 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     magrittr,
-    dplyr,
-    clisymbols, 
+    clisymbols,
     crayon,
     tidyr,
-    readr
+    vroom,
+    dplyr,
+    stringr,
+    sigora
 Suggests: 
     covr,
     tidyverse,

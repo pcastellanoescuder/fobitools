@@ -2,7 +2,7 @@
 output: github_document
 ---
 
-# FOBIEnrichR
+# fobienrich
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
@@ -18,11 +18,11 @@ This package allows users to perform an enrichment analysis using FOBI (Food-Bio
 
 ```{r, eval = F}
 # install.packages("devtools")
-devtools::install_github("pcastellanoescuder/FOBIEnrichR")
+devtools::install_github("pcastellanoescuder/fobienrich")
 ```
 
 # Code of Conduct
 
-Please note that the 'FOBIEnrichR' project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
+Please note that the 'fobienrich' project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
   
   
