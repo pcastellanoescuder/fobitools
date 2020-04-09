@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "polcaes@gmail.com",
            comment = c(ORCID = "0000-0001-6466-877X"))
-Description: To fill
+Description: This package includes different methods to perform a biological significance analysis on nutrimetabolomic data. `fobibsa` uses the FOBI's (Food-Biomarker Ontology) biological information to perform all different approaches.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

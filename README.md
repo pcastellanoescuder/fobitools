@@ -15,8 +15,10 @@ coverage](https://codecov.io/gh/pcastellanoescuder/fobibsa/branch/master/graph/b
 v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 <!-- badges: end -->
 
-This package allows users to perform an enrichment analysis using FOBI
-(Food-Biomarker Ontology).
+This package includes different methods to perform a biological
+significance analysis on nutrimetabolomic data. `fobibsa` uses the
+FOBI’s (Food-Biomarker Ontology) biological information to perform all
+different approaches.
 
 # Installation
 

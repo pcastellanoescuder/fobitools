@@ -1,4 +1,4 @@
 library(testthat)
-library(fobienrich)
+library(fobibsa)
 
 test_check("fobibsa")
