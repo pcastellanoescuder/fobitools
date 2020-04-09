@@ -1,5 +1,5 @@
-Package: fobienrich
-Title: R Package for Enrichment Analysis in Nutrimetabolomic Studies using Food-Biomarker Ontology.
+Package: fobibsa
+Title: R Package for Biological Significance Analysis in Nutrimetabolomic Studies.
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Pol",
@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "polcaes@gmail.com",
            comment = c(ORCID = "0000-0001-6466-877X"))
-Description: This package allows users to perform a metabolomic enrichment analysis using FOBI (Food-Biomarker Ontology).
+Description: To fill
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

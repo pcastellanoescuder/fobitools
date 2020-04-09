@@ -1,4 +1,4 @@
 library(testthat)
-library(FOBIEnrichR)
+library(fobienrich)
 
-test_check("FOBIEnrichR")
+test_check("fobibsa")

@@ -9,10 +9,10 @@ test_that("ora works", {
 
   data <- data.frame(A = metabolites[1:50], B = metabolites[51:100])
 
-  a <- fobienrich::ora(metabolites = metabolites)
-  b <- fobienrich::ora(metabolites = metabolites, method = "fdr")
-  c <- fobienrich::ora(metabolites = metabolites, method = "bonferroni")
-  d <- fobienrich::ora(metabolites = metabolites[1:50], method = "bonferroni")
+  a <- fobibsa::ora(metabolites = metabolites)
+  b <- fobibsa::ora(metabolites = metabolites, method = "fdr")
+  c <- fobibsa::ora(metabolites = metabolites, method = "bonferroni")
+  d <- fobibsa::ora(metabolites = metabolites[1:50], method = "bonferroni")
 
   ##
 
@@ -27,10 +27,10 @@ test_that("ora works", {
 
   ##
 
-  expect_warning(fobienrich::ora(metabolites))
-  expect_error(fobienrich::ora(metabolites, method = "fd"))
-  expect_error(fobienrich::ora())
-  expect_error(fobienrich::ora(data))
+  expect_warning(fobibsa::ora(metabolites))
+  expect_error(fobibsa::ora(metabolites, method = "fd"))
+  expect_error(fobibsa::ora())
+  expect_error(fobibsa::ora(data))
 
 })
 
