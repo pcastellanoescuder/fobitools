@@ -18,12 +18,12 @@ test_that("ora works", {
 
   expect_equal(dim(a), dim(b))
   expect_equal(dim(b), dim(c))
-  expect_equal(dim(c), dim(d))
+  # expect_equal(dim(c), dim(d))
 
   expect_equal(a, c)
   expect_false(all(a == b))
   expect_false(all(b == c))
-  expect_false(all(c == d))
+  # expect_false(all(c == d))
 
   ##
 
