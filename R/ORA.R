@@ -18,7 +18,7 @@
 #' @importFrom crayon red green blue
 #' @importFrom tidyr drop_na separate_rows
 #' @importFrom vroom vroom
-#' @importFrom dplyr mutate select rename filter relocate left_join
+#' @importFrom dplyr mutate select rename filter left_join
 #' @importFrom stringr str_remove_all regex str_replace_all
 #' @importFrom sigora makeGPS
 ora <- function(metabolites,
@@ -51,7 +51,7 @@ ora <- function(metabolites,
 
   if(!isTRUE(stable_version)){
 
-    fobi <- vroom::vroom("https://raw.github.com/pcastellanoescuder/FoodBiomarkerOntology/master/src/csv/200320_fobi-export.csv", delim = ";")
+    fobi <- vroom::vroom("https://raw.github.com/pcastellanoescuder/FoodBiomarkerOntology/master/src/csv/fobi-export.csv", delim = ";")
 
     GPSrepo_foods <- fobi %>%
       drop_na(BiomarkerOf) %>%
@@ -95,9 +95,9 @@ ora <- function(metabolites,
       rename(target = Entity)
 
     GPSrepo_foods <- left_join(GPSrepo_foods, ids, by = "target") %>%
-      relocate(FOBI, target)
+      select(FOBI, target, Entity)
     GPSrepo_chemicals <- left_join(GPSrepo_chemicals, ids, by = "target") %>%
-      relocate(FOBI, target)
+      select(FOBI, target, Entity)
 
     GPSrepo_foods <- sigora::makeGPS(GPSrepo_foods)
     GPSrepo_chemicals <- sigora::makeGPS(GPSrepo_chemicals)
