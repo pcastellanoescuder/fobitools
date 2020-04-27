@@ -1,5 +1,5 @@
 Package: fobibsa
-Title: R Package for Biological Significance Analysis in Nutrimetabolomic Studies.
+Title: R Package for Biological Significance Analysis in Nutrimetabolomic Studies
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Pol",
@@ -7,24 +7,25 @@ Authors@R:
            role = c("aut", "cre"),
            email = "polcaes@gmail.com",
            comment = c(ORCID = "0000-0001-6466-877X"))
-Description: This package includes different methods to perform a biological significance analysis on nutrimetabolomic data. `fobibsa` uses the FOBI's (Food-Biomarker Ontology) biological information to perform all different approaches.
+Description: This package includes different methods to perform a biological significance analysis on nutrimetabolomic data. 
+    `fobibsa` uses the FOBI's (Food-Biomarker Ontology) biological information to perform all different approaches.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports:
-    magrittr,
     clisymbols,
     crayon,
-    tidyr,
-    vroom,
     dplyr,
+    magrittr,
+    sigora,
     stringr,
-    sigora
+    tidyr,
+    vroom
 Suggests: 
     covr,
-    tidyverse,
-    testthat (>= 2.1.0)
+    testthat (>= 2.3.2),
+    tidyverse
 RoxygenNote: 7.0.2
-Depends: R (>= 2.10)
+Depends: R (>= 3.6.0)
 URL: https://github.com/pcastellanoescuder/fobibsa/
 BugReports: https://github.com/pcastellanoescuder/fobibsa/issues
