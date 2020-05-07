@@ -1,4 +1,4 @@
-#' Over Representation Analysis with FOBI
+#' Over Representation Analysis and FOBI
 #'
 #' @description This function performs a traditional Over Representation Analysis by hypergeometric test: classes are treated as sets of individual metabolites and all metabolites are treated as equally informative. `fobibsa::ora` uses FOBI (Food-Biomarker Ontology) to extract the biological information and it's an adapted version of `sigora::ora` function.
 #'

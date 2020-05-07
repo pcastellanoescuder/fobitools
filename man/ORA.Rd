@@ -2,7 +2,7 @@
 % Please edit documentation in R/ora.R
 \name{ora}
 \alias{ora}
-\title{Over Representation Analysis with FOBI}
+\title{Over Representation Analysis and FOBI}
 \usage{
 ora(
   metabolites,

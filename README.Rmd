@@ -15,7 +15,7 @@ output: github_document
 
 <!-- badges: end -->
 
-This package includes different methods to perform a biological significance analysis on nutrimetabolomic data. `fobibsa` uses the FOBI's (Food-Biomarker Ontology) biological information to perform all different approaches.  
+This package uses the [FOBI's (Food-Biomarker Ontology)](https://github.com/pcastellanoescuder/FoodBiomarkerOntology) biological information to perform a biological significance analysis on nutrimetabolomic data through the classical over representation analysis method. 
 
 # Installation
 
@@ -27,5 +27,4 @@ devtools::install_github("pcastellanoescuder/fobibsa")
 # Code of Conduct
 
 Please note that the 'fobibsa' project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
-  
   

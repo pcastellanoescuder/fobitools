@@ -18,10 +18,11 @@ v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/li
 
 <!-- badges: end -->
 
-This package includes different methods to perform a biological
-significance analysis on nutrimetabolomic data. `fobibsa` uses the
-FOBI’s (Food-Biomarker Ontology) biological information to perform all
-different approaches.
+This package uses the [FOBI’s (Food-Biomarker
+Ontology)](https://github.com/pcastellanoescuder/FoodBiomarkerOntology)
+biological information to perform a biological significance analysis on
+nutrimetabolomic data through the classical over representation analysis
+method.
 
 # Installation
 

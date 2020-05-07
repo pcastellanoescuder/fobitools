@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Over Representation Analysis and FOBI — ora • fobibsa</title>
+<title>ID Map File - Apr 9, 2020 — idmap • fobibsa</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Over Representation Analysis and FOBI — ora" />
-<meta property="og:description" content="This function performs a traditional Over Representation Analysis by hypergeometric test: classes are treated as sets of individual metabolites and all metabolites are treated as equally informative. `fobibsa::ora` uses FOBI (Food-Biomarker Ontology) to extract the biological information and it's an adapted version of `sigora::ora` function." />
+<meta property="og:title" content="ID Map File - Apr 9, 2020 — idmap" />
+<meta property="og:description" content="This file contains all FOBI metabolites with 8 different possible IDs for each one (if possible)." />
 
 
 
@@ -108,49 +108,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Over Representation Analysis and FOBI</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pcastellanoescuder/fobibsa/blob/master/R/ora.R'><code>R/ora.R</code></a></small>
-    <div class="hidden name"><code>ora.Rd</code></div>
+    <h1>ID Map File - Apr 9, 2020</h1>
+    <small class="dont-index">Source: <a href='https://github.com/pcastellanoescuder/fobibsa/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>idmap.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function performs a traditional Over Representation Analysis by hypergeometric test: classes are treated as sets of individual metabolites and all metabolites are treated as equally informative. `fobibsa::ora` uses FOBI (Food-Biomarker Ontology) to extract the biological information and it's an adapted version of `sigora::ora` function.</p>
+    <p>This file contains all FOBI metabolites with 8 different possible IDs for each one (if possible).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ora</span>(
-  <span class='no'>metabolites</span>,
-  <span class='kw'>fobi_sets</span> <span class='kw'>=</span> <span class='st'>"foods"</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"bonferroni"</span>,
-  <span class='kw'>stable_version</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='no'>idmap</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>metabolites</th>
-      <td><p>Character vector with metabolite names. Other IDs are accepted: FOBI, HMDB, KEGG, PubChemCID, InChIKey, InChICode and ChemSpider.</p></td>
-    </tr>
-    <tr>
-      <th>fobi_sets</th>
-      <td><p>Sets desired to test for the over representation in FOBI. Options are: "foods" (default) and "chemicals".</p></td>
-    </tr>
-    <tr>
-      <th>method</th>
-      <td><p>Method for multiple testing adjustment. Options are: "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none".</p></td>
-    </tr>
-    <tr>
-      <th>stable_version</th>
-      <td><p>Logical. If it's set to TRUE (default), the function will use an stable version of FOBI. If not, the function will use a developing version of FOBI from GitHub.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame with results.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+    <p>A data frame object: 590 metabolites with 8 possible IDs.</p><dl'>
+  <dt>metaboliteNames</dt><dd><p>Raw metabolite names.</p></dd>
+  <dt>FOBI</dt><dd><p>FOBI ID.</p></dd>
+  <dt>HMDB</dt><dd><p>HMDB ID.</p></dd>
+  <dt>KEGG</dt><dd><p>KEGG ID.</p></dd>
+  <dt>PubChemCID</dt><dd><p>PubChemCID ID.</p></dd>
+  <dt>InChIKey</dt><dd><p>InChIKey ID.</p></dd>
+  <dt>InChICode</dt><dd><p>InChICode ID.</p></dd>
+  <dt>ChemSpider</dt><dd><p>ChemSpider ID.</p></dd>
 
-    <p>Foroushani AB, Brinkman FS and Lynn DJ (2013). Pathway-GPS and SIGORA:identifying relevant pathways based on the over-representation of their gene-pair signatures. PeerJ, 1, pp. e229.</p>
+</dl>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://github.com/pcastellanoescuder/FoodBiomarkerOntology'>https://github.com/pcastellanoescuder/FoodBiomarkerOntology</a></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
