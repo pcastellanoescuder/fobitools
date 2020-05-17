@@ -1,4 +1,4 @@
-Package: fobibsa
+Package: fobitools
 Title: R Package for Biological Significance Analysis in Nutrimetabolomic Studies
 Version: 0.0.0.9000
 Authors@R: 
@@ -27,5 +27,5 @@ Suggests:
     tidyverse
 RoxygenNote: 7.1.0
 Depends: R (>= 3.6.0)
-URL: https://github.com/pcastellanoescuder/fobibsa/
-BugReports: https://github.com/pcastellanoescuder/fobibsa/issues
+URL: https://github.com/pcastellanoescuder/fobitools/
+BugReports: https://github.com/pcastellanoescuder/fobitools/issues

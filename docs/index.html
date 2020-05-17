@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>R Package for Biological Significance Analysis in Nutrimetabolomic Studies • fobibsa</title>
+<title>R Package for Biological Significance Analysis in Nutrimetabolomic Studies • fobitools</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -31,7 +31,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">fobibsa</a>
+        <a class="navbar-link" href="index.html">fobitools</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
       </span>
     </div>
@@ -50,7 +50,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/pcastellanoescuder/fobibsa/">
+  <a href="https://github.com/pcastellanoescuder/fobitools/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -68,9 +68,9 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="fobibsa" class="section level1">
+<div id="fobitools" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#fobibsa" class="anchor"></a>fobibsa</h1></div>
+<a href="#fobitools" class="anchor"></a>fobitools</h1></div>
 <!-- badges: start -->
 
 <!-- badges: end -->
@@ -80,12 +80,12 @@
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"pcastellanoescuder/fobibsa"</span>)</pre></div>
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"pcastellanoescuder/fobitools"</span>)</pre></div>
 </div>
 <div id="code-of-conduct" class="section level1">
 <h1 class="hasAnchor">
 <a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h1>
-<p>Please note that the ‘fobibsa’ project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<p>Please note that the ‘fobitools’ project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 
   </div>
@@ -94,9 +94,9 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/pcastellanoescuder/fobibsa/">https://​github.com/​pcastellanoescuder/​fobibsa/​</a>
+<li>Browse source code at <br><a href="https://github.com/pcastellanoescuder/fobitools/">https://​github.com/​pcastellanoescuder/​fobitools/​</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/pcastellanoescuder/fobibsa/issues">https://​github.com/​pcastellanoescuder/​fobibsa/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/pcastellanoescuder/fobitools/issues">https://​github.com/​pcastellanoescuder/​fobitools/​issues</a>
 </li>
 </ul>
 </div>
@@ -124,10 +124,10 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
-<li><a href="https://travis-ci.com/pcastellanoescuder/fobibsa"><img src="https://travis-ci.com/pcastellanoescuder/fobibsa.svg?branch=master" alt="Build Status"></a></li>
-<li><a href="https://ci.appveyor.com/project/pcastellanoescuder/fobibsa"><img src="https://ci.appveyor.com/api/projects/status/github/pcastellanoescuder/fobibsa?branch=master&amp;svg=true" alt="AppVeyor build status"></a></li>
-<li><a href="https://github.com/pcastellanoescuder/fobibsa/actions"><img src="https://github.com/pcastellanoescuder/fobibsa/workflows/R-CMD-check/badge.svg" alt="Actions Status"></a></li>
-<li><a href="https://codecov.io/gh/pcastellanoescuder/fobibsa?branch=master"><img src="https://codecov.io/gh/pcastellanoescuder/fobibsa/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://travis-ci.com/pcastellanoescuder/fobitools"><img src="https://travis-ci.com/pcastellanoescuder/fobitools.svg?branch=master" alt="Build Status"></a></li>
+<li><a href="https://ci.appveyor.com/project/pcastellanoescuder/fobitools"><img src="https://ci.appveyor.com/api/projects/status/github/pcastellanoescuder/fobitools?branch=master&amp;svg=true" alt="AppVeyor build status"></a></li>
+<li><a href="https://github.com/pcastellanoescuder/fobitools/actions"><img src="https://github.com/pcastellanoescuder/fobitools/workflows/R-CMD-check/badge.svg" alt="Actions Status"></a></li>
+<li><a href="https://codecov.io/gh/pcastellanoescuder/fobitools?branch=master"><img src="https://codecov.io/gh/pcastellanoescuder/fobitools/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a></li>
 </ul>
 </div>

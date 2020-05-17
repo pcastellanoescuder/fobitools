@@ -1,18 +1,18 @@
 
-# fobibsa
+# fobitools
 
 <!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Build
-Status](https://travis-ci.com/pcastellanoescuder/fobibsa.svg?branch=master)](https://travis-ci.com/pcastellanoescuder/fobibsa)
+Status](https://travis-ci.com/pcastellanoescuder/fobitools.svg?branch=master)](https://travis-ci.com/pcastellanoescuder/fobitools)
 [![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/pcastellanoescuder/fobibsa?branch=master&svg=true)](https://ci.appveyor.com/project/pcastellanoescuder/fobibsa)
+status](https://ci.appveyor.com/api/projects/status/github/pcastellanoescuder/fobitools?branch=master&svg=true)](https://ci.appveyor.com/project/pcastellanoescuder/fobitools)
 [![Actions
-Status](https://github.com/pcastellanoescuder/fobibsa/workflows/R-CMD-check/badge.svg)](https://github.com/pcastellanoescuder/fobibsa/actions)
+Status](https://github.com/pcastellanoescuder/fobitools/workflows/R-CMD-check/badge.svg)](https://github.com/pcastellanoescuder/fobitools/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/pcastellanoescuder/fobibsa/branch/master/graph/badge.svg)](https://codecov.io/gh/pcastellanoescuder/fobibsa?branch=master)
+coverage](https://codecov.io/gh/pcastellanoescuder/fobitools/branch/master/graph/badge.svg)](https://codecov.io/gh/pcastellanoescuder/fobitools?branch=master)
 [![License: GPL
 v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
@@ -28,11 +28,11 @@ method.
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("pcastellanoescuder/fobibsa")
+devtools::install_github("pcastellanoescuder/fobitools")
 ```
 
 # Code of Conduct
 
-Please note that the ‘fobibsa’ project is released with a [Contributor
+Please note that the ‘fobitools’ project is released with a [Contributor
 Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project,
 you agree to abide by its terms.

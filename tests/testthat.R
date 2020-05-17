@@ -1,4 +1,4 @@
 library(testthat)
-library(fobibsa)
+library(fobitools)
 
-test_check("fobibsa")
+test_check("fobitools")
