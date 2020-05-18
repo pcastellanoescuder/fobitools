@@ -1,13 +1,16 @@
 
-annotate <- function(data, 
-                     reference){
+annotate_foods <- function(input, 
+                           reference,
+                           similarity = 1){
   
-  ffq <- data %>%
+  tictoc::tic()
+  
+  ffq <- input %>%
     filter(!duplicated(FOOD_NAME)) %>%
-    mutate(words = str_trim(FOOD_NAME),
-           words = str_squish(words),
-           words = str_replace_all(words, "[[:punct:]]" , " "),
+    mutate(words = str_replace_all(FOOD_NAME, "[[:punct:]]" , " "),
            words = str_replace_all(words, "[[:digit:]]", " "),
+           words = str_trim(words),
+           words = str_squish(words),
            words = tolower(words)) %>%
     separate_rows(words, sep = "\\bwith\\b") %>%
     separate_rows(words, sep = "\\band\\b") %>%
@@ -21,8 +24,6 @@ annotate <- function(data,
            words = str_remove_all(words, pattern = "\\bbased\\b"),
            words = str_remove_all(words, pattern = "\\bbeverage\\b"),
            words = str_remove_all(words, pattern = "\\bor\\b"), # to discuss
-           # words = str_remove_all(words, pattern = "\\band\\b"),
-           # words = str_remove_all(words, pattern = "\\bwith\\b"),
            words = str_remove_all(words, pattern = "\\bon\\b"),
            words = str_remove_all(words, pattern = "\\bother\\b"),
            words = str_remove_all(words, pattern = "\\bfried\\b"), # to discuss
@@ -176,7 +177,7 @@ annotate <- function(data,
   
   result4 <- merge(ffq3, wordlist, by = "words")
   result4 <- merge(result4, fobi_foods, by = "ref") %>%
-    filter(match >= 1) %>%
+    filter(match >= similarity) %>%
     select(FOOD_ID, FOOD_NAME, id_code, name) %>%
     filter(!duplicated(.))
   
@@ -186,13 +187,26 @@ annotate <- function(data,
                                 !FOOD_NAME %in% result3$FOOD_NAME,
                                 !FOOD_NAME %in% result4$FOOD_NAME)
   
-  #######
+  ## MERGE RESULTS
   
-  final_result <- bind_rows(result0, result1, result2, result3, result4) %>% 
+  annotated_input <- bind_rows(result0, result1, result2, result3, result4) %>% 
     filter(!duplicated(FOOD_ID)) # random pick first one if two or more have been annotated
-  # paste0(round(100 - ((nrow(no_matched)/nrow(ffq))*100), 2), "% annotated!")
   
-  return(final_result)
+  ## OUTPUT MESSAGE
+  
+  if(round(100 - ((nrow(no_matched)/nrow(input))*100), 2) > 75){
+    cat(crayon::green(paste0(round(100 - ((nrow(no_matched)/nrow(input))*100), 2), "% has been annotated\n")))
+  }
+  else if(round(100 - ((nrow(no_matched)/nrow(input))*100), 2) > 25){
+    cat(crayon::yellow(paste0(round(100 - ((nrow(no_matched)/nrow(input))*100), 2), "% has been annotated\n")))
+  }
+  else{
+    cat(crayon::red(paste0(round(100 - ((nrow(no_matched)/nrow(input))*100), 2), "% has been annotated\n")))
+  }
+  
+  tictoc::toc()
+  
+  return(annotated_input)
   
 }
 
