@@ -18,7 +18,6 @@
 #' @importFrom clisymbols symbol
 #' @importFrom crayon red green blue
 #' @importFrom tidyr drop_na separate_rows
-#' @importFrom vroom vroom
 #' @importFrom dplyr mutate select rename filter left_join
 #' @importFrom stringr str_remove_all regex str_replace_all
 #' @importFrom sigora makeGPS
@@ -52,53 +51,39 @@ ora <- function(metabolites,
 
   if(!isTRUE(stable_version)){
 
-    fobi <- vroom::vroom("https://raw.github.com/pcastellanoescuder/FoodBiomarkerOntology/master/src/csv/fobi-export.csv", delim = ";")
-
+    fobi <- parse_fobi()
+    
     GPSrepo_foods <- fobi %>%
-      drop_na(BiomarkerOf) %>%
-      select(BiomarkerOf, Entity) %>%
-      mutate(Entity = str_remove_all(Entity, pattern = regex("[']")),
-             BiomarkerOf = str_remove_all(BiomarkerOf, pattern = regex("[']"))) %>%
-      separate_rows(BiomarkerOf, sep = "\t") %>%
-      rename(target = BiomarkerOf)
+      select(FOBI, name, BiomarkerOf) %>%
+      mutate(BiomarkerOf = as.character(BiomarkerOf)) %>%
+      filter(!BiomarkerOf == "NULL") %>%
+      separate_rows(BiomarkerOf, sep = '", "') %>%
+      mutate(BiomarkerOf = str_remove(BiomarkerOf, pattern = regex('[c("]')),
+             BiomarkerOf = str_remove(BiomarkerOf, pattern = regex('[")]')),
+             BiomarkerOf = str_trim(BiomarkerOf),
+             BiomarkerOf = str_squish(BiomarkerOf))
 
+    ##
+    
     GPSrepo_chemicals <- fobi %>%
-      drop_na(BiomarkerOf) %>%
-      select(`Superclass(es)`, Entity) %>%
-      rename(Superclass = `Superclass(es)`) %>%
-      mutate(Entity = str_remove_all(Entity, pattern = regex("[']")),
-             Superclass = str_remove_all(Superclass, pattern = regex("[']"))) %>%
-      rename(target = Superclass)
+      filter(!BiomarkerOf == "NULL") %>%
+      select(is_a_code, is_a_name, name) %>%
+      mutate_all(as.character)
 
+    ##
+    
     idmap <- fobi %>%
-      drop_na(BiomarkerOf) %>%
-      select(Entity, FOBI, HMDB, KEGG, PubChemCID, InChIKey, InChICode, ChemSpider) %>%
-      mutate(Entity = str_remove_all(Entity, pattern = regex("[']")),
-             FOBI = str_remove_all(FOBI, pattern = regex("[']")),
-             HMDB = str_remove_all(HMDB, pattern = regex("[']")),
-             KEGG = str_remove_all(KEGG, pattern = regex("[']")),
-             PubChemCID = str_remove_all(PubChemCID, pattern = regex("[']")),
-             InChIKey = str_remove_all(InChIKey, pattern = regex("[']")),
-             InChICode = str_remove_all(InChICode, pattern = regex("[']")),
-             ChemSpider = str_remove_all(ChemSpider, pattern = regex("[']")),
-             HMDB = str_replace_all(HMDB, regex("( ).*"), regex("\\1")),
+      filter(!BiomarkerOf == "NULL") %>%
+      select(name, FOBI, HMDB, KEGG, PubChemCID, InChIKey, InChICode, ChemSpider) %>%
+      mutate_all(as.character) %>%
+      mutate(HMDB = str_replace_all(HMDB, regex("( ).*"), regex("\\1")),
              KEGG = str_replace_all(KEGG, regex("( ).*"), regex("\\1")),
              PubChemCID = str_replace_all(PubChemCID, regex("( ).*"), regex("\\1")),
              ChemSpider = str_replace_all(ChemSpider, regex("( ).*"), regex("\\1"))) %>%
-      rename(metaboliteNames = Entity)
-
-    ids <- fobi %>%
-      filter(is.na(BiomarkerOf)) %>%
-      select(Entity, FOBI) %>%
-      mutate(Entity = str_remove_all(Entity, pattern = regex("[']")),
-             FOBI = str_remove_all(FOBI, pattern = regex("[']"))) %>%
-      drop_na(FOBI) %>%
-      rename(target = Entity)
-
-    GPSrepo_foods <- left_join(GPSrepo_foods, ids, by = "target") %>%
-      select(FOBI, target, Entity)
-    GPSrepo_chemicals <- left_join(GPSrepo_chemicals, ids, by = "target") %>%
-      select(FOBI, target, Entity)
+      rename(metaboliteNames = name) %>%
+      mutate_all(~ ifelse(. == "NULL", NA, .))
+    
+    ##
 
     GPSrepo_foods <- sigora::makeGPS(GPSrepo_foods)
     GPSrepo_chemicals <- sigora::makeGPS(GPSrepo_chemicals)

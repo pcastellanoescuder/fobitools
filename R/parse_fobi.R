@@ -1,5 +1,5 @@
 
-parse_fobi <- function(terms = NULL, output = "descendants"){
+parse_fobi <- function(terms = NULL, get = "descendants"){
   
   path <- "https://raw.github.com/pcastellanoescuder/FoodBiomarkerOntology/master/src/ontology/fobi.obo"
   suppressMessages({
@@ -47,7 +47,7 @@ parse_fobi <- function(terms = NULL, output = "descendants"){
     select(-gf) %>%
     filter(!name %in% c("BiomarkerOf", "HasBiomarker", "Contains", "IsIngredientOf"))
   
-  if(!is.null(terms) & output == "descendants"){
+  if(!is.null(terms) & get == "descendants"){
     
     descs <- ontologyIndex::get_ontology(path) %>%
       ontologyIndex::get_descendants(roots = terms)
@@ -57,7 +57,7 @@ parse_fobi <- function(terms = NULL, output = "descendants"){
     
   }
   
-  if(!is.null(terms) & output == "ancestors"){
+  if(!is.null(terms) & get == "ancestors"){
     
     ances <- ontologyIndex::get_ontology(path) %>%
       ontologyIndex::get_ancestors(terms = terms)
@@ -74,7 +74,7 @@ parse_fobi <- function(terms = NULL, output = "descendants"){
            KEGG = "FOBI:040235",
            PubChemCID = "FOBI:040236",
            InChIKey = "FOBI:040237",
-           InChI_Code = "FOBI:040238",
+           InChICode = "FOBI:040238",
            FOBI = "FOBI:043480",
            alias = "IAO:0000118",
            HMDB = "FOBI:040233",
