@@ -11,7 +11,7 @@ parse_fobi <- function(terms = NULL, get = "descendants"){
     parsed_fobi <- raw_lines %>% 
       slice(13:n()) %>%
       separate_rows(V2, sep = " ! ") %>% 
-      mutate(V2 = str_remove_all(V2, pattern = regex("xsd:string")), # !!!
+      mutate(V2 = str_remove_all(V2, pattern = regex("xsd:string")),
              V3 = ifelse(V1 == "property_value:", map(str_split(V2, pattern = " "), 1), V1),
              V2 = str_remove_all(V2, pattern = regex(V1)),
              V3 = ifelse(V3 == "relationship:", map(str_split(V2, pattern = " "), 1), V3),

@@ -54,14 +54,9 @@ ora <- function(metabolites,
     fobi <- parse_fobi()
     
     GPSrepo_foods <- fobi %>%
-      select(FOBI, name, BiomarkerOf) %>%
-      mutate(BiomarkerOf = as.character(BiomarkerOf)) %>%
       filter(!BiomarkerOf == "NULL") %>%
-      separate_rows(BiomarkerOf, sep = '", "') %>%
-      mutate(BiomarkerOf = str_remove(BiomarkerOf, pattern = regex('[c("]')),
-             BiomarkerOf = str_remove(BiomarkerOf, pattern = regex('[")]')),
-             BiomarkerOf = str_trim(BiomarkerOf),
-             BiomarkerOf = str_squish(BiomarkerOf))
+      select(id_BiomarkerOf, BiomarkerOf, name) %>%
+      tidyr::unnest(cols = c(id_BiomarkerOf, BiomarkerOf, name))
 
     ##
     
