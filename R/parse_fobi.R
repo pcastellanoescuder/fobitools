@@ -3,46 +3,36 @@ parse_fobi <- function(terms = NULL, get = "descendants"){
   
   path <- "https://raw.github.com/pcastellanoescuder/FoodBiomarkerOntology/master/src/ontology/fobi.obo"
   suppressMessages({
-    raw_lines <- vroom::vroom(path)
+    raw_lines <- vroom::vroom(path, delim = ": ")
   })
-  colnames(raw_lines)[1:2] <- c("V1", "V2")
   
-  suppressWarnings({
-    parsed_fobi <- raw_lines %>% 
-      slice(13:n()) %>%
-      separate_rows(V2, sep = " ! ") %>% 
-      mutate(V2 = str_remove_all(V2, pattern = regex("xsd:string")),
-             V3 = ifelse(V1 == "property_value:", map(str_split(V2, pattern = " "), 1), V1),
-             V2 = str_remove_all(V2, pattern = regex(V1)),
-             V3 = ifelse(V3 == "relationship:", map(str_split(V2, pattern = " "), 1), V3),
-             V2 = str_remove_all(V2, pattern = regex(V3)),
-             V2 = str_remove_all(V2, pattern = regex('["]')),
-             V1 = str_remove_all(V1, pattern = regex('[:]')),
-             V2 = str_replace_all(V2, pattern = regex('[_]'), replacement = ':')) %>%
-      rowwise() %>%
-      mutate_all(~ str_trim(.)) %>%
-      ungroup() %>%
-      select(V1, V3, V2) %>%
-      drop_na() %>%
-      mutate(V3 = ifelse(str_detect(V2, pattern = regex(":")) & str_detect(V1, pattern = regex("id")), "id_code", V3),
-             V3 = ifelse(V3 == "id:", "name", V3),
-             V3 = ifelse(str_detect(V2, pattern = regex(":")) & str_detect(V1, pattern = regex("is_a")), "is_a_code", V3),
-             V3 = ifelse(V3 == "is_a:", "is_a_name", V3),
-             V3 = str_replace_all(V3, pattern = regex('name:'), replacement = regex('name'))) %>%
-      rename(type = V1,
-             description = V3,
-             target = V2) %>%
-      mutate(gf = NA)
-  })
+  parsed_fobi <- raw_lines %>% 
+    slice(13:n()) %>%
+    rename(V1 = 1, V2 = 2) %>%
+    separate_rows(V2, sep = " ! ") %>% 
+    mutate(V2 = str_replace_all(V2, pattern = "FOBI_", "FOBI:"),
+           V2 = str_remove_all(V2, pattern = regex("xsd:string")),
+           V1 = ifelse(V1 == "property_value", map(str_split(V2, pattern = " "), 1), V1),
+           V1 = ifelse(V1 == "relationship", map(str_split(V2, pattern = " "), 1), V1),
+           V1 = ifelse(str_detect(V1, pattern = "id") & str_detect(V2, pattern = regex(":")), "id_code", V1),
+           V1 = ifelse(V1 == "id", "name", V1),
+           V1 = ifelse(str_detect(V1, pattern = "is_a") & str_detect(V2, pattern = regex(":")), "is_a_code", V1),
+           V1 = ifelse(V1 == "is_a", "is_a_name", V1),
+           V2 = str_remove_all(V2, pattern = regex('["]'))) %>%
+    drop_na() %>%
+    rowwise() %>%
+    mutate(V2 = str_remove(V2, pattern = V1)) %>%
+    ungroup() %>%
+    mutate_all(~ str_trim(.)) %>%
+    mutate(gf = NA)
   
   for(i in 1:nrow(parsed_fobi)){
-    ifelse(parsed_fobi$description[i] == "id_code", parsed_fobi$gf[i] <- i, parsed_fobi$gf[i] <- parsed_fobi$gf[i - 1])
+    ifelse(parsed_fobi$V1[i] == "id_code", parsed_fobi$gf[i] <- i, parsed_fobi$gf[i] <- parsed_fobi$gf[i - 1])
   }
   
   fobi <- parsed_fobi %>%
-    select(-type) %>%
     group_by(gf) %>%
-    pivot_wider(names_from = description, values_from = target, values_fn = list(target = list)) %>%
+    pivot_wider(names_from = V1, values_from = V2, values_fn = list(V2 = list)) %>%
     ungroup() %>%
     select(-gf) %>%
     filter(!name %in% c("BiomarkerOf", "HasBiomarker", "Contains", "IsIngredientOf"))

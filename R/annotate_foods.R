@@ -5,7 +5,12 @@ annotate_foods <- function(input,
   
   tictoc::tic()
   
+  if(missing(reference)){
+    reference <- parse_fobi(terms = "FOBI:0001") 
+  }
+  
   ffq <- input %>%
+    rename(FOOD_ID = 1, FOOD_NAME = 2) %>%
     filter(!duplicated(FOOD_NAME)) %>%
     mutate(words = str_replace_all(FOOD_NAME, "[[:punct:]]" , " "),
            words = str_replace_all(words, "[[:digit:]]", " "),

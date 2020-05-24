@@ -76,7 +76,8 @@ ora <- function(metabolites,
              PubChemCID = str_replace_all(PubChemCID, regex("( ).*"), regex("\\1")),
              ChemSpider = str_replace_all(ChemSpider, regex("( ).*"), regex("\\1"))) %>%
       rename(metaboliteNames = name) %>%
-      mutate_all(~ ifelse(. == "NULL", NA, .))
+      mutate_all(~ ifelse(. == "NULL", NA, .)) %>%
+      mutate_all(~ stringr::str_trim(.))
     
     ##
 
@@ -87,7 +88,6 @@ ora <- function(metabolites,
 
   else {
 
-    data("fobi")
     data("idmap")
     data("GPSrepo_foods")
     data("GPSrepo_chemicals")
