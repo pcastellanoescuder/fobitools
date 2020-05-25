@@ -1,5 +1,5 @@
 Package: fobitools
-Title: R Package for Biological Significance Analysis in Nutrimetabolomic Studies
+Title: R Package to interact with FOBI (Food-Biomarker Ontology)
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Pol",
@@ -7,8 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "polcaes@gmail.com",
            comment = c(ORCID = "0000-0001-6466-877X"))
-Description: This package uses the FOBI's (Food-Biomarker Ontology) biological information to perform a biological significance analysis 
-    on nutrimetabolomic data through the classical over representation analysis method. 
+Description: This package provides a set of tools and functionalities to use and interact with FOBI (Food-Biomarker Ontology).
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

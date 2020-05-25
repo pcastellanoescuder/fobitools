@@ -1,12 +1,5 @@
-#' Food-Biomarker Ontology (.CSV) - Apr 9, 2020
-#'
-#' This file contans all FOBI's necessary information to perform an ORA test.
-#'
-#' @format A data frame object: 1198 entities and 12 columns with different information about each entity.
-#' @source \url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}
-"fobi"
 
-#' Food-Biomarker Ontology Chemical Class Sets - Apr 9, 2020
+#' Food-Biomarker Ontology Chemical Class Sets - May 25, 2020
 #'
 #' This file contans FOBI's chemical class sets  
 #'
@@ -14,7 +7,7 @@
 #' @source \url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}
 "GPSrepo_chemicals"
 
-#' Food-Biomarker Ontology Food Class Sets - Apr 9, 2020
+#' Food-Biomarker Ontology Food Class Sets - May 25, 2020
 #'
 #' This file contans FOBI's food class sets  
 #'
@@ -22,7 +15,7 @@
 #' @source \url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}
 "GPSrepo_foods"
 
-#' ID Map File - Apr 9, 2020
+#' ID Map File - May 25, 2020
 #'
 #' This file contains all FOBI metabolites with 8 different possible IDs for each one (if possible).
 #'

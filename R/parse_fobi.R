@@ -1,5 +1,6 @@
 
-parse_fobi <- function(terms = NULL, get = "descendants"){
+parse_fobi <- function(terms = NULL, 
+                       get = "descendants"){
   
   path <- "https://raw.github.com/pcastellanoescuder/FoodBiomarkerOntology/master/src/ontology/fobi.obo"
   suppressMessages({

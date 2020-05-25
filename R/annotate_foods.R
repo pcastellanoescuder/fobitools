@@ -6,7 +6,7 @@ annotate_foods <- function(input,
   tictoc::tic()
   
   if(missing(reference)){
-    reference <- parse_fobi(terms = "FOBI:0001") 
+    reference <- fobitools::parse_fobi(terms = "FOBI:0001") 
   }
   
   ffq <- input %>%
@@ -87,17 +87,27 @@ annotate_foods <- function(input,
   
   no_matched <- ffq %>% filter(!FOOD_NAME %in% result0$FOOD_NAME)
   
-  # RAW MATCH (SINGULARS AND PLURALS)
+  # RAW MATCH (SINGULARS AND PLURALS WITH AND WITHOUT WHITESPACES)
   
   ffq_sing <- ffq %>% 
     filter(FOOD_NAME %in% no_matched$FOOD_NAME) %>%
     mutate(words = str_replace_all(words, c("[^[:alnum:]]$" = "",  "s$" = "", "(\\(\\d*)" = "\\1\\)")))
   
+  ffq_sing_nospace <- ffq_sing %>%
+    mutate(words = str_replace_all(words, " ", ""))
+    
   ffq_plural <- ffq %>% 
     filter(FOOD_NAME %in% no_matched$FOOD_NAME) %>%
     mutate(words = textclean::make_plural(words))
   
-  ffq1 <- bind_rows(ffq_sing, ffq_plural)
+  ffq_plural_nospace <- ffq_plural %>%
+    mutate(words = str_replace_all(words, " ", ""))
+  
+  ffq_no_space <- ffq %>% 
+    filter(FOOD_NAME %in% no_matched$FOOD_NAME) %>%
+    mutate(words = str_replace_all(words, " ", ""))
+  
+  ffq1 <- bind_rows(ffq_sing, ffq_sing_nospace, ffq_plural, ffq_plural_nospace, ffq_no_space)
   
   wordlist <- expand_grid(words = ffq1$words, ref = fobi_foods$ref) %>% 
     filter(ref == words)

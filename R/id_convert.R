@@ -1,7 +1,7 @@
 
 id_convert <- function(ids,
                        to = "FOBI",
-                       stable_version = FALSE){
+                       stable_version = TRUE){
   
   if(!isTRUE(stable_version)){
     

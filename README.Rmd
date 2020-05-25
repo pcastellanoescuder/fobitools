@@ -2,7 +2,7 @@
 output: github_document
 ---
 
-# fobitools
+# fobitools <img src='man/figures/logo.png' align="right" height="139" />
 
 <!-- badges: start -->
 
@@ -15,7 +15,7 @@ output: github_document
 
 <!-- badges: end -->
 
-This package uses the [FOBI's (Food-Biomarker Ontology)](https://github.com/pcastellanoescuder/FoodBiomarkerOntology) biological information to perform a biological significance analysis on nutrimetabolomic data through the classical over representation analysis method. 
+This package provides a set of tools and functionalities to use and interact with [FOBI (Food-Biomarker Ontology)](https://github.com/pcastellanoescuder/FoodBiomarkerOntology).   
 
 # Installation
 
