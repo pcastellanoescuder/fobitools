@@ -2,7 +2,7 @@
 % Please edit documentation in R/ora.R
 \name{ora}
 \alias{ora}
-\title{Over Representation Analysis and FOBI}
+\title{Classical Over Representation Analysis with FOBI}
 \usage{
 ora(
   metabolites,
@@ -16,9 +16,9 @@ ora(
 
 \item{fobi_sets}{Sets desired to test for the over representation in FOBI. Options are: "foods" (default) and "chemicals".}
 
-\item{method}{Method for multiple testing adjustment. Options are: "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none".}
+\item{method}{Method for multiple testing adjustment. Options are "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr" and "none".}
 
-\item{stable_version}{Logical. If it's set to TRUE (default), the function will use an stable version of FOBI. If not, the function will use a developing version of FOBI from GitHub.}
+\item{stable_version}{Logical. If it's set to TRUE (default), the function will use an stable version of FOBI. If not, the function will use the `fobi.obo` file from GitHub (\url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}).}
 }
 \value{
 A data frame with results.

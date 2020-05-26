@@ -3,7 +3,7 @@
 \docType{data}
 \name{idmap}
 \alias{idmap}
-\title{ID Map File - Apr 9, 2020}
+\title{ID Map File - May 25, 2020}
 \format{
 A data frame object: 590 metabolites with 8 possible IDs.
 \describe{

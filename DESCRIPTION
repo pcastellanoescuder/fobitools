@@ -16,8 +16,13 @@ Imports:
     crayon,
     dplyr,
     magrittr,
+    ontologyIndex,
+    purrr,
+    RecordLinkage,
     sigora,
     stringr,
+    textclean,
+    tictoc,
     tidyr,
     vroom
 Suggests: 

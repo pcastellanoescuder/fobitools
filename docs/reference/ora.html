@@ -6,8 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Over Representation Analysis and FOBI — ora • fobitools</title>
+<title>Classical Over Representation Analysis with FOBI — ora • fobitools</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -39,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Over Representation Analysis and FOBI — ora" />
+<meta property="og:title" content="Classical Over Representation Analysis with FOBI — ora" />
 <meta property="og:description" content="This function performs a traditional Over Representation Analysis by hypergeometric test: classes are treated as sets of individual metabolites and all metabolites are treated as equally informative. `fobitools::ora` uses FOBI (Food-Biomarker Ontology) to extract the biological information and it's an adapted version of `sigora::ora` function." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -108,7 +116,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Over Representation Analysis and FOBI</h1>
+    <h1>Classical Over Representation Analysis with FOBI</h1>
     <small class="dont-index">Source: <a href='https://github.com/pcastellanoescuder/fobitools/blob/master/R/ora.R'><code>R/ora.R</code></a></small>
     <div class="hidden name"><code>ora.Rd</code></div>
     </div>
@@ -137,11 +145,11 @@
     </tr>
     <tr>
       <th>method</th>
-      <td><p>Method for multiple testing adjustment. Options are: "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none".</p></td>
+      <td><p>Method for multiple testing adjustment. Options are "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr" and "none".</p></td>
     </tr>
     <tr>
       <th>stable_version</th>
-      <td><p>Logical. If it's set to TRUE (default), the function will use an stable version of FOBI. If not, the function will use a developing version of FOBI from GitHub.</p></td>
+      <td><p>Logical. If it's set to TRUE (default), the function will use an stable version of FOBI. If not, the function will use the `fobi.obo` file from GitHub (<a href='https://github.com/pcastellanoescuder/FoodBiomarkerOntology'>https://github.com/pcastellanoescuder/FoodBiomarkerOntology</a>).</p></td>
     </tr>
     </table>
 

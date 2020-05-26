@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • fobitools</title>
+<title>Convert Metabolite IDs Using FOBI Annotations — id_convert • fobitools</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Convert Metabolite IDs Using FOBI Annotations — id_convert" />
+<meta property="og:description" content="This function can convert metabolite IDs to the other ID types available in FOBI. Note that the input vector can be a combination of different IDs." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -66,7 +67,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -113,78 +114,41 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Convert Metabolite IDs Using FOBI Annotations</h1>
+    <small class="dont-index">Source: <a href='https://github.com/pcastellanoescuder/fobitools/blob/master/R/id_convert.R'><code>R/id_convert.R</code></a></small>
+    <div class="hidden name"><code>id_convert.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>This function can convert metabolite IDs to the other ID types available in FOBI. Note that the input vector can be a combination of different IDs.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>id_convert</span>(<span class='no'>ids</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"FOBI"</span>, <span class='kw'>stable_version</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="GPSrepo_chemicals.html">GPSrepo_chemicals</a></code> </p>
-        </td>
-        <td><p>Food-Biomarker Ontology Chemical Class Sets - May 25, 2020</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="GPSrepo_foods.html">GPSrepo_foods</a></code> </p>
-        </td>
-        <td><p>Food-Biomarker Ontology Food Class Sets - May 25, 2020</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="annotate_foods.html">annotate_foods()</a></code> </p>
-        </td>
-        <td><p>Text Mining Pipeline to Annotate Free Nutritional Text into FOBI</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="id_convert.html">id_convert()</a></code> </p>
-        </td>
-        <td><p>Convert Metabolite IDs Using FOBI Annotations</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="idmap.html">idmap</a></code> </p>
-        </td>
-        <td><p>ID Map File - May 25, 2020</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ora.html">ora()</a></code> </p>
-        </td>
-        <td><p>Classical Over Representation Analysis with FOBI</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="parse_fobi.html">parse_fobi()</a></code> </p>
-        </td>
-        <td><p>Parse FOBI into Table</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>ids</th>
+      <td><p>Character vector with metabolite IDs to convert. Input ID types can be FOBI, raw metabolite names (used in FOBI), HMDB, KEGG, PubChemCID, InChIKey, InChICode, ChemSpider or a combination of them.</p></td>
+    </tr>
+    <tr>
+      <th>to</th>
+      <td><p>Target ID type. If possible, metabolites will be converted to this ID type. Options are "FOBI" (default), "metaboliteNames", "HMDB", "KEGG", "PubChemCID", "InChIKey", "InChICode" and "ChemSpider".</p></td>
+    </tr>
+    <tr>
+      <th>stable_version</th>
+      <td><p>Logical. If it's set to TRUE (default), the function will use an stable version of FOBI. If not, the function will use the `fobi.obo` file from GitHub (<a href='https://github.com/pcastellanoescuder/FoodBiomarkerOntology'>https://github.com/pcastellanoescuder/FoodBiomarkerOntology</a>).</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with input IDs and converted IDs.</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

@@ -3,7 +3,7 @@
 \docType{data}
 \name{GPSrepo_chemicals}
 \alias{GPSrepo_chemicals}
-\title{Food-Biomarker Ontology Chemical Class Sets - Apr 9, 2020}
+\title{Food-Biomarker Ontology Chemical Class Sets - May 25, 2020}
 \format{
 List created with `sigora::makeGPS` function.
 }

@@ -27,7 +27,7 @@ test_that("ora works", {
 
   ##
 
-  expect_warning(fobitools::ora(metabolites))
+  # expect_warning(fobitools::ora(metabolites))
   expect_error(fobitools::ora(metabolites, method = "fd"))
   expect_error(fobitools::ora())
   expect_error(fobitools::ora(data))

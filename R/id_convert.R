@@ -1,4 +1,20 @@
 
+#' Convert Metabolite IDs Using FOBI Annotations
+#'
+#' @description This function can convert metabolite IDs to the other ID types available in FOBI. Note that the input vector can be a combination of different IDs. 
+#'
+#' @param ids Character vector with metabolite IDs to convert. Input ID types can be FOBI, raw metabolite names (used in FOBI), HMDB, KEGG, PubChemCID, InChIKey, InChICode, ChemSpider or a combination of them.
+#' @param to Target ID type. If possible, metabolites will be converted to this ID type. Options are "FOBI" (default), "metaboliteNames", "HMDB", "KEGG", "PubChemCID", "InChIKey", "InChICode" and "ChemSpider".
+#' @param stable_version Logical. If it's set to TRUE (default), the function will use an stable version of FOBI. If not, the function will use the `fobi.obo` file from GitHub (\url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}).
+#' 
+#' @export
+#'
+#' @return A data frame with input IDs and converted IDs.
+#' @author Pol Castellano-Escuder
+#'
+#' @importFrom magrittr %>%
+#' @importFrom dplyr mutate select rename filter mutate_all matches vars select_at filter_all any_vars
+#' @importFrom stringr regex str_replace_all str_trim
 id_convert <- function(ids,
                        to = "FOBI",
                        stable_version = TRUE){

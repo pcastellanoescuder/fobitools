@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • fobitools</title>
+<title>Parse FOBI into Table — parse_fobi • fobitools</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Parse FOBI into Table — parse_fobi" />
+<meta property="og:description" content="This function parse the `fobi.obo` file from GitHub (https://github.com/pcastellanoescuder/FoodBiomarkerOntology) into readable table format." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -66,7 +67,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -113,78 +114,50 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Parse FOBI into Table</h1>
+    <small class="dont-index">Source: <a href='https://github.com/pcastellanoescuder/fobitools/blob/master/R/parse_fobi.R'><code>R/parse_fobi.R</code></a></small>
+    <div class="hidden name"><code>parse_fobi.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>This function parse the `fobi.obo` file from GitHub (<a href='https://github.com/pcastellanoescuder/FoodBiomarkerOntology'>https://github.com/pcastellanoescuder/FoodBiomarkerOntology</a>) into readable table format.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>parse_fobi</span>(<span class='kw'>terms</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>get</span> <span class='kw'>=</span> <span class='st'>"descendants"</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="GPSrepo_chemicals.html">GPSrepo_chemicals</a></code> </p>
-        </td>
-        <td><p>Food-Biomarker Ontology Chemical Class Sets - May 25, 2020</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="GPSrepo_foods.html">GPSrepo_foods</a></code> </p>
-        </td>
-        <td><p>Food-Biomarker Ontology Food Class Sets - May 25, 2020</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="annotate_foods.html">annotate_foods()</a></code> </p>
-        </td>
-        <td><p>Text Mining Pipeline to Annotate Free Nutritional Text into FOBI</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="id_convert.html">id_convert()</a></code> </p>
-        </td>
-        <td><p>Convert Metabolite IDs Using FOBI Annotations</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="idmap.html">idmap</a></code> </p>
-        </td>
-        <td><p>ID Map File - May 25, 2020</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ora.html">ora()</a></code> </p>
-        </td>
-        <td><p>Classical Over Representation Analysis with FOBI</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="parse_fobi.html">parse_fobi()</a></code> </p>
-        </td>
-        <td><p>Parse FOBI into Table</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>terms</th>
+      <td><p>Default is NULL. By changing this parameter for one or more entity IDs (in FOBI), this function will parse only the selected FOBI entities.</p></td>
+    </tr>
+    <tr>
+      <th>get</th>
+      <td><p>Only if `terms` is not NULL. Include in the resultant table the upper (ancestors) or lower (decendants) nodes for selected entities in `terms`. Options are "descendants" (default) and "ancestors".</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with desired FOBI information.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'># Download and parse whole FOBI</span>
+<span class='no'>fobi</span> <span class='kw'>&lt;-</span> <span class='fu'>parse_fobi</span>()
+
+<span class='co'># Download and parse all Foods</span>
+<span class='no'>foods</span> <span class='kw'>&lt;-</span> <span class='fu'>parse_fobi</span>(<span class='kw'>terms</span> <span class='kw'>=</span> <span class='st'>"FOBI:0001"</span>)
+
+<span class='co'># Download and parse all Biomarkers</span>
+<span class='no'>biomarkers</span> <span class='kw'>&lt;-</span> <span class='fu'>parse_fobi</span>(<span class='kw'>terms</span> <span class='kw'>=</span> <span class='st'>"FOBI:01501"</span>)
+
+<span class='co'># Download and parse 'apple' entity and its ancestors</span>
+<span class='no'>apple</span> <span class='kw'>&lt;-</span> <span class='fu'>parse_fobi</span>(<span class='kw'>terms</span> <span class='kw'>=</span> <span class='st'>"FOODON:00002473"</span>, <span class='kw'>get</span> <span class='kw'>=</span> <span class='st'>"ancestors"</span>)</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

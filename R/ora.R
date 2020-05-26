@@ -1,12 +1,12 @@
 
-#' Over Representation Analysis and FOBI
+#' Classical Over Representation Analysis with FOBI
 #'
 #' @description This function performs a traditional Over Representation Analysis by hypergeometric test: classes are treated as sets of individual metabolites and all metabolites are treated as equally informative. `fobitools::ora` uses FOBI (Food-Biomarker Ontology) to extract the biological information and it's an adapted version of `sigora::ora` function.
 #'
 #' @param metabolites Character vector with metabolite names. Other IDs are accepted: FOBI, HMDB, KEGG, PubChemCID, InChIKey, InChICode and ChemSpider.
 #' @param fobi_sets Sets desired to test for the over representation in FOBI. Options are: "foods" (default) and "chemicals".
-#' @param method Method for multiple testing adjustment. Options are: "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none".
-#' @param stable_version Logical. If it's set to TRUE (default), the function will use an stable version of FOBI. If not, the function will use a developing version of FOBI from GitHub.
+#' @param method Method for multiple testing adjustment. Options are "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr" and "none".
+#' @param stable_version Logical. If it's set to TRUE (default), the function will use an stable version of FOBI. If not, the function will use the `fobi.obo` file from GitHub (\url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}).
 #'
 #' @export
 #'
@@ -16,10 +16,10 @@
 #'
 #' @importFrom magrittr %>%
 #' @importFrom clisymbols symbol
-#' @importFrom crayon red green blue
-#' @importFrom tidyr drop_na separate_rows
-#' @importFrom dplyr mutate select rename filter left_join
-#' @importFrom stringr str_remove_all regex str_replace_all
+#' @importFrom crayon red blue
+#' @importFrom tidyr unnest
+#' @importFrom dplyr mutate select rename filter mutate_all
+#' @importFrom stringr regex str_replace_all str_trim
 #' @importFrom sigora makeGPS
 ora <- function(metabolites,
                 fobi_sets = "foods",
@@ -35,19 +35,19 @@ ora <- function(metabolites,
   if (!(method %in% c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none"))) {
     stop(crayon::red(clisymbols::symbol$cross, "Incorrect value for method argument!"))
   }
-  if (missing(method)) {
-    method <- "bonferroni"
-    warning("method argument is empty! Bonferroni method will be used!")
-  }
+  # if (missing(method)) {
+  #   method <- "bonferroni"
+  #   warning("method argument is empty! Bonferroni method will be used!")
+  # }
   if (!(fobi_sets %in% c("foods", "chemicals"))) {
     stop(crayon::red(clisymbols::symbol$cross, "Incorrect value for fobi_sets argument!"))
   }
-  if (missing(fobi_sets)) {
-    fobi_sets <- "foods"
-    warning("fobi_sets argument is empty! Food groups will be used as sets!")
-  }
+  # if (missing(fobi_sets)) {
+  #   fobi_sets <- "foods"
+  #   warning("fobi_sets argument is empty! Food groups will be used as sets!")
+  # }
 
-  ####
+  ##
 
   if(!isTRUE(stable_version)){
 
@@ -100,7 +100,7 @@ ora <- function(metabolites,
     GPSrepo <- GPSrepo_chemicals
   }
 
-  #### modification of sigora::ora
+  ## modification of sigora::ora
 
   fr <- GPSrepo$origRepo[[3]]
   sp1 <- GPSrepo$pathwaydescriptions

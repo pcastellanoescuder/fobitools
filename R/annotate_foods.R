@@ -1,10 +1,47 @@
 
+#' Text Mining Pipeline to Annotate Free Nutritional Text into FOBI
+#'
+#' @description This function allows user to run a text mining pipeline to map nutritional free text into Food-Biomarker Ontology. This pipeline is composed of five sequential layers to map input items to FOBI food entities with the maximum accuracy as possible. See vignette for details.
+#'
+#' @param input A two column data frame. First column must contain the food ID (should be unique) and the second column must contain the food item (it can be a word or a more complex string).
+#' @param reference Optional reference data frame with the same input structure. If this parameter is missing (default), FOBI foods will be used as a reference. To speed up the time consumption by this function a good option is to use a reference created with `fobitools::parse_fobi(terms = "FOBI:0001")`.
+#' @param similarity Numeric between 0 (low) and 1 (high). This value indicates the semantic similarity cutoff used at the last layer of the text mining pipeline. 1 = exact match; 0 = very poor match. Values below 0.85 (aprox.) are not recomended.
+#' 
+#' @export
+#'
+#' @return A data frame with the anntotated food items.
+#' @author Pol Castellano-Escuder
+#'
+#' @examples
+#' 
+#' # Free text annotation in FOBI
+#' free_text <- data.frame(id = 01, text = "Yesterday I ate eggs and bacon with a butter toast and black tea")
+#' annotate_foods(free_text)
+#' 
+#' @importFrom magrittr %>%
+#' @importFrom clisymbols symbol
+#' @importFrom tictoc tic toc
+#' @importFrom tidyr separate_rows expand_grid
+#' @importFrom dplyr mutate select rename filter ungroup mutate_all group_by bind_rows summarise
+#' @importFrom stringr str_replace_all str_trim str_squish str_remove_all str_detect str_replace
+#' @importFrom textclean make_plural
+#' @importFrom RecordLinkage jarowinkler 
+#' @importFrom crayon red yellow green
 annotate_foods <- function(input, 
                            reference,
                            similarity = 1){
   
   tictoc::tic()
   
+  if(class(input) != "data.frame"){
+    stop(crayon::red(clisymbols::symbol$cross, "Input must be a data.frame"))
+  }
+  if(ncol(input) != 2){
+    stop(crayon::red(clisymbols::symbol$cross, "Input must be a 2 column data.frame (ID and FOOD)"))
+  }
+  if(similarity > 1 | similarity < 0){
+    stop(crayon::red(clisymbols::symbol$cross, "Similarity parameter must be a numeric value between 0 and 1"))
+  }
   if(missing(reference)){
     reference <- fobitools::parse_fobi(terms = "FOBI:0001") 
   }

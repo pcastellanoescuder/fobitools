@@ -1,4 +1,37 @@
 
+#' Parse FOBI into Table
+#'
+#' @description This function parse the `fobi.obo` file from GitHub (\url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}) into readable table format.
+#'
+#' @param terms Default is NULL. By changing this parameter for one or more entity IDs (in FOBI), this function will parse only the selected FOBI entities.
+#' @param get Only if `terms` is not NULL. Include in the resultant table the upper (ancestors) or lower (decendants) nodes for selected entities in `terms`. Options are "descendants" (default) and "ancestors".
+#' 
+#' @export
+#'
+#' @return A data frame with desired FOBI information.
+#' @author Pol Castellano-Escuder
+#'
+#' @examples
+#' 
+#' # Download and parse whole FOBI
+#' fobi <- parse_fobi()
+#' 
+#' # Download and parse all Foods
+#' foods <- parse_fobi(terms = "FOBI:0001")
+#' 
+#' # Download and parse all Biomarkers
+#' biomarkers <- parse_fobi(terms = "FOBI:01501")
+#' 
+#' # Download and parse 'apple' entity and its ancestors
+#' apple <- parse_fobi(terms = "FOODON:00002473", get = "ancestors")
+#' 
+#' @importFrom magrittr %>%
+#' @importFrom vroom vroom
+#' @importFrom tidyr drop_na separate_rows pivot_wider
+#' @importFrom dplyr slice mutate select rename filter n rowwise ungroup mutate_all group_by
+#' @importFrom stringr str_remove_all regex str_replace_all str_detect str_remove str_split
+#' @importFrom purrr map
+#' @importFrom ontologyIndex get_ontology get_descendants get_ancestors
 parse_fobi <- function(terms = NULL, 
                        get = "descendants"){
   
@@ -70,6 +103,10 @@ parse_fobi <- function(terms = NULL,
            alias = "IAO:0000118",
            HMDB = "FOBI:040233",
            id_Contains = "FOBI:00424")
+  
+  if (nrow(fobi) < 1){
+    warning("No entities found...")
+  }
   
   return(fobi)
   
