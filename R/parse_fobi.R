@@ -32,8 +32,14 @@
 #' @importFrom stringr str_remove_all regex str_replace_all str_detect str_remove str_split
 #' @importFrom purrr map
 #' @importFrom ontologyIndex get_ontology get_descendants get_ancestors
+#' @importFrom crayon red
+#' @importFrom clisymbols symbol
 parse_fobi <- function(terms = NULL, 
                        get = "descendants"){
+  
+  if (!(get %in% c("descendants", "ancestors"))) {
+    stop(crayon::red(clisymbols::symbol$cross, "Incorrect value for get argument!"))
+  }
   
   path <- "https://raw.github.com/pcastellanoescuder/FoodBiomarkerOntology/master/src/ontology/fobi.obo"
   suppressMessages({

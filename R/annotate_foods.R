@@ -15,7 +15,8 @@
 #' @examples
 #' 
 #' # Free text annotation in FOBI
-#' free_text <- data.frame(id = 01, text = "Yesterday I ate eggs and bacon with a butter toast and black tea")
+#' free_text <- data.frame(id = 01,
+#' text = "Yesterday I ate eggs and bacon with a butter toast and black tea")
 #' annotate_foods(free_text)
 #' 
 #' @importFrom magrittr %>%
