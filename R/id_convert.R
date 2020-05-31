@@ -15,9 +15,15 @@
 #' @importFrom magrittr %>%
 #' @importFrom dplyr mutate select rename filter mutate_all matches vars select_at filter_all any_vars
 #' @importFrom stringr regex str_replace_all str_trim
+#' @importFrom crayon red
+#' @importFrom clisymbols symbol
 id_convert <- function(ids,
                        to = "FOBI",
                        stable_version = TRUE){
+  
+  if (!(to %in% c("FOBI", "PubChemCID", "KEGG", "InChIKey", "InChICode", "ChemSpider", "metaboliteNames", "HMDB"))) {
+    stop(crayon::red(clisymbols::symbol$cross, "Select one valid ID type!"))
+  }
   
   if(!isTRUE(stable_version)){
     

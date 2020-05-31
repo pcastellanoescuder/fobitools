@@ -18,8 +18,8 @@ v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/li
 
 <!-- badges: end -->
 
-This package provides a set of tools and functionalities to use and
-interact with [FOBI (Food-Biomarker
+This package provides a set of functions to use and interact with [FOBI
+(Food-Biomarker
 Ontology)](https://github.com/pcastellanoescuder/FoodBiomarkerOntology).
 
 # Installation

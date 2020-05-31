@@ -15,7 +15,7 @@ output: github_document
 
 <!-- badges: end -->
 
-This package provides a set of tools and functionalities to use and interact with [FOBI (Food-Biomarker Ontology)](https://github.com/pcastellanoescuder/FoodBiomarkerOntology).   
+This package provides a set of functions to use and interact with [FOBI (Food-Biomarker Ontology)](https://github.com/pcastellanoescuder/FoodBiomarkerOntology).   
 
 # Installation
 

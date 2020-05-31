@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Text Mining Pipeline to Annotate Free Nutritional Text into FOBI — annotate_foods • fobitools</title>
+<title>Objects exported from other packages — reexports • fobitools</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,13 @@
 
 
 
-<meta property="og:title" content="Text Mining Pipeline to Annotate Free Nutritional Text into FOBI — annotate_foods" />
-<meta property="og:description" content="This function allows user to run a text mining pipeline to map nutritional free text into Food-Biomarker Ontology. This pipeline is composed of five sequential layers to map input items to FOBI food entities with the maximum accuracy as possible. See vignette for details." />
+<meta property="og:title" content="Objects exported from other packages — reexports" />
+<meta property="og:description" content="These objects are imported from other packages. Follow the links
+below to see their documentation.
+
+  magrittr%&amp;gt;%
+
+" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -116,49 +121,23 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Text Mining Pipeline to Annotate Free Nutritional Text into FOBI</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pcastellanoescuder/fobitools/blob/master/R/annotate_foods.R'><code>R/annotate_foods.R</code></a></small>
-    <div class="hidden name"><code>annotate_foods.Rd</code></div>
+    <h1>Objects exported from other packages</h1>
+    <small class="dont-index">Source: <a href='https://github.com/pcastellanoescuder/fobitools/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>reexports.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function allows user to run a text mining pipeline to map nutritional free text into Food-Biomarker Ontology. This pipeline is composed of five sequential layers to map input items to FOBI food entities with the maximum accuracy as possible. See vignette for details.</p>
+    <p>These objects are imported from other packages. Follow the links
+below to see their documentation.</p>
+<dl'>
+  <dt>magrittr</dt><dd><p><code>%&gt;%</code></p></dd>
+
+</dl>
     </div>
 
-    <pre class="usage"><span class='fu'>annotate_foods</span>(<span class='no'>input</span>, <span class='no'>reference</span>, <span class='kw'>similarity</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>input</th>
-      <td><p>A two column data frame. First column must contain the food ID (should be unique) and the second column must contain the food item (it can be a word or a more complex string).</p></td>
-    </tr>
-    <tr>
-      <th>reference</th>
-      <td><p>Optional reference data frame with the same input structure. If this parameter is missing (default), FOBI foods will be used as a reference. To speed up the time consumption by this function a good option is to use a reference created with `fobitools::parse_fobi(terms = "FOBI:0001")`.</p></td>
-    </tr>
-    <tr>
-      <th>similarity</th>
-      <td><p>Numeric between 0 (low) and 1 (high). This value indicates the semantic similarity cutoff used at the last layer of the text mining pipeline. 1 = exact match; 0 = very poor match. Values below 0.85 (aprox.) are not recomended.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame with the anntotated food items.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># Free text annotation in FOBI</span>
-<span class='no'>free_text</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fl'>01</span>,
-<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Yesterday I ate eggs and bacon with a butter toast and black tea"</span>)
-<span class='fu'>annotate_foods</span>(<span class='no'>free_text</span>)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>100% has been annotated
-#&gt; </span><span>21.903 sec elapsed</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 4</span><span>
-#&gt;   FOOD_ID FOOD_NAME              id_code                  name                  
-#&gt;     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>                  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                 
-#&gt; </span><span style='color: #555555;'>1</span><span>       1 Yesterday I ate eggs … FOODON:00001061 | FOODO… bacon food product | …</div><div class='input'>
-</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
