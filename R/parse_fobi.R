@@ -108,7 +108,8 @@ parse_fobi <- function(terms = NULL,
            FOBI = "FOBI:043480",
            alias = "IAO:0000118",
            HMDB = "FOBI:040233",
-           id_Contains = "FOBI:00424")
+           id_Contains = "FOBI:00424") %>%
+    unnest(1:16)
   
   if (nrow(fobi) < 1){
     warning("No entities found...")

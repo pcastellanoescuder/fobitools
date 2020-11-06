@@ -44,7 +44,8 @@ annotate_foods <- function(input,
     stop(crayon::red(clisymbols::symbol$cross, "Similarity parameter must be a numeric value between 0 and 1"))
   }
   if(missing(reference)){
-    reference <- fobitools::parse_fobi(terms = "FOBI:0001") 
+    # reference <- fobitools::parse_fobi(terms = "FOBI:0001")
+    stop("reference needed")
   }
   
   ffq <- input %>%

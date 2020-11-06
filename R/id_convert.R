@@ -39,7 +39,8 @@ id_convert <- function(ids,
              ChemSpider = str_replace_all(ChemSpider, regex("( ).*"), regex("\\1"))) %>%
       rename(metaboliteNames = name) %>%
       mutate_all(~ ifelse(. == "NULL", NA, .)) %>%
-      mutate_all(~ stringr::str_trim(.))
+      mutate_all(~ stringr::str_trim(.)) %>%
+      filter(!duplicated(metaboliteNames))
     
     }
   
