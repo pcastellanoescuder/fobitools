@@ -25,7 +25,7 @@ id_convert <- function(ids,
     stop(crayon::red(clisymbols::symbol$cross, "Select one valid ID type!"))
   }
   
-  if(!isTRUE(stable_version)){
+  if(!stable_version){
     
     fobi <- parse_fobi()
     
