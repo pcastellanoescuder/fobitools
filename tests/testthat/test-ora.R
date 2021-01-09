@@ -4,34 +4,22 @@ test_that("ora works", {
 
   data("idmap")
 
-  idx <- sample(1:nrow(idmap), 100)
-  metabolites <- idmap$InChIKey[idx]
+  metaboliteUniverse <- fobitools::idmap$KEGG[1:200]
+  metaboliteList <- fobitools::idmap$KEGG[1:30]
 
-  data <- data.frame(A = metabolites[1:50], B = metabolites[51:100])
+  data <- data.frame(A = metaboliteList[1:50], B = metaboliteList[51:100])
 
-  tictoc::tic()
-  a <- fobitools::ora(metabolites = metabolites)
-  time1 <- tictoc::toc()
-  
-  b <- fobitools::ora(metabolites = metabolites, fobi_sets = "foods", method = "fdr")
-  c <- fobitools::ora(metabolites = metabolites, fobi_sets = "chemicals", method = "fdr")
-  d <- fobitools::ora(metabolites = metabolites, fobi_sets = "foods", method = "bonferroni")
-  
-  tictoc::tic()
-  e <- fobitools::ora(metabolites = metabolites, stable_version = FALSE)
-  time2 <- tictoc::toc()
-  
-  ##
-
-  expect_false((time1$toc-time1$tic) == (time2$toc-time2$tic))
-  expect_true((time1$toc-time1$tic) < (time2$toc-time2$tic))
+  a <- fobitools::ora(metaboliteList = metaboliteList, metaboliteUniverse = metaboliteUniverse, pvalCutoff = 1)
+  b <- fobitools::ora(metaboliteList = metaboliteList, metaboliteUniverse = metaboliteUniverse, subOntology = "food", pvalCutoff = 1, adjust = "fdr")
+  c <- fobitools::ora(metaboliteList = metaboliteList, metaboliteUniverse = metaboliteUniverse, subOntology = "biomarker", pvalCutoff = 1, adjust = "fdr")
+  d <- fobitools::ora(metaboliteList = metaboliteList, metaboliteUniverse = metaboliteUniverse, subOntology = "food", pvalCutoff = 1, adjust = "bonferroni")
   
   ##
   
-  expect_true(class(a) == "data.frame")
-  expect_true(class(b) == "data.frame")
-  expect_true(class(c) == "data.frame")
-  expect_true(class(d) == "data.frame")
+  expect_true(class(a) == "tibble")
+  expect_true(class(b) == "tibble")
+  expect_true(class(c) == "tibble")
+  expect_true(class(d) == "tibble")
   
   ##
   
@@ -47,8 +35,8 @@ test_that("ora works", {
   
   ##
 
-  expect_error(fobitools::ora(metabolites, fobi_sets = "chem"))
-  expect_error(fobitools::ora(metabolites, method = "fd"))
+  expect_error(fobitools::ora(metaboliteList, metaboliteUniverse = metaboliteUniverse, subOntology = "bio", pvalCutoff = 1))
+  expect_error(fobitools::ora(metaboliteList, metaboliteUniverse = metaboliteUniverse, pvalCutoff = 1, adjust = "fd"))
   expect_error(fobitools::ora())
   expect_error(fobitools::ora(data))
 

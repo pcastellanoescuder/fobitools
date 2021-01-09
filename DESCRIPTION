@@ -1,6 +1,6 @@
 Package: fobitools
 Title: Collection of functions to work with FOBI (Food-Biomarker Ontology)
-Version: 0.99.2.9000
+Version: 0.99.3.9000
 Authors@R: 
     person(given = "Pol",
            family = "Castellano-Escuder",
