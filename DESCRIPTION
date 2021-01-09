@@ -1,6 +1,6 @@
 Package: fobitools
 Title: Collection of functions to work with FOBI (Food-Biomarker Ontology)
-Version: 0.99.1.9000
+Version: 0.99.2.9000
 Authors@R: 
     person(given = "Pol",
            family = "Castellano-Escuder",
@@ -16,7 +16,6 @@ Imports:
     crayon,
     dplyr,
     magrittr,
-    ontologyIndex,
     purrr,
     RecordLinkage,
     sigora,
@@ -29,7 +28,7 @@ Suggests:
     covr,
     testthat (>= 2.3.2),
     tidyverse
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Depends: R (>= 3.6.0)
 URL: https://github.com/pcastellanoescuder/fobitools/
 BugReports: https://github.com/pcastellanoescuder/fobitools/issues

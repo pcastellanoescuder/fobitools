@@ -1,14 +1,14 @@
 
-#' Parse FOBI into Table
+#' Download the Food-Biomarker Ontology in a Tabular Format
 #'
-#' @description This function parse the `fobi.obo` file from GitHub (\url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}) into readable table format.
+#' @description This function allows users to download and parse the last version of the Food-Biomarker Ontology into a readable table format.
 #'
-#' @param terms Default is NULL. By changing this parameter for one or more entity IDs (in FOBI), this function will parse only the selected FOBI entities.
-#' @param get Only if `terms` is not NULL. Include in the resultant table the upper (ancestors) or lower (decendants) nodes for selected entities in `terms`. Options are "descendants" (default) and "ancestors".
+#' @param terms A character vector with FOBI term IDs. Default is NULL.
 #' 
 #' @export
 #'
-#' @return A data frame with desired FOBI information.
+#' @return A tibble with FOBI terms information.
+#' @references Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033, https://doi.org/10.1093/databa/baaa033.
 #' @author Pol Castellano-Escuder
 #'
 #' @examples
@@ -16,14 +16,11 @@
 #' # Download and parse whole FOBI
 #' fobi <- parse_fobi()
 #' 
-#' # Download and parse all Foods
-#' foods <- parse_fobi(terms = "FOBI:0001")
+#' # Download and parse 'apple' related terms
+#' fobi_apple <- parse_fobi(terms = "FOODON:00002473")
 #' 
-#' # Download and parse all Biomarkers
-#' biomarkers <- parse_fobi(terms = "FOBI:01501")
-#' 
-#' # Download and parse 'apple' entity and its ancestors
-#' apple <- parse_fobi(terms = "FOODON:00002473", get = "ancestors")
+#' # Download and parse 'apple' and 'alpha-Chaconine' related terms
+#' fobi_subset <- parse_fobi(terms = c("FOODON:00002473", "CHEBI:10219"))
 #' 
 #' @importFrom magrittr %>%
 #' @importFrom vroom vroom
@@ -31,16 +28,8 @@
 #' @importFrom dplyr slice mutate select rename filter n rowwise ungroup mutate_all group_by
 #' @importFrom stringr str_remove_all regex str_replace_all str_detect str_remove str_split
 #' @importFrom purrr map
-#' @importFrom ontologyIndex get_ontology get_descendants get_ancestors
-#' @importFrom crayon red
-#' @importFrom clisymbols symbol
-parse_fobi <- function(terms = NULL, 
-                       get = "descendants"){
-  
-  if (!(get %in% c("descendants", "ancestors"))) {
-    stop(crayon::red(clisymbols::symbol$cross, "Incorrect value for get argument!"))
-  }
-  
+parse_fobi <- function(terms = NULL){
+
   path <- "https://raw.github.com/pcastellanoescuder/FoodBiomarkerOntology/master/src/ontology/fobi.obo"
   suppressMessages({
     raw_lines <- vroom::vroom(path, delim = ": ")
@@ -75,29 +64,7 @@ parse_fobi <- function(terms = NULL,
     pivot_wider(names_from = V1, values_from = V2, values_fn = list(V2 = list)) %>%
     ungroup() %>%
     select(-gf) %>%
-    filter(!name %in% c("BiomarkerOf", "HasBiomarker", "Contains", "IsIngredientOf"))
-  
-  if(!is.null(terms) & get == "descendants"){
-    
-    descs <- ontologyIndex::get_ontology(path) %>%
-      ontologyIndex::get_descendants(roots = terms)
-    
-    fobi <- fobi %>%
-      filter(id_code %in% descs)
-    
-  }
-  
-  if(!is.null(terms) & get == "ancestors"){
-    
-    ances <- ontologyIndex::get_ontology(path) %>%
-      ontologyIndex::get_ancestors(terms = terms)
-    
-    fobi <- fobi %>%
-      filter(id_code %in% ances)
-    
-  }
-  
-  fobi <- fobi %>%
+    filter(!name %in% c("BiomarkerOf", "HasBiomarker", "Contains", "IsIngredientOf")) %>%
     select(id_code:Contains) %>%
     rename(id_BiomarkerOf = "FOBI:00422",
            ChemSpider = "FOBI:040232",
@@ -111,8 +78,13 @@ parse_fobi <- function(terms = NULL,
            id_Contains = "FOBI:00424") %>%
     unnest(1:16)
   
+  if(!is.null(terms)){
+    fobi <- fobi %>%
+      filter(id_code %in% terms | is_a_code %in% terms | id_BiomarkerOf %in% terms | id_Contains %in% terms)
+  }
+  
   if (nrow(fobi) < 1){
-    warning("No entities found...")
+    warning("No associated terms")
   }
   
   return(fobi)

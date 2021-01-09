@@ -2,35 +2,33 @@
 % Please edit documentation in R/parse_fobi.R
 \name{parse_fobi}
 \alias{parse_fobi}
-\title{Parse FOBI into Table}
+\title{Download the Food-Biomarker Ontology in a Tabular Format}
 \usage{
-parse_fobi(terms = NULL, get = "descendants")
+parse_fobi(terms = NULL)
 }
 \arguments{
-\item{terms}{Default is NULL. By changing this parameter for one or more entity IDs (in FOBI), this function will parse only the selected FOBI entities.}
-
-\item{get}{Only if `terms` is not NULL. Include in the resultant table the upper (ancestors) or lower (decendants) nodes for selected entities in `terms`. Options are "descendants" (default) and "ancestors".}
+\item{terms}{A character vector with FOBI term IDs. Default is NULL.}
 }
 \value{
-A data frame with desired FOBI information.
+A tibble with FOBI terms information.
 }
 \description{
-This function parse the `fobi.obo` file from GitHub (\url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}) into readable table format.
+This function allows users to download and parse the last version of the Food-Biomarker Ontology into a readable table format.
 }
 \examples{
 
 # Download and parse whole FOBI
 fobi <- parse_fobi()
 
-# Download and parse all Foods
-foods <- parse_fobi(terms = "FOBI:0001")
+# Download and parse 'apple' related terms
+fobi_apple <- parse_fobi(terms = "FOODON:00002473")
 
-# Download and parse all Biomarkers
-biomarkers <- parse_fobi(terms = "FOBI:01501")
+# Download and parse 'apple' and 'alpha-Chaconine' related terms
+fobi_subset <- parse_fobi(terms = c("FOODON:00002473", "CHEBI:10219"))
 
-# Download and parse 'apple' entity and its ancestors
-apple <- parse_fobi(terms = "FOODON:00002473", get = "ancestors")
-
+}
+\references{
+Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033, https://doi.org/10.1093/databa/baaa033.
 }
 \author{
 Pol Castellano-Escuder

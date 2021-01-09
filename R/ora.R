@@ -3,9 +3,11 @@
 #'
 #' @description This function performs a traditional Over Representation Analysis by hypergeometric test: classes are treated as sets of individual metabolites and all metabolites are treated as equally informative. `fobitools::ora` uses FOBI (Food-Biomarker Ontology) to extract the biological information and it's an adapted version of `sigora::ora` function.
 #'
-#' @param metabolites Character vector with metabolite names. Other IDs are accepted: FOBI, HMDB, KEGG, PubChemCID, InChIKey, InChICode and ChemSpider.
-#' @param fobi_sets Sets desired to test for the over representation in FOBI. Options are: "foods" (default) and "chemicals".
-#' @param method Method for multiple testing adjustment. Options are "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr" and "none".
+#' @param metaboliteList Character vector with metabolite names. Other IDs are accepted: FOBI, HMDB, KEGG, PubChemCID, InChIKey, InChICode and ChemSpider.
+#' @param metaboliteUniverse
+#' @param subOntology Sets desired to test for the over representation in FOBI. Options are: "foods" (default) and "chemicals".
+#' @param pvalCutoff 
+#' @param adjust Method for multiple testing adjustment. Options are "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr" and "none".
 #' @param stable_version Logical. If it's set to TRUE (default), the function will use an stable version of FOBI. If not, the function will use the `fobi.obo` file from GitHub (\url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}).
 #'
 #' @export
@@ -101,7 +103,7 @@ ora <- function(metabolites,
     GPSrepo <- GPSrepo_chemicals
   }
 
-  ## modification of sigora::ora
+  ## ORA
 
   fr <- GPSrepo$origRepo[[3]]
   sp1 <- GPSrepo$pathwaydescriptions

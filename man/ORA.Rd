@@ -12,13 +12,15 @@ ora(
 )
 }
 \arguments{
-\item{metabolites}{Character vector with metabolite names. Other IDs are accepted: FOBI, HMDB, KEGG, PubChemCID, InChIKey, InChICode and ChemSpider.}
-
-\item{fobi_sets}{Sets desired to test for the over representation in FOBI. Options are: "foods" (default) and "chemicals".}
-
-\item{method}{Method for multiple testing adjustment. Options are "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr" and "none".}
-
 \item{stable_version}{Logical. If it's set to TRUE (default), the function will use an stable version of FOBI. If not, the function will use the `fobi.obo` file from GitHub (\url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}).}
+
+\item{metaboliteList}{Character vector with metabolite names. Other IDs are accepted: FOBI, HMDB, KEGG, PubChemCID, InChIKey, InChICode and ChemSpider.}
+
+\item{subOntology}{Sets desired to test for the over representation in FOBI. Options are: "foods" (default) and "chemicals".}
+
+\item{pvalCutoff}{}
+
+\item{adjust}{Method for multiple testing adjustment. Options are "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr" and "none".}
 }
 \value{
 A data frame with results.
