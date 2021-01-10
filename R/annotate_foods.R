@@ -1,15 +1,15 @@
 
-#' Text Mining Pipeline to Annotate Free Nutritional Text into FOBI
+#' Text Mining Pipeline to Annotate Free Nutritional Text with FOBI
 #'
-#' @description This function allows user to run a text mining pipeline to map nutritional free text into Food-Biomarker Ontology. This pipeline is composed of five sequential layers to map input items to FOBI food entities with the maximum accuracy as possible. See vignette for details.
+#' @description This function provides a text mining pipeline to map nutritional free text to Food-Biomarker Ontology. This pipeline is composed of five sequential layers to map food items to FOBI with the maximum accuracy as possible. See vignette for details.
 #'
-#' @param input A two column data frame. First column must contain the food ID (should be unique) and the second column must contain the food item (it can be a word or a more complex string).
-#' @param reference Optional reference data frame with the same input structure. If this parameter is missing (default), FOBI foods will be used as a reference. To speed up the time consumption by this function a good option is to use a reference created with `fobitools::parse_fobi(terms = "FOBI:0001")`.
-#' @param similarity Numeric between 0 (low) and 1 (high). This value indicates the semantic similarity cutoff used at the last layer of the text mining pipeline. 1 = exact match; 0 = very poor match. Values below 0.85 (aprox.) are not recomended.
+#' @param input A two column data frame. First column must contain the ID (should be unique) and the second column must contain food items (it can be a word or a string).
+#' @param similarity Numeric between 0 (low) and 1 (high). This value indicates the semantic similarity cutoff used at the last layer of the text mining pipeline. 1 = exact match; 0 = very poor match. Values below 0.85 are not recommended.
 #' 
 #' @export
 #'
-#' @return A data frame with the anntotated food items.
+#' @return A tibble with annotated food items.
+#' @references Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033, https://doi.org/10.1093/databa/baaa033.
 #' @author Pol Castellano-Escuder
 #'
 #' @examples
@@ -28,27 +28,24 @@
 #' @importFrom textclean make_plural
 #' @importFrom RecordLinkage jarowinkler 
 #' @importFrom crayon red yellow green
-annotate_foods <- function(input, 
-                           reference,
+annotate_foods <- function(foods,
                            similarity = 1){
   
   tictoc::tic()
   
-  if(class(input) != "data.frame"){
-    stop(crayon::red(clisymbols::symbol$cross, "Input must be a data.frame"))
+  if(class(foods) != "data.frame"){
+    stop("Input must be a data.frame")
   }
-  if(ncol(input) != 2){
-    stop(crayon::red(clisymbols::symbol$cross, "Input must be a 2 column data.frame (ID and FOOD)"))
+  if(ncol(foods) != 2){
+    stop("Input must be a two-column data frame")
   }
   if(similarity > 1 | similarity < 0){
-    stop(crayon::red(clisymbols::symbol$cross, "Similarity parameter must be a numeric value between 0 and 1"))
+    stop("Similarity parameter must be a numeric value between 0 and 1")
   }
-  if(missing(reference)){
-    # reference <- fobitools::parse_fobi(terms = "FOBI:0001")
-    stop("reference needed")
-  }
+
+  reference <- fobitools::parse_fobi()
   
-  ffq <- input %>%
+  ffq <- foods %>%
     rename(FOOD_ID = 1, FOOD_NAME = 2) %>%
     filter(!duplicated(FOOD_NAME)) %>%
     mutate(words = str_replace_all(FOOD_NAME, "[[:punct:]]" , " "),
@@ -248,14 +245,14 @@ annotate_foods <- function(input,
   
   ## OUTPUT MESSAGE
   
-  if(round(100 - ((nrow(no_matched)/nrow(input))*100), 2) > 75){
-    cat(crayon::green(paste0(round(100 - ((nrow(no_matched)/nrow(input))*100), 2), "% has been annotated\n")))
+  if(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2) > 75){
+    cat(crayon::green(paste0(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2), "% has been annotated\n")))
   }
-  else if(round(100 - ((nrow(no_matched)/nrow(input))*100), 2) > 25){
-    cat(crayon::yellow(paste0(round(100 - ((nrow(no_matched)/nrow(input))*100), 2), "% has been annotated\n")))
+  else if(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2) > 25){
+    cat(crayon::yellow(paste0(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2), "% has been annotated\n")))
   }
   else{
-    cat(crayon::red(paste0(round(100 - ((nrow(no_matched)/nrow(input))*100), 2), "% has been annotated\n")))
+    cat(crayon::red(paste0(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2), "% has been annotated\n")))
   }
   
   tictoc::toc()

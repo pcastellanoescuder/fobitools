@@ -2,22 +2,20 @@
 % Please edit documentation in R/annotate_foods.R
 \name{annotate_foods}
 \alias{annotate_foods}
-\title{Text Mining Pipeline to Annotate Free Nutritional Text into FOBI}
+\title{Text Mining Pipeline to Annotate Free Nutritional Text with FOBI}
 \usage{
-annotate_foods(input, reference, similarity = 1)
+annotate_foods(foods, similarity = 1)
 }
 \arguments{
-\item{input}{A two column data frame. First column must contain the food ID (should be unique) and the second column must contain the food item (it can be a word or a more complex string).}
+\item{similarity}{Numeric between 0 (low) and 1 (high). This value indicates the semantic similarity cutoff used at the last layer of the text mining pipeline. 1 = exact match; 0 = very poor match. Values below 0.85 are not recommended.}
 
-\item{reference}{Optional reference data frame with the same input structure. If this parameter is missing (default), FOBI foods will be used as a reference. To speed up the time consumption by this function a good option is to use a reference created with `fobitools::parse_fobi(terms = "FOBI:0001")`.}
-
-\item{similarity}{Numeric between 0 (low) and 1 (high). This value indicates the semantic similarity cutoff used at the last layer of the text mining pipeline. 1 = exact match; 0 = very poor match. Values below 0.85 (aprox.) are not recomended.}
+\item{input}{A two column data frame. First column must contain the ID (should be unique) and the second column must contain food items (it can be a word or a string).}
 }
 \value{
-A data frame with the anntotated food items.
+A tibble with annotated food items.
 }
 \description{
-This function allows user to run a text mining pipeline to map nutritional free text into Food-Biomarker Ontology. This pipeline is composed of five sequential layers to map input items to FOBI food entities with the maximum accuracy as possible. See vignette for details.
+This function provides a text mining pipeline to map nutritional free text to Food-Biomarker Ontology. This pipeline is composed of five sequential layers to map food items to FOBI with the maximum accuracy as possible. See vignette for details.
 }
 \examples{
 
@@ -26,6 +24,9 @@ free_text <- data.frame(id = 01,
 text = "Yesterday I ate eggs and bacon with a butter toast and black tea")
 annotate_foods(free_text)
 
+}
+\references{
+Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033, https://doi.org/10.1093/databa/baaa033.
 }
 \author{
 Pol Castellano-Escuder
