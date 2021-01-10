@@ -38,9 +38,9 @@ Some functionalities are:
       - **Food group enrichment analysis**: Over representation analysis
         using FOBI food groups as sets
 
-`fobitools` also offers a Shiny app version called FVT. This application
-implements most of `fobitools` functions in an user-friendly web
-interface and it’s available at
+`fobitools` also offers a Shiny app version called FOBI Visualization
+Tool. This application implements most of `fobitools` functions in an
+user-friendly web interface and it’s available at
 <http://webapps.nutrimetabolomics.com/FOBI_Visualization_Tool>.
 
 # Installation
