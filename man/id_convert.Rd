@@ -2,22 +2,23 @@
 % Please edit documentation in R/id_convert.R
 \name{id_convert}
 \alias{id_convert}
-\title{Convert Metabolite IDs Using FOBI Annotations}
+\title{Convert Metabolite Identifiers}
 \usage{
-id_convert(ids, to = "FOBI", stable_version = TRUE)
+id_convert(ids, to = "FOBI")
 }
 \arguments{
-\item{ids}{Character vector with metabolite IDs to convert. Input ID types can be FOBI, raw metabolite names (used in FOBI), HMDB, KEGG, PubChemCID, InChIKey, InChICode, ChemSpider or a combination of them.}
+\item{ids}{A vector with metabolite IDs to convert. Input ID types can be FOBI, raw metabolite names (used in FOBI), HMDB, KEGG, PubChemCID, InChIKey, InChICode, ChemSpider, and a combination of them.}
 
-\item{to}{Target ID type. If possible, metabolites will be converted to this ID type. Options are "FOBI" (default), "metaboliteNames", "HMDB", "KEGG", "PubChemCID", "InChIKey", "InChICode" and "ChemSpider".}
-
-\item{stable_version}{Logical. If it's set to TRUE (default), the function will use an stable version of FOBI. If not, the function will use the `fobi.obo` file from GitHub (\url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}).}
+\item{to}{Target ID type. If possible, metabolites will be converted to this ID type. Options are "FOBI" (default), "metaboliteNames", "HMDB", "KEGG", "PubChemCID", "InChIKey", "InChICode", and "ChemSpider".}
 }
 \value{
-A data frame with input IDs and converted IDs.
+A tibble with input IDs and converted IDs.
 }
 \description{
-This function can convert metabolite IDs to the other ID types available in FOBI. Note that the input vector can be a combination of different IDs.
+This function can convert metabolite identifiers to other available IDs in FOBI. Input vector can be a combination of different IDs.
+}
+\references{
+Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033, https://doi.org/10.1093/databa/baaa033.
 }
 \author{
 Pol Castellano-Escuder
