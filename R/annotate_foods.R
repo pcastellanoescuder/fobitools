@@ -43,7 +43,10 @@ annotate_foods <- function(foods,
     stop("Similarity parameter must be a numeric value between 0 and 1")
   }
 
-  reference <- fobitools::parse_fobi()
+  reference <- fobitools::parse_fobi() %>%
+    filter(!stringr::str_detect(id_code, "CHEBI")) %>%
+    filter(is.na(BiomarkerOf)) %>%
+    filter(!stringr::str_detect(id_code, "FOBI:0400"))
   
   ffq <- foods %>%
     rename(FOOD_ID = 1, FOOD_NAME = 2) %>%
