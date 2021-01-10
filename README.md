@@ -4,7 +4,7 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Build
 Status](https://travis-ci.com/pcastellanoescuder/fobitools.svg?branch=master)](https://travis-ci.com/pcastellanoescuder/fobitools)
 [![AppVeyor build

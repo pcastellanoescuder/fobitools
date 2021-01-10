@@ -2,8 +2,6 @@ context("ora")
 
 test_that("ora works", {
 
-  data("idmap")
-
   metaboliteUniverse <- c(fobitools::idmap$FOBI[1:200], fobitools::idmap$FOBI[400:450])
   metaboliteList <- c(fobitools::idmap$FOBI[1:50], fobitools::idmap$FOBI[70:80])
 

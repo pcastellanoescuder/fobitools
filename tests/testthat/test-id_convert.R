@@ -2,7 +2,7 @@ context("id_convert")
 
 test_that("id_convert works", {
   
-  ids <- c(idmap$HMDB[1:10], idmap$KEGG[11:23], idmap$InChIKey[100:150])
+  ids <- c(fobitools::idmap$HMDB[1:10], fobitools::idmap$KEGG[11:23], fobitools::idmap$InChIKey[100:150])
   nas <- sum(is.na(ids))
     
   ##

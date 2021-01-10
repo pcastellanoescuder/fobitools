@@ -1,25 +1,8 @@
-
-#' Food-Biomarker Ontology Chemical Class Sets - May 25, 2020
+#' Identifier Map File - Jan 10, 2021
 #'
-#' This file contans FOBI's chemical class sets  
+#' Different metabolite IDs for FOBI metabolites.
 #'
-#' @format List created with `sigora::makeGPS` function.
-#' @source \url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}
-"GPSrepo_chemicals"
-
-#' Food-Biomarker Ontology Food Class Sets - May 25, 2020
-#'
-#' This file contans FOBI's food class sets  
-#'
-#' @format List created with `sigora::makeGPS` function.
-#' @source \url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}
-"GPSrepo_foods"
-
-#' ID Map File - May 25, 2020
-#'
-#' This file contains all FOBI metabolites with 8 different possible IDs for each one (if possible).
-#'
-#' @format A data frame object: 590 metabolites with 8 possible IDs.
+#' @format A tibble: 590 metabolites with 8 different IDs.
 #' \describe{
 #'   \item{metaboliteNames}{Raw metabolite names.}
 #'   \item{FOBI}{FOBI ID.}
