@@ -1,13 +1,14 @@
 Package: fobitools
-Title: Collection of functions to work with FOBI (Food-Biomarker Ontology)
-Version: 0.99.3.9000
+Title: Tools For Manipulating FOBI Ontology
+Version: 0.99.4.9000
 Authors@R: 
     person(given = "Pol",
            family = "Castellano-Escuder",
            role = c("aut", "cre"),
            email = "polcaes@gmail.com",
            comment = c(ORCID = "0000-0001-6466-877X"))
-Description: This package provides a set of functions to use and interact with FOBI (Food-Biomarker Ontology).
+Description: A set of tools for interacting with Food-Biomarker Ontology (FOBI). A collection of basic manipulation tools for biological signifance analysis, graphs, and 
+    text mining strategies for annotating nutritional data.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

@@ -13,7 +13,7 @@ ora(
 )
 }
 \arguments{
-\item{metaboliteList}{A vector of FOBI metabolite identifiers that define the selected list of metabolites. Other identifiers are accepted: FOBI, HMDB, KEGG, PubChemCID, InChIKey, InChICode, and ChemSpider.}
+\item{metaboliteList}{A vector of FOBI metabolite identifiers that define the selected list of metabolites. Other accepted identifiers are: HMDB, KEGG, PubChemCID, InChIKey, InChICode, and ChemSpider.}
 
 \item{metaboliteUniverse}{A vector of FOBI metabolite identifiers that define the universe of possible metabolites. The identifiers should be of the same type as the `metaboliteList` identifiers.}
 

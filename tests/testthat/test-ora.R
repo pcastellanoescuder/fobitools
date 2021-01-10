@@ -4,22 +4,22 @@ test_that("ora works", {
 
   data("idmap")
 
-  metaboliteUniverse <- fobitools::idmap$KEGG[1:200]
-  metaboliteList <- fobitools::idmap$KEGG[1:30]
+  metaboliteUniverse <- c(fobitools::idmap$FOBI[1:200], fobitools::idmap$FOBI[400:450])
+  metaboliteList <- c(fobitools::idmap$FOBI[1:50], fobitools::idmap$FOBI[70:80])
 
   data <- data.frame(A = metaboliteList[1:50], B = metaboliteList[51:100])
 
   a <- fobitools::ora(metaboliteList = metaboliteList, metaboliteUniverse = metaboliteUniverse, pvalCutoff = 1)
   b <- fobitools::ora(metaboliteList = metaboliteList, metaboliteUniverse = metaboliteUniverse, subOntology = "food", pvalCutoff = 1, adjust = "fdr")
   c <- fobitools::ora(metaboliteList = metaboliteList, metaboliteUniverse = metaboliteUniverse, subOntology = "biomarker", pvalCutoff = 1, adjust = "fdr")
-  d <- fobitools::ora(metaboliteList = metaboliteList, metaboliteUniverse = metaboliteUniverse, subOntology = "food", pvalCutoff = 1, adjust = "bonferroni")
+  d <- fobitools::ora(metaboliteList = metaboliteList, metaboliteUniverse = metaboliteUniverse, subOntology = "food", pvalCutoff = 1, adjust = "fdr")
   
   ##
   
-  expect_true(class(a) == "tibble")
-  expect_true(class(b) == "tibble")
-  expect_true(class(c) == "tibble")
-  expect_true(class(d) == "tibble")
+  expect_true(class(a)[2] == "tbl")
+  expect_true(class(b)[2] == "tbl")
+  expect_true(class(c)[2] == "tbl")
+  expect_true(class(d)[2] == "tbl")
   
   ##
   
