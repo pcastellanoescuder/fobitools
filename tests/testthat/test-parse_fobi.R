@@ -20,6 +20,17 @@ test_that("parse_fobi works", {
   
   ##
   
+  expect_true(class(a)[2] == "tbl")
+  expect_true(class(b)[2] == "tbl")
+  expect_true(class(c)[2] == "tbl")
+  expect_true(class(d)[2] == "tbl")
+  
+  expect_true(class(e)[2] == "tbl")
+  expect_true(class(f)[2] == "tbl")
+  expect_true(class(g)[2] == "tbl")
+  
+  ##
+  
   expect_true(nrow(e) > nrow(a))
   expect_true(nrow(a) < nrow(d))
   expect_true(nrow(b) < nrow(d))
