@@ -4,6 +4,16 @@ language: r
 
 warnings_are_errors: true
 
+sudo: true
+
+addons:
+  apt:
+    packages:
+      - build-essential
+      - libcurl4-gnutls-dev
+      - libxml2-dev
+      - libssl-dev
+      
 r_packages:
   - covr
   - testthat

@@ -22,9 +22,8 @@
 #' @importFrom magrittr %>%
 #' @importFrom clisymbols symbol
 #' @importFrom tictoc tic toc
-#' @importFrom ontologyIndex get_ontology get_descendants
 #' @importFrom tidyr separate_rows expand_grid
-#' @importFrom dplyr mutate select rename filter ungroup mutate_all group_by bind_rows summarise
+#' @importFrom dplyr mutate select rename filter ungroup mutate_all group_by bind_rows summarise as_tibble
 #' @importFrom stringr str_replace_all str_trim str_squish str_remove_all str_detect str_replace
 #' @importFrom textclean make_plural
 #' @importFrom RecordLinkage jarowinkler 
@@ -34,9 +33,6 @@ annotate_foods <- function(foods,
   
   tictoc::tic()
   
-  if(class(foods) != "data.frame"){
-    stop("Input must be a data.frame")
-  }
   if(ncol(foods) != 2){
     stop("Input must be a two-column data frame")
   }
@@ -44,11 +40,7 @@ annotate_foods <- function(foods,
     stop("Similarity parameter must be a numeric value between 0 and 1")
   }
 
-  fobi_foods <- ontologyIndex::get_ontology("https://raw.github.com/pcastellanoescuder/FoodBiomarkerOntology/master/fobi.obo") %>%
-    ontologyIndex::get_descendants(roots = "FOBI:0001", exclude_roots = TRUE)
-    
-  reference <- fobitools::parse_fobi() %>%
-    filter(id_code %in% fobi_foods)
+  reference <- fobitools::parse_fobi(terms = "FOBI:0001", get = "des")
   
   ffq <- foods %>%
     rename(FOOD_ID = 1, FOOD_NAME = 2) %>%
@@ -128,7 +120,7 @@ annotate_foods <- function(foods,
   
   no_matched <- ffq %>% filter(!FOOD_NAME %in% result0$FOOD_NAME)
   
-  # RAW MATCH (SINGULARS AND PLURALS WITH AND WITHOUT WHITESPACES)
+  # RAW MATCH (SINGULARS AND PLURALS WITHOUT WHITESPACES)
   
   ffq_sing <- ffq %>% 
     filter(FOOD_NAME %in% no_matched$FOOD_NAME) %>%
@@ -182,8 +174,8 @@ annotate_foods <- function(foods,
   result2 <- merge(result2, fobi_foods, by = "ref") %>%
     filter(!duplicated(.)) %>%
     group_by(FOOD_ID) %>%
-    mutate(id_code = paste(id_code, collapse = " | "),
-           name = paste(name, collapse = " | ")) %>%
+    mutate(id_code = paste(id_code, collapse = ";"), # here
+           name = paste(name, collapse = ";")) %>% # here
     select(FOOD_ID, FOOD_NAME, id_code, name) %>%
     ungroup() %>%
     filter(!duplicated(.))
@@ -246,7 +238,17 @@ annotate_foods <- function(foods,
   ## MERGE RESULTS
   
   annotated_input <- bind_rows(result0, result1, result2, result3, result4) %>% 
-    filter(!duplicated(FOOD_ID)) # random pick first one if two or more have been annotated
+    rename(FOBI_ID = 3, FOBI_NAME = 4) %>%
+    separate_rows(FOBI_ID, sep = ";") %>%
+    separate_rows(FOBI_NAME, sep = ";") %>%
+    mutate_all(as.factor) %>%
+    # group_by(FOOD_ID, FOOD_NAME, FOBI_ID) %>%
+    # filter(!duplicated(.)) %>%
+    # group_by(FOOD_ID, FOOD_NAME, FOBI_ID) %>%
+    # dplyr::add_count() %>%
+    # ungroup() %>%
+    # slice(1) %>%
+    as_tibble()
   
   ## OUTPUT MESSAGE
   
