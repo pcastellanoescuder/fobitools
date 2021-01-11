@@ -7,9 +7,9 @@
 annotate_foods(foods, similarity = 1)
 }
 \arguments{
-\item{similarity}{Numeric between 0 (low) and 1 (high). This value indicates the semantic similarity cutoff used at the last layer of the text mining pipeline. 1 = exact match; 0 = very poor match. Values below 0.85 are not recommended.}
+\item{foods}{A two column data frame. First column must contain the ID (should be unique) and the second column must contain food items (it can be a word or a string).}
 
-\item{input}{A two column data frame. First column must contain the ID (should be unique) and the second column must contain food items (it can be a word or a string).}
+\item{similarity}{Numeric between 0 (low) and 1 (high). This value indicates the semantic similarity cutoff used at the last layer of the text mining pipeline. 1 = exact match; 0 = very poor match. Values below 0.85 are not recommended.}
 }
 \value{
 A tibble with annotated food items.

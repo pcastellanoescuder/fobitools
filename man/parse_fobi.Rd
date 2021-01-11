@@ -2,12 +2,14 @@
 % Please edit documentation in R/parse_fobi.R
 \name{parse_fobi}
 \alias{parse_fobi}
-\title{Download the Food-Biomarker Ontology in a Tabular Format}
+\title{Parse FOBI in a Readable Tabular Format}
 \usage{
-parse_fobi(terms = NULL)
+parse_fobi(terms = NULL, get = NULL)
 }
 \arguments{
 \item{terms}{A character vector with FOBI term IDs. Default is NULL.}
+
+\item{get}{A character string indicating desired relationships between provided terms. Options are 'anc' (for ancestors) and 'des' (for descendants). Default is NULL and only information of single input terms will be provided.}
 }
 \value{
 A tibble with FOBI terms information.
@@ -22,6 +24,9 @@ fobi <- parse_fobi()
 
 # Download and parse 'apple' related terms
 fobi_apple <- parse_fobi(terms = "FOODON:00002473")
+
+# Download and parse 'apple' term ancestors
+fobi_apple_anc <- parse_fobi(terms = "FOODON:00002473", get = "anc")
 
 # Download and parse 'apple' and 'alpha-Chaconine' related terms
 fobi_subset <- parse_fobi(terms = c("FOODON:00002473", "CHEBI:10219"))

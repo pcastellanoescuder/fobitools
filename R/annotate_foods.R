@@ -3,7 +3,7 @@
 #'
 #' @description This function provides a text mining pipeline to map nutritional free text to Food-Biomarker Ontology. This pipeline is composed of five sequential layers to map food items to FOBI with the maximum accuracy as possible. See vignette for details.
 #'
-#' @param input A two column data frame. First column must contain the ID (should be unique) and the second column must contain food items (it can be a word or a string).
+#' @param foods A two column data frame. First column must contain the ID (should be unique) and the second column must contain food items (it can be a word or a string).
 #' @param similarity Numeric between 0 (low) and 1 (high). This value indicates the semantic similarity cutoff used at the last layer of the text mining pipeline. 1 = exact match; 0 = very poor match. Values below 0.85 are not recommended.
 #' 
 #' @export
@@ -22,6 +22,7 @@
 #' @importFrom magrittr %>%
 #' @importFrom clisymbols symbol
 #' @importFrom tictoc tic toc
+#' @importFrom ontologyIndex get_ontology get_descendants
 #' @importFrom tidyr separate_rows expand_grid
 #' @importFrom dplyr mutate select rename filter ungroup mutate_all group_by bind_rows summarise
 #' @importFrom stringr str_replace_all str_trim str_squish str_remove_all str_detect str_replace
@@ -43,10 +44,11 @@ annotate_foods <- function(foods,
     stop("Similarity parameter must be a numeric value between 0 and 1")
   }
 
+  fobi_foods <- ontologyIndex::get_ontology("https://raw.github.com/pcastellanoescuder/FoodBiomarkerOntology/master/fobi.obo") %>%
+    ontologyIndex::get_descendants(roots = "FOBI:0001", exclude_roots = TRUE)
+    
   reference <- fobitools::parse_fobi() %>%
-    filter(!stringr::str_detect(id_code, "CHEBI")) %>%
-    filter(is.na(BiomarkerOf)) %>%
-    filter(!stringr::str_detect(id_code, "FOBI:0400"))
+    filter(id_code %in% fobi_foods)
   
   ffq <- foods %>%
     rename(FOOD_ID = 1, FOOD_NAME = 2) %>%
@@ -248,13 +250,13 @@ annotate_foods <- function(foods,
   
   ## OUTPUT MESSAGE
   
-  if(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2) > 75){
+  if (round(100 - ((nrow(no_matched)/nrow(foods))*100), 2) > 75){
     cat(crayon::green(paste0(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2), "% has been annotated\n")))
   }
-  else if(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2) > 25){
+  else if (round(100 - ((nrow(no_matched)/nrow(foods))*100), 2) > 25){
     cat(crayon::yellow(paste0(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2), "% has been annotated\n")))
   }
-  else{
+  else {
     cat(crayon::red(paste0(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2), "% has been annotated\n")))
   }
   

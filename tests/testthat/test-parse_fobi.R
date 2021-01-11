@@ -7,12 +7,16 @@ test_that("parse_fobi works", {
   c <- fobitools::parse_fobi(terms = "FOBI:0001")
   d <- fobitools::parse_fobi()
   e <- fobitools::parse_fobi(terms = c("FOODON:00002473", "CHEBI:10219"))
+  
+  f <- fobitools::parse_fobi(terms = "FOODON:00002473", get = "anc")
+  g <- fobitools::parse_fobi(terms = "FOODON:00002473", get = "des")
     
   ##
   
   expect_equal(ncol(a), ncol(b))
   expect_equal(ncol(b), ncol(c))
   expect_equal(ncol(c), ncol(d))
+  expect_equal(ncol(f), ncol(g))
   
   ##
   
@@ -20,6 +24,7 @@ test_that("parse_fobi works", {
   expect_true(nrow(a) < nrow(d))
   expect_true(nrow(b) < nrow(d))
   expect_true(nrow(c) < nrow(d))
+  expect_true(nrow(f) > nrow(g))
   
   ##
   
@@ -31,7 +36,9 @@ test_that("parse_fobi works", {
   
   ##
   
-  expect_warning(fobitools::parse_fobi(terms = "FOODON:0000"))
+  expect_error(fobitools::parse_fobi(terms = "FOODON:00002473", get = "ances"))
+  expect_error(fobitools::parse_fobi(terms = "FOODON:000024736666", get = "anc"))
+  expect_error(fobitools::parse_fobi(get = "anc"))
   
 })
 
