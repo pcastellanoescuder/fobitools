@@ -12,6 +12,8 @@ LABEL authors = "polcaes@gmail.com" \
 RUN R -e "install.packages(c('clisymbols',
                              'crayon',
                              'dplyr',
+                             'ggplot2',
+                             'ggraph',
                              'magrittr',
                              'ontologyIndex',
                              'purrr',
@@ -20,6 +22,7 @@ RUN R -e "install.packages(c('clisymbols',
                              'stringr',
                              'textclean',
                              'tictoc',
+                             'tidygraph',
                              'tidyr',
                              'vroom'), repos='http://cran.rstudio.com/')"
 

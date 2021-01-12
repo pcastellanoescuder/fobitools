@@ -2,9 +2,13 @@
 
 export("%>%")
 export(annotate_foods)
+export(fobi_graph)
 export(id_convert)
 export(ora)
 export(parse_fobi)
+import(ggplot2)
+import(ggraph)
+import(tidygraph)
 importFrom(RecordLinkage,jarowinkler)
 importFrom(clisymbols,symbol)
 importFrom(crayon,green)

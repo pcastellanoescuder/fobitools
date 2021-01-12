@@ -1,6 +1,6 @@
 Package: fobitools
 Title: Tools For Manipulating FOBI Ontology
-Version: 0.99.16
+Version: 0.99.17
 Authors@R: 
     person(given = "Pol",
            family = "Castellano-Escuder",
@@ -16,6 +16,8 @@ Imports:
     clisymbols,
     crayon,
     dplyr,
+    ggplot2,
+    ggraph,
     magrittr,
     ontologyIndex,
     purrr,
@@ -24,6 +26,7 @@ Imports:
     stringr,
     textclean,
     tictoc,
+    tidygraph,
     tidyr,
     vroom
 Suggests: 
