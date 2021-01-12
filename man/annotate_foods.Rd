@@ -4,7 +4,7 @@
 \alias{annotate_foods}
 \title{Text Mining Pipeline to Annotate Free Nutritional Text with FOBI}
 \usage{
-annotate_foods(foods, similarity = 1)
+annotate_foods(foods, similarity = 0.85)
 }
 \arguments{
 \item{foods}{A two column data frame. First column must contain the ID (should be unique) and the second column must contain food items (it can be a word or a string).}
@@ -12,7 +12,7 @@ annotate_foods(foods, similarity = 1)
 \item{similarity}{Numeric between 0 (low) and 1 (high). This value indicates the semantic similarity cutoff used at the last layer of the text mining pipeline. 1 = exact match; 0 = very poor match. Values below 0.85 are not recommended.}
 }
 \value{
-A tibble with annotated food items.
+A list containing two tibble objects: annotated and unannotated food items.
 }
 \description{
 This function provides a text mining pipeline to map nutritional free text to Food-Biomarker Ontology. This pipeline is composed of five sequential layers to map food items to FOBI with the maximum accuracy as possible. See vignette for details.

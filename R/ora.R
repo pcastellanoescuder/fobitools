@@ -68,6 +68,8 @@ ora <- function(metaboliteList,
     mutate_all(~ stringr::str_trim(.)) %>%
     filter(!duplicated(metaboliteNames))
   
+  n_metaboliteUniverse <- length(unique(metaboliteUniverse[!is.na(metaboliteUniverse)]))
+  
   universe_names <- idmap %>%
     rowwise() %>% 
     filter(any(c(FOBI, HMDB, KEGG, PubChemCID, InChIKey, InChICode, ChemSpider) %in% unique(metaboliteUniverse[!is.na(metaboliteUniverse)]))) %>%
@@ -119,6 +121,7 @@ ora <- function(metaboliteList,
   }
 
   metaboliteList <- unique(metaboliteList[!is.na(metaboliteList)])
+  n_metaboliteList <- length(metaboliteList)
   
   ## ORA
 
@@ -131,7 +134,7 @@ ora <- function(metaboliteList,
     new_idmap <- idmap[, c(t2, t1)]
     colnames(new_idmap) <- c("match", "metaboliteName")
     metaboliteList <- new_idmap[which(new_idmap$match %in% metaboliteList), 2]
-    message(paste0("Mapped identifiers from ", colnames(idmap)[t2], " to ", colnames(idmap)[t1]))
+    message(paste0("\n", crayon::blue("Mapped identifiers from ", colnames(idmap)[t2], " to ", colnames(idmap)[t1])))
   }
 
   g1m <- match(metaboliteList$metaboliteName, GPSrepo$origRepo[[2]])
@@ -153,7 +156,11 @@ ora <- function(metaboliteList,
     filter(pvalue <= pvalCutoff) %>%
     as_tibble()
 
+  message(paste0(crayon::blue("metaboliteUniverse size: ", n_metaboliteUniverse), 
+                 "\n",
+                 crayon::blue("metaboliteList size: ", n_metaboliteList)))
+  
   return(result)
-
+  
 }
 

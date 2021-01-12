@@ -8,7 +8,7 @@
 #' 
 #' @export
 #'
-#' @return A tibble with annotated food items.
+#' @return A list containing two tibble objects: annotated and unannotated food items.
 #' @references Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033, https://doi.org/10.1093/databa/baaa033.
 #' @author Pol Castellano-Escuder
 #'
@@ -23,13 +23,13 @@
 #' @importFrom clisymbols symbol
 #' @importFrom tictoc tic toc
 #' @importFrom tidyr separate_rows expand_grid
-#' @importFrom dplyr mutate select rename filter ungroup mutate_all group_by bind_rows summarise as_tibble
+#' @importFrom dplyr mutate select rename filter ungroup mutate_all group_by bind_rows summarise as_tibble slice left_join
 #' @importFrom stringr str_replace_all str_trim str_squish str_remove_all str_detect str_replace
 #' @importFrom textclean make_plural
 #' @importFrom RecordLinkage jarowinkler 
 #' @importFrom crayon red yellow green
 annotate_foods <- function(foods,
-                           similarity = 1){
+                           similarity = 0.85){
   
   tictoc::tic()
   
@@ -39,12 +39,21 @@ annotate_foods <- function(foods,
   if(similarity > 1 | similarity < 0){
     stop("Similarity parameter must be a numeric value between 0 and 1")
   }
-
+  
+  foods <- foods %>%
+    rename(FOOD_ID = 1, FOOD_NAME = 2) %>%
+    filter(!duplicated(FOOD_NAME))
+  
+  dup_ids <- foods %>%
+    filter(duplicated(FOOD_ID))
+  
+  if(nrow(dup_ids) > 0){
+    stop("Duplicated IDs are not allowed")
+  }
+  
   reference <- fobitools::parse_fobi(terms = "FOBI:0001", get = "des")
   
   ffq <- foods %>%
-    rename(FOOD_ID = 1, FOOD_NAME = 2) %>%
-    filter(!duplicated(FOOD_NAME)) %>%
     mutate(words = str_replace_all(FOOD_NAME, "[[:punct:]]" , " "),
            words = str_replace_all(words, "[[:digit:]]", " "),
            words = str_trim(words),
@@ -233,38 +242,43 @@ annotate_foods <- function(foods,
                                 !FOOD_NAME %in% result1$FOOD_NAME,
                                 !FOOD_NAME %in% result2$FOOD_NAME,
                                 !FOOD_NAME %in% result3$FOOD_NAME,
-                                !FOOD_NAME %in% result4$FOOD_NAME)
+                                !FOOD_NAME %in% result4$FOOD_NAME) %>%
+    select(-words) %>%
+    as_tibble()
   
   ## MERGE RESULTS
   
   annotated_input <- bind_rows(result0, result1, result2, result3, result4) %>% 
+    separate_rows(id_code, sep = ";") %>%
+    separate_rows(name, sep = ";") %>%
+    mutate_all(as.character) %>%
+    select(-id_code) %>%
+    mutate(grouping = paste0(FOOD_ID, "_", name)) %>% 
+    group_by(grouping) %>%
+    slice(1) %>%
+    ungroup() %>%
+    select(-grouping) %>%
+    left_join(reference, by = "name") %>%
+    select(1,2,4,3) %>%
     rename(FOBI_ID = 3, FOBI_NAME = 4) %>%
-    separate_rows(FOBI_ID, sep = ";") %>%
-    separate_rows(FOBI_NAME, sep = ";") %>%
-    mutate_all(as.factor) %>%
-    # group_by(FOOD_ID, FOOD_NAME, FOBI_ID) %>%
-    # filter(!duplicated(.)) %>%
-    # group_by(FOOD_ID, FOOD_NAME, FOBI_ID) %>%
-    # dplyr::add_count() %>%
-    # ungroup() %>%
-    # slice(1) %>%
+    filter(!duplicated(.)) %>%
     as_tibble()
   
   ## OUTPUT MESSAGE
   
   if (round(100 - ((nrow(no_matched)/nrow(foods))*100), 2) > 75){
-    cat(crayon::green(paste0(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2), "% has been annotated\n")))
+    cat(crayon::green(paste0(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2), "% annotated\n")))
   }
   else if (round(100 - ((nrow(no_matched)/nrow(foods))*100), 2) > 25){
-    cat(crayon::yellow(paste0(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2), "% has been annotated\n")))
+    cat(crayon::yellow(paste0(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2), "% annotated\n")))
   }
   else {
-    cat(crayon::red(paste0(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2), "% has been annotated\n")))
+    cat(crayon::red(paste0(round(100 - ((nrow(no_matched)/nrow(foods))*100), 2), "% annotated\n")))
   }
   
   tictoc::toc()
   
-  return(annotated_input)
+  return(list(annotated = annotated_input, unannotated = no_matched))
   
 }
 
