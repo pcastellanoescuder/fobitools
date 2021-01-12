@@ -3,9 +3,9 @@
 \docType{data}
 \name{idmap}
 \alias{idmap}
-\title{Identifier Map File - Jan 10, 2021}
+\title{FOBI Identifier Map File - Jan 10, 2021}
 \format{
-A tibble: 590 metabolites with 8 different IDs.
+A tibble: 590 FOBI metabolites with 8 different IDs.
 \describe{
   \item{metaboliteNames}{Raw metabolite names.}
   \item{FOBI}{FOBI ID.}
@@ -24,6 +24,6 @@ A tibble: 590 metabolites with 8 different IDs.
 idmap
 }
 \description{
-Different metabolite IDs for FOBI metabolites.
+Identifier mappings for FOBI metabolites
 }
 \keyword{datasets}

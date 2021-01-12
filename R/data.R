@@ -1,8 +1,8 @@
-#' Identifier Map File - Jan 10, 2021
+#' FOBI Identifier Map File - Jan 10, 2021
 #'
-#' Different metabolite IDs for FOBI metabolites.
+#' Identifier mappings for FOBI metabolites 
 #'
-#' @format A tibble: 590 metabolites with 8 different IDs.
+#' @format A tibble: 590 FOBI metabolites with 8 different IDs.
 #' \describe{
 #'   \item{metaboliteNames}{Raw metabolite names.}
 #'   \item{FOBI}{FOBI ID.}

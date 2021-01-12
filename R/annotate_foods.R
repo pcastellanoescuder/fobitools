@@ -15,8 +15,10 @@
 #' @examples
 #' 
 #' # Free text annotation in FOBI
-#' free_text <- data.frame(id = 01,
-#' text = "Yesterday I ate eggs and bacon with a butter toast and black tea")
+#' free_text <- data.frame(id = c(101, 102, 103, 104),
+#'                         text = c("Yesterday I ate eggs and bacon with a butter toast and black tea", 
+#'                                  "Crisp bread and rice crackers with wholegrain", 
+#'                                  "Beef and veal, one apple", "pizza without meat"))
 #' annotate_foods(free_text)
 #' 
 #' @importFrom magrittr %>%
@@ -54,7 +56,9 @@ annotate_foods <- function(foods,
   reference <- fobitools::parse_fobi(terms = "FOBI:0001", get = "des")
   
   ffq <- foods %>%
-    mutate(words = str_replace_all(FOOD_NAME, "[[:punct:]]" , " "),
+    mutate(words = str_replace_all(FOOD_NAME, "," , " and "),
+           words = str_replace_all(words, ";" , " and "),
+           words = str_replace_all(words, "[[:punct:]]" , " "),
            words = str_replace_all(words, "[[:digit:]]", " "),
            words = str_trim(words),
            words = str_squish(words),
