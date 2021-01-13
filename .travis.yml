@@ -13,6 +13,7 @@ addons:
       - libcurl4-gnutls-dev
       - libxml2-dev
       - libssl-dev
+      - libgit2-dev
       
 r_packages:
   - covr
