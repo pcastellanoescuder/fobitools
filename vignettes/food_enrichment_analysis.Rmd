@@ -1,0 +1,56 @@
+---
+title: "Food enrichment analysis"
+author: 
+- name: Pol Castellano-Escuder
+  affiliation: University of Barcelona, Spain.
+  email: polcaes@gmail.com
+date: "`r BiocStyle::doc_date()`"
+output: 
+    BiocStyle::html_document
+vignette: >
+  %\VignetteIndexEntry{Food enrichment analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+**Compiled date**: `r Sys.Date()`
+
+**Last edited**: 2021-01-13
+
+**License**: `r packageDescription("fobitools")[["License"]]`
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Installation
+
+Run the following code to install the Bioconductor version of the package.        
+
+```{r, eval = FALSE}
+# install.packages("BiocManager")
+BiocManager::install("fobitools")
+```
+
+# Load `fobitools` 
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+library(fobitools)
+```
+
+You can also load some additional packages that will be very useful in this vignette.   
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+library(dplyr)
+library(kableExtra)
+```
+
+# Session Information
+
+```{r}
+sessionInfo()
+```
+

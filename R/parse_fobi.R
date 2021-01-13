@@ -74,7 +74,7 @@ parse_fobi <- function(terms = NULL,
     mutate_all(~ str_trim(.)) %>%
     mutate(gf = NA)
   
-  for(i in 1:nrow(parsed_fobi)){
+  for(i in seq_len(nrow(parsed_fobi))){
     ifelse(parsed_fobi$V1[i] == "id_code", parsed_fobi$gf[i] <- i, parsed_fobi$gf[i] <- parsed_fobi$gf[i - 1])
   }
   

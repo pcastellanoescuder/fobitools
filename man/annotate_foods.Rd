@@ -15,7 +15,7 @@ annotate_foods(foods, similarity = 0.85)
 A list containing two tibble objects: annotated and unannotated food items.
 }
 \description{
-This function provides a text mining pipeline to map nutritional free text to Food-Biomarker Ontology. This pipeline is composed of five sequential layers to map food items to FOBI with the maximum accuracy as possible. See vignette for details.
+This function provides a text mining pipeline to map nutritional free text to Food-Biomarker Ontology. This pipeline is composed of five sequential layers to map food items to FOBI with the maximum accuracy as possible.
 }
 \examples{
 

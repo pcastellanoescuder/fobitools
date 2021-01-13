@@ -1,7 +1,7 @@
 
 #' Text Mining Pipeline to Annotate Free Nutritional Text with FOBI
 #'
-#' @description This function provides a text mining pipeline to map nutritional free text to Food-Biomarker Ontology. This pipeline is composed of five sequential layers to map food items to FOBI with the maximum accuracy as possible. See vignette for details.
+#' @description This function provides a text mining pipeline to map nutritional free text to Food-Biomarker Ontology. This pipeline is composed of five sequential layers to map food items to FOBI with the maximum accuracy as possible.
 #'
 #' @param foods A two column data frame. First column must contain the ID (should be unique) and the second column must contain food items (it can be a word or a string).
 #' @param similarity Numeric between 0 (low) and 1 (high). This value indicates the semantic similarity cutoff used at the last layer of the text mining pipeline. 1 = exact match; 0 = very poor match. Values below 0.85 are not recommended.

@@ -1,0 +1,90 @@
+---
+title: "Dietary data annotation"
+author: 
+- name: Pol Castellano-Escuder
+  affiliation: University of Barcelona, Spain.
+  email: polcaes@gmail.com
+date: "`r BiocStyle::doc_date()`"
+output: 
+    BiocStyle::html_document
+vignette: >
+  %\VignetteIndexEntry{Dietary data annotation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+**Compiled date**: `r Sys.Date()`
+
+**Last edited**: 2021-01-13
+
+**License**: `r packageDescription("fobitools")[["License"]]`
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Installation
+
+Run the following code to install the Bioconductor version of the package.        
+
+```{r, eval = FALSE}
+# install.packages("BiocManager")
+BiocManager::install("fobitools")
+```
+
+# Load `fobitools` 
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+library(fobitools)
+```
+
+You can also load some additional packages that will be very useful in this vignette.   
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+library(dplyr)
+library(kableExtra)
+```
+
+# Create an example dietary free-text data
+
+In nutritional studies, dietary data are usually collected by using different questionnaires such as FFQs (food frequency questionnaires) or 24h-DRs (24 hours dietary recall). Commonly, the text collected in these questionnaires require a manual pre-processing step before being analyzed.        
+
+Here is a small example of what a 24h DR could look like in a nutritional study.     
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+# create a dummy dietary data
+free_text <- tibble(id = c(101, 102, 103, 104),
+                    text = c("Yesterday I ate eggs and bacon with a butter toast and black tea", 
+                             "Crisp bread and rice crackers with wholegrain", 
+                             "Beef and veal, one apple", "pizza without meat"))
+
+kbl(free_text, 
+    row.names = FALSE,
+    booktabs = TRUE) %>%
+  kable_styling(latex_options = c("striped"))
+```
+
+# Automatic anotation with `fobitools::annotate_foods()`
+
+The `annotate_foods` function allows the automatic annotation of free nutritional text using the FOBI ontology. This function returns a table with the IDs and names of the FOBI terms that match the input text.       
+
+The `annotate_foods` function provides a text mining algorithm composed of 5 sequential layers. In this process, singulars and plurals are analyzed, irrelevant words are removed, each string of the text input is tokenized and each word is analyzed independently, and the semantic similarity between input text and FOBI's text is computed. Finally, along with the table the function also returns the percentage of the annotated input text.     
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+annotated_text <- fobitools::annotate_foods(free_text)
+
+kbl(annotated_text$annotated, 
+    row.names = FALSE,
+    booktabs = TRUE) %>%
+  kable_styling(latex_options = c("striped"))
+```
+
+# Session Information
+
+```{r}
+sessionInfo()
+```
+
