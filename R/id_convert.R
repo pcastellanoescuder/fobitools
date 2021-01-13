@@ -12,6 +12,11 @@
 #' @references Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033, https://doi.org/10.1093/databa/baaa033.
 #' @author Pol Castellano-Escuder
 #'
+#' @examples
+#' 
+#' ids <- c(fobitools::idmap$HMDB[1:10], fobitools::idmap$KEGG[11:23], fobitools::idmap$InChIKey[100:150])
+#' fobitools::id_convert(ids, to = "FOBI")
+#'
 #' @importFrom magrittr %>%
 #' @importFrom dplyr mutate select rename filter mutate_all matches vars select_at filter_all any_vars as_tibble relocate last_col
 #' @importFrom stringr regex str_replace_all str_trim

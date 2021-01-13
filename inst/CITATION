@@ -1,0 +1,14 @@
+citHeader("To cite fobitools in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "FOBI: An ontology to represent food intake data and associate it with metabolomic data",
+  author   = "Castellano-Escuder, Pol and González-Domínguez, Raúl and Wishart, David S and Andrés-Lacueva, Cristina and Sánchez-Pla, Alex",
+  journal  = "Database",
+  year     = "2020",
+  volume   = "2020",
+  url      = "https://academic.oup.com/database/article/doi/10.1093/databa/baaa033/5857401",
+  doi      = "10.1093/databa/baaa033",
+  textVersion = paste("Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033, https://doi.org/10.1093/databa/baaa033")
+)
+

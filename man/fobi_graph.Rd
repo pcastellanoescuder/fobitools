@@ -52,12 +52,8 @@ This function allows users to create networks based on FOBI relationships.
 terms <- c("CHEBI:16164", "CHEBI:16243", "FOODON:00001139", "FOODON:00003274", "FOODON:00003275")
 
 fobi_graph(terms, get = "anc")
-fobi_graph(terms, get = "anc", labels = TRUE)
 fobi_graph(terms, get = "anc", legend = TRUE)
-fobi_graph(terms = "FOODON:00002473", labels = TRUE)
-
-# Plot whole FOBI
-fobi_graph(terms = c("FOBI:01501", "FOBI:0001"), get = "des", layout = "lgl", pointSize = 2)
+fobi_graph(terms = "FOODON:00002473", property = c("is_a", "BiomarkerOf"), curved = TRUE)
 
 }
 \references{

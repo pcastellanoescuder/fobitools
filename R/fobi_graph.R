@@ -26,12 +26,8 @@
 #' terms <- c("CHEBI:16164", "CHEBI:16243", "FOODON:00001139", "FOODON:00003274", "FOODON:00003275")
 #' 
 #' fobi_graph(terms, get = "anc")
-#' fobi_graph(terms, get = "anc", labels = TRUE)
 #' fobi_graph(terms, get = "anc", legend = TRUE)
-#' fobi_graph(terms = "FOODON:00002473", labels = TRUE)
-#' 
-#' # Plot whole FOBI
-#' fobi_graph(terms = c("FOBI:01501", "FOBI:0001"), get = "des", layout = "lgl", pointSize = 2)
+#' fobi_graph(terms = "FOODON:00002473", property = c("is_a", "BiomarkerOf"), curved = TRUE)
 #' 
 #' @import ggraph
 #' @import ggplot2
@@ -58,7 +54,7 @@ fobi_graph <- function(terms = NULL,
       stop("Incorrect value for get argument. Options are 'anc' (for ancestors) and 'des' (for descendants)")
     }
   }
-  if (!any(property %in% c("is_a", "BiomarkerOf", "Contains"))) {
+  if (!all(property %in% c("is_a", "BiomarkerOf", "Contains"))) {
     stop("Incorrect value for property argument. Options are 'is_a', 'BiomarkerOf', and 'Contains'")
   }
   if (!(layout %in% c("sugiyama", "lgl"))) {
