@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FOBI Identifier Map File - Jan 10, 2021 — idmap • fobitools</title>
+<title>Generate FOBI Graphs — fobi_graph • fobitools</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="FOBI Identifier Map File - Jan 10, 2021 — idmap" />
-<meta property="og:description" content="Identifier mappings for FOBI metabolites" />
+<meta property="og:title" content="Generate FOBI Graphs — fobi_graph" />
+<meta property="og:description" content="This function allows users to create networks based on FOBI relationships." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -136,36 +136,96 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>FOBI Identifier Map File - Jan 10, 2021</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pcastellanoescuder/fobitools/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>idmap.Rd</code></div>
+    <h1>Generate FOBI Graphs</h1>
+    <small class="dont-index">Source: <a href='https://github.com/pcastellanoescuder/fobitools/blob/master/R/fobi_graph.R'><code>R/fobi_graph.R</code></a></small>
+    <div class="hidden name"><code>fobi_graph.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Identifier mappings for FOBI metabolites</p>
+    <p>This function allows users to create networks based on FOBI relationships.</p>
     </div>
 
-    <pre class="usage"><span class='va'>idmap</span></pre>
+    <pre class="usage"><span class='fu'>fobi_graph</span><span class='op'>(</span>
+  terms <span class='op'>=</span> <span class='cn'>NULL</span>,
+  get <span class='op'>=</span> <span class='cn'>NULL</span>,
+  property <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"is_a"</span>, <span class='st'>"BiomarkerOf"</span>, <span class='st'>"Contains"</span><span class='op'>)</span>,
+  layout <span class='op'>=</span> <span class='st'>"sugiyama"</span>,
+  labels <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  labelsize <span class='op'>=</span> <span class='fl'>3</span>,
+  legend <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  legendSize <span class='op'>=</span> <span class='fl'>10</span>,
+  legendPos <span class='op'>=</span> <span class='st'>"bottom"</span>,
+  curved <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  pointSize <span class='op'>=</span> <span class='fl'>3</span>
+<span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>terms</th>
+      <td><p>A character vector with FOBI term IDs.</p></td>
+    </tr>
+    <tr>
+      <th>get</th>
+      <td><p>A character string indicating desired relationships between provided terms. Options are 'anc' (for ancestors) and 'des' (for descendants). Default is NULL and only information of single input terms will be provided.</p></td>
+    </tr>
+    <tr>
+      <th>property</th>
+      <td><p>A character vector indicating which properties should be plotted. Options are 'is_a', 'BiomarkerOf', and 'Contains'. By default all of them are included.</p></td>
+    </tr>
+    <tr>
+      <th>layout</th>
+      <td><p>A character string indicating the type of layout to create. Options are 'sugiyama' (default) and 'lgl'.</p></td>
+    </tr>
+    <tr>
+      <th>labels</th>
+      <td><p>Logical indicating if node names should be plotted or not.</p></td>
+    </tr>
+    <tr>
+      <th>labelsize</th>
+      <td><p>Numeric value indicating the size of labels.</p></td>
+    </tr>
+    <tr>
+      <th>legend</th>
+      <td><p>Logical indicating if legend should be plotted or not.</p></td>
+    </tr>
+    <tr>
+      <th>legendSize</th>
+      <td><p>Numeric value indicating the size of legend.</p></td>
+    </tr>
+    <tr>
+      <th>legendPos</th>
+      <td><p>A character string indicating the legend position (if legend parameter is set to TRUE). Options are 'bottom' (default) and 'top'.</p></td>
+    </tr>
+    <tr>
+      <th>curved</th>
+      <td><p>Logical indicating if the shape of the edges shape should be curved or not.</p></td>
+    </tr>
+    <tr>
+      <th>pointSize</th>
+      <td><p>Numeric value indicating the size of graph points.</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble: 590 FOBI metabolites with 8 different IDs.</p><dl>
-  <dt>metaboliteNames</dt><dd><p>Raw metabolite names.</p></dd>
-  <dt>FOBI</dt><dd><p>FOBI ID.</p></dd>
-  <dt>HMDB</dt><dd><p>HMDB ID.</p></dd>
-  <dt>KEGG</dt><dd><p>KEGG ID.</p></dd>
-  <dt>PubChemCID</dt><dd><p>PubChemCID ID.</p></dd>
-  <dt>InChIKey</dt><dd><p>InChIKey ID.</p></dd>
-  <dt>InChICode</dt><dd><p>InChICode ID.</p></dd>
-  <dt>ChemSpider</dt><dd><p>ChemSpider ID.</p></dd>
+    <p>A ggraph object.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-</dl>
+    <p>Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033, https://doi.org/10.1093/databa/baaa033.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+    <p>Pol Castellano-Escuder</p>
 
-    <p><a href='https://github.com/pcastellanoescuder/FoodBiomarkerOntology'>https://github.com/pcastellanoescuder/FoodBiomarkerOntology</a></p>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='va'>terms</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"CHEBI:16164"</span>, <span class='st'>"CHEBI:16243"</span>, <span class='st'>"FOODON:00001139"</span>, <span class='st'>"FOODON:00003274"</span>, <span class='st'>"FOODON:00003275"</span><span class='op'>)</span>
+<span class='fu'>fobi_graph</span><span class='op'>(</span><span class='va'>terms</span>, get <span class='op'>=</span> <span class='st'>"anc"</span><span class='op'>)</span>
+</div><div class='img'><img src='fobi_graph-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>fobi_graph</span><span class='op'>(</span>terms <span class='op'>=</span> <span class='st'>"FOODON:00002473"</span>, property <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"is_a"</span>, <span class='st'>"BiomarkerOf"</span><span class='op'>)</span>, curved <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='fobi_graph-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

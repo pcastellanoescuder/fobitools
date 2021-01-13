@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.22</span>
       </span>
     </div>
 
@@ -94,6 +94,23 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/dietary_data_annotation.html">Dietary data annotation
+</a>
+    </li>
+    <li>
+      <a href="../articles/food_enrichment_analysis.html">Food enrichment analysis
+</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -160,14 +177,14 @@
 
 <span class='co'># Download and parse 'apple' related terms</span>
 <span class='va'>fobi_apple</span> <span class='op'>&lt;-</span> <span class='fu'>parse_fobi</span><span class='op'>(</span>terms <span class='op'>=</span> <span class='st'>"FOODON:00002473"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error: `id_BiomarkerOf` must be a data frame column</span></div><div class='input'>
+
 <span class='co'># Download and parse 'apple' term ancestors</span>
 <span class='va'>fobi_apple_anc</span> <span class='op'>&lt;-</span> <span class='fu'>parse_fobi</span><span class='op'>(</span>terms <span class='op'>=</span> <span class='st'>"FOODON:00002473"</span>, get <span class='op'>=</span> <span class='st'>"anc"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in parse_fobi(terms = "FOODON:00002473", get = "anc"): <span style='color: #BB0000;'>✖ Incorrect value for get argument!</span><span></span></div><div class='input'>
+
 <span class='co'># Download and parse 'apple' and 'alpha-Chaconine' related terms</span>
 <span class='va'>fobi_subset</span> <span class='op'>&lt;-</span> <span class='fu'>parse_fobi</span><span class='op'>(</span>terms <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"FOODON:00002473"</span>, <span class='st'>"CHEBI:10219"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error: `HMDB` must be a data frame column</span></div><div class='input'>
-</div></span></pre>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -179,7 +196,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Pol Castellano-Escuder.</p>
+  <p>Developed by Pol Castellano-Escuder, Cristina Andrés-Lacueva, Alex Sánchez-Pla.</p>
 </div>
 
 <div class="pkgdown">
