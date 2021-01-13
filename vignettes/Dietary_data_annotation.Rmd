@@ -73,13 +73,28 @@ The `annotate_foods` function allows the automatic annotation of free nutritiona
 
 The `annotate_foods` function provides a text mining algorithm composed of 5 sequential layers. In this process, singulars and plurals are analyzed, irrelevant words are removed, each string of the text input is tokenized and each word is analyzed independently, and the semantic similarity between input text and FOBI's text is computed. Finally, along with the table the function also returns the percentage of the annotated input text.     
 
-```{r, warning = FALSE, message = FALSE, comment = FALSE}
+```{r, warning = FALSE}
 annotated_text <- fobitools::annotate_foods(free_text)
 
 kbl(annotated_text$annotated, 
     row.names = FALSE,
     booktabs = TRUE) %>%
   kable_styling(latex_options = c("striped"))
+```
+
+# Network visualization of the annotated terms
+
+Then, with the `fobi_graph` function we can visualize the annotated terms with their corresponding FOBI relationships.        
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE, fig.align = "center"}
+terms <- annotated_text$annotated %>% 
+  pull(FOBI_ID)
+
+# create the associated graph
+fobitools::fobi_graph(terms = terms, 
+                      get = "anc",
+                      labels = TRUE,
+                      legend = TRUE)
 ```
 
 # Session Information

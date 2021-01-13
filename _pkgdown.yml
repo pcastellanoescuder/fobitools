@@ -23,9 +23,10 @@ navbar:
       href: reference/index.html
     articles:
       text: Articles
+      menu:
       - text: |
           Dietary data annotation
-        href: articles/Dietary_data_annotation.html
+        href: articles/dietary_data_annotation.html
       - text: |
           Food enrichment analysis
         href: articles/food_enrichment_analysis.html
