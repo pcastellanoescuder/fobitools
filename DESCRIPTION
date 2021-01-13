@@ -1,17 +1,30 @@
 Package: fobitools
 Title: Tools For Manipulating FOBI Ontology
-Version: 0.99.17
+Version: 0.99.18
 Authors@R: 
-    person(given = "Pol",
-           family = "Castellano-Escuder",
-           role = c("aut", "cre"),
-           email = "polcaes@gmail.com",
-           comment = c(ORCID = "0000-0001-6466-877X"))
+    c(person(given = "Pol",
+             family = "Castellano-Escuder",
+             role = c("aut", "cre"),
+             email = "polcaes@gmail.com",
+             comment = c(ORCID = "0000-0001-6466-877X")),
+      person(given = "Cristina",
+             family = "Andrés-Lacueva",
+             role = "aut",
+             email = "candres@ub.edu",
+             comment = c(ORCID = "0000-0002-8494-4978")),
+      person(given = "Alex",
+             family = "Sánchez-Pla",
+             role = "aut",
+             email = "asanchez@ub.edu",
+             comment = c(ORCID = "0000-0002-8673-7737")))
 Description: A set of tools for interacting with Food-Biomarker Ontology (FOBI). A collection of basic manipulation tools for biological signifance analysis, graphs, and 
     text mining strategies for annotating nutritional data.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+biocViews:
+    MassSpectrometry, Metabolomics, Software, Visualization, BiomedicalInformatics,
+    GraphAndNetwork, Annotation, Cheminformatics, Pathways
 Imports:
     clisymbols,
     crayon,

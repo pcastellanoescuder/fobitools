@@ -1,18 +1,19 @@
 
 #' Generate FOBI Graphs
 #'
-#' @description to do
+#' @description This function allows users to create networks based on FOBI relationships.
 #'
-#' @param terms to do
-#' @param get to do
-#' @param layout to do
-#' @param labels to do
-#' @param labelsize to do
-#' @param legend to do
-#' @param legendSize to do
-#' @param legendPos to do
-#' @param curved to do
-#' @param pointSize to do
+#' @param terms A character vector with FOBI term IDs.
+#' @param get A character string indicating desired relationships between provided terms. Options are 'anc' (for ancestors) and 'des' (for descendants). Default is NULL and only information of single input terms will be provided.
+#' @param property A character vector indicating which properties should be plotted. Options are 'is_a', 'BiomarkerOf', and 'Contains'. By default all of them are included.
+#' @param layout A character string indicating the type of layout to create. Options are 'sugiyama' (default) and 'lgl'.
+#' @param labels Logical indicating if node names should be plotted or not.
+#' @param labelsize Numeric value indicating the size of labels.
+#' @param legend Logical indicating if legend should be plotted or not.
+#' @param legendSize Numeric value indicating the size of legend.
+#' @param legendPos A character string indicating the legend position (if legend parameter is set to TRUE). Options are 'bottom' (default) and 'top'.
+#' @param curved Logical indicating if the shape of the edges shape should be curved or not.
+#' @param pointSize Numeric value indicating the size of graph points.
 #'
 #' @export
 #'
@@ -26,7 +27,7 @@
 #' 
 #' fobi_graph(terms, get = "anc")
 #' fobi_graph(terms, get = "anc", labels = TRUE)
-#' fobi_graph(terms, get = "anc", labels = TRUE, legend = TRUE)
+#' fobi_graph(terms, get = "anc", legend = TRUE)
 #' fobi_graph(terms = "FOODON:00002473", labels = TRUE)
 #' 
 #' # Plot whole FOBI
@@ -39,6 +40,7 @@
 #' @importFrom dplyr filter mutate select rename
 fobi_graph <- function(terms = NULL,
                        get = NULL,
+                       property = c("is_a", "BiomarkerOf", "Contains"),
                        layout = "sugiyama",
                        labels = FALSE,
                        labelsize = 3,
@@ -55,6 +57,9 @@ fobi_graph <- function(terms = NULL,
     if (!(get %in% c("anc", "des"))) {
       stop("Incorrect value for get argument. Options are 'anc' (for ancestors) and 'des' (for descendants)")
     }
+  }
+  if (!any(property %in% c("is_a", "BiomarkerOf", "Contains"))) {
+    stop("Incorrect value for property argument. Options are 'is_a', 'BiomarkerOf', and 'Contains'")
   }
   if (!(layout %in% c("sugiyama", "lgl"))) {
     stop("Incorrect value for layout argument. Options are 'sugiyama' (default) and 'lgl'")
@@ -86,11 +91,17 @@ fobi_graph <- function(terms = NULL,
     filter(!duplicated(name)) %>%
     rename(from = 1, to = 2, Property = 3)
   
+  if(sum(nrow(is_a), nrow(biomarkerof), nrow(contains)) < 1) {
+    stop("No terms with these characteristics")
+  }
+  
   ##
   
   graph_table <- rbind(is_a, biomarkerof, contains) %>%
+    filter(Property %in% property) %>%
     as_tbl_graph() %>%
-    mutate(subOntology = ifelse(name %in% fobi_foods$name, "Food", "Biomarker"))
+    mutate(subOntology = ifelse(name %in% fobi_foods$name, "Food", "Biomarker"),
+           subOntology = ifelse(name == "Foods", "Food", subOntology))
   
   cols_nodes <- c("Biomarker" = "#440154FF", 
                   "Food" = "#FDE725FF") # viridis palette
@@ -106,15 +117,15 @@ fobi_graph <- function(terms = NULL,
     {if(curved) geom_edge_arc(aes(color = Property), end_cap = circle(2.5, "mm"),
                               arrow = arrow(length = unit(2.5, "mm"), type = "closed"),
                               strength = 0.1, show.legend = legend)} +
-    geom_node_point(aes(color = as.factor(subOntology), shape = as.factor(subOntology)), size = pointSize, show.legend = legend) +
+    geom_node_point(aes(color = subOntology, shape = subOntology), size = pointSize, show.legend = FALSE) +
     {if(labels)geom_node_text(aes(label = name), color = "black", size = labelsize, repel = TRUE, show.legend = FALSE)} +
+    scale_color_manual(values = cols_nodes, guide = "none") +
+    scale_shape_manual(values = c("Biomarker" = 16, "Food" = 15), guide = "none") +
+    scale_edge_color_manual(values = cols_edges) +
     theme_graph(foreground = "white", fg_text_colour = "white") + 
     theme(legend.title = element_blank(),
           legend.text = element_text(size = legendSize),
-          legend.position = legendPos) +
-    scale_color_manual(values = cols_nodes) +
-    scale_shape_manual(values = c("Biomarker" = 16, "Food" = 15)) +
-    scale_edge_color_manual(values = cols_edges)
-  
+          legend.position = legendPos)
+
   }
 

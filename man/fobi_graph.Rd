@@ -7,6 +7,7 @@
 fobi_graph(
   terms = NULL,
   get = NULL,
+  property = c("is_a", "BiomarkerOf", "Contains"),
   layout = "sugiyama",
   labels = FALSE,
   labelsize = 3,
@@ -18,31 +19,33 @@ fobi_graph(
 )
 }
 \arguments{
-\item{terms}{to do}
+\item{terms}{A character vector with FOBI term IDs.}
 
-\item{get}{to do}
+\item{get}{A character string indicating desired relationships between provided terms. Options are 'anc' (for ancestors) and 'des' (for descendants). Default is NULL and only information of single input terms will be provided.}
 
-\item{layout}{to do}
+\item{property}{A character vector indicating which properties should be plotted. Options are 'is_a', 'BiomarkerOf', and 'Contains'. By default all of them are included.}
 
-\item{labels}{to do}
+\item{layout}{A character string indicating the type of layout to create. Options are 'sugiyama' (default) and 'lgl'.}
 
-\item{labelsize}{to do}
+\item{labels}{Logical indicating if node names should be plotted or not.}
 
-\item{legend}{to do}
+\item{labelsize}{Numeric value indicating the size of labels.}
 
-\item{legendSize}{to do}
+\item{legend}{Logical indicating if legend should be plotted or not.}
 
-\item{legendPos}{to do}
+\item{legendSize}{Numeric value indicating the size of legend.}
 
-\item{curved}{to do}
+\item{legendPos}{A character string indicating the legend position (if legend parameter is set to TRUE). Options are 'bottom' (default) and 'top'.}
 
-\item{pointSize}{to do}
+\item{curved}{Logical indicating if the shape of the edges shape should be curved or not.}
+
+\item{pointSize}{Numeric value indicating the size of graph points.}
 }
 \value{
 A ggraph object.
 }
 \description{
-to do
+This function allows users to create networks based on FOBI relationships.
 }
 \examples{
 
@@ -50,7 +53,7 @@ terms <- c("CHEBI:16164", "CHEBI:16243", "FOODON:00001139", "FOODON:00003274", "
 
 fobi_graph(terms, get = "anc")
 fobi_graph(terms, get = "anc", labels = TRUE)
-fobi_graph(terms, get = "anc", labels = TRUE, legend = TRUE)
+fobi_graph(terms, get = "anc", legend = TRUE)
 fobi_graph(terms = "FOODON:00002473", labels = TRUE)
 
 # Plot whole FOBI
