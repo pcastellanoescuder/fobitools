@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.23</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.24</span>
       </span>
     </div>
 
@@ -92,7 +92,8 @@
       
 
       </header><script src="food_enrichment_analysis_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="food_enrichment_analysis_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="food_enrichment_analysis_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+<script src="food_enrichment_analysis_files/anchor-sections-1.0/anchor-sections.js"></script><script src="food_enrichment_analysis_files/kePrint-0.0.1/kePrint.js"></script><link href="food_enrichment_analysis_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Food enrichment analysis</h1>
@@ -132,10 +133,205 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span></code></pre></div>
 </div>
+<div id="metaboliteuniverse-and-metabolitelist" class="section level1">
+<h1 class="hasAnchor">
+<a href="#metaboliteuniverse-and-metabolitelist" class="anchor"></a><code>metaboliteUniverse</code> and <code>metaboliteList</code>
+</h1>
+<p>In microarrays, for example, we can study almost all the genes of an organism in our sample, so it makes sense to perform an over representation analysis (ORA) considering all the genes present in Gene Ontology (GO). Since most of the GO pathways would be represented by some gene in the microarray.</p>
+<p>This is different in nutrimetabolomics. Targeted nutrimetabolomics studies sets of about 200-500 diet-related metabolites, so it would not make sense to use all known metabolites (for example in HMDB or CHEBI) in an ORA, as most of them would not have been quantified in the study.</p>
+<p>In nutrimetabolomic studies it may be interesting to study enriched or over represented foods/food groups by the metabolites resulting from the study statistical analysis, rather than the enriched metabolic pathways, as would make more sense in genomics or other metabolomics studies.</p>
+<p>The <a href="https://academic.oup.com/database/article/doi/10.1093/databa/baaa033/5857401">Food-Biomarker Ontology (FOBI)</a> provides a biological knowledge for conducting these enrichment analyses in nutrimetabolomic studies, as FOBI provides the relationships between several foods and their associated dietary metabolites.</p>
+<p>Accordingly, to perform an ORA with the <code>fobitools</code> package, it is necessary to provide a metabolite universe (all metabolites included in the statistical analysis) and a list of selected metabolites (selected metabolites according to a statistical criterion).</p>
+<p>Here is an example:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># select 300 random metabolites from FOBI</span>
+<span class="va">idx_universe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="fu">fobitools</span><span class="fu">::</span><span class="va"><a href="../reference/idmap.html">idmap</a></span><span class="op">)</span>, <span class="fl">300</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">metaboliteUniverse</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="va"><a href="../reference/idmap.html">idmap</a></span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">idx_universe</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">FOBI</span><span class="op">)</span>
+
+<span class="co"># select 10 random metabolites from metaboliteUniverse that are associated with 'Red meat' (FOBI:0193), 'Lean meat' (FOBI:0185) , 'egg food product' (FOODON:00001274), or 'grape (whole, raw)' (FOODON:03301702)</span>
+<span class="va">fobi_subset</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/parse_fobi.html">parse_fobi</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">FOBI</span> <span class="op">%in%</span> <span class="va">metaboliteUniverse</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">id_BiomarkerOf</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"FOBI:0193"</span>, <span class="st">"FOBI:0185"</span>, <span class="st">"FOODON:00001274"</span>, <span class="st">"FOODON:03301702"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>, <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">metaboliteList</span> <span class="op">&lt;-</span> <span class="va">fobi_subset</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">FOBI</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/ora.html">ora</a></span><span class="op">(</span>metaboliteList <span class="op">=</span> <span class="va">metaboliteList</span>, 
+               metaboliteUniverse <span class="op">=</span> <span class="va">metaboliteUniverse</span>, 
+               subOntology <span class="op">=</span> <span class="st">"food"</span>, 
+               pvalCutoff <span class="op">=</span> <span class="fl">0.01</span>, 
+               adjust <span class="op">=</span> <span class="st">"fdr"</span><span class="op">)</span></code></pre></div>
+<pre><code>FALSE Time difference of 0.1752939 secs
+FALSE Time difference of 0.3250411 secs
+FALSE Time difference of 0.451658 secs
+FALSE Time difference of 0.5739491 secs</code></pre>
+<table class="table table">
+<thead><tr>
+<th style="text-align:left;">
+classId
+</th>
+<th style="text-align:left;">
+className
+</th>
+<th style="text-align:right;">
+success
+</th>
+<th style="text-align:right;">
+classSize
+</th>
+<th style="text-align:right;">
+pvalue
+</th>
+<th style="text-align:right;">
+pvalueAdj
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+FOBI:0193
+</td>
+<td style="text-align:left;">
+Red meat
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FOODON:00001256
+</td>
+<td style="text-align:left;">
+dairy food product
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FOODON:00001274
+</td>
+<td style="text-align:left;">
+egg food product
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+0.0001
+</td>
+<td style="text-align:right;">
+0.0004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FOBI:0185
+</td>
+<td style="text-align:left;">
+Lean meat
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.0003
+</td>
+<td style="text-align:right;">
+0.0007
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FOODON:00001006
+</td>
+<td style="text-align:left;">
+meat food product
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+0.0004
+</td>
+<td style="text-align:right;">
+0.0009
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FOODON:03301415
+</td>
+<td style="text-align:left;">
+soybean (whole)
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+0.0034
+</td>
+<td style="text-align:right;">
+0.0063
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="network-visualization-of-metabolitelist-terms" class="section level1">
+<h1 class="hasAnchor">
+<a href="#network-visualization-of-metabolitelist-terms" class="anchor"></a>Network visualization of <code>metaboliteList</code> terms</h1>
+<p>Then, with the <code>fobi_graph</code> function we can visualize the <code>metaboliteList</code> terms with their corresponding FOBI relationships.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">terms</span> <span class="op">&lt;-</span> <span class="va">fobi_subset</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">id_code</span><span class="op">)</span>
+
+<span class="co"># create the associated graph</span>
+<span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/fobi_graph.html">fobi_graph</a></span><span class="op">(</span>terms <span class="op">=</span> <span class="va">terms</span>, 
+                      get <span class="op">=</span> <span class="st">"anc"</span>,
+                      labels <span class="op">=</span> <span class="cn">TRUE</span>,
+                      legend <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p><img src="food_enrichment_analysis_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;"></p>
+</div>
 <div id="session-information" class="section level1">
 <h1 class="hasAnchor">
 <a href="#session-information" class="anchor"></a>Session Information</h1>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; R version 4.0.2 (2020-06-22)</span>
 <span class="co">#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)</span>
@@ -152,7 +348,7 @@
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] kableExtra_1.3.1  dplyr_1.0.2       fobitools_0.99.20 BiocStyle_2.18.1 </span>
+<span class="co">#&gt; [1] kableExtra_1.3.1  dplyr_1.0.2       fobitools_0.99.24 BiocStyle_2.18.1 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
 <span class="co">#&gt;  [1] fs_1.5.0               bit64_4.0.5            webshot_0.5.2         </span>
@@ -160,32 +356,38 @@
 <span class="co">#&gt;  [7] tools_4.0.2            R6_2.5.0               rpart_4.1-15          </span>
 <span class="co">#&gt; [10] DBI_1.1.0              colorspace_2.0-0       nnet_7.3-14           </span>
 <span class="co">#&gt; [13] tidyselect_1.1.0       gridExtra_2.3          tictoc_1.0            </span>
-<span class="co">#&gt; [16] ontologyIndex_2.5      bit_4.0.4              compiler_4.0.2        </span>
-<span class="co">#&gt; [19] textshaping_0.2.1      rvest_0.3.6            xml2_1.3.2            </span>
-<span class="co">#&gt; [22] desc_1.2.0             bookdown_0.21          scales_1.1.1          </span>
-<span class="co">#&gt; [25] sigora_3.0.5           pkgdown_1.6.1          systemfonts_0.3.2     </span>
-<span class="co">#&gt; [28] stringr_1.4.0          digest_0.6.27          rmarkdown_2.5         </span>
-<span class="co">#&gt; [31] pkgconfig_2.0.3        htmltools_0.5.0        RecordLinkage_0.4-12.1</span>
-<span class="co">#&gt; [34] rlang_0.4.10           rstudioapi_0.13        RSQLite_2.2.2         </span>
-<span class="co">#&gt; [37] farver_2.0.3           generics_0.1.0         qdapRegex_0.7.2       </span>
-<span class="co">#&gt; [40] vroom_1.3.2            magrittr_2.0.1         textclean_0.9.3       </span>
-<span class="co">#&gt; [43] ada_2.0-5              Matrix_1.2-18          Rcpp_1.0.5            </span>
-<span class="co">#&gt; [46] munsell_0.5.0          viridis_0.5.1          lifecycle_0.2.0       </span>
-<span class="co">#&gt; [49] stringi_1.5.3          yaml_2.2.1             ggraph_2.0.4          </span>
-<span class="co">#&gt; [52] MASS_7.3-53            grid_4.0.2             blob_1.2.1            </span>
-<span class="co">#&gt; [55] ggrepel_0.9.0          crayon_1.3.4           lattice_0.20-41       </span>
-<span class="co">#&gt; [58] graphlayouts_0.7.1     splines_4.0.2          knitr_1.30            </span>
-<span class="co">#&gt; [61] pillar_1.4.7           igraph_1.2.6           clisymbols_1.2.0      </span>
-<span class="co">#&gt; [64] glue_1.4.2             evaluate_0.14          data.table_1.13.6     </span>
-<span class="co">#&gt; [67] BiocManager_1.30.10    vctrs_0.3.6            tweenr_1.0.1          </span>
-<span class="co">#&gt; [70] gtable_0.3.0           purrr_0.3.4            polyclip_1.10-0       </span>
-<span class="co">#&gt; [73] tidyr_1.1.2            assertthat_0.2.1       ggplot2_3.3.3         </span>
-<span class="co">#&gt; [76] xfun_0.19              ggforce_0.3.2          prodlim_2019.11.13    </span>
-<span class="co">#&gt; [79] xtable_1.8-4           tidygraph_1.2.0        ff_4.0.4              </span>
-<span class="co">#&gt; [82] e1071_1.7-4            ragg_0.4.0             class_7.3-17          </span>
-<span class="co">#&gt; [85] survival_3.2-7         viridisLite_0.3.0      tibble_3.0.4          </span>
-<span class="co">#&gt; [88] memoise_1.1.0          lava_1.6.8.1           ellipsis_0.3.1        </span>
-<span class="co">#&gt; [91] ipred_0.9-9</span></code></pre></div>
+<span class="co">#&gt; [16] curl_4.3               ontologyIndex_2.5      bit_4.0.4             </span>
+<span class="co">#&gt; [19] compiler_4.0.2         textshaping_0.2.1      rvest_0.3.6           </span>
+<span class="co">#&gt; [22] xml2_1.3.2             desc_1.2.0             labeling_0.4.2        </span>
+<span class="co">#&gt; [25] slam_0.1-48            bookdown_0.21          scales_1.1.1          </span>
+<span class="co">#&gt; [28] sigora_3.0.5           pkgdown_1.6.1          systemfonts_0.3.2     </span>
+<span class="co">#&gt; [31] stringr_1.4.0          digest_0.6.27          rmarkdown_2.5         </span>
+<span class="co">#&gt; [34] pkgconfig_2.0.3        htmltools_0.5.0        RecordLinkage_0.4-12.1</span>
+<span class="co">#&gt; [37] highr_0.8              rlang_0.4.10           rstudioapi_0.13       </span>
+<span class="co">#&gt; [40] RSQLite_2.2.2          farver_2.0.3           generics_0.1.0        </span>
+<span class="co">#&gt; [43] qdapRegex_0.7.2        vroom_1.3.2            magrittr_2.0.1        </span>
+<span class="co">#&gt; [46] textclean_0.9.3        ada_2.0-5              Matrix_1.2-18         </span>
+<span class="co">#&gt; [49] Rcpp_1.0.5             munsell_0.5.0          viridis_0.5.1         </span>
+<span class="co">#&gt; [52] lifecycle_0.2.0        stringi_1.5.3          yaml_2.2.1            </span>
+<span class="co">#&gt; [55] ggraph_2.0.4           MASS_7.3-53            grid_4.0.2            </span>
+<span class="co">#&gt; [58] blob_1.2.1             parallel_4.0.2         ggrepel_0.9.0         </span>
+<span class="co">#&gt; [61] crayon_1.3.4           lattice_0.20-41        graphlayouts_0.7.1    </span>
+<span class="co">#&gt; [64] splines_4.0.2          knitr_1.30             pillar_1.4.7          </span>
+<span class="co">#&gt; [67] igraph_1.2.6           clisymbols_1.2.0       glue_1.4.2            </span>
+<span class="co">#&gt; [70] evaluate_0.14          data.table_1.13.6      BiocManager_1.30.10   </span>
+<span class="co">#&gt; [73] vctrs_0.3.6            tweenr_1.0.1           gtable_0.3.0          </span>
+<span class="co">#&gt; [76] purrr_0.3.4            polyclip_1.10-0        tidyr_1.1.2           </span>
+<span class="co">#&gt; [79] assertthat_0.2.1       ggplot2_3.3.3          xfun_0.19             </span>
+<span class="co">#&gt; [82] ggforce_0.3.2          prodlim_2019.11.13     xtable_1.8-4          </span>
+<span class="co">#&gt; [85] tidygraph_1.2.0        ff_4.0.4               e1071_1.7-4           </span>
+<span class="co">#&gt; [88] ragg_0.4.0             class_7.3-17           survival_3.2-7        </span>
+<span class="co">#&gt; [91] viridisLite_0.3.0      tibble_3.0.4           memoise_1.1.0         </span>
+<span class="co">#&gt; [94] lava_1.6.8.1           ellipsis_0.3.1         ipred_0.9-9</span></code></pre></div>
+</div>
+<div id="references" class="section level1">
+<h1 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h1>
+<p>Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033. DOI: <a href="https://doi.org/10.1093/databa/baaa033">https://doi.org/10.1093/databa/baaa033</a></p>
 </div>
   </div>
 
