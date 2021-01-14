@@ -1,4 +1,4 @@
-# fobitools 0.99.22
+# fobitools 0.99.23
 
 * Added vignettes
 * `pkgdown` updated

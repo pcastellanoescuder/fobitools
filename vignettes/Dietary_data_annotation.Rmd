@@ -15,7 +15,7 @@ vignette: >
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2021-01-13
+**Last edited**: 2021-01-14
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 
@@ -60,7 +60,9 @@ free_text <- tibble(id = c(101, 102, 103, 104),
                     text = c("Yesterday I ate eggs and bacon with a butter toast and black tea", 
                              "Crisp bread and rice crackers with wholegrain", 
                              "Beef and veal, one apple", "pizza without meat"))
+```
 
+```{r, warning = FALSE, message = FALSE, comment = FALSE, echo = FALSE}
 kbl(free_text, 
     row.names = FALSE,
     booktabs = TRUE) %>%
@@ -75,7 +77,9 @@ The `annotate_foods` function provides a text mining algorithm composed of 5 seq
 
 ```{r, warning = FALSE}
 annotated_text <- fobitools::annotate_foods(free_text)
+```
 
+```{r, warning = FALSE, message = FALSE, comment = FALSE, echo = FALSE}
 kbl(annotated_text$annotated, 
     row.names = FALSE,
     booktabs = TRUE) %>%
@@ -86,7 +90,7 @@ kbl(annotated_text$annotated,
 
 Then, with the `fobi_graph` function we can visualize the annotated terms with their corresponding FOBI relationships.        
 
-```{r, warning = FALSE, message = FALSE, comment = FALSE, fig.align = "center"}
+```{r, warning = FALSE, message = FALSE, comment = FALSE, fig.align = "center", fig.height = 8, fig.width = 10}
 terms <- annotated_text$annotated %>% 
   pull(FOBI_ID)
 

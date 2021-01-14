@@ -15,7 +15,7 @@ vignette: >
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2021-01-13
+**Last edited**: 2021-01-14
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 

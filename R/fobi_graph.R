@@ -4,7 +4,7 @@
 #' @description This function allows users to create networks based on FOBI relationships.
 #'
 #' @param terms A character vector with FOBI term IDs.
-#' @param get A character string indicating desired relationships between provided terms. Options are 'anc' (for ancestors) and 'des' (for descendants). Default is NULL and only information of single input terms will be provided.
+#' @param get A character string indicating desired relationships between provided terms. Options are 'anc' (for ancestors) and 'des' (for descendants). Default is NULL and all information related with input terms will be provided.
 #' @param property A character vector indicating which properties should be plotted. Options are 'is_a', 'BiomarkerOf', and 'Contains'. By default all of them are included.
 #' @param layout A character string indicating the type of layout to create. Options are 'sugiyama' (default) and 'lgl'.
 #' @param labels Logical indicating if node names should be plotted or not.
@@ -26,7 +26,8 @@
 #' terms <- c("CHEBI:16164", "CHEBI:16243", "FOODON:00001139", "FOODON:00003274", "FOODON:00003275")
 #' fobi_graph(terms, get = "anc")
 #' 
-#' fobi_graph(terms = "FOODON:00002473", property = c("is_a", "BiomarkerOf"), curved = TRUE)
+#' # Red meat related FOBI biomarkers
+#' fobi_graph(terms = "FOBI:0193", property = c("is_a", "BiomarkerOf"), layout = "lgl", curved = TRUE) # set labels = TRUE to display node names
 #' 
 #' @import ggraph
 #' @import ggplot2
