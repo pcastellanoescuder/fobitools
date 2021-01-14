@@ -24,7 +24,7 @@
 ora <- function(metaboliteList,
                 metaboliteUniverse,
                 subOntology = "food",
-                pvalCutoff = 0.05,
+                pvalCutoff = 0.01,
                 adjust = "fdr"){
 
   if (is.null(metaboliteList)) {

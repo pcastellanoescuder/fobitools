@@ -107,3 +107,7 @@ fobitools::fobi_graph(terms = terms,
 sessionInfo()
 ```
 
+# References
+
+Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033. DOI: [https://doi.org/10.1093/databa/baaa033](https://doi.org/10.1093/databa/baaa033)
+

@@ -48,9 +48,82 @@ library(dplyr)
 library(kableExtra)
 ```
 
+# `metaboliteUniverse` and `metaboliteList`
+
+In microarrays, for example, we can study almost all the genes of an organism in our sample, so it makes sense to perform an over representation analysis (ORA) considering all the genes present in Gene Ontology (GO). Since most of the GO pathways would be represented by some gene in the microarray.      
+
+This is different in nutrimetabolomics. Targeted nutrimetabolomics studies sets of about 200-500 diet-related metabolites, so it would not make sense to use all known metabolites (for example in HMDB or CHEBI) in an ORA, as most of them would not have been quantified in the study.     
+
+In nutrimetabolomic studies it may be interesting to study enriched or over represented foods/food groups by the metabolites resulting from the study statistical analysis, rather than the enriched metabolic pathways, as would make more sense in genomics or other metabolomics studies.     
+
+The [Food-Biomarker Ontology (FOBI)](https://academic.oup.com/database/article/doi/10.1093/databa/baaa033/5857401) provides a biological knowledge for conducting these enrichment analyses in nutrimetabolomic studies, as FOBI provides the relationships between several foods and their associated dietary metabolites.        
+
+Accordingly, to perform an ORA with the `fobitools` package, it is necessary to provide a metabolite universe (all metabolites included in the statistical analysis) and a list of selected metabolites (selected metabolites according to a statistical criterion).      
+
+Here is an example:       
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+# select 300 random metabolites from FOBI
+idx_universe <- sample(nrow(fobitools::idmap), 300, replace = FALSE)
+metaboliteUniverse <- fobitools::idmap %>%
+  slice(idx_universe) %>%
+  pull(FOBI)
+
+# select 10 random metabolites from metaboliteUniverse that are associated with 'Red meat' (FOBI:0193), 'Lean meat' (FOBI:0185) , 'egg food product' (FOODON:00001274), or 'grape (whole, raw)' (FOODON:03301702)
+fobi_subset <- fobitools::parse_fobi() %>%
+  filter(FOBI %in% metaboliteUniverse) %>%
+  filter(id_BiomarkerOf %in% c("FOBI:0193", "FOBI:0185", "FOODON:00001274", "FOODON:03301702")) %>%
+  slice(sample(nrow(.), 10, replace = FALSE))
+
+metaboliteList <- fobi_subset %>%
+  pull(FOBI)
+```
+
+```{r, warning = FALSE, eval = FALSE}
+fobitools::ora(metaboliteList = metaboliteList, 
+               metaboliteUniverse = metaboliteUniverse, 
+               subOntology = "food", 
+               pvalCutoff = 0.01, 
+               adjust = "fdr")
+```
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE, echo = FALSE}
+res_ora <- fobitools::ora(metaboliteList = metaboliteList, 
+                          metaboliteUniverse = metaboliteUniverse, 
+                          subOntology = "food", 
+                          pvalCutoff = 0.01, 
+                          adjust = "fdr")
+```
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE, echo = FALSE}
+kbl(res_ora, 
+    row.names = FALSE,
+    booktabs = TRUE) %>%
+  kable_styling(latex_options = c("striped"))
+```
+
+# Network visualization of `metaboliteList` terms
+
+Then, with the `fobi_graph` function we can visualize the `metaboliteList` terms with their corresponding FOBI relationships.           
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE, fig.align = "center", fig.height = 8, fig.width = 10}
+terms <- fobi_subset %>%
+  pull(id_code)
+
+# create the associated graph
+fobitools::fobi_graph(terms = terms, 
+                      get = "anc",
+                      labels = TRUE,
+                      legend = TRUE)
+```
+
 # Session Information
 
 ```{r}
 sessionInfo()
 ```
+
+# References
+
+Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033. DOI: [https://doi.org/10.1093/databa/baaa033](https://doi.org/10.1093/databa/baaa033)
 

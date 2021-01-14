@@ -1,7 +1,7 @@
-# fobitools 0.99.23
+# fobitools 0.99.24
 
-* Added vignettes
-* `pkgdown` updated
+* Added vignettes.
+* `pkgdown` updated.
 * Submitted to _Bioconductor_!
 
 # fobitools 0.99.18

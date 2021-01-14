@@ -8,7 +8,7 @@ ora(
   metaboliteList,
   metaboliteUniverse,
   subOntology = "food",
-  pvalCutoff = 0.05,
+  pvalCutoff = 0.01,
   adjust = "fdr"
 )
 }
