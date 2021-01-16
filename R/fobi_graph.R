@@ -23,11 +23,13 @@
 #'
 #' @examples
 #' 
-#' terms <- c("CHEBI:16164", "CHEBI:16243", "FOODON:00001139", "FOODON:00003274", "FOODON:00003275")
+#' terms <- c("CHEBI:16164","CHEBI:16243","FOODON:00001139","FOODON:00003274","FOODON:00003275")
 #' fobi_graph(terms, get = "anc")
 #' 
 #' # Red meat related FOBI biomarkers
-#' fobi_graph(terms = "FOBI:0193", property = c("is_a", "BiomarkerOf"), layout = "lgl", curved = TRUE) # set labels = TRUE to display node names
+#' fobi_graph(terms = "FOBI:0193", 
+#'            property = c("is_a", "BiomarkerOf"), 
+#'            layout = "lgl", curved = TRUE) # set labels = TRUE to display node names
 #' 
 #' @import ggraph
 #' @import ggplot2

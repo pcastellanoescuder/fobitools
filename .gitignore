@@ -2,3 +2,9 @@
 .Rhistory
 .RData
 inst/doc
+.Ruserdata
+*.Rproj
+.gitattributes
+Dockerfile
+pkgdown/
+docs/

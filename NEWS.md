@@ -1,3 +1,13 @@
+# fobitools 0.99.25
+
+* Fixing _Bioconductor Single Package Builder_ errors and warnings:
+
+  - `fobitools.Rproj` file removed
+  - `Rd` line widths set to less than 100 characters
+  - Examples added in `ora.R`
+  - R version dependency updated from 3.6.0 to 4.1.
+  - Use TRUE/FALSE instead of T/F in `ora.R`
+
 # fobitools 0.99.24
 
 * Added vignettes.

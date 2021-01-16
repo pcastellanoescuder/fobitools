@@ -29,6 +29,25 @@ A tibble with ORA results.
 \description{
 This function performs a traditional Over Representation Analysis by hypergeometric test: classes are treated as sets of individual metabolites and all metabolites are treated as equally informative. This function uses Food-Biomarker Ontology knowledge as biological information.
 }
+\examples{
+
+library(fobitools)
+
+metaboliteUniverse <- c(fobitools::idmap$FOBI[1:200], fobitools::idmap$FOBI[400:450])
+metaboliteList <- c(fobitools::idmap$FOBI[1:50], fobitools::idmap$FOBI[70:80])
+
+# Food enrichment analysis
+fobitools::ora(metaboliteList = metaboliteList, 
+               metaboliteUniverse = metaboliteUniverse, 
+               pvalCutoff = 1)
+
+# Chemical class enrichment analysis
+fobitools::ora(metaboliteList = metaboliteList, 
+               metaboliteUniverse = metaboliteUniverse, 
+               subOntology = "biomarker", 
+               pvalCutoff = 1, adjust = "fdr")
+
+}
 \references{
 Foroushani AB, Brinkman FS and Lynn DJ (2013). Pathway-GPS and SIGORA:identifying relevant pathways based on the over-representation of their gene-pair signatures. PeerJ, 1, pp. e229.
 

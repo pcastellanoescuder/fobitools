@@ -16,6 +16,24 @@
 #' @references Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033, https://doi.org/10.1093/databa/baaa033.
 #' @author Pol Castellano-Escuder
 #'
+#' @examples 
+#' 
+#' library(fobitools)
+#' 
+#' metaboliteUniverse <- c(fobitools::idmap$FOBI[1:200], fobitools::idmap$FOBI[400:450])
+#' metaboliteList <- c(fobitools::idmap$FOBI[1:50], fobitools::idmap$FOBI[70:80])
+#' 
+#' # Food enrichment analysis
+#' fobitools::ora(metaboliteList = metaboliteList, 
+#'                metaboliteUniverse = metaboliteUniverse, 
+#'                pvalCutoff = 1)
+#' 
+#' # Chemical class enrichment analysis
+#' fobitools::ora(metaboliteList = metaboliteList, 
+#'                metaboliteUniverse = metaboliteUniverse, 
+#'                subOntology = "biomarker", 
+#'                pvalCutoff = 1, adjust = "fdr")
+#' 
 #' @importFrom magrittr %>%
 #' @importFrom tidyr unnest
 #' @importFrom dplyr mutate select rename filter mutate_all rowwise pull arrange desc as_tibble
@@ -144,7 +162,7 @@ ora <- function(metaboliteList,
   PPwys <- table(as.character(GPSrepo$origRepo[[1]][(fr[, 1])]))
   ps <- phyper(npwys - 1, PPwys[match(names(npwys), names(PPwys))],
                length(GPSrepo$origRepo[[2]]) - PPwys[match(names(npwys), names(PPwys))],
-               length(intersect(metaboliteList$metaboliteName, GPSrepo$origRepo[[2]])), lower.tail = F)
+               length(intersect(metaboliteList$metaboliteName, GPSrepo$origRepo[[2]])), lower.tail = FALSE)
 
   result <- data.frame(nn, PPwys[match(names(npwys), names(PPwys))], as.numeric(ps),
                        as.numeric(p.adjust(ps, method = adjust))) %>%

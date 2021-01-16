@@ -69,7 +69,9 @@ metaboliteUniverse <- fobitools::idmap %>%
   slice(idx_universe) %>%
   pull(FOBI)
 
-# select 10 random metabolites from metaboliteUniverse that are associated with 'Red meat' (FOBI:0193), 'Lean meat' (FOBI:0185) , 'egg food product' (FOODON:00001274), or 'grape (whole, raw)' (FOODON:03301702)
+# select 10 random metabolites from metaboliteUniverse that are associated with 'Red meat' (FOBI:0193), 
+# 'Lean meat' (FOBI:0185) , 'egg food product' (FOODON:00001274), 
+# or 'grape (whole, raw)' (FOODON:03301702)
 fobi_subset <- fobitools::parse_fobi() %>%
   filter(FOBI %in% metaboliteUniverse) %>%
   filter(id_BiomarkerOf %in% c("FOBI:0193", "FOBI:0185", "FOODON:00001274", "FOODON:03301702")) %>%
