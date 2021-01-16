@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.24</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.26</span>
       </span>
     </div>
 
@@ -102,7 +102,7 @@
       University of Barcelona, Spain.<br><a class="author_email" href="mailto:#"></a><a href="mailto:polcaes@gmail.com" class="email">polcaes@gmail.com</a>
       </address>
                   
-            <h4 class="date">14 enero 2021</h4>
+            <h4 class="date">16 enero 2021</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pcastellanoescuder/fobitools/blob/master/vignettes/food_enrichment_analysis.Rmd"><code>vignettes/food_enrichment_analysis.Rmd</code></a></small>
       <div class="hidden name"><code>food_enrichment_analysis.Rmd</code></div>
@@ -111,7 +111,7 @@
 
     
     
-<p><strong>Compiled date</strong>: 2021-01-14</p>
+<p><strong>Compiled date</strong>: 2021-01-16</p>
 <p><strong>Last edited</strong>: 2021-01-14</p>
 <p><strong>License</strong>: GPL-3</p>
 <div id="installation" class="section level1">
@@ -150,7 +150,9 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">idx_universe</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">FOBI</span><span class="op">)</span>
 
-<span class="co"># select 10 random metabolites from metaboliteUniverse that are associated with 'Red meat' (FOBI:0193), 'Lean meat' (FOBI:0185) , 'egg food product' (FOODON:00001274), or 'grape (whole, raw)' (FOODON:03301702)</span>
+<span class="co"># select 10 random metabolites from metaboliteUniverse that are associated with 'Red meat' (FOBI:0193), </span>
+<span class="co"># 'Lean meat' (FOBI:0185) , 'egg food product' (FOODON:00001274), </span>
+<span class="co"># or 'grape (whole, raw)' (FOODON:03301702)</span>
 <span class="va">fobi_subset</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/parse_fobi.html">parse_fobi</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">FOBI</span> <span class="op">%in%</span> <span class="va">metaboliteUniverse</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">id_BiomarkerOf</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"FOBI:0193"</span>, <span class="st">"FOBI:0185"</span>, <span class="st">"FOODON:00001274"</span>, <span class="st">"FOODON:03301702"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -164,10 +166,9 @@
                subOntology <span class="op">=</span> <span class="st">"food"</span>, 
                pvalCutoff <span class="op">=</span> <span class="fl">0.01</span>, 
                adjust <span class="op">=</span> <span class="st">"fdr"</span><span class="op">)</span></code></pre></div>
-<pre><code>FALSE Time difference of 0.1752939 secs
-FALSE Time difference of 0.3250411 secs
-FALSE Time difference of 0.451658 secs
-FALSE Time difference of 0.5739491 secs</code></pre>
+<pre><code>FALSE Time difference of 0.1854701 secs
+FALSE Time difference of 0.3416951 secs
+FALSE Time difference of 0.4667909 secs</code></pre>
 <table class="table table">
 <thead><tr>
 <th style="text-align:left;">
@@ -192,22 +193,22 @@ pvalueAdj
 <tbody>
 <tr>
 <td style="text-align:left;">
-FOBI:0193
+FOODON:00001006
 </td>
 <td style="text-align:left;">
-Red meat
-</td>
-<td style="text-align:right;">
-4
+meat food product
 </td>
 <td style="text-align:right;">
 7
 </td>
 <td style="text-align:right;">
-0.0000
+9
 </td>
 <td style="text-align:right;">
-0.0001
+0
+</td>
+<td style="text-align:right;">
+0e+00
 </td>
 </tr>
 <tr>
@@ -218,16 +219,16 @@ FOODON:00001256
 dairy food product
 </td>
 <td style="text-align:right;">
-6
+8
 </td>
 <td style="text-align:right;">
-14
+13
 </td>
 <td style="text-align:right;">
-0.0000
+0
 </td>
 <td style="text-align:right;">
-0.0000
+0e+00
 </td>
 </tr>
 <tr>
@@ -238,56 +239,16 @@ FOODON:00001274
 egg food product
 </td>
 <td style="text-align:right;">
-4
+7
 </td>
 <td style="text-align:right;">
-10
+9
 </td>
 <td style="text-align:right;">
-0.0001
+0
 </td>
 <td style="text-align:right;">
-0.0004
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-FOBI:0185
-</td>
-<td style="text-align:left;">
-Lean meat
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-0.0003
-</td>
-<td style="text-align:right;">
-0.0007
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-FOODON:00001006
-</td>
-<td style="text-align:left;">
-meat food product
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-13
-</td>
-<td style="text-align:right;">
-0.0004
-</td>
-<td style="text-align:right;">
-0.0009
+0e+00
 </td>
 </tr>
 <tr>
@@ -298,16 +259,16 @@ FOODON:03301415
 soybean (whole)
 </td>
 <td style="text-align:right;">
-4
+6
 </td>
 <td style="text-align:right;">
-22
+24
 </td>
 <td style="text-align:right;">
-0.0034
+0
 </td>
 <td style="text-align:right;">
-0.0063
+1e-04
 </td>
 </tr>
 </tbody>

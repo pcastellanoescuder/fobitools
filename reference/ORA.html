@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.24</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.26</span>
       </span>
     </div>
 
@@ -189,6 +189,58 @@
 
     <p>Pol Castellano-Escuder</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/pcastellanoescuder/fobitools/'>fobitools</a></span><span class='op'>)</span>
+
+<span class='va'>metaboliteUniverse</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'>fobitools</span><span class='fu'>::</span><span class='va'><a href='idmap.html'>idmap</a></span><span class='op'>$</span><span class='va'>FOBI</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>200</span><span class='op'>]</span>, <span class='fu'>fobitools</span><span class='fu'>::</span><span class='va'><a href='idmap.html'>idmap</a></span><span class='op'>$</span><span class='va'>FOBI</span><span class='op'>[</span><span class='fl'>400</span><span class='op'>:</span><span class='fl'>450</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>metaboliteList</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'>fobitools</span><span class='fu'>::</span><span class='va'><a href='idmap.html'>idmap</a></span><span class='op'>$</span><span class='va'>FOBI</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>50</span><span class='op'>]</span>, <span class='fu'>fobitools</span><span class='fu'>::</span><span class='va'><a href='idmap.html'>idmap</a></span><span class='op'>$</span><span class='va'>FOBI</span><span class='op'>[</span><span class='fl'>70</span><span class='op'>:</span><span class='fl'>80</span><span class='op'>]</span><span class='op'>)</span>
+
+<span class='co'># Food enrichment analysis</span>
+<span class='fu'>fobitools</span><span class='fu'>::</span><span class='fu'>ora</span><span class='op'>(</span>metaboliteList <span class='op'>=</span> <span class='va'>metaboliteList</span>, 
+               metaboliteUniverse <span class='op'>=</span> <span class='va'>metaboliteUniverse</span>, 
+               pvalCutoff <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Time difference of 0.1997931 secs
+#&gt; Time difference of 0.3525572 secs
+#&gt; Time difference of 0.497699 secs</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'><span style='color: #0000BB;'>Mapped identifiers from  FOBI  to  metaboliteNames</span><span></span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #0000BB;'>metaboliteUniverse size:  251</span><span></span>
+#&gt; <span class='message'></span><span style='color: #0000BB;'>metaboliteList size:  61</span><span></span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 28 x 6</span><span>
+#&gt;    classId         className               success classSize   pvalue pvalueAdj
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>                     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> FOODON:03301415 soybean (whole)              11        17 0.000</span><span style='text-decoration: underline;'>300</span><span>    0.008</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'> 2</span><span> FOODON:00001006 meat food product             9        14 0.001</span><span style='text-decoration: underline;'>3</span><span>      0.017</span><span style='text-decoration: underline;'>6</span><span>
+#&gt; </span><span style='color: #555555;'> 3</span><span> FOODON:00001274 egg food product              8        13 0.003</span><span style='text-decoration: underline;'>7</span><span>      0.029</span><span style='text-decoration: underline;'>8</span><span>
+#&gt; </span><span style='color: #555555;'> 4</span><span> FOBI:0193       Red meat                      7        11 0.005</span><span style='text-decoration: underline;'>3</span><span>      0.029</span><span style='text-decoration: underline;'>8</span><span>
+#&gt; </span><span style='color: #555555;'> 5</span><span> FOODON:00001256 dairy food product           10        19 0.005</span><span style='text-decoration: underline;'>3</span><span>      0.029</span><span style='text-decoration: underline;'>8</span><span>
+#&gt; </span><span style='color: #555555;'> 6</span><span> FOODON:03301449 potato (whole, raw)           2         2 0.058</span><span style='text-decoration: underline;'>3</span><span>      0.272 
+#&gt; </span><span style='color: #555555;'> 7</span><span> FOBI:0185       Lean meat                     4         8 0.101       0.404 
+#&gt; </span><span style='color: #555555;'> 8</span><span> FOODON:03411222 fish                          3         6 0.156       0.546 
+#&gt; </span><span style='color: #555555;'> 9</span><span> FOODON:03301702 grapefruit (whole, raw)       1         1 0.243       0.756 
+#&gt; </span><span style='color: #555555;'>10</span><span> FOODON:00001046 seafood product               1         2 0.428       0.994 
+#&gt; </span><span style='color: #555555;'># … with 18 more rows</span><span></div><div class='input'>
+<span class='co'># Chemical class enrichment analysis</span>
+<span class='fu'>fobitools</span><span class='fu'>::</span><span class='fu'>ora</span><span class='op'>(</span>metaboliteList <span class='op'>=</span> <span class='va'>metaboliteList</span>, 
+               metaboliteUniverse <span class='op'>=</span> <span class='va'>metaboliteUniverse</span>, 
+               subOntology <span class='op'>=</span> <span class='st'>"biomarker"</span>, 
+               pvalCutoff <span class='op'>=</span> <span class='fl'>1</span>, adjust <span class='op'>=</span> <span class='st'>"fdr"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Time difference of 0.149215 secs
+#&gt; Time difference of 0.305918 secs</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'></span><span style='color: #0000BB;'>Mapped identifiers from  FOBI  to  metaboliteNames</span><span></span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #0000BB;'>metaboliteUniverse size:  251</span><span></span>
+#&gt; <span class='message'></span><span style='color: #0000BB;'>metaboliteList size:  61</span><span></span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 49 x 6</span><span>
+#&gt;    classId    className                       success classSize pvalue pvalueAdj
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>                             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> FOBI:0401… Isoflavones                           2         2 0.058</span><span style='text-decoration: underline;'>3</span><span>     0.407
+#&gt; </span><span style='color: #555555;'> 2</span><span> FOBI:0401… 4'-O-methylisoflavones                2         2 0.058</span><span style='text-decoration: underline;'>3</span><span>     0.407
+#&gt; </span><span style='color: #555555;'> 3</span><span> FOBI:0401… Flavonols                             2         3 0.147      0.407
+#&gt; </span><span style='color: #555555;'> 4</span><span> FOBI:0401… Carotenes                             2         3 0.147      0.407
+#&gt; </span><span style='color: #555555;'> 5</span><span> FOBI:0402… Quinic acids and derivatives          2         3 0.147      0.407
+#&gt; </span><span style='color: #555555;'> 6</span><span> FOBI:0402… Benzaldehydes                         2         3 0.147      0.407
+#&gt; </span><span style='color: #555555;'> 7</span><span> FOBI:0401… Long-chain fatty acids                3         6 0.156      0.407
+#&gt; </span><span style='color: #555555;'> 8</span><span> FOBI:0400… Aniline and substituted anilin…       1         1 0.243      0.407
+#&gt; </span><span style='color: #555555;'> 9</span><span> FOBI:0400… Indolyl carboxylic acids and d…       1         1 0.243      0.407
+#&gt; </span><span style='color: #555555;'>10</span><span> FOBI:0400… 1-hydroxy-4-unsubstituted benz…       1         1 0.243      0.407
+#&gt; </span><span style='color: #555555;'># … with 39 more rows</span><span></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
