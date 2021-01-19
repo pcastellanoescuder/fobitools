@@ -16,9 +16,7 @@
 #' @references Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033, https://doi.org/10.1093/databa/baaa033.
 #' @author Pol Castellano-Escuder
 #'
-#' @examples 
-#' 
-#' library(fobitools)
+#' @examples
 #' 
 #' metaboliteUniverse <- c(fobitools::idmap$FOBI[1:200], fobitools::idmap$FOBI[400:450])
 #' metaboliteList <- c(fobitools::idmap$FOBI[1:50], fobitools::idmap$FOBI[70:80])

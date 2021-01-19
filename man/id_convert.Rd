@@ -19,8 +19,9 @@ This function can convert metabolite identifiers to other available IDs in FOBI.
 }
 \examples{
 
-library(fobitools)
-ids <- c(idmap$HMDB[1:10], idmap$KEGG[11:23], idmap$InChIKey[100:150])
+ids <- c(fobitools::idmap$HMDB[1:10], 
+         fobitools::idmap$KEGG[11:23], 
+         fobitools::idmap$InChIKey[100:150])
 fobitools::id_convert(ids, to = "FOBI")
 
 }

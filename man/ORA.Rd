@@ -31,8 +31,6 @@ This function performs a traditional Over Representation Analysis by hypergeomet
 }
 \examples{
 
-library(fobitools)
-
 metaboliteUniverse <- c(fobitools::idmap$FOBI[1:200], fobitools::idmap$FOBI[400:450])
 metaboliteList <- c(fobitools::idmap$FOBI[1:50], fobitools::idmap$FOBI[70:80])
 
