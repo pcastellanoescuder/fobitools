@@ -5,6 +5,7 @@
 #'
 #' @param ids A vector with metabolite IDs to convert. Input ID types can be FOBI, raw metabolite names (used in FOBI), HMDB, KEGG, PubChemCID, InChIKey, InChICode, ChemSpider, and a combination of them.
 #' @param to Target ID type. If possible, metabolites will be converted to this ID type. Options are "FOBI" (default), "metaboliteNames", "HMDB", "KEGG", "PubChemCID", "InChIKey", "InChICode", and "ChemSpider".
+#' @param fobi FOBI table obtained with `parse_fobi()`. If this value is set to NULL, the last version of FOBI will be downloaded from GitHub.
 #' 
 #' @export
 #'
@@ -23,13 +24,16 @@
 #' @importFrom dplyr mutate select rename filter mutate_all matches vars select_at filter_all any_vars as_tibble relocate last_col
 #' @importFrom stringr regex str_replace_all str_trim
 id_convert <- function(ids,
-                       to = "FOBI"){
+                       to = "FOBI",
+                       fobi = fobitools::fobi){
   
   if (!(to %in% c("FOBI", "PubChemCID", "KEGG", "InChIKey", "InChICode", "ChemSpider", "metaboliteNames", "HMDB"))) {
     stop("Select a valid ID type!")
   }
   
-  fobi <- parse_fobi()
+  if (is.null(fobi)){
+    fobi <- parse_fobi()
+  }
   
   idmap <- fobi %>%
     filter(!BiomarkerOf == "NULL") %>%

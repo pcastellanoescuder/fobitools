@@ -8,9 +8,9 @@ test_that("ora works", {
   data <- data.frame(A = metaboliteList[1:50], B = metaboliteList[51:100])
 
   a <- fobitools::ora(metaboliteList = metaboliteList, metaboliteUniverse = metaboliteUniverse, pvalCutoff = 1)
-  b <- fobitools::ora(metaboliteList = metaboliteList, metaboliteUniverse = metaboliteUniverse, subOntology = "food", pvalCutoff = 1, adjust = "fdr")
+  b <- fobitools::ora(metaboliteList = metaboliteList, metaboliteUniverse = metaboliteUniverse, subOntology = "food", pvalCutoff = 1, adjust = "fdr", fobi = NULL)
   c <- fobitools::ora(metaboliteList = metaboliteList, metaboliteUniverse = metaboliteUniverse, subOntology = "biomarker", pvalCutoff = 1, adjust = "fdr")
-  d <- fobitools::ora(metaboliteList = metaboliteList, metaboliteUniverse = metaboliteUniverse, subOntology = "food", pvalCutoff = 1, adjust = "fdr")
+  d <- fobitools::ora(metaboliteList = metaboliteList, metaboliteUniverse = metaboliteUniverse, subOntology = "food", pvalCutoff = 1, adjust = "fdr", fobi = NULL)
   
   ##
   

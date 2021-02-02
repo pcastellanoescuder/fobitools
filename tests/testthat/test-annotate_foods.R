@@ -21,7 +21,7 @@ test_that("annotate_foods works", {
   
   a <- annotate_foods(free_text)
   b <- annotate_foods(free_text, similarity = 0.7)
-  c <- annotate_foods(free_text, similarity = 1)
+  c <- annotate_foods(free_text, similarity = 1, reference = NULL)
   
   ##
   

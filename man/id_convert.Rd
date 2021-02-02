@@ -4,12 +4,14 @@
 \alias{id_convert}
 \title{Convert Metabolite Identifiers}
 \usage{
-id_convert(ids, to = "FOBI")
+id_convert(ids, to = "FOBI", fobi = fobitools::fobi)
 }
 \arguments{
 \item{ids}{A vector with metabolite IDs to convert. Input ID types can be FOBI, raw metabolite names (used in FOBI), HMDB, KEGG, PubChemCID, InChIKey, InChICode, ChemSpider, and a combination of them.}
 
 \item{to}{Target ID type. If possible, metabolites will be converted to this ID type. Options are "FOBI" (default), "metaboliteNames", "HMDB", "KEGG", "PubChemCID", "InChIKey", "InChICode", and "ChemSpider".}
+
+\item{fobi}{FOBI table obtained with `parse_fobi()`. If this value is set to NULL, the last version of FOBI will be downloaded from GitHub.}
 }
 \value{
 A tibble with input IDs and converted IDs.

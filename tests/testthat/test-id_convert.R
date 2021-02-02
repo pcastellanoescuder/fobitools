@@ -8,7 +8,7 @@ test_that("id_convert works", {
   ##
     
   a <- fobitools::id_convert(ids, to = "FOBI")
-  b <- fobitools::id_convert(ids, to = "PubChemCID")
+  b <- fobitools::id_convert(ids, to = "PubChemCID", fobi = NULL)
   
   ##
   

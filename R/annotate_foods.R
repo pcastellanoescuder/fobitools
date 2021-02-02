@@ -5,6 +5,7 @@
 #'
 #' @param foods A two column data frame. First column must contain the ID (should be unique) and the second column must contain food items (it can be a word or a string).
 #' @param similarity Numeric between 0 (low) and 1 (high). This value indicates the semantic similarity cutoff used at the last layer of the text mining pipeline. 1 = exact match; 0 = very poor match. Values below 0.85 are not recommended.
+#' @param reference FOBI foods table obtained with `parse_fobi(terms = "FOBI:0001", get = "des")`. If this value is set to NULL, the last version of FOBI will be downloaded from GitHub.
 #' 
 #' @export
 #'
@@ -31,7 +32,8 @@
 #' @importFrom RecordLinkage jarowinkler 
 #' @importFrom crayon red yellow green
 annotate_foods <- function(foods,
-                           similarity = 0.85){
+                           similarity = 0.85,
+                           reference = fobitools::foods){
   
   tictoc::tic()
   
@@ -53,7 +55,9 @@ annotate_foods <- function(foods,
     stop("Duplicated IDs are not allowed")
   }
   
-  reference <- fobitools::parse_fobi(terms = "FOBI:0001", get = "des")
+  if (is.null(reference)){
+    reference <- fobitools::parse_fobi(terms = "FOBI:0001", get = "des")
+  }
   
   ffq <- foods %>%
     mutate(words = str_replace_all(FOOD_NAME, "," , " and "),
