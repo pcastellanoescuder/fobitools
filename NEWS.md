@@ -1,4 +1,4 @@
-# fobitools 0.99.33
+# fobitools 0.99.34
 
 * Enabling the option to include a FOBI table instead of downloading it from GitHub 
 * Added FOBI table in package data
