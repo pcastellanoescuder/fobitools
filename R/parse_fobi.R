@@ -112,7 +112,7 @@ parse_fobi <- function(terms = NULL,
       fobi <- fobi %>%
         filter(id_code %in% fobi_des)
     }
-    else{
+    else {
       fobi_anc <- fobi_terms %>%
         ontologyIndex::get_ancestors(terms = terms)
       

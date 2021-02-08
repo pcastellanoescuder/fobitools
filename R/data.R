@@ -68,3 +68,30 @@
 #' @source \url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}
 "foods"
 
+#' FOBI's `ontology_index` object - Feb 08, 2021
+#'
+#' FOBI terms obtained with `ontologyIndex::get_ontology(path)`
+#'
+#' @format An ontology_index object with 1201 terms.
+#' \describe{
+#'   \item{format-version:}{1.2}
+#'   \item{data-version:}{fobi.owl}
+#'   \item{ontology}{fobi}
+#'   \item{Properties}{
+#'   	id: character,
+#'   	name: character,
+#'   	parents: list,
+#'   	children: list,
+#'   	ancestors: list,
+#'   	obsolete: logical}
+#'   \item{Roots}{
+#'   FOBI:0001 - Foods,
+#'   FOBI:01501 - Biomarkers,
+#'   FOBI:00422 - BiomarkerOf,
+#'   FOBI:00423 - HasBiomarker,
+#'   FOBI:00424 - Contains,
+#'   FOBI:00425 - IsIngredientOf}
+#' }
+#' @source \url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}
+"fobi_terms"
+

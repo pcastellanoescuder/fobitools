@@ -15,7 +15,8 @@ fobi_graph(
   legendSize = 10,
   legendPos = "bottom",
   curved = FALSE,
-  pointSize = 3
+  pointSize = 3,
+  fobi = fobitools::fobi
 )
 }
 \arguments{
@@ -40,6 +41,8 @@ fobi_graph(
 \item{curved}{Logical indicating if the shape of the edges shape should be curved or not.}
 
 \item{pointSize}{Numeric value indicating the size of graph points.}
+
+\item{fobi}{FOBI table obtained with `parse_fobi()`. If this value is set to NULL, the last version of FOBI will be downloaded from GitHub.}
 }
 \value{
 A ggraph object.

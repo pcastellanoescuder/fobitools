@@ -14,6 +14,7 @@
 #' @param legendPos A character string indicating the legend position (if legend parameter is set to TRUE). Options are 'bottom' (default) and 'top'.
 #' @param curved Logical indicating if the shape of the edges shape should be curved or not.
 #' @param pointSize Numeric value indicating the size of graph points.
+#' @param fobi FOBI table obtained with `parse_fobi()`. If this value is set to NULL, the last version of FOBI will be downloaded from GitHub.
 #'
 #' @export
 #'
@@ -36,6 +37,7 @@
 #' @import tidygraph
 #' @importFrom magrittr %>%
 #' @importFrom dplyr filter mutate select rename
+#' @importFrom ontologyIndex get_descendants get_ancestors
 fobi_graph <- function(terms = NULL,
                        get = NULL,
                        property = c("is_a", "BiomarkerOf", "Contains"),
@@ -46,7 +48,8 @@ fobi_graph <- function(terms = NULL,
                        legendSize = 10,
                        legendPos = "bottom",
                        curved = FALSE,
-                       pointSize = 3){
+                       pointSize = 3,
+                       fobi = fobitools::fobi){
   
   if (is.null(terms)) {
     stop("No terms are provided")
@@ -66,10 +69,40 @@ fobi_graph <- function(terms = NULL,
     stop("Incorrect value for legendPos argument. Options are 'bottom' (default) and 'top'")
   }
   
-  fobi_foods <- parse_fobi(terms = "FOBI:0001", get = "des")
+  if (is.null(fobi)){
+    fobi_foods <- parse_fobi(terms = "FOBI:0001", get = "des")
+    
+    fobiGraph <- parse_fobi(terms = terms, get = get) %>%
+      filter(!is.na(is_a_code))
+  } else {
+    fobi_foods <- fobitools::foods
+    
+    if (!is.null(get)){
+      if(get == "des"){
+        fobi_des <- fobitools::fobi_terms %>%
+          ontologyIndex::get_descendants(roots = terms, exclude_roots = TRUE)
+        
+        fobiGraph <- fobi %>%
+          filter(id_code %in% fobi_des) %>%
+          filter(!is.na(is_a_code))
+      }
+      else {
+        fobi_anc <- fobitools::fobi_terms %>%
+          ontologyIndex::get_ancestors(terms = terms)
+        
+        fobiGraph <- fobi %>%
+          filter(id_code %in% fobi_anc) %>%
+          filter(!is.na(is_a_code))
+      }
+    } else {
+      
+      fobiGraph <- fobi %>%
+        filter(id_code %in% terms) %>%
+        filter(!is.na(is_a_code))
+    }
+  }
   
-  fobiGraph <- parse_fobi(terms = terms, get = get) %>%
-    filter(!is.na(is_a_code))
+  ##
   
   contains <- fobiGraph %>%
     mutate(Property = ifelse(!is.na(Contains), "Contains", NA)) %>%

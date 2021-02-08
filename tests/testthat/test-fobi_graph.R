@@ -6,9 +6,9 @@ test_that("fobi_graph works", {
   
   a <- fobi_graph(terms, get = "anc")
   b <- fobi_graph(terms, get = "anc", property = c("is_a", "BiomarkerOf", "Contains"), labels = TRUE)
-  c <- fobi_graph(terms, get = "anc", labels = TRUE, legend = TRUE)
+  c <- fobi_graph(terms, get = "anc", labels = TRUE, legend = TRUE, fobi = NULL)
   d <- fobi_graph(terms, get = "anc", property = c("is_a", "BiomarkerOf"), labels = TRUE, legend = TRUE, curved = TRUE)
-  e <- fobi_graph(terms = "FOODON:00002473", property = c("is_a", "Contains"), labels = TRUE, legend = TRUE, labelsize = 5)
+  e <- fobi_graph(terms = "FOODON:00002473", property = c("is_a", "Contains"), labels = TRUE, legend = TRUE, labelsize = 5, fobi = NULL)
   
   ##
   
