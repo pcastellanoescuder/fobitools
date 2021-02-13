@@ -70,7 +70,7 @@
 
 #' FOBI's `ontology_index` object - Feb 08, 2021
 #'
-#' FOBI terms obtained with `ontologyIndex::get_ontology(path)`
+#' FOBI terms obtained with `ontologyIndex::get_ontology()`
 #'
 #' @format An ontology_index object with 1201 terms.
 #' \describe{

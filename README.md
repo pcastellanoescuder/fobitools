@@ -22,30 +22,43 @@ v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/li
 
 <!-- badges: end -->
 
-This package provides a collection of tools to interact with [FOBI
+This package provides a set of tools for interacting with [FOBI
 (Food-Biomarker
 Ontology)](https://github.com/pcastellanoescuder/FoodBiomarkerOntology).
-Some functionalities are:
+A collection of basic manipulation tools for biological significance
+analysis, graphs, and text mining strategies for annotating nutritional
+data.
 
   - Graph visualization of FOBI
-  - Parse the last version of FOBI into a readable table format
+  - Parse FOBI information from OBO to a readable table format
   - Compound ID conversion (among metabolite names, FOBI, ChemSpider,
-    KEGG, PubChemCID, InChIKey, InChICode, and HMDB)
+    KEGG, PubChemCID, InChIKey, InChICode, and HMDB IDs)
   - Biological significance analysis via a classical over representation
     analysis
       - **Chemical class enrichment analysis**: Over representation
         analysis using FOBI chemical classes as sets
-      - **Food group enrichment analysis**: Over representation analysis
-        using FOBI food groups as sets
+      - **Food enrichment analysis**: Over representation analysis using
+        FOBI food groups as sets
+  - Text mining function for annotating free-text dietary data
 
-`fobitools` also offers a Shiny app version called FOBI Visualization
-Tool. This application implements most of `fobitools` functions in an
-user-friendly web interface and it’s available at
-<http://webapps.nutrimetabolomics.com/FOBI_Visualization_Tool>.
+`fobitools` also offers a Shiny app version called
+[fobitoolsGUI](https://github.com/pcastellanoescuder/fobitoolsGUI). This
+application implements most of `fobitools` functions in an user-friendly
+web interface and it’s available at
+<http://webapps.nutrimetabolomics.com/fobitoolsGUI>.
 
 # Installation
 
-To install GitHub devel version use:
+To install Bioconductor version:
+
+``` r
+# install.packages("BiocManager")
+BiocManager::install(version = "devel")
+BiocManager::install("fobitools")
+```
+
+If you need the GitHub version (not recommended unless you know what you
+are doing), use:
 
 ``` r
 # install.packages("devtools")

@@ -33,6 +33,6 @@ An ontology_index object with 1201 terms.
 fobi_terms
 }
 \description{
-FOBI terms obtained with `ontologyIndex::get_ontology(path)`
+FOBI terms obtained with `ontologyIndex::get_ontology()`
 }
 \keyword{datasets}
