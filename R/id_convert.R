@@ -21,7 +21,7 @@
 #' fobitools::id_convert(ids, to = "FOBI")
 #'
 #' @importFrom magrittr %>%
-#' @importFrom dplyr mutate select rename filter mutate_all matches vars select_at filter_all any_vars as_tibble relocate last_col
+#' @importFrom dplyr mutate select rename filter mutate_all matches vars select_at filter_all any_vars as_tibble relocate last_col mutate_at
 #' @importFrom stringr regex str_replace_all str_trim
 id_convert <- function(ids,
                        to = "FOBI",
@@ -39,10 +39,7 @@ id_convert <- function(ids,
     filter(!BiomarkerOf == "NULL") %>%
     select(name, FOBI, HMDB, KEGG, PubChemCID, InChIKey, InChICode, ChemSpider) %>%
     mutate_all(as.character) %>%
-    mutate(HMDB = str_replace_all(HMDB, regex("( ).*"), regex("\\1")),
-           KEGG = str_replace_all(KEGG, regex("( ).*"), regex("\\1")),
-           PubChemCID = str_replace_all(PubChemCID, regex("( ).*"), regex("\\1")),
-           ChemSpider = str_replace_all(ChemSpider, regex("( ).*"), regex("\\1"))) %>%
+    mutate_at(c("HMDB", "KEGG", "PubChemCID", "ChemSpider"), ~ str_replace_all(., regex("( ).*"), regex("\\1"))) %>%
     rename(metaboliteNames = name) %>%
     mutate_all(~ ifelse(. == "NULL", NA, .)) %>%
     mutate_all(~ stringr::str_trim(.)) %>%

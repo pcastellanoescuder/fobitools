@@ -59,6 +59,21 @@ annotate_foods <- function(foods,
     reference <- fobitools::parse_fobi(terms = "FOBI:0001", get = "des")
   }
   
+  remove_patterns <- c("\\bproducts\\b",
+                       "\\bproduct\\b",
+                       "\\bwhole\\b",
+                       "\\braw\\b",
+                       "\\bfoods\\b",
+                       "\\bfood\\b",
+                       "\\bplant\\b",
+                       "\\bbased\\b",
+                       "\\bbeverage\\b",
+                       "\\bor\\b",
+                       "\\bon\\b",
+                       "\\bother\\b",
+                       "\\bfried\\b",
+                       "\\bboiled\\b")
+  
   ffq <- foods %>%
     mutate(words = str_replace_all(FOOD_NAME, "," , " and "),
            words = str_replace_all(words, ";" , " and "),
@@ -69,20 +84,7 @@ annotate_foods <- function(foods,
            words = tolower(words)) %>%
     separate_rows(words, sep = "\\bwith\\b") %>%
     separate_rows(words, sep = "\\band\\b") %>%
-    mutate(words = str_remove_all(words, pattern = "\\bproducts\\b"),
-           words = str_remove_all(words, pattern = "\\bproduct\\b"),
-           words = str_remove_all(words, pattern = "\\bwhole\\b"),
-           words = str_remove_all(words, pattern = "\\braw\\b"),
-           words = str_remove_all(words, pattern = "\\bfoods\\b"),
-           words = str_remove_all(words, pattern = "\\bfood\\b"),
-           words = str_remove_all(words, pattern = "\\bplant\\b"),
-           words = str_remove_all(words, pattern = "\\bbased\\b"),
-           words = str_remove_all(words, pattern = "\\bbeverage\\b"),
-           words = str_remove_all(words, pattern = "\\bor\\b"), # to discuss
-           words = str_remove_all(words, pattern = "\\bon\\b"),
-           words = str_remove_all(words, pattern = "\\bother\\b"),
-           words = str_remove_all(words, pattern = "\\bfried\\b"), # to discuss
-           words = str_remove_all(words, pattern = "\\bboiled\\b"),
+    mutate(words = str_remove_all(words, pattern = paste(remove_patterns, collapse = "|")),
            words = ifelse(str_detect(words, "\\bwithout meat\\b"), paste0("vegetarian ", words), words), # without meat
            words = str_remove_all(words, "\\without.*"),
            words = str_remove_all(words, "\\for.*"), # to discuss
@@ -92,29 +94,31 @@ annotate_foods <- function(foods,
     group_by(FOOD_ID) %>%
     mutate(words_joint = paste(words, collapse = " "),
            words_joint = str_trim(words_joint),
-           words_joint = str_squish(words_joint))%>%
+           words_joint = str_squish(words_joint)) %>%
     ungroup() %>%
     filter(!duplicated(FOOD_ID)) %>%
     select(-words) %>%
     rename(words = words_joint)
   
+  remove_patterns2 <- c("\\bproducts\\b",
+                        "\\bproduct\\b",
+                        "\\bwhole\\b",
+                        "\\braw\\b",
+                        "\\bfoods\\b",
+                        "\\bfood\\b",
+                        "\\bplant\\b",
+                        "\\bbased\\b",
+                        "\\bbeverage\\b",
+                        "\\bor\\b",
+                        "\\band\\b",
+                        "\\bother\\b")
+
   fobi_foods <- reference %>% 
-    select(1:2) %>%
+    select(id_code, name) %>%
     mutate_all(unlist) %>%
     mutate(ref = tolower(name),
            ref = str_replace(ref, "\\(.*\\)", ""),
-           ref = str_remove_all(ref, pattern = "\\bproducts\\b"),
-           ref = str_remove_all(ref, pattern = "\\bproduct\\b"),
-           ref = str_remove_all(ref, pattern = "\\bwhole\\b"),
-           ref = str_remove_all(ref, pattern = "\\braw\\b"),
-           ref = str_remove_all(ref, pattern = "\\bfoods\\b"),
-           ref = str_remove_all(ref, pattern = "\\bfood\\b"),
-           ref = str_remove_all(ref, pattern = "\\bplant\\b"),
-           ref = str_remove_all(ref, pattern = "\\bbased\\b"),
-           ref = str_remove_all(ref, pattern = "\\bbeverage\\b"),
-           ref = str_remove_all(ref, pattern = "\\bor\\b"),
-           ref = str_remove_all(ref, pattern = "\\band\\b"),
-           ref = str_remove_all(ref, pattern = "\\bother\\b"), # to discuss
+           ref = str_remove_all(ref, pattern = paste(remove_patterns2, collapse = "|")),
            ref = str_replace_all(ref, pattern = "\\brice grain\\b", replacement = "rice"), # specific cases
            ref = str_replace_all(ref, pattern = "\\bsoybean\\b", replacement = "soy"), # specific cases
            ref = str_replace_all(ref, pattern = "\\bbarley grain \\b", replacement = "barley"), # specific cases
@@ -237,7 +241,7 @@ annotate_foods <- function(foods,
   
   wordlist <- expand_grid(words = ffq3$words, ref = fobi_foods$ref) %>%
     group_by(words) %>%
-    mutate(match_score = jarowinkler(words, ref)) %>%
+    mutate(match_score = RecordLinkage::jarowinkler(words, ref)) %>%
     summarise(match = match_score[which.max(match_score)], ref = ref[which.max(match_score)])
   
   result4 <- merge(ffq3, wordlist, by = "words")
@@ -267,8 +271,8 @@ annotate_foods <- function(foods,
     ungroup() %>%
     select(-grouping) %>%
     left_join(reference, by = "name") %>%
-    select(1,2,4,3) %>%
-    rename(FOBI_ID = 3, FOBI_NAME = 4) %>%
+    select(FOOD_ID, FOOD_NAME, id_code, name) %>%
+    rename(FOBI_ID = id_code, FOBI_NAME = name) %>%
     filter(!duplicated(.)) %>%
     as_tibble()
   

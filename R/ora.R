@@ -35,7 +35,7 @@
 #' 
 #' @importFrom magrittr %>%
 #' @importFrom tidyr unnest
-#' @importFrom dplyr mutate select rename filter mutate_all rowwise pull arrange desc as_tibble
+#' @importFrom dplyr mutate select rename filter mutate_all rowwise pull arrange desc as_tibble mutate_at
 #' @importFrom stringr regex str_replace_all str_trim
 #' @importFrom sigora makeGPS
 ora <- function(metaboliteList,
@@ -79,10 +79,7 @@ ora <- function(metaboliteList,
     filter(!BiomarkerOf == "NULL") %>%
     select(name, FOBI, HMDB, KEGG, PubChemCID, InChIKey, InChICode, ChemSpider) %>%
     mutate_all(as.character) %>%
-    mutate(HMDB = str_replace_all(HMDB, regex("( ).*"), regex("\\1")),
-           KEGG = str_replace_all(KEGG, regex("( ).*"), regex("\\1")),
-           PubChemCID = str_replace_all(PubChemCID, regex("( ).*"), regex("\\1")),
-           ChemSpider = str_replace_all(ChemSpider, regex("( ).*"), regex("\\1"))) %>%
+    mutate_at(c("HMDB", "KEGG", "PubChemCID", "ChemSpider"), ~ str_replace_all(., regex("( ).*"), regex("\\1"))) %>%
     rename(metaboliteNames = name) %>%
     mutate_all(~ ifelse(. == "NULL", NA, .)) %>%
     mutate_all(~ stringr::str_trim(.)) %>%

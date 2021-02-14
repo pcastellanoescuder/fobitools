@@ -108,19 +108,19 @@ fobi_graph <- function(terms = NULL,
     mutate(Property = ifelse(!is.na(Contains), "Contains", NA)) %>%
     filter(!is.na(Property)) %>%
     select(name, Contains, Property) %>%
-    rename(from = 1, to = 2, Property = 3)
+    rename(from = name, to = Contains)
   
   biomarkerof <- fobiGraph %>%
     mutate(Property = ifelse(!is.na(BiomarkerOf), "BiomarkerOf", NA)) %>%
     filter(!is.na(Property)) %>%
     select(name, BiomarkerOf, Property) %>%
-    rename(from = 1, to = 2, Property = 3)
+    rename(from = name, to = BiomarkerOf)
   
   is_a <- fobiGraph %>%
     select(name, is_a_name) %>%
     mutate(Property = "is_a") %>%
     filter(!duplicated(name)) %>%
-    rename(from = 1, to = 2, Property = 3)
+    rename(from = name, to = is_a_name)
   
   if(sum(nrow(is_a), nrow(biomarkerof), nrow(contains)) < 1) {
     stop("No terms with these characteristics")

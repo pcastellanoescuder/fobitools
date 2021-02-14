@@ -1,7 +1,11 @@
+# fobitools 0.99.36
+
+* Addressing Vince Carey (package reviewer from _Bioconductor_) comments and suggestions.
+
 # fobitools 0.99.35
 
-* Enabling the option to include a FOBI table instead of downloading it from GitHub 
-* Added FOBI table in package data
+* Enabling the option to include a FOBI table instead of downloading it from GitHub.
+* Added FOBI table in package data.
 
 # fobitools 0.99.29
 
