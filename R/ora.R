@@ -165,8 +165,8 @@ ora <- function(metaboliteList,
 
   result <- data.frame(nn, PPwys[match(names(npwys), names(PPwys))], as.numeric(ps),
                        as.numeric(p.adjust(ps, method = adjust))) %>%
-    select(-4) %>%
-    rename(classId = 1, className = 2, success = 3, classSize = 4, pvalue = 5, pvalueAdj = 6) %>%
+    select(-Var1) %>%
+    rename(classId = pwys, className = nms, success = 3, classSize = Freq, pvalue = 5, pvalueAdj = 6) %>%
     mutate(pvalue = round(pvalue, 4),
            pvalueAdj = round(pvalueAdj, 4)) %>%
     arrange(-desc(pvalue)) %>%
