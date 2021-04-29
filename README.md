@@ -6,7 +6,7 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![Build
-Status](https://travis-ci.com/pcastellanoescuder/fobitools.svg?branch=devel)](https://travis-ci.com/pcastellanoescuder/fobitools)
+Status](https://travis-ci.org/pcastellanoescuder/fobitools.svg?branch=master)](https://travis-ci.org/pcastellanoescuder/fobitools)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/pcastellanoescuder/fobitools?branch=devel&svg=true)](https://ci.appveyor.com/project/pcastellanoescuder/fobitools)
 [![Actions
