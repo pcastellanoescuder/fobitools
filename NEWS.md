@@ -1,4 +1,4 @@
-# fobitools 0.99.37
+# fobitools 0.99.38
 
 * Addressing Vince Carey (package reviewer from _Bioconductor_) comments and suggestions.
 

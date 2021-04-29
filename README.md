@@ -1,5 +1,5 @@
 
-# fobitools <img src='man/figures/logo.png' align="right" height="139" />
+# `fobitools` development version <img src='man/figures/logo.png' align="right" height="139" />
 
 <!-- badges: start -->
 
@@ -11,6 +11,8 @@ Status](https://travis-ci.com/pcastellanoescuder/fobitools.svg?branch=master)](h
 status](https://ci.appveyor.com/api/projects/status/github/pcastellanoescuder/fobitools?branch=master&svg=true)](https://ci.appveyor.com/project/pcastellanoescuder/fobitools)
 [![Actions
 Status](https://github.com/pcastellanoescuder/fobitools/workflows/R-CMD-check/badge.svg)](https://github.com/pcastellanoescuder/fobitools/actions)
+[![Bioc devel
+status](https://bioconductor.org/shields/build/devel/bioc/fobitools.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/fobitools/)
 [![Codecov test
 coverage](https://codecov.io/gh/pcastellanoescuder/fobitools/branch/master/graph/badge.svg)](https://codecov.io/gh/pcastellanoescuder/fobitools?branch=master)
 [![CodeFactor](https://www.codefactor.io/repository/github/pcastellanoescuder/fobitools/badge)](https://www.codefactor.io/repository/github/pcastellanoescuder/fobitools)
@@ -49,20 +51,11 @@ web interface and it’s available at
 
 # Installation
 
-To install Bioconductor version:
-
-``` r
-# install.packages("BiocManager")
-BiocManager::install(version = "devel")
-BiocManager::install("fobitools")
-```
-
-If you need the GitHub version (not recommended unless you know what you
-are doing), use:
+To install GitHub devel version:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("pcastellanoescuder/fobitools")
+devtools::install_github("pcastellanoescuder/fobitools", ref = "devel")
 ```
 
 ## Citation
