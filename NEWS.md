@@ -1,3 +1,7 @@
+# fobitools 0.99.39
+
+* Switch from `sigora` CRAN package to `fgsea` Bioconductor package to perform enrichment analysis.
+ 
 # fobitools 0.99.38
 
 * Addressing Vince Carey (package reviewer from _Bioconductor_) comments and suggestions.

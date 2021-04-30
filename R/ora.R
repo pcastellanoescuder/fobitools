@@ -42,7 +42,7 @@ ora <- function(metaboliteList,
                 metaboliteUniverse,
                 subOntology = "food",
                 pvalCutoff = 0.01,
-                adjust = "fdr",
+                # adjust = "fdr",
                 fobi = fobitools::fobi){
 
   if (is.null(metaboliteList)) {
@@ -63,9 +63,9 @@ ora <- function(metaboliteList,
   if (pvalCutoff < 0) {
     stop("pvalCutoff cannot be less than zero")
   }
-  if (!(adjust %in% c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr"))) {
-    stop("Incorrect value for adjust argument")
-  }
+  # if (!(adjust %in% c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr"))) {
+  #   stop("Incorrect value for adjust argument")
+  # }
 
   ##
 
@@ -75,53 +75,58 @@ ora <- function(metaboliteList,
   
   ##
   
-  idmap <- fobi %>%
-    filter(!BiomarkerOf == "NULL") %>%
-    select(name, FOBI, HMDB, KEGG, PubChemCID, InChIKey, InChICode, ChemSpider) %>%
-    mutate_all(as.character) %>%
-    mutate_at(c("HMDB", "KEGG", "PubChemCID", "ChemSpider"), ~ str_replace_all(., regex("( ).*"), regex("\\1"))) %>%
-    rename(metaboliteNames = name) %>%
-    mutate_all(~ ifelse(. == "NULL", NA, .)) %>%
-    mutate_all(~ stringr::str_trim(.)) %>%
-    filter(!duplicated(metaboliteNames))
+  # idmap <- fobi %>%
+  #   filter(!BiomarkerOf == "NULL") %>%
+  #   select(name, FOBI, HMDB, KEGG, PubChemCID, InChIKey, InChICode, ChemSpider) %>%
+  #   mutate_all(as.character) %>%
+  #   mutate_at(c("HMDB", "KEGG", "PubChemCID", "ChemSpider"), ~ str_replace_all(., regex("( ).*"), regex("\\1"))) %>%
+  #   rename(metaboliteNames = name) %>%
+  #   mutate_all(~ ifelse(. == "NULL", NA, .)) %>%
+  #   mutate_all(~ stringr::str_trim(.)) %>%
+  #   filter(!duplicated(metaboliteNames))
   
   n_metaboliteUniverse <- length(unique(metaboliteUniverse[!is.na(metaboliteUniverse)]))
+  metaboliteUniverse <- unique(metaboliteUniverse[!is.na(metaboliteUniverse)])
   
-  universe_names <- idmap %>%
-    rowwise() %>% 
-    filter(any(c(FOBI, HMDB, KEGG, PubChemCID, InChIKey, InChICode, ChemSpider) %in% unique(metaboliteUniverse[!is.na(metaboliteUniverse)]))) %>%
-    pull(metaboliteNames)
+  # universe_names <- fobitools::idmap %>%
+  #   # rowwise() %>% 
+  #   filter(FOBI %in% unique(metaboliteUniverse[!is.na(metaboliteUniverse)])) %>%
+  #   pull(FOBI)
     
   ##
 
-  GPSrepo_foods <- fobi %>%
+  ptw_foods <- fobi %>%
     filter(!BiomarkerOf == "NULL") %>%
-    select(id_BiomarkerOf, BiomarkerOf, name) %>%
-    tidyr::unnest(cols = c(id_BiomarkerOf, BiomarkerOf, name)) %>%
-    filter(name %in% universe_names) %>%
+    select(id_BiomarkerOf, BiomarkerOf, name, FOBI) %>%
+    tidyr::unnest(cols = c(id_BiomarkerOf, BiomarkerOf, name, FOBI)) %>%
+    # filter(FOBI %in% universe_names) %>%
     mutate_all(as.factor)
 
   ##
   
-  GPSrepo_chemicals <- fobi %>%
+  ptw_chemicals <- fobi %>%
     filter(!BiomarkerOf == "NULL") %>%
-    select(is_a_code, is_a_name, name) %>%
-    tidyr::unnest(cols = c(is_a_code, is_a_name, name)) %>%
-    filter(name %in% universe_names) %>%
+    select(is_a_code, is_a_name, name, FOBI) %>%
+    tidyr::unnest(cols = c(is_a_code, is_a_name, name, FOBI)) %>%
+    # filter(name %in% universe_names) %>%
     mutate_all(as.factor) %>%
     filter(!duplicated(.))
 
   ##
 
-  n_food_metabolites <- GPSrepo_foods %>%
+  n_food_metabolites <- ptw_foods %>%
+    filter(FOBI %in% metaboliteUniverse) %>%
     filter(duplicated(id_BiomarkerOf))
   
-  n_biomarker_metabolites <- GPSrepo_chemicals %>%
+  n_biomarker_metabolites <- ptw_chemicals %>%
+    filter(FOBI %in% metaboliteUniverse) %>%
     filter(duplicated(is_a_code)) 
+
+  ##
   
   if (subOntology == "food") {
     if(nrow(n_food_metabolites) > 1){
-      GPSrepo <- sigora::makeGPS(GPSrepo_foods, maxFunperGene = 100, maxGenesperPathway = 500, minGenesperPathway = 1)
+      ptw <- unstack(ptw_foods[, c(4,2)])
     }
     else {
       stop("At least two FOBI food classes must be represented by more than one compound in the metaboliteUniverse!")
@@ -130,47 +135,27 @@ ora <- function(metaboliteList,
   
   else if (subOntology == "biomarker") {
     if(nrow(n_biomarker_metabolites) > 1){
-      GPSrepo <- sigora::makeGPS(GPSrepo_chemicals, maxFunperGene = 100, maxGenesperPathway = 500, minGenesperPathway = 1)
+      ptw <- unstack(ptw_chemicals[, c(4,2)])
     }
     else {
       stop("At least two FOBI chemical classes must be represented by more than one compound in the metaboliteUniverse!")
     }
   }
+  
+  ##
 
   metaboliteList <- unique(metaboliteList[!is.na(metaboliteList)])
   n_metaboliteList <- length(metaboliteList)
   
   ## ORA
-
-  fr <- GPSrepo$origRepo[[3]]
-  sp1 <- GPSrepo$pathwaydescriptions
-
-  if (length(intersect(metaboliteList, GPSrepo$origRepo[[2]])) == 0) {
-    t1 <- which.max(sapply(idmap, function(x) length(intersect(x, GPSrepo$origRepo[[2]]))))
-    t2 <- which.max(sapply(idmap, function(x) length(intersect(x, metaboliteList))))
-    new_idmap <- idmap[, c(t2, t1)]
-    colnames(new_idmap) <- c("match", "metaboliteName")
-    metaboliteList <- new_idmap[which(new_idmap$match %in% metaboliteList), 2]
-    message(paste0("\n", crayon::blue("Mapped identifiers from ", colnames(idmap)[t2], " to ", colnames(idmap)[t1])))
-  }
-
-  g1m <- match(metaboliteList$metaboliteName, GPSrepo$origRepo[[2]])
-  frO <- fr[fr[, 2] %in% g1m ,]
-  npwys <- table(as.character(GPSrepo$origRepo[[1]][(frO[,1])]))
-  nn <- cbind(sp1[match(names(npwys), sp1$pwys), ], as.numeric(as.vector(npwys)))
-  PPwys <- table(as.character(GPSrepo$origRepo[[1]][(fr[, 1])]))
-  ps <- phyper(npwys - 1, PPwys[match(names(npwys), names(PPwys))],
-               length(GPSrepo$origRepo[[2]]) - PPwys[match(names(npwys), names(PPwys))],
-               length(intersect(metaboliteList$metaboliteName, GPSrepo$origRepo[[2]])), lower.tail = FALSE)
-
-  result <- data.frame(nn, PPwys[match(names(npwys), names(PPwys))], as.numeric(ps),
-                       as.numeric(p.adjust(ps, method = adjust))) %>%
-    select(-Var1) %>%
-    rename(classId = pwys, className = nms, success = 3, classSize = Freq, pvalue = 5, pvalueAdj = 6) %>%
-    mutate(pvalue = round(pvalue, 4),
-           pvalueAdj = round(pvalueAdj, 4)) %>%
-    arrange(-desc(pvalue)) %>%
-    filter(pvalue <= pvalCutoff) %>%
+  
+  res_ora <- fgsea::fora(pathways = ptw, genes = metaboliteList, universe = metaboliteUniverse, minSize = 1, maxSize = Inf)
+  
+  result <- res_ora %>%
+    rename(className = pathway, classSize = size, overlapMetabolites = overlapGenes) %>%
+    dplyr::select(className, classSize, overlap, pval, padj, overlapMetabolites) %>%
+    arrange(-desc(pval)) %>%
+    filter(pval <= pvalCutoff) %>%
     as_tibble()
 
   message(paste0(crayon::blue("metaboliteUniverse size: ", n_metaboliteUniverse), 
