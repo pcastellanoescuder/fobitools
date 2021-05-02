@@ -1,6 +1,6 @@
-# fobitools 0.99.39
+# fobitools 0.99.40
 
-* Switch from `sigora` CRAN package to `fgsea` Bioconductor package to perform enrichment analysis.
+* Switch from the `sigora` CRAN package to the `fgsea` Bioconductor package to perform enrichment analysis.
  
 # fobitools 0.99.38
 
