@@ -1,21 +1,18 @@
 
-# fobitools <img src='man/figures/logo.png' align="right" height="139" />
+# `fobitools` development version <img src='man/figures/logo.png' align="right" height="139" />
 
 <!-- badges: start -->
 
 [![Lifecycle:
-stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![Build
-Status](https://travis-ci.com/pcastellanoescuder/fobitools.svg?branch=master)](https://travis-ci.com/pcastellanoescuder/fobitools)
+Status](https://travis-ci.org/pcastellanoescuder/fobitools.svg?branch=master)](https://travis-ci.org/pcastellanoescuder/fobitools)
 [![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/pcastellanoescuder/fobitools?branch=master&svg=true)](https://ci.appveyor.com/project/pcastellanoescuder/fobitools)
+status](https://ci.appveyor.com/api/projects/status/github/pcastellanoescuder/fobitools?branch=devel&svg=true)](https://ci.appveyor.com/project/pcastellanoescuder/fobitools)
 [![Actions
-Status](https://github.com/pcastellanoescuder/fobitools/workflows/R-CMD-check/badge.svg)](https://github.com/pcastellanoescuder/fobitools/actions)
-[![Codecov test
-coverage](https://codecov.io/gh/pcastellanoescuder/fobitools/branch/master/graph/badge.svg)](https://codecov.io/gh/pcastellanoescuder/fobitools?branch=master)
-[![CodeFactor](https://www.codefactor.io/repository/github/pcastellanoescuder/fobitools/badge)](https://www.codefactor.io/repository/github/pcastellanoescuder/fobitools)
-[![Last
-Commit](https://img.shields.io/github/last-commit/pcastellanoescuder/fobitools.svg)](https://github.com/pcastellanoescuder/fobitools/commits/master)
+Status](https://github.com/pcastellanoescuder/fobitools/workflows/R-CMD-check/badge.svg?branch=devel)](https://github.com/pcastellanoescuder/fobitools/actions)
+[![Bioc devel
+status](https://bioconductor.org/shields/build/devel/bioc/fobitools.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/fobitools/)
 [![License: GPL
 v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![DOI](https://img.shields.io/badge/DOI-https%3A%2F%2Fdoi.org%2F10.1093%2Fdataba%2Fbaaa033-blue)](https://doi.org/10.1093/databa/baaa033)
@@ -49,20 +46,11 @@ web interface and it’s available at
 
 # Installation
 
-To install Bioconductor version:
-
-``` r
-# install.packages("BiocManager")
-BiocManager::install(version = "devel")
-BiocManager::install("fobitools")
-```
-
-If you need the GitHub version (not recommended unless you know what you
-are doing), use:
+To install GitHub devel version:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("pcastellanoescuder/fobitools")
+devtools::install_github("pcastellanoescuder/fobitools", ref = "devel")
 ```
 
 ## Citation

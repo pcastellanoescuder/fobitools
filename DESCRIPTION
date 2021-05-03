@@ -1,6 +1,6 @@
 Package: fobitools
 Title: Tools For Manipulating FOBI Ontology
-Version: 0.99.37
+Version: 0.99.41
 Authors@R: 
     c(person(given = "Pol",
              family = "Castellano-Escuder",
@@ -24,18 +24,18 @@ Encoding: UTF-8
 LazyData: true
 biocViews:
     MassSpectrometry, Metabolomics, Software, Visualization, BiomedicalInformatics,
-    GraphAndNetwork, Annotation, Cheminformatics, Pathways
+    GraphAndNetwork, Annotation, Cheminformatics, Pathways, GeneSetEnrichment
 Imports:
     clisymbols,
     crayon,
     dplyr,
+    fgsea,
     ggplot2,
     ggraph,
     magrittr,
     ontologyIndex,
     purrr,
     RecordLinkage,
-    sigora,
     stringr,
     textclean,
     tictoc,
@@ -51,7 +51,7 @@ Suggests:
     testthat (>= 2.3.2),
     tidyverse
 RoxygenNote: 7.1.1
-Depends: R (>= 4.1)
+Depends: R (>= 4.0)
 URL: https://github.com/pcastellanoescuder/fobitools/
 BugReports: https://github.com/pcastellanoescuder/fobitools/issues
 VignetteBuilder: knitr

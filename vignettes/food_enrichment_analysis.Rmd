@@ -15,7 +15,7 @@ vignette: >
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2021-01-14
+**Last edited**: 2021-05-03
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 
@@ -85,16 +85,14 @@ metaboliteList <- fobi_subset %>%
 fobitools::ora(metaboliteList = metaboliteList, 
                metaboliteUniverse = metaboliteUniverse, 
                subOntology = "food", 
-               pvalCutoff = 0.01, 
-               adjust = "fdr")
+               pvalCutoff = 0.01)
 ```
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE, echo = FALSE}
 res_ora <- fobitools::ora(metaboliteList = metaboliteList, 
                           metaboliteUniverse = metaboliteUniverse, 
                           subOntology = "food", 
-                          pvalCutoff = 0.01, 
-                          adjust = "fdr")
+                          pvalCutoff = 0.01)
 ```
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE, echo = FALSE}

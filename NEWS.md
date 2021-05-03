@@ -1,4 +1,9 @@
-# fobitools 0.99.37
+# fobitools 0.99.41
+
+* Switch from the `sigora` CRAN package to the `fgsea` Bioconductor package to perform enrichment analysis.
+* Added new function named `msea` to perform GSEA using FOBI.
+
+# fobitools 0.99.38
 
 * Addressing Vince Carey (package reviewer from _Bioconductor_) comments and suggestions.
 
