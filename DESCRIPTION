@@ -47,7 +47,6 @@ Suggests:
     covr,
     kableExtra,
     knitr,
-    POMA,
     rmarkdown,
     testthat (>= 2.3.2),
     tidyverse
