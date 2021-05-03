@@ -1,6 +1,6 @@
 Package: fobitools
 Title: Tools For Manipulating FOBI Ontology
-Version: 0.99.40
+Version: 0.99.41
 Authors@R: 
     c(person(given = "Pol",
              family = "Castellano-Escuder",
@@ -24,7 +24,7 @@ Encoding: UTF-8
 LazyData: true
 biocViews:
     MassSpectrometry, Metabolomics, Software, Visualization, BiomedicalInformatics,
-    GraphAndNetwork, Annotation, Cheminformatics, Pathways
+    GraphAndNetwork, Annotation, Cheminformatics, Pathways, GeneSetEnrichment
 Imports:
     clisymbols,
     crayon,
@@ -47,6 +47,7 @@ Suggests:
     covr,
     kableExtra,
     knitr,
+    POMA,
     rmarkdown,
     testthat (>= 2.3.2),
     tidyverse
