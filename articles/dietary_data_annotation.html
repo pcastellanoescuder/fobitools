@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dietary data annotation • fobitools</title>
+<title>Dietary text annotation • fobitools</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Dietary data annotation">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Dietary text annotation">
 <meta property="og:description" content="fobitools">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.26</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.42</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -61,11 +61,15 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/dietary_data_annotation.html">Dietary data annotation
+      <a href="../articles/dietary_data_annotation.html">Dietary text annotation
 </a>
     </li>
     <li>
-      <a href="../articles/food_enrichment_analysis.html">Food enrichment analysis
+      <a href="../articles/food_enrichment_analysis.html">Food over representation analysis
+</a>
+    </li>
+    <li>
+      <a href="../articles/MW_ST000291_enrichment.html">Use case ST000291
 </a>
     </li>
   </ul>
@@ -77,7 +81,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/pcastellanoescuder/fobitools">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -91,18 +95,17 @@
 
       
 
-      </header><script src="dietary_data_annotation_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="dietary_data_annotation_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="dietary_data_annotation_files/anchor-sections-1.0/anchor-sections.js"></script><script src="dietary_data_annotation_files/kePrint-0.0.1/kePrint.js"></script><link href="dietary_data_annotation_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+      </header><script src="dietary_data_annotation_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="dietary_data_annotation_files/kePrint-0.0.1/kePrint.js"></script><link href="dietary_data_annotation_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Dietary data annotation</h1>
+      <h1 data-toc-skip>Dietary text annotation</h1>
                         <h4 class="author">Pol Castellano-Escuder</h4>
             <address class="author_afil">
       University of Barcelona, Spain.<br><a class="author_email" href="mailto:#"></a><a href="mailto:polcaes@gmail.com" class="email">polcaes@gmail.com</a>
       </address>
                   
-            <h4 class="date">16 enero 2021</h4>
+            <h4 class="date">8 mayo 2021</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pcastellanoescuder/fobitools/blob/master/vignettes/dietary_data_annotation.Rmd"><code>vignettes/dietary_data_annotation.Rmd</code></a></small>
       <div class="hidden name"><code>dietary_data_annotation.Rmd</code></div>
@@ -111,8 +114,8 @@
 
     
     
-<p><strong>Compiled date</strong>: 2021-01-16</p>
-<p><strong>Last edited</strong>: 2021-01-14</p>
+<p><strong>Compiled date</strong>: 2021-05-08</p>
+<p><strong>Last edited</strong>: 2021-08-15</p>
 <p><strong>License</strong>: GPL-3</p>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
@@ -198,7 +201,7 @@ pizza without meat
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">annotated_text</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/annotate_foods.html">annotate_foods</a></span><span class="op">(</span><span class="va">free_text</span><span class="op">)</span>
 <span class="co">#&gt; 100% annotated</span>
-<span class="co">#&gt; 5.567 sec elapsed</span></code></pre></div>
+<span class="co">#&gt; 0.213 sec elapsed</span></code></pre></div>
 <table class="table table">
 <thead><tr>
 <th style="text-align:left;">
@@ -491,42 +494,45 @@ vegetarian pizza
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] kableExtra_1.3.1  dplyr_1.0.2       fobitools_0.99.24 BiocStyle_2.18.1 </span>
+<span class="co">#&gt; [1] kableExtra_1.3.4  dplyr_1.0.5       fobitools_0.99.41 BiocStyle_2.18.1 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] fs_1.5.0               bit64_4.0.5            webshot_0.5.2         </span>
-<span class="co">#&gt;  [4] httr_1.4.2             rprojroot_2.0.2        evd_2.3-3             </span>
-<span class="co">#&gt;  [7] tools_4.0.2            R6_2.5.0               rpart_4.1-15          </span>
-<span class="co">#&gt; [10] DBI_1.1.0              colorspace_2.0-0       nnet_7.3-14           </span>
-<span class="co">#&gt; [13] tidyselect_1.1.0       gridExtra_2.3          tictoc_1.0            </span>
-<span class="co">#&gt; [16] curl_4.3               ontologyIndex_2.5      bit_4.0.4             </span>
-<span class="co">#&gt; [19] compiler_4.0.2         textshaping_0.2.1      rvest_0.3.6           </span>
-<span class="co">#&gt; [22] xml2_1.3.2             desc_1.2.0             labeling_0.4.2        </span>
-<span class="co">#&gt; [25] bookdown_0.21          scales_1.1.1           sigora_3.0.5          </span>
-<span class="co">#&gt; [28] pkgdown_1.6.1          systemfonts_0.3.2      stringr_1.4.0         </span>
-<span class="co">#&gt; [31] digest_0.6.27          rmarkdown_2.5          pkgconfig_2.0.3       </span>
-<span class="co">#&gt; [34] htmltools_0.5.0        RecordLinkage_0.4-12.1 highr_0.8             </span>
-<span class="co">#&gt; [37] rlang_0.4.10           rstudioapi_0.13        RSQLite_2.2.2         </span>
-<span class="co">#&gt; [40] farver_2.0.3           generics_0.1.0         qdapRegex_0.7.2       </span>
-<span class="co">#&gt; [43] vroom_1.3.2            magrittr_2.0.1         textclean_0.9.3       </span>
-<span class="co">#&gt; [46] ada_2.0-5              Matrix_1.2-18          Rcpp_1.0.5            </span>
-<span class="co">#&gt; [49] munsell_0.5.0          viridis_0.5.1          lifecycle_0.2.0       </span>
-<span class="co">#&gt; [52] stringi_1.5.3          yaml_2.2.1             ggraph_2.0.4          </span>
-<span class="co">#&gt; [55] MASS_7.3-53            grid_4.0.2             blob_1.2.1            </span>
-<span class="co">#&gt; [58] parallel_4.0.2         ggrepel_0.9.0          crayon_1.3.4          </span>
-<span class="co">#&gt; [61] lattice_0.20-41        graphlayouts_0.7.1     splines_4.0.2         </span>
-<span class="co">#&gt; [64] knitr_1.30             pillar_1.4.7           igraph_1.2.6          </span>
-<span class="co">#&gt; [67] clisymbols_1.2.0       glue_1.4.2             evaluate_0.14         </span>
-<span class="co">#&gt; [70] data.table_1.13.6      BiocManager_1.30.10    lexicon_1.2.1         </span>
-<span class="co">#&gt; [73] vctrs_0.3.6            tweenr_1.0.1           gtable_0.3.0          </span>
-<span class="co">#&gt; [76] purrr_0.3.4            polyclip_1.10-0        tidyr_1.1.2           </span>
-<span class="co">#&gt; [79] assertthat_0.2.1       ggplot2_3.3.3          xfun_0.19             </span>
-<span class="co">#&gt; [82] ggforce_0.3.2          prodlim_2019.11.13     syuzhet_1.0.6         </span>
-<span class="co">#&gt; [85] xtable_1.8-4           tidygraph_1.2.0        ff_4.0.4              </span>
-<span class="co">#&gt; [88] e1071_1.7-4            ragg_0.4.0             class_7.3-17          </span>
-<span class="co">#&gt; [91] survival_3.2-7         viridisLite_0.3.0      tibble_3.0.4          </span>
-<span class="co">#&gt; [94] memoise_1.1.0          lava_1.6.8.1           ellipsis_0.3.1        </span>
-<span class="co">#&gt; [97] ipred_0.9-9</span></code></pre></div>
+<span class="co">#&gt;   [1] fgsea_1.16.0           colorspace_2.0-1       ellipsis_0.3.2        </span>
+<span class="co">#&gt;   [4] class_7.3-19           qdapRegex_0.7.2        evd_2.3-3             </span>
+<span class="co">#&gt;   [7] rprojroot_2.0.2        fs_1.5.0               rstudioapi_0.13       </span>
+<span class="co">#&gt;  [10] proxy_0.4-25           farver_2.1.0           graphlayouts_0.7.1    </span>
+<span class="co">#&gt;  [13] ggrepel_0.9.1          bit64_4.0.5            prodlim_2019.11.13    </span>
+<span class="co">#&gt;  [16] fansi_0.4.2            textclean_0.9.3        xml2_1.3.2            </span>
+<span class="co">#&gt;  [19] splines_4.0.2          cachem_1.0.4           knitr_1.33            </span>
+<span class="co">#&gt;  [22] polyclip_1.10-0        jsonlite_1.7.2         RecordLinkage_0.4-12.1</span>
+<span class="co">#&gt;  [25] ggforce_0.3.3          BiocManager_1.30.12    compiler_4.0.2        </span>
+<span class="co">#&gt;  [28] httr_1.4.2             tictoc_1.0.1           assertthat_0.2.1      </span>
+<span class="co">#&gt;  [31] Matrix_1.3-2           fastmap_1.1.0          ontologyIndex_2.7     </span>
+<span class="co">#&gt;  [34] tweenr_1.0.2           htmltools_0.5.1.1      tools_4.0.2           </span>
+<span class="co">#&gt;  [37] igraph_1.2.6           gtable_0.3.0           glue_1.4.2            </span>
+<span class="co">#&gt;  [40] fastmatch_1.1-0        Rcpp_1.0.6             lexicon_1.2.1         </span>
+<span class="co">#&gt;  [43] jquerylib_0.1.4        pkgdown_1.6.1          vctrs_0.3.8           </span>
+<span class="co">#&gt;  [46] svglite_2.0.0          ggraph_2.0.5           xfun_0.22             </span>
+<span class="co">#&gt;  [49] stringr_1.4.0          rvest_1.0.0            lifecycle_1.0.0       </span>
+<span class="co">#&gt;  [52] MASS_7.3-54            scales_1.1.1           ipred_0.9-11          </span>
+<span class="co">#&gt;  [55] tidygraph_1.2.0        vroom_1.4.0            ragg_1.1.2            </span>
+<span class="co">#&gt;  [58] clisymbols_1.2.0       parallel_4.0.2         yaml_2.2.1            </span>
+<span class="co">#&gt;  [61] memoise_2.0.0          gridExtra_2.3          ggplot2_3.3.3         </span>
+<span class="co">#&gt;  [64] sass_0.3.1             rpart_4.1-15           stringi_1.5.3         </span>
+<span class="co">#&gt;  [67] RSQLite_2.2.7          highr_0.9              desc_1.3.0            </span>
+<span class="co">#&gt;  [70] e1071_1.7-6            BiocParallel_1.24.1    lava_1.6.9            </span>
+<span class="co">#&gt;  [73] ada_2.0-5              rlang_0.4.11           pkgconfig_2.0.3       </span>
+<span class="co">#&gt;  [76] systemfonts_1.0.1      evaluate_0.14          lattice_0.20-44       </span>
+<span class="co">#&gt;  [79] purrr_0.3.4            labeling_0.4.2         bit_4.0.4             </span>
+<span class="co">#&gt;  [82] tidyselect_1.1.1       magrittr_2.0.1         bookdown_0.22         </span>
+<span class="co">#&gt;  [85] R6_2.5.0               generics_0.1.0         DBI_1.1.1             </span>
+<span class="co">#&gt;  [88] pillar_1.6.0           survival_3.2-11        nnet_7.3-16           </span>
+<span class="co">#&gt;  [91] tibble_3.1.1           crayon_1.4.1           utf8_1.2.1            </span>
+<span class="co">#&gt;  [94] rmarkdown_2.7          viridis_0.6.0          syuzhet_1.0.6         </span>
+<span class="co">#&gt;  [97] grid_4.0.2             data.table_1.14.0      blob_1.2.1            </span>
+<span class="co">#&gt; [100] digest_0.6.27          webshot_0.5.2          xtable_1.8-4          </span>
+<span class="co">#&gt; [103] ff_4.0.4               tidyr_1.1.3            textshaping_0.3.3     </span>
+<span class="co">#&gt; [106] munsell_0.5.0          viridisLite_0.4.0      bslib_0.2.4</span></code></pre></div>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">

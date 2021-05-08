@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Tools For Manipulating FOBI Ontology">
-<meta property="og:description" content="A set of tools for interacting with Food-Biomarker Ontology (FOBI). A collection of basic manipulation tools for biological signifance analysis, graphs, and 
+<meta property="og:description" content="A set of tools for interacting with Food-Biomarker Ontology (FOBI). A collection of basic manipulation tools for biological significance analysis, graphs, and 
     text mining strategies for annotating nutritional data.">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.26</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.42</span>
       </span>
     </div>
 
@@ -47,7 +47,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -62,11 +62,15 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/dietary_data_annotation.html">Dietary data annotation
+      <a href="articles/dietary_data_annotation.html">Dietary text annotation
 </a>
     </li>
     <li>
-      <a href="articles/food_enrichment_analysis.html">Food enrichment analysis
+      <a href="articles/food_enrichment_analysis.html">Food over representation analysis
+</a>
+    </li>
+    <li>
+      <a href="articles/MW_ST000291_enrichment.html">Use case ST000291
 </a>
     </li>
   </ul>
@@ -78,7 +82,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/pcastellanoescuder/fobitools">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -97,34 +101,40 @@
 
 <div id="fobitools-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#fobitools-" class="anchor"></a>fobitools <img src="reference/figures/logo.png" align="right" height="139">
+<a href="#fobitools-" class="anchor"></a><code>fobitools</code> <img src="reference/figures/logo.png" align="right" height="139">
 </h1></div>
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p>This package provides a collection of tools to interact with <a href="https://github.com/pcastellanoescuder/FoodBiomarkerOntology">FOBI (Food-Biomarker Ontology)</a>. Some functionalities are:</p>
+<p>This package provides a set of tools for interacting with <a href="https://github.com/pcastellanoescuder/FoodBiomarkerOntology">FOBI (Food-Biomarker Ontology)</a>. A collection of basic manipulation tools for biological significance analysis, graph visualization and text mining strategies for annotating nutritional data are provided here:</p>
 <ul>
 <li>Graph visualization of FOBI</li>
-<li>Parse the last version of FOBI into a readable table format</li>
-<li>Compound ID conversion (among metabolite names, FOBI, ChemSpider, KEGG, PubChemCID, InChIKey, InChICode, and HMDB)</li>
-<li>Biological significance analysis via a classical over representation analysis
+<li>Parse FOBI information from OBO to a readable table format</li>
+<li>Compound ID conversion (among metabolite names, FOBI, ChemSpider, KEGG, PubChemCID, InChIKey, InChICode and HMDB IDs)</li>
+<li>Biological significance analysis via ORA and MSEA methods:
 <ul>
-<li>
-<strong>Chemical class enrichment analysis</strong>: Over representation analysis using FOBI chemical classes as sets</li>
-<li>
-<strong>Food group enrichment analysis</strong>: Over representation analysis using FOBI food groups as sets</li>
+<li>Chemical class enrichment analysis: ORA and MSEA using FOBI chemical classes as metabolite sets</li>
+<li>Food enrichment analysis: ORA and MSEA using FOBI food groups as metabolite sets</li>
 </ul>
 </li>
+<li>Text mining algorithm for annotating free-text dietary data</li>
 </ul>
-<p><code>fobitools</code> also offers a Shiny app version called FOBI Visualization Tool. This application implements most of <code>fobitools</code> functions in an user-friendly web interface and it’s available at <a href="http://webapps.nutrimetabolomics.com/FOBI_Visualization_Tool" class="uri">http://webapps.nutrimetabolomics.com/FOBI_Visualization_Tool</a>.</p>
+<p><code>fobitools</code> also offers a Shiny app version called <a href="https://github.com/pcastellanoescuder/fobitoolsGUI">fobitoolsGUI</a>. This application implements most of <code>fobitools</code> functions in an user-friendly web interface and it is available at <a href="http://webapps.nutrimetabolomics.com/fobitoolsGUI" class="uri">http://webapps.nutrimetabolomics.com/fobitoolsGUI</a>.</p>
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
-<p>To install GitHub devel version use:</p>
+<p>To install Bioconductor version use:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("BiocManager")</span>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span>version <span class="op">=</span> <span class="st">"devel"</span><span class="op">)</span>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"fobitools"</span><span class="op">)</span></code></pre></div>
+<p>If you need the GitHub version (not recommended unless you know what you are doing), use:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"pcastellanoescuder/fobitools"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"pcastellanoescuder/fobitools"</span><span class="op">)</span> <span class="co"># for R version 4.1 (devel)</span>
+
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"pcastellanoescuder/fobitools"</span>, ref <span class="op">=</span> <span class="st">"devel"</span><span class="op">)</span> <span class="co"># for R version 4.0 (release)</span></code></pre></div>
 <div id="citation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h2>
@@ -143,6 +153,8 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from BIOC at <br><a href="https://www.bioconductor.org/packages/fobitools">https://​www.bioconductor.org/​packages/​fobitools</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/pcastellanoescuder/fobitools/">https://​github.com/​pcastellanoescuder/​fobitools/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/pcastellanoescuder/fobitools/issues">https://​github.com/​pcastellanoescuder/​fobitools/​issues</a>
@@ -181,9 +193,8 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.tidyverse.org/lifecycle/#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
-<li><a href="https://travis-ci.com/pcastellanoescuder/fobitools"><img src="https://travis-ci.com/pcastellanoescuder/fobitools.svg?branch=master" alt="Build Status"></a></li>
-<li><a href="https://ci.appveyor.com/project/pcastellanoescuder/fobitools"><img src="https://ci.appveyor.com/api/projects/status/github/pcastellanoescuder/fobitools?branch=master&amp;svg=true" alt="AppVeyor build status"></a></li>
 <li><a href="https://github.com/pcastellanoescuder/fobitools/actions"><img src="https://github.com/pcastellanoescuder/fobitools/workflows/R-CMD-check/badge.svg" alt="Actions Status"></a></li>
+<li><a href="https://bioconductor.org/checkResults/devel/bioc-LATEST/fobitools/"><img src="https://bioconductor.org/shields/build/devel/bioc/fobitools.svg" alt="Bioc devel status"></a></li>
 <li><a href="https://codecov.io/gh/pcastellanoescuder/fobitools?branch=master"><img src="https://codecov.io/gh/pcastellanoescuder/fobitools/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://www.codefactor.io/repository/github/pcastellanoescuder/fobitools"><img src="https://www.codefactor.io/repository/github/pcastellanoescuder/fobitools/badge" alt="CodeFactor"></a></li>
 <li><a href="https://github.com/pcastellanoescuder/fobitools/commits/master"><img src="https://img.shields.io/github/last-commit/pcastellanoescuder/fobitools.svg" alt="Last Commit"></a></li>

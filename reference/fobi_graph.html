@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.26</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.42</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -103,11 +103,15 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/dietary_data_annotation.html">Dietary data annotation
+      <a href="../articles/dietary_data_annotation.html">Dietary text annotation
 </a>
     </li>
     <li>
-      <a href="../articles/food_enrichment_analysis.html">Food enrichment analysis
+      <a href="../articles/food_enrichment_analysis.html">Food over representation analysis
+</a>
+    </li>
+    <li>
+      <a href="../articles/MW_ST000291_enrichment.html">Use case ST000291
 </a>
     </li>
   </ul>
@@ -119,7 +123,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/pcastellanoescuder/fobitools">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -156,7 +160,8 @@
   legendSize <span class='op'>=</span> <span class='fl'>10</span>,
   legendPos <span class='op'>=</span> <span class='st'>"bottom"</span>,
   curved <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  pointSize <span class='op'>=</span> <span class='fl'>3</span>
+  pointSize <span class='op'>=</span> <span class='fl'>3</span>,
+  fobi <span class='op'>=</span> <span class='fu'>fobitools</span><span class='fu'>::</span><span class='va'><a href='fobi.html'>fobi</a></span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -205,6 +210,10 @@
     <tr>
       <th>pointSize</th>
       <td><p>Numeric value indicating the size of graph points.</p></td>
+    </tr>
+    <tr>
+      <th>fobi</th>
+      <td><p>FOBI table obtained with `parse_fobi()`. If this value is set to NULL, the last version of FOBI will be downloaded from GitHub.</p></td>
     </tr>
     </table>
 

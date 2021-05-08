@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.26</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.42</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -103,11 +103,15 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/dietary_data_annotation.html">Dietary data annotation
+      <a href="../articles/dietary_data_annotation.html">Dietary text annotation
 </a>
     </li>
     <li>
-      <a href="../articles/food_enrichment_analysis.html">Food enrichment analysis
+      <a href="../articles/food_enrichment_analysis.html">Food over representation analysis
+</a>
+    </li>
+    <li>
+      <a href="../articles/MW_ST000291_enrichment.html">Use case ST000291
 </a>
     </li>
   </ul>
@@ -119,7 +123,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/pcastellanoescuder/fobitools">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -145,7 +149,7 @@
     <p>This function can convert metabolite identifiers to other available IDs in FOBI. Input vector can be a combination of different IDs.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>id_convert</span><span class='op'>(</span><span class='va'>ids</span>, to <span class='op'>=</span> <span class='st'>"FOBI"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>id_convert</span><span class='op'>(</span><span class='va'>ids</span>, to <span class='op'>=</span> <span class='st'>"FOBI"</span>, fobi <span class='op'>=</span> <span class='fu'>fobitools</span><span class='fu'>::</span><span class='va'><a href='fobi.html'>fobi</a></span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -157,6 +161,10 @@
     <tr>
       <th>to</th>
       <td><p>Target ID type. If possible, metabolites will be converted to this ID type. Options are "FOBI" (default), "metaboliteNames", "HMDB", "KEGG", "PubChemCID", "InChIKey", "InChICode", and "ChemSpider".</p></td>
+    </tr>
+    <tr>
+      <th>fobi</th>
+      <td><p>FOBI table obtained with `parse_fobi()`. If this value is set to NULL, the last version of FOBI will be downloaded from GitHub.</p></td>
     </tr>
     </table>
 
@@ -172,23 +180,24 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/pcastellanoescuder/fobitools/'>fobitools</a></span><span class='op'>)</span>
-<span class='va'>ids</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>idmap</span><span class='op'>$</span><span class='va'>HMDB</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>, <span class='va'>idmap</span><span class='op'>$</span><span class='va'>KEGG</span><span class='op'>[</span><span class='fl'>11</span><span class='op'>:</span><span class='fl'>23</span><span class='op'>]</span>, <span class='va'>idmap</span><span class='op'>$</span><span class='va'>InChIKey</span><span class='op'>[</span><span class='fl'>100</span><span class='op'>:</span><span class='fl'>150</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>ids</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'>fobitools</span><span class='fu'>::</span><span class='va'><a href='idmap.html'>idmap</a></span><span class='op'>$</span><span class='va'>HMDB</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>, 
+         <span class='fu'>fobitools</span><span class='fu'>::</span><span class='va'><a href='idmap.html'>idmap</a></span><span class='op'>$</span><span class='va'>KEGG</span><span class='op'>[</span><span class='fl'>11</span><span class='op'>:</span><span class='fl'>23</span><span class='op'>]</span>, 
+         <span class='fu'>fobitools</span><span class='fu'>::</span><span class='va'><a href='idmap.html'>idmap</a></span><span class='op'>$</span><span class='va'>InChIKey</span><span class='op'>[</span><span class='fl'>100</span><span class='op'>:</span><span class='fl'>150</span><span class='op'>]</span><span class='op'>)</span>
 <span class='fu'>fobitools</span><span class='fu'>::</span><span class='fu'>id_convert</span><span class='op'>(</span><span class='va'>ids</span>, to <span class='op'>=</span> <span class='st'>"FOBI"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 71 x 4</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 71 x 4</span><span>
 #&gt;    FOBI        HMDB      KEGG   InChIKey                   
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                      
-#&gt; </span><span style='color: #555555;'> 1</span><span> FOBI:030706 HMDB00062 C15025 PHIQHXFUZVPYII-LURJTMIESA-N
-#&gt; </span><span style='color: #555555;'> 2</span><span> FOBI:030415 HMDB00375 C11457 QVWAEZJXDYOKEH-UHFFFAOYSA-N
-#&gt; </span><span style='color: #555555;'> 3</span><span> FOBI:030460 HMDB02780 C06562 PFTAWBLQPZVEMU-DZGCQCFKSA-N
-#&gt; </span><span style='color: #555555;'> 4</span><span> FOBI:030630 HMDB00956 C00898 FEWJPZIEWOKRBE-JCYAYHJZSA-N
-#&gt; </span><span style='color: #555555;'> 5</span><span> FOBI:030711 HMDB00925 C01104 UYPYRKYUKCHHIB-UHFFFAOYSA-N
-#&gt; </span><span style='color: #555555;'> 6</span><span> FOBI:030687 HMDB00033 C00386 CQOVPNPJLQNMDC-ZETCQYMHSA-N
-#&gt; </span><span style='color: #555555;'> 7</span><span> FOBI:030555 HMDB05800 C01514 IQPNAANSBPBGFQ-UHFFFAOYSA-N
-#&gt; </span><span style='color: #555555;'> 8</span><span> FOBI:030709 HMDB00251 C00245 XOAAWQZATWQOTB-UHFFFAOYSA-N
-#&gt; </span><span style='color: #555555;'> 9</span><span> FOBI:030748 HMDB03000 C05432 OAIJSZIZWZSQBC-GYZMGTAESA-N
-#&gt; </span><span style='color: #555555;'>10</span><span> FOBI:030625 </span><span style='color: #BB0000;'>NA</span><span>        C02824 HCAJEUSONLESMK-UHFFFAOYSA-N
-#&gt; </span><span style='color: #555555;'># … with 61 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                      
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> FOBI:030706 HMDB00062 C15025 PHIQHXFUZVPYII-LURJTMIESA-N
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> FOBI:030415 HMDB00375 C11457 QVWAEZJXDYOKEH-UHFFFAOYSA-N
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> FOBI:030460 HMDB02780 C06562 PFTAWBLQPZVEMU-DZGCQCFKSA-N
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> FOBI:030630 HMDB00956 C00898 FEWJPZIEWOKRBE-JCYAYHJZSA-N
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> FOBI:030711 HMDB00925 C01104 UYPYRKYUKCHHIB-UHFFFAOYSA-N
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> FOBI:030687 HMDB00033 C00386 CQOVPNPJLQNMDC-ZETCQYMHSA-N
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> FOBI:030555 HMDB05800 C01514 IQPNAANSBPBGFQ-UHFFFAOYSA-N
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> FOBI:030709 HMDB00251 C00245 XOAAWQZATWQOTB-UHFFFAOYSA-N
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> FOBI:030748 HMDB03000 C05432 OAIJSZIZWZSQBC-GYZMGTAESA-N
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> FOBI:030625 </span><span style='color: #BB0000;'>NA</span><span>        C02824 HCAJEUSONLESMK-UHFFFAOYSA-N
+#&gt; </span><span style='color: #949494;'># … with 61 more rows</span><span></div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.26</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.42</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -103,11 +103,15 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/dietary_data_annotation.html">Dietary data annotation
+      <a href="../articles/dietary_data_annotation.html">Dietary text annotation
 </a>
     </li>
     <li>
-      <a href="../articles/food_enrichment_analysis.html">Food enrichment analysis
+      <a href="../articles/food_enrichment_analysis.html">Food over representation analysis
+</a>
+    </li>
+    <li>
+      <a href="../articles/MW_ST000291_enrichment.html">Use case ST000291
 </a>
     </li>
   </ul>
@@ -119,7 +123,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/pcastellanoescuder/fobitools">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -145,7 +149,7 @@
     <p>This function provides a text mining pipeline to map nutritional free text to Food-Biomarker Ontology. This pipeline is composed of five sequential layers to map food items to FOBI with the maximum accuracy as possible.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>annotate_foods</span><span class='op'>(</span><span class='va'>foods</span>, similarity <span class='op'>=</span> <span class='fl'>0.85</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>annotate_foods</span><span class='op'>(</span><span class='va'>foods</span>, similarity <span class='op'>=</span> <span class='fl'>0.85</span>, reference <span class='op'>=</span> <span class='fu'>fobitools</span><span class='fu'>::</span><span class='va'><a href='foods.html'>foods</a></span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -157,6 +161,10 @@
     <tr>
       <th>similarity</th>
       <td><p>Numeric between 0 (low) and 1 (high). This value indicates the semantic similarity cutoff used at the last layer of the text mining pipeline. 1 = exact match; 0 = very poor match. Values below 0.85 are not recommended.</p></td>
+    </tr>
+    <tr>
+      <th>reference</th>
+      <td><p>FOBI foods table obtained with `parse_fobi(terms = "FOBI:0001", get = "des")`. If this value is set to NULL, the last version of FOBI will be downloaded from GitHub.</p></td>
     </tr>
     </table>
 
@@ -179,31 +187,31 @@
                                  <span class='st'>"Beef and veal, one apple"</span>, <span class='st'>"pizza without meat"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'>annotate_foods</span><span class='op'>(</span><span class='va'>free_text</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #00BB00;'>100% annotated
-#&gt; </span><span>5.726 sec elapsed</div><div class='output co'>#&gt; $annotated
-#&gt; </span><span style='color: #555555;'># A tibble: 17 x 4</span><span>
+#&gt; </span><span>0.251 sec elapsed</div><div class='output co'>#&gt; $annotated
+#&gt; </span><span style='color: #949494;'># A tibble: 17 x 4</span><span>
 #&gt;    FOOD_ID FOOD_NAME                              FOBI_ID      FOBI_NAME        
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            
-#&gt; </span><span style='color: #555555;'> 1</span><span> 101     Yesterday I ate eggs and bacon with a… FOODON:0000… bacon food produ…
-#&gt; </span><span style='color: #555555;'> 2</span><span> 101     Yesterday I ate eggs and bacon with a… FOODON:0331… butter           
-#&gt; </span><span style='color: #555555;'> 3</span><span> 101     Yesterday I ate eggs and bacon with a… FOODON:0000… egg food product 
-#&gt; </span><span style='color: #555555;'> 4</span><span> 101     Yesterday I ate eggs and bacon with a… FOODON:0000… tea based bevera…
-#&gt; </span><span style='color: #555555;'> 5</span><span> 101     Yesterday I ate eggs and bacon with a… FOODON:0331… tea food product 
-#&gt; </span><span style='color: #555555;'> 6</span><span> 101     Yesterday I ate eggs and bacon with a… FOODON:0330… toast            
-#&gt; </span><span style='color: #555555;'> 7</span><span> 101     Yesterday I ate eggs and bacon with a… FOBI:07511   whole toast      
-#&gt; </span><span style='color: #555555;'> 8</span><span> 102     Crisp bread and rice crackers with wh… FOODON:0000… bread food produ…
-#&gt; </span><span style='color: #555555;'> 9</span><span> 102     Crisp bread and rice crackers with wh… FOODON:0000… cracker          
-#&gt; </span><span style='color: #555555;'>10</span><span> 102     Crisp bread and rice crackers with wh… FOBI:07522   crisp            
-#&gt; </span><span style='color: #555555;'>11</span><span> 102     Crisp bread and rice crackers with wh… FOODON:0330… rice grain food …
-#&gt; </span><span style='color: #555555;'>12</span><span> 102     Crisp bread and rice crackers with wh… FOBI:07510   whole bread      
-#&gt; </span><span style='color: #555555;'>13</span><span> 102     Crisp bread and rice crackers with wh… FOBI:0148    wholegrain       
-#&gt; </span><span style='color: #555555;'>14</span><span> 103     Beef and veal, one apple               FOODON:0000… apple (whole)    
-#&gt; </span><span style='color: #555555;'>15</span><span> 103     Beef and veal, one apple               FOODON:0000… beef food product
-#&gt; </span><span style='color: #555555;'>16</span><span> 103     Beef and veal, one apple               FOODON:0000… veal             
-#&gt; </span><span style='color: #555555;'>17</span><span> 104     pizza without meat                     FOBI:007956  vegetarian pizza 
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 101     Yesterday I ate eggs and bacon with a… FOODON:0000… bacon food produ…
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 101     Yesterday I ate eggs and bacon with a… FOODON:0331… butter           
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 101     Yesterday I ate eggs and bacon with a… FOODON:0000… egg food product 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 101     Yesterday I ate eggs and bacon with a… FOODON:0000… tea based bevera…
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 101     Yesterday I ate eggs and bacon with a… FOODON:0331… tea food product 
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 101     Yesterday I ate eggs and bacon with a… FOODON:0330… toast            
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 101     Yesterday I ate eggs and bacon with a… FOBI:07511   whole toast      
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 102     Crisp bread and rice crackers with wh… FOODON:0000… bread food produ…
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 102     Crisp bread and rice crackers with wh… FOODON:0000… cracker          
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 102     Crisp bread and rice crackers with wh… FOBI:07522   crisp            
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> 102     Crisp bread and rice crackers with wh… FOODON:0330… rice grain food …
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> 102     Crisp bread and rice crackers with wh… FOBI:07510   whole bread      
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> 102     Crisp bread and rice crackers with wh… FOBI:0148    wholegrain       
+#&gt; </span><span style='color: #BCBCBC;'>14</span><span> 103     Beef and veal, one apple               FOODON:0000… apple (whole)    
+#&gt; </span><span style='color: #BCBCBC;'>15</span><span> 103     Beef and veal, one apple               FOODON:0000… beef food product
+#&gt; </span><span style='color: #BCBCBC;'>16</span><span> 103     Beef and veal, one apple               FOODON:0000… veal             
+#&gt; </span><span style='color: #BCBCBC;'>17</span><span> 104     pizza without meat                     FOBI:007956  vegetarian pizza 
 #&gt; 
 #&gt; $unannotated
-#&gt; </span><span style='color: #555555;'># A tibble: 0 x 2</span><span>
-#&gt; </span><span style='color: #555555;'># … with 2 variables: FOOD_ID </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, FOOD_NAME </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 0 x 2</span><span>
+#&gt; </span><span style='color: #949494;'># … with 2 variables: FOOD_ID &lt;dbl&gt;, FOOD_NAME &lt;chr&gt;</span><span>
 #&gt; </div><div class='input'>
 </div></span></pre>
   </div>

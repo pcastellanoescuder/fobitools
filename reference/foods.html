@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • fobitools</title>
+<title>FOBI Foods Table File - Feb 02, 2021 — foods • fobitools</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,8 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="FOBI Foods Table File - Feb 02, 2021 — foods" />
+<meta property="og:description" content="FOBI foods table obtained with `parse_fobi(terms = &quot;FOBI:0001&quot;, get = &quot;des&quot;)`" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -66,7 +67,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -139,92 +140,50 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/pcastellanoescuder/fobitools/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>FOBI Foods Table File - Feb 02, 2021</h1>
+    <small class="dont-index">Source: <a href='https://github.com/pcastellanoescuder/fobitools/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>foods.Rd</code></div>
     </div>
 
-    <div id="fobitools-09942" class="section level1">
-<h1 class="page-header" data-toc-text="0.99.42">
-<a href="#fobitools-09942" class="anchor"></a>fobitools 0.99.42</h1>
-<ul>
-<li>New package vignette “<em>Use case ST000291</em>”.</li>
-</ul>
-</div>
-    <div id="fobitools-09941" class="section level1">
-<h1 class="page-header" data-toc-text="0.99.41">
-<a href="#fobitools-09941" class="anchor"></a>fobitools 0.99.41</h1>
-<ul>
-<li>Switch from the <code>sigora</code> CRAN package to the <code>fgsea</code> Bioconductor package to perform enrichment analysis.</li>
-<li>Added new function named <code>msea</code> to perform GSEA using FOBI.</li>
-</ul>
-</div>
-    <div id="fobitools-09938" class="section level1">
-<h1 class="page-header" data-toc-text="0.99.38">
-<a href="#fobitools-09938" class="anchor"></a>fobitools 0.99.38</h1>
-<ul>
-<li>Addressing Vince Carey (package reviewer from <em>Bioconductor</em>) comments and suggestions.</li>
-</ul>
-</div>
-    <div id="fobitools-09935" class="section level1">
-<h1 class="page-header" data-toc-text="0.99.35">
-<a href="#fobitools-09935" class="anchor"></a>fobitools 0.99.35</h1>
-<ul>
-<li>Enabling the option to include a FOBI table instead of downloading it from GitHub.</li>
-<li>Added FOBI table in package data.</li>
-</ul>
-</div>
-    <div id="fobitools-09929" class="section level1">
-<h1 class="page-header" data-toc-text="0.99.29">
-<a href="#fobitools-09929" class="anchor"></a>fobitools 0.99.29</h1>
-<ul>
-<li>
-<p>Fix <em>Bioconductor Single Package Builder</em> errors and warnings:</p>
-<ul>
-<li>
-<code>fobitools.Rproj</code> file removed</li>
-<li>
-<code>Rd</code> line widths set to less than 100 characters</li>
-<li>Examples added in <code>ora.R</code>
-</li>
-<li>R version dependency updated from 3.6.0 to 4.1.</li>
-<li>Use TRUE/FALSE instead of T/F in <code>ora.R</code>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-    <div id="fobitools-09924" class="section level1">
-<h1 class="page-header" data-toc-text="0.99.24">
-<a href="#fobitools-09924" class="anchor"></a>fobitools 0.99.24</h1>
-<ul>
-<li>Added vignettes.</li>
-<li>
-<code>pkgdown</code> updated.</li>
-<li>Submitted to <em>Bioconductor</em>!</li>
-</ul>
-</div>
-    <div id="fobitools-09918" class="section level1">
-<h1 class="page-header" data-toc-text="0.99.18">
-<a href="#fobitools-09918" class="anchor"></a>fobitools 0.99.18</h1>
-<ul>
-<li>Added a function called <code>fobi_graph</code> to generate FOBI graphs.</li>
-</ul>
-</div>
-    <div id="fobitools-09912" class="section level1">
-<h1 class="page-header" data-toc-text="0.99.12">
-<a href="#fobitools-09912" class="anchor"></a>fobitools 0.99.12</h1>
-<ul>
-<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>FOBI foods table obtained with `parse_fobi(terms = "FOBI:0001", get = "des")`</p>
+    </div>
 
+    <pre class="usage"><span class='va'>foods</span></pre>
+
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A tibble: 568 FOBI food entities with their associated information.</p><dl>
+  <dt>id_code</dt><dd><p>FOBI entity ID.</p></dd>
+  <dt>name</dt><dd><p>FOBI entity name.</p></dd>
+  <dt>is_a_code</dt><dd><p>FOBI entity direct parent class ID.</p></dd>
+  <dt>is_a_name</dt><dd><p>FOBI entity direct parent class name.</p></dd>
+  <dt>id_BiomarkerOf</dt><dd><p>FOBI entity associated food ID (in terms of biomarker).</p></dd>
+  <dt>BiomarkerOf</dt><dd><p>FOBI entity associated food name (in terms of biomarker).</p></dd>
+  <dt>ChemSpider</dt><dd><p>ChemSpider ID.</p></dd>
+  <dt>KEGG</dt><dd><p>KEGG ID.</p></dd>
+  <dt>PubChemCID</dt><dd><p>PubChemCID ID.</p></dd>
+  <dt>InChIKey</dt><dd><p>InChIKey ID.</p></dd>
+  <dt>InChICode</dt><dd><p>InChICode ID.</p></dd>
+  <dt>FOBI</dt><dd><p>FOBI ID.</p></dd>
+  <dt>alias</dt><dd><p>FOBI entity alias name.</p></dd>
+  <dt>HMDB</dt><dd><p>HMDB ID.</p></dd>
+  <dt>id_Contains</dt><dd><p>FOBI entity associated food ID (in terms of a recipe).</p></dd>
+  <dt>Contains</dt><dd><p>FOBI entity associated food ID (in terms of a recipe).</p></dd>
+
+</dl>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://github.com/pcastellanoescuder/FoodBiomarkerOntology'>https://github.com/pcastellanoescuder/FoodBiomarkerOntology</a></p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 
