@@ -1,3 +1,7 @@
+# fobitools 0.99.42
+
+* New package vignette "_Use case ST000291_".
+
 # fobitools 0.99.41
 
 * Switch from the `sigora` CRAN package to the `fgsea` Bioconductor package to perform enrichment analysis.

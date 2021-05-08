@@ -5,10 +5,6 @@
 
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![Build
-Status](https://travis-ci.com/pcastellanoescuder/fobitools.svg?branch=master)](https://travis-ci.com/pcastellanoescuder/fobitools)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/pcastellanoescuder/fobitools?branch=master&svg=true)](https://ci.appveyor.com/project/pcastellanoescuder/fobitools)
 [![Actions
 Status](https://github.com/pcastellanoescuder/fobitools/workflows/R-CMD-check/badge.svg)](https://github.com/pcastellanoescuder/fobitools/actions)
 [![Bioc devel

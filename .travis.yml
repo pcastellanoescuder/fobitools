@@ -1,28 +1,28 @@
- # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
-language: r
-r:
-  # - oldrel
-  # - release
-  - devel
-  
-warnings_are_errors: true
-
-sudo: true
-
-addons:
-  apt:
-    packages:
-      - build-essential
-      - libcurl4-gnutls-dev
-      - libxml2-dev
-      - libssl-dev
-      - libgit2-dev
-      
-r_packages:
-  - covr
-  - testthat
-  - devtools
-
-after_success:
-  - Rscript -e 'covr::codecov()'
+#  # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+# 
+# language: r
+# r:
+#   # - oldrel
+#   # - release
+#   - devel
+#   
+# warnings_are_errors: true
+# 
+# sudo: true
+# 
+# addons:
+#   apt:
+#     packages:
+#       - build-essential
+#       - libcurl4-gnutls-dev
+#       - libxml2-dev
+#       - libssl-dev
+#       - libgit2-dev
+#       
+# r_packages:
+#   - covr
+#   - testthat
+#   - devtools
+# 
+# after_success:
+#   - Rscript -e 'covr::codecov()'

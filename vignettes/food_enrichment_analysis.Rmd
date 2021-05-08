@@ -1,5 +1,5 @@
 ---
-title: "Food enrichment analysis"
+title: "Food over representation analysis"
 author: 
 - name: Pol Castellano-Escuder
   affiliation: University of Barcelona, Spain.
@@ -8,14 +8,17 @@ date: "`r BiocStyle::doc_date()`"
 output: 
     BiocStyle::html_document
 vignette: >
-  %\VignetteIndexEntry{Food enrichment analysis}
+  %\VignetteIndexEntry{Food over representation analysis}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+bibliography: ["fobitools.bib"]
+biblio-style: apalike
+link-citations: true
 ---
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2021-05-03
+**Last edited**: 2021-08-05
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 
@@ -56,7 +59,7 @@ This is different in nutrimetabolomics. Targeted nutrimetabolomics studies sets 
 
 In nutrimetabolomic studies it may be interesting to study enriched or over represented foods/food groups by the metabolites resulting from the study statistical analysis, rather than the enriched metabolic pathways, as would make more sense in genomics or other metabolomics studies.     
 
-The [Food-Biomarker Ontology (FOBI)](https://academic.oup.com/database/article/doi/10.1093/databa/baaa033/5857401) provides a biological knowledge for conducting these enrichment analyses in nutrimetabolomic studies, as FOBI provides the relationships between several foods and their associated dietary metabolites.        
+The [Food-Biomarker Ontology (FOBI)](https://academic.oup.com/database/article/doi/10.1093/databa/baaa033/5857401) provides a biological knowledge for conducting these enrichment analyses in nutrimetabolomic studies, as FOBI provides the relationships between several foods and their associated dietary metabolites [@castellano2020fobi].             
 
 Accordingly, to perform an ORA with the `fobitools` package, it is necessary to provide a metabolite universe (all metabolites included in the statistical analysis) and a list of selected metabolites (selected metabolites according to a statistical criterion).      
 
@@ -124,6 +127,4 @@ sessionInfo()
 ```
 
 # References
-
-Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033. DOI: [https://doi.org/10.1093/databa/baaa033](https://doi.org/10.1093/databa/baaa033)
 

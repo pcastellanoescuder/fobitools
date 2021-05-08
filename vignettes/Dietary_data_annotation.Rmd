@@ -1,5 +1,5 @@
 ---
-title: "Dietary data annotation"
+title: "Dietary text annotation"
 author: 
 - name: Pol Castellano-Escuder
   affiliation: University of Barcelona, Spain.
@@ -8,14 +8,14 @@ date: "`r BiocStyle::doc_date()`"
 output: 
     BiocStyle::html_document
 vignette: >
-  %\VignetteIndexEntry{Dietary data annotation}
+  %\VignetteIndexEntry{Dietary text annotation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2021-01-14
+**Last edited**: 2021-08-15
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 

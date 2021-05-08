@@ -1,0 +1,333 @@
+---
+title: "Use case of fobitools using tidyverse and the ST000291 data from Metabolomics Workbench"
+author: 
+- name: Pol Castellano-Escuder
+  affiliation: University of Barcelona, Spain.
+  email: polcaes@gmail.com
+date: "`r BiocStyle::doc_date()`"
+output: 
+    BiocStyle::html_document
+vignette: >
+  %\VignetteIndexEntry{Use case ST000291}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+bibliography: ["fobitools.bib"]
+biblio-style: apalike
+link-citations: true
+---
+
+**Compiled date**: `r Sys.Date()`
+
+**Last edited**: 2021-08-05
+
+**License**: `r packageDescription("fobitools")[["License"]]`
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Installation
+
+Run the following code to install the Bioconductor version of the package.        
+
+```{r, eval = FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("fobitools")
+```
+
+# Load packages 
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+library(fobitools)
+```
+
+We will also need some additional [CRAN](https://cran.r-project.org) and [Bioconductor](https://bioconductor.org) packages for performing tasks such as statistical analysis and web scraping.   
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+# CRAN
+library(tidyverse)
+library(rvest)
+library(ggrepel)
+library(kableExtra)
+
+# Bioconductor
+library(POMA)
+library(metabolomicsWorkbenchR)
+library(SummarizedExperiment)
+```
+
+# Download the data from Metabolomics Workbench
+
+The Metabolomics Workbench, available at [www.metabolomicsworkbench.org](www.metabolomicsworkbench.org), is a public repository for metabolomics metadata and experimental data spanning various species and experimental platforms, metabolite standards, metabolite structures, protocols, tutorials, and training material and other educational resources. It provides a computational platform to integrate, analyze, track, deposit and disseminate large volumes of heterogeneous data from a wide variety of metabolomics studies including mass spectrometry (MS) and nuclear magnetic resonance spectrometry (NMR) data spanning over 20 different species covering all the major taxonomic categories including humans and other mammals, plants, insects, invertebrates and microorganisms [@sud2016metabolomics].    
+
+The `metabolomicsWorkbenchR` Bioconductor package allows us to obtain data from the Metabolomics Workbench repository. In this vignette we will use the sample data set [ST000291](https://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Study&StudyID=ST000291). 
+
+## Sumary of the study (ST000291)
+
+Eighteen healthy female college students between 21-29 years old with a normal BMI of 18.5-25 were recruited. Each subject was provided with a list of foods that contained significant amount of procyanidins, such as **cranberries, apples, grapes, blueberries, chocolate and plums**. They were advised to avoid these foods during the 1-6th day and the rest of the study. On the morning of the 7th day, a first-morning baseline urine sample and blood sample were collected from all human subjects after overnight fasting. **Participants were then randomly allocated into two groups (n=9) to consume cranberry juice or apple juice**. Six bottles (250 ml/bottle) of juice were given to participants to drink in the morning and evening of the 7th, 8th, and 9th day. On the morning of 10th day, all subjects returned to the clinical unit to provide a first-morning urine sample after overnight fasting. The blood sample was also collected from participants 30 min later after they drank another bottle of juice in the morning. After two-weeks of wash out period, participants switched to the alternative regimen and repeated the protocol. One human subject was dropped off this study because she missed part of her appointments. Another two human subjects were removed from urine metabolomics analyses because they failed to provide required urine samples after juice drinking.The present study aimed to investigate overall metabolic changes caused by procyanidins concentrates from cranberries and apples using a global LCMS based metabolomics approach. All plasma and urine samples were stored at -80ºC until analysis.     
+
+## Download data
+
+This study is composed of two complementary MS analyses, the positive mode (AN000464) and the negative mode (AN000465). Let's download them both!   
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+data_negative_mode <- do_query(
+  context = "study",
+  input_item = "analysis_id",
+  input_value = "AN000465",
+  output_item = "SummarizedExperiment")
+
+data_positive_mode <- do_query(
+  context = "study",
+  input_item = "analysis_id",
+  input_value = "AN000464",
+  output_item = "SummarizedExperiment")
+```
+
+## Scraping metabolite names and identifiers with `rvest`
+
+In many metabolomics studies, the reproducibility of analyses is severely affected by the poor interoperability of metabolite names and their identifiers. For this reason it is important to develop tools that facilitate the process of converting one type of identifier to another. In order to use the `fobitools` package, we need some generic identifier (such as PubChem, KEGG or HMDB) that allows us to obtain the corresponding FOBI identifier for each metabolite. The Metabolomics Workbench repository provides us with this information for many of the metabolites quantified in study [ST000291](https://www.metabolomicsworkbench.org/data/show_metabolites_by_study.php?STUDY_ID=ST000291&SEARCH_TYPE=KNOWN&STUDY_TYPE=MS&RESULT_TYPE=1) (Figure \@ref(fig:metabolitenames)). In order to easily obtain this information, we will perform a web scraping operation using the `rvest` package.
+
+```{r metabolitenames, message = FALSE, warning = FALSE, comment = FALSE, echo = FALSE, fig.align = "center", out.width = "100%", fig.cap = 'Metabolite identifiers of the ST000291 Metabolomics Workbench study.'}
+knitr::include_graphics("figure/ST000291_names.png")
+```
+
+Below we obtain the PubChem and KEGG identifiers of the metabolites analyzed in the positive and negative mode directly from the Metabolomics Workbench website. We will then remove those duplicate identifiers.    
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+metaboliteNamesURL <- "https://www.metabolomicsworkbench.org/data/show_metabolites_by_study.php?STUDY_ID=ST000291&SEARCH_TYPE=KNOWN&STUDY_TYPE=MS&RESULT_TYPE=1"
+metaboliteNames <- metaboliteNamesURL %>% 
+  read_html() %>% 
+  html_nodes(".datatable")
+
+metaboliteNames_negative <- metaboliteNames %>%
+  .[[1]] %>%
+  html_table() %>%
+  dplyr::select(`Metabolite Name`, PubChemCompound_ID, `Kegg Id`)
+
+metaboliteNames_positive <- metaboliteNames %>%
+  .[[2]] %>%
+  html_table() %>%
+  dplyr::select(`Metabolite Name`, PubChemCompound_ID, `Kegg Id`)
+
+metaboliteNames <- bind_rows(metaboliteNames_negative, metaboliteNames_positive) %>%
+  dplyr::rename(names = 1, PubChem = 2, KEGG = 3) %>%
+  mutate(KEGG = ifelse(KEGG == "-", "UNKNOWN", KEGG),
+         PubChem = ifelse(PubChem == "-", "UNKNOWN", PubChem)) %>%
+  filter(!duplicated(PubChem))
+```
+
+# Prepare features and metadata
+
+Now we have to prepare the metadata and features in order to proceed with the statistical analysis. In this step we assign to each metabolite its PubChem identifier obtained in the previous step.
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+## negative mode features 
+features_negative <- assay(data_negative_mode) %>%
+  dplyr::slice(-n())
+rownames(features_negative) <- rowData(data_negative_mode)$metabolite[1:(length(rowData(data_negative_mode)$metabolite)-1)]
+
+## positive mode features
+features_positive <- assay(data_positive_mode) %>%
+  dplyr::slice(-n())
+rownames(features_positive) <- rowData(data_positive_mode)$metabolite[1:(length(rowData(data_positive_mode)$metabolite)-1)]
+
+## combine positive and negative mode and set PubChem IDs as feature names
+features <- bind_rows(features_negative, features_positive) %>%
+  tibble::rownames_to_column("names") %>%
+  right_join(metaboliteNames, by = "names") %>%
+  select(-names, -KEGG) %>%
+  tibble::column_to_rownames("PubChem")
+
+## metadata
+pdata <- colData(data_negative_mode) %>% # or "data_positive_mode". They are equal
+  as.data.frame() %>%
+  tibble::rownames_to_column("ID") %>%
+  mutate(Treatment = case_when(Treatment == "Baseline urine" ~ "Baseline",
+                               Treatment == "Urine after drinking apple juice" ~ "Apple",
+                               Treatment == "Urine after drinking cranberry juice" ~ "Cranberry"))
+```
+
+# Statistical analysis with `POMA`
+
+`POMA` provides a structured, reproducible and easy-to-use workflow for the visualization, preprocessing, exploration, and statistical analysis of metabolomics and proteomics data. The main aim of this package is to enable a flexible data cleaning and statistical analysis processes in one comprehensible and user-friendly R package. `POMA` uses the standardized `MSnbase` data structures, to achieve the maximum flexibility and reproducibility and makes `POMA` compatible with other Bioconductor packages [@POMA].
+
+## Create a `MSnbase::MSnSet` object
+
+First, we create a `MSnSet` object that integrates both metadata and features in the same data structure.
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+data_msnset <- PomaMSnSetClass(target = pdata, features = t(features))
+```
+
+## Preprocessing
+
+Second, we perform the preprocessing step. This step includes the missing value imputation unsing the $k$-NN algorithm, log Pareto normalization (transformation and scaling) and outlier detection and cleaning. Once these steps are completed, we can proceed to the statistical analysis of these data.
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+data_preprocessed <- data_msnset %>%
+  PomaImpute(ZerosAsNA = TRUE, cutoff = 20, method = "knn") %>%
+  PomaNorm(method = "log_pareto") %>%
+  PomaOutliers(coef = 3)
+```
+
+## Limma model
+
+We use a limma model [@limma] to identify those most significant metabolites between the "**Baseline urine**" and "**Urine after drinking cranberry juice**" groups. With this analysis we expect to find metabolites related to cranberry intake.   
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+limma_res <- data_preprocessed %>%
+  PomaLimma(contrast = "Baseline-Cranberry", adjust = "fdr") %>%
+  tibble::rownames_to_column("PubChemCID")
+
+# show the first 10 features
+limma_res %>%
+  dplyr::slice(1L:10L) %>%
+  kbl(row.names = FALSE, booktabs = TRUE) %>%
+  kable_styling(latex_options = c("striped"))
+```
+
+# Convert PubChem IDs to FOBI IDs
+
+Once we have the results of the statistical analysis and generic identifiers recognized in the FOBI ontology [@castellano2020fobi], we can proceed to perform one of the main functions provided by the `fobitools` package, the ID conversion. With the `fobitools::id_convert()` command, users can convert different IDs between FOBI, HMDB, KEGG, PubChem, InChIKey, InChICode, ChemSpider, and chemical names. We will then obtain the FOBI IDs from the PubChem IDs (obtained in the previous sections) and add them as a new column to the results of the limma model.
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+limma_FOBI_names <- limma_res %>%
+  dplyr::pull("PubChemCID") %>%
+  fobitools::id_convert()
+
+# show the ID conversion results
+limma_FOBI_names %>%
+  head() %>%
+  kbl(row.names = FALSE, booktabs = TRUE) %>%
+  kable_styling(latex_options = c("striped"))
+```
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+limma_FOBI_names <- limma_FOBI_names %>%
+  right_join(limma_res, by = "PubChemCID") %>%
+  dplyr::arrange(-dplyr::desc(P.Value))
+```
+
+# Enrichment analysis
+
+Enrichment analysis denotes any method that benefits from biological pathway or network information to gain insight into a biological system [@creixell2015pathway]. In other words, these type of analyses integrate the existing biological knowledge (from different biological sources such as databases and ontologies) and the statistical results of _omics_ studies, obtaining a deeper understanding of biological systems.  
+
+In most metabolomics studies, the output of statistical analysis is usually a list of features selected as statistically significant or statistically relevant according to a pre-defined statistical criteria. Enrichment analysis methods use these selected features to explore associated biologically relevant pathways, diseases, etc., depending on the nature of the input feature list (genes, metabolites, etc.) and the source used to extract the biological knowledge (GO, KEGG, **FOBI**, etc.).    
+
+Here, we present a tool that uses the FOBI information to perform different types of enrichment analyses. Therefore, the presented methods allow researchers to move from lists of metabolites to chemical classes and food groups associated with those lists, and consequently, to the study design. 
+
+Currently, the most popular used approaches for enrichment analysis are the over representation analysis (ORA) and the gene set enrichment analysis (GSEA), with its variants for other fields such as the metabolite set enrichment analysis (MSEA) [@xia2010msea].
+
+## Over representation analysis (ORA)
+
+ORA is one of the most used methods to perform enrichment analysis in metabolomics studies due to its simplicity and easy understanding. This method statistically evaluates the fraction of metabolites in a particular pathway found among the set of metabolites statistically selected. Thus, ORA is used to test if certain groups of metabolites are represented more than expected by chance given a feature list. 
+
+However, ORA has a number of limitations. The most important one is the need of using a certain threshold or criteria to select the feature list. This means that metabolites do not meet the selection criteria must be discarded. The second big limitation of ORA is that this method assumes independence of sets and features. In ORA, is assumed that each feature is independent of the other features and each set is independent of the other sets.
+
+Here, we perform an ORA with the `fobitools` package, where we will use as a universe all the metabolites of the study present in FOBI and as a list those metabolites with a raw p-value < 0.01 in the limma results table.
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+metaboliteList <- limma_FOBI_names$FOBI[limma_FOBI_names$P.Value < 0.01]
+metaboliteUniverse <- limma_FOBI_names$FOBI
+
+fobitools::ora(metaboliteList = metaboliteList,
+               metaboliteUniverse = metaboliteUniverse,
+               pvalCutoff = 0.5) %>%
+  kbl(row.names = FALSE, booktabs = TRUE) %>%
+  kable_styling(latex_options = c("striped"))
+```
+
+As we can see, due to the limitations of this methodology and the small number of metabolites that meet the set statistical criterion, the results do not show a clear and obvious relationship with the design of the study, as the food groups that appear in the ORA results do not correspond to those foods administered in the intervention.
+
+## MSEA
+
+Gene Set Enrichment Analysis (GSEA) methodology was proposed for the first time in 2005, with the aim of improving the interpretation of gene expression data. The main purpose of GSEA is to determine whether members of a gene set $S$ tend to occur toward the top (or bottom) of the gene list $L$, in which case the gene set is correlated with the phenotypic class distinction [@subramanian2005gene]. 
+
+This type of analysis basically consists of three key steps [@subramanian2005gene]: 
+
+The first step consists on the calculation of an enrichment score ($ES$). This value indicates the degree to which a set $S$ is overrepresented at the extremes (top or bottom) of the entire ranked gene list $L$. The $ES$ is calculated by walking down the list $L$, increasing a running-sum statistic when a gene is found in $S$ and decreasing it when a gene is not found in $S$. The magnitude of the increment depends on the correlation of the gene with the phenotype. The $ES$ is the maximum deviation from zero encountered in the random walk. 
+
+The second step is the estimation of significance level of $ES$. The statistical significance (nominal p-value) of the $ES$ is estimated by using an empirical phenotype-based permutation test that preserves the complex correlation structure of the gene expression data. The phenotype labels ($L$) are permuted and the $ES$ of the $S$ is recomputed for the permuted data, which generates a null distribution for the $ES$. The empirical, nominal p-value of the observed $ES$ is then calculated relative to this null distribution. The permutation of class labels (groups) preserves gene-gene correlations and, thus, provides a more biologically reasonable assessment of significance than would be obtained by permuting genes.
+
+Finally, the third step consist on the adjustment for multiple hypothesis testing. When an entire database of gene sets is evaluated, the estimated significance level is adjusted for multiple hypothesis testing. First, the $ES$ is normalized for each gene set to account for the size of the set, yielding a normalized enrichment score (NES). Then, the proportion of false positives is controlled by calculating the FDR corresponding to each NES. 
+
+In 2010, a modification of the GSEA methodology was presented for metabolomics studies. This method was called Metabolite Set Enrichment Analysis (MSEA) and its main aim was to help researchers identify and interpret patterns of human and mammalian metabolite concentration changes in a biologically meaningful context [@xia2010msea]. MSEA is currently widely used in the metabolomics community and it is implemented and freely available at the known [MetaboAnalyst](https://www.metaboanalyst.ca) web-based tool [@xia2010msea].
+
+As can be seen, GSEA approach is more complex than the ORA methodology, both in terms of methodological aspects and understanding of the method.
+
+The `fobitools` package provides a function to perform MSEA using the FOBI information. This function requires a ranked list. Here, we will use the metabolites obtained in the limma model ranked by raw p-values.  
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+limma_FOBI_msea <- limma_FOBI_names %>%
+  select(FOBI, P.Value) %>%
+  filter(!is.na(FOBI)) %>%
+  dplyr::arrange(-dplyr::desc(abs(P.Value)))
+
+FOBI_msea <- as.vector(limma_FOBI_msea$P.Value)
+names(FOBI_msea) <- limma_FOBI_msea$FOBI
+
+msea_res <- fobitools::msea(FOBI_msea, pvalCutoff = 0.06)
+
+msea_res %>%
+  kbl(row.names = FALSE, booktabs = TRUE) %>%
+  kable_styling(latex_options = c("striped"))
+```
+
+As we can see, the enrichment analysis with the MSEA method seems to be much more accurate than the ORA method, since the two classes that head the results table ("_grape (whole, raw)_" and "_grapefruit (whole, raw)_") are clearly within the FOBI food group (set) "_plant fruit food product_", which is aligned with the study intervention, cranberry juice intake.
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE}
+fobi_graph(terms = c("FOODON:03301123", "FOODON:03301702"), 
+           get = "anc", 
+           labels = TRUE, 
+           labelsize = 6)
+```
+
+### MSEA plot with `ggplot2`
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE, fig.width = 12, fig.height = 8}
+ggplot(msea_res, aes(x = -log10(pval), y = NES, color = NES, size = classSize, label = className)) +
+  xlab("-log10(P-value)") +
+  ylab("NES (Normalized Enrichment Score)") +
+  geom_point() +
+  ggrepel::geom_label_repel(color = "black", size = 7) +
+  theme_bw() +
+  theme(legend.position = "top",
+        text = element_text(size = 22)) +
+  scale_color_viridis_c() +
+  scale_size(guide = "none")
+```
+
+### Network of metabolites found in MSEA
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE, fig.width = 12, fig.height = 10}
+FOBI_terms <- msea_res %>% 
+  unnest(cols = leadingEdge)
+
+fobitools::fobi %>%
+  filter(FOBI %in% FOBI_terms$leadingEdge) %>%
+  pull(id_code) %>%
+  fobi_graph(get = "anc", 
+             labels = TRUE, 
+             legend = TRUE, 
+             labelsize = 6, 
+             legendSize = 20)
+```
+
+# Limitations
+
+The FOBI ontology is currently in its first release version, so it does not yet include information on many metabolites and food relationships. All future efforts will be directed at expanding this ontology, leading to a significant increase in the number of metabolites and metabolite-food relationships. The `fobitools` package provides the methodology for easy use of the FOBI ontology regardless of the amount of information it contains. Therefore, future FOBI improvements will also have a direct impact on the `fobitools` package, increasing its utility and allowing to perform, among others, more accurate, complete and robust enrichment analyses.
+
+# Session Information
+
+```{r}
+sessionInfo()
+```
+
+# References
+
