@@ -1,5 +1,5 @@
 ---
-title: "Food over representation analysis"
+title: "Simple food over representation analysis (ORA)"
 author: 
 - name: Pol Castellano-Escuder
   affiliation: University of Barcelona, Spain.
@@ -8,7 +8,7 @@ date: "`r BiocStyle::doc_date()`"
 output: 
     BiocStyle::html_document
 vignette: >
-  %\VignetteIndexEntry{Food over representation analysis}
+  %\VignetteIndexEntry{Simple food ORA}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: ["fobitools.bib"]

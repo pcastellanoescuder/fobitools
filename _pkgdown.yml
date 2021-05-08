@@ -25,14 +25,14 @@ navbar:
       text: Articles
       menu:
       - text: |
-          Dietary text annotation
-        href: articles/dietary_data_annotation.html
-      - text: |
-          Food over representation analysis
-        href: articles/food_enrichment_analysis.html
-      - text: |
           Use case ST000291
         href: articles/MW_ST000291_enrichment.html
+      - text: |
+          Simple food ORA
+        href: articles/food_enrichment_analysis.html
+      - text: |
+          Dietary text annotation
+        href: articles/dietary_data_annotation.html
     news:
       text: Changelog
       href: news/index.html
