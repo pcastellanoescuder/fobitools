@@ -1,7 +1,8 @@
-# fobitools 0.99.45
+# fobitools 0.99.46
 
 * New package vignette "_Use case ST000291_".     
 * New package vignette "_Use case ST000629_".    
+* Remove AppVeyor and Travis CI and move codecov to GitHub Actions.
 
 # fobitools 0.99.41
 
