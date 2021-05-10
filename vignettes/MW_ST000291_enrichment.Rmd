@@ -18,7 +18,7 @@ link-citations: true
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2021-08-05
+**Last edited**: 2021-10-05
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 
@@ -49,16 +49,44 @@ library(fobitools)
 We will also need some additional [CRAN](https://cran.r-project.org) and [Bioconductor](https://bioconductor.org) packages for performing tasks such as statistical analysis and web scraping.   
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
-# CRAN
-library(tidyverse)
-library(rvest)
-library(ggrepel)
-library(kableExtra)
+# CRAN packages
+installifnot <- function(pckgName){
+  if (!(require(pckgName, character.only = TRUE))) {
+    install.packages(pckgName, dep = TRUE)
+    require(pckgName, character.only = TRUE)
+  }
+}
 
-# Bioconductor
-library(POMA)
-library(metabolomicsWorkbenchR)
-library(SummarizedExperiment)
+pk1 <- c('tidyverse', 'rvest', 'ggrepel', 'kableExtra')
+
+for (i in 1:length(pk1)){
+  installifnot(pk1[i])
+}
+
+# Bioconductor packages
+installBiocifnot <- function(pckgName){
+  if (!(require(pckgName, character.only = TRUE))) {
+    BiocManager::install(pckgName)
+    require(pckgName, character.only = TRUE)
+  }
+}
+
+pk2 <- c('metabolomicsWorkbenchR', 'POMA', 'SummarizedExperiment')
+
+for (i in 1:length(pk2)){
+  installBiocifnot(pk2[i])
+}
+
+# # CRAN
+# library(tidyverse)
+# library(rvest)
+# library(ggrepel)
+# library(kableExtra)
+# 
+# # Bioconductor
+# library(POMA)
+# library(metabolomicsWorkbenchR)
+# library(SummarizedExperiment)
 ```
 
 # Download the data from Metabolomics Workbench

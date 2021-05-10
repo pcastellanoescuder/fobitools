@@ -1,4 +1,4 @@
-# fobitools 0.99.43
+# fobitools 0.99.44
 
 * New package vignette "_Use case ST000291_".
 
