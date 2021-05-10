@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Use case of fobitools using tidyverse and the ST000291 data from Metabolomics Workbench • fobitools</title>
+<title>Use case of fobitools using tidyverse and the ST000629 data from Metabolomics Workbench • fobitools</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Use case of fobitools using tidyverse and the ST000291 data from Metabolomics Workbench">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Use case of fobitools using tidyverse and the ST000629 data from Metabolomics Workbench">
 <meta property="og:description" content="fobitools">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -99,11 +99,11 @@
 
       
 
-      </header><script src="MW_ST000291_enrichment_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="MW_ST000291_enrichment_files/kePrint-0.0.1/kePrint.js"></script><link href="MW_ST000291_enrichment_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+      </header><script src="MW_ST000629_enrichment_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="MW_ST000629_enrichment_files/kePrint-0.0.1/kePrint.js"></script><link href="MW_ST000629_enrichment_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Use case of fobitools using tidyverse and the ST000291 data from Metabolomics Workbench</h1>
+      <h1 data-toc-skip>Use case of fobitools using tidyverse and the ST000629 data from Metabolomics Workbench</h1>
                         <h4 class="author">Pol Castellano-Escuder</h4>
             <address class="author_afil">
       University of Barcelona, Spain.<br><a class="author_email" href="mailto:#"></a><a href="mailto:polcaes@gmail.com" class="email">polcaes@gmail.com</a>
@@ -111,8 +111,8 @@
                   
             <h4 class="date">10 mayo 2021</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/pcastellanoescuder/fobitools/blob/master/vignettes/MW_ST000291_enrichment.Rmd"><code>vignettes/MW_ST000291_enrichment.Rmd</code></a></small>
-      <div class="hidden name"><code>MW_ST000291_enrichment.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/pcastellanoescuder/fobitools/blob/master/vignettes/MW_ST000629_enrichment.Rmd"><code>vignettes/MW_ST000629_enrichment.Rmd</code></a></small>
+      <div class="hidden name"><code>MW_ST000629_enrichment.Rmd</code></div>
 
     </div>
 
@@ -136,11 +136,10 @@
 <a href="#load-packages" class="anchor"></a>Load packages</h1>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pcastellanoescuder/fobitools/">fobitools</a></span><span class="op">)</span></code></pre></div>
-<p>We will also need some additional <a href="https://cran.r-project.org">CRAN</a> and <a href="https://bioconductor.org">Bioconductor</a> packages for performing tasks such as statistical analysis and web scraping.</p>
+<p>We will also need some additional <a href="https://cran.r-project.org">CRAN</a> and <a href="https://bioconductor.org">Bioconductor</a> packages for performing tasks such as statistical analysis.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># CRAN</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span>
 
@@ -153,92 +152,40 @@
 <h1 class="hasAnchor">
 <a href="#download-the-data-from-metabolomics-workbench" class="anchor"></a>Download the data from Metabolomics Workbench</h1>
 <p>The Metabolomics Workbench, available at <a href="www.metabolomicsworkbench.org">www.metabolomicsworkbench.org</a>, is a public repository for metabolomics metadata and experimental data spanning various species and experimental platforms, metabolite standards, metabolite structures, protocols, tutorials, and training material and other educational resources. It provides a computational platform to integrate, analyze, track, deposit and disseminate large volumes of heterogeneous data from a wide variety of metabolomics studies including mass spectrometry (MS) and nuclear magnetic resonance spectrometry (NMR) data spanning over 20 different species covering all the major taxonomic categories including humans and other mammals, plants, insects, invertebrates and microorganisms <span class="citation">(Sud et al. <a href="#ref-sud2016metabolomics" role="doc-biblioref">2016</a>)</span>.</p>
-<p>The <code>metabolomicsWorkbenchR</code> Bioconductor package allows us to obtain data from the Metabolomics Workbench repository. In this vignette we will use the sample data set <a href="https://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Study&amp;StudyID=ST000291">ST000291</a>.</p>
-<div id="sumary-of-the-study-st000291" class="section level2">
+<p>The <code>metabolomicsWorkbenchR</code> Bioconductor package allows us to obtain data from the Metabolomics Workbench repository. In this vignette we will use the sample data set <a href="https://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Study&amp;StudyID=ST000629">ST000629</a>.</p>
+<div id="sumary-of-the-study-st000629" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sumary-of-the-study-st000291" class="anchor"></a>Sumary of the study (ST000291)</h2>
-<p>Eighteen healthy female college students between 21-29 years old with a normal BMI of 18.5-25 were recruited. Each subject was provided with a list of foods that contained significant amount of procyanidins, such as <strong>cranberries, apples, grapes, blueberries, chocolate and plums</strong>. They were advised to avoid these foods during the 1-6th day and the rest of the study. On the morning of the 7th day, a first-morning baseline urine sample and blood sample were collected from all human subjects after overnight fasting. <strong>Participants were then randomly allocated into two groups (n=9) to consume cranberry juice or apple juice</strong>. Six bottles (250 ml/bottle) of juice were given to participants to drink in the morning and evening of the 7th, 8th, and 9th day. On the morning of 10th day, all subjects returned to the clinical unit to provide a first-morning urine sample after overnight fasting. The blood sample was also collected from participants 30 min later after they drank another bottle of juice in the morning. After two-weeks of wash out period, participants switched to the alternative regimen and repeated the protocol. One human subject was dropped off this study because she missed part of her appointments. Another two human subjects were removed from urine metabolomics analyses because they failed to provide required urine samples after juice drinking.The present study aimed to investigate overall metabolic changes caused by procyanidins concentrates from cranberries and apples using a global LCMS based metabolomics approach. All plasma and urine samples were stored at -80ºC until analysis.</p>
+<a href="#sumary-of-the-study-st000629" class="anchor"></a>Sumary of the study (ST000629)</h2>
+<p>The objective of the study is to identify changes of urinary metabolite profiles associated with different responses to blood pressure to salt. Subjects are derived from The Dietary approaches to stop hypertension (DASH) diet, Sodium Intake and Blood Pressure Trial (Sacks FM <em>et al</em> PMID: 11136953,N Engl J Med. 2001).We choose two groups subjects who meet the following conditions (the two groups are separately named A and B). We chose subjects on the Control diet. These subjects meet the blood pressure criteria described below:Group A subjects conditions: 1) On Control diet. 2) Normotensive subjects: systolic blood pressure from the low sodium visit is less than 140 and the diastolic blood pressure from low sodium visit is less than 90; 3) For group A: Either the systolic blood pressure from the high sodium visit was greater than 10 mmHg higher than the systolic blood pressure from the low sodium visit, or the diastolic blood pressure from the high sodium visit was greater than 10 mmHg higher than the diastolic blood pressure from the low sodium visit; 3) For group B: The systolic blood pressure from the high sodium visit is within 5 mmHg (i.e. +/- 5) from the systolic blood pressure from the low sodium visit, and the diastolic blood pressure from the high sodium visit is within 5 mmHg from the diastolic blood pressure from the low sodium visit. Use gas chromatography/mass spectrometry (GC/MS) analysis, and liquid chromatography/mass spectrometry (LC/MS) analysis to find the differences of metabolic profiles between the high sodium level and the low sodium level, and compare the metabolic profiles of A with the metabolic profiles of B at the low and high sodium level.</p>
 </div>
 <div id="download-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#download-data" class="anchor"></a>Download data</h2>
-<p>This study is composed of two complementary MS analyses, the positive mode (AN000464) and the negative mode (AN000465). Let’s download them both!</p>
+<p>This study includes compounds analyzed via MS analysis and positive ion mode (AN000961). Let’s download it!</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data_negative_mode</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metabolomicsWorkbenchR/man/do_query.html">do_query</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metabolomicsWorkbenchR/man/do_query.html">do_query</a></span><span class="op">(</span>
   context <span class="op">=</span> <span class="st">"study"</span>,
   input_item <span class="op">=</span> <span class="st">"analysis_id"</span>,
-  input_value <span class="op">=</span> <span class="st">"AN000465"</span>,
-  output_item <span class="op">=</span> <span class="st">"SummarizedExperiment"</span><span class="op">)</span>
-
-<span class="va">data_positive_mode</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/metabolomicsWorkbenchR/man/do_query.html">do_query</a></span><span class="op">(</span>
-  context <span class="op">=</span> <span class="st">"study"</span>,
-  input_item <span class="op">=</span> <span class="st">"analysis_id"</span>,
-  input_value <span class="op">=</span> <span class="st">"AN000464"</span>,
+  input_value <span class="op">=</span> <span class="st">"AN000961"</span>,
   output_item <span class="op">=</span> <span class="st">"SummarizedExperiment"</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="scraping-metabolite-names-and-identifiers-with-rvest" class="section level2">
-<h2 class="hasAnchor">
-<a href="#scraping-metabolite-names-and-identifiers-with-rvest" class="anchor"></a>Scraping metabolite names and identifiers with <code>rvest</code>
-</h2>
-<p>In many metabolomics studies, the reproducibility of analyses is severely affected by the poor interoperability of metabolite names and their identifiers. For this reason it is important to develop tools that facilitate the process of converting one type of identifier to another. In order to use the <code>fobitools</code> package, we need some generic identifier (such as PubChem, KEGG or HMDB) that allows us to obtain the corresponding FOBI identifier for each metabolite. The Metabolomics Workbench repository provides us with this information for many of the metabolites quantified in study <a href="https://www.metabolomicsworkbench.org/data/show_metabolites_by_study.php?STUDY_ID=ST000291&amp;SEARCH_TYPE=KNOWN&amp;STUDY_TYPE=MS&amp;RESULT_TYPE=1">ST000291</a> (Figure @ref(fig:metabolitenames)). In order to easily obtain this information, we will perform a web scraping operation using the <code>rvest</code> package.</p>
-<div class="figure" style="text-align: center">
-<img src="figure/ST000291_names.png" alt="Metabolite identifiers of the ST000291 Metabolomics Workbench study." width="100%"><p class="caption">
-Metabolite identifiers of the ST000291 Metabolomics Workbench study.
-</p>
-</div>
-<p>Below we obtain the PubChem and KEGG identifiers of the metabolites analyzed in the positive and negative mode directly from the Metabolomics Workbench website. We will then remove those duplicate identifiers.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">metaboliteNamesURL</span> <span class="op">&lt;-</span> <span class="st">"https://www.metabolomicsworkbench.org/data/show_metabolites_by_study.php?STUDY_ID=ST000291&amp;SEARCH_TYPE=KNOWN&amp;STUDY_TYPE=MS&amp;RESULT_TYPE=1"</span>
-<span class="va">metaboliteNames</span> <span class="op">&lt;-</span> <span class="va">metaboliteNamesURL</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">".datatable"</span><span class="op">)</span>
-
-<span class="va">metaboliteNames_negative</span> <span class="op">&lt;-</span> <span class="va">metaboliteNames</span> <span class="op">%&gt;%</span>
-  <span class="va">.</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">`Metabolite Name`</span>, <span class="va">PubChemCompound_ID</span>, <span class="va">`Kegg Id`</span><span class="op">)</span>
-
-<span class="va">metaboliteNames_positive</span> <span class="op">&lt;-</span> <span class="va">metaboliteNames</span> <span class="op">%&gt;%</span>
-  <span class="va">.</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">`Metabolite Name`</span>, <span class="va">PubChemCompound_ID</span>, <span class="va">`Kegg Id`</span><span class="op">)</span>
-
-<span class="va">metaboliteNames</span> <span class="op">&lt;-</span> <span class="fu">bind_rows</span><span class="op">(</span><span class="va">metaboliteNames_negative</span>, <span class="va">metaboliteNames_positive</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>names <span class="op">=</span> <span class="fl">1</span>, PubChem <span class="op">=</span> <span class="fl">2</span>, KEGG <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>KEGG <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">KEGG</span> <span class="op">==</span> <span class="st">"-"</span>, <span class="st">"UNKNOWN"</span>, <span class="va">KEGG</span><span class="op">)</span>,
-         PubChem <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">PubChem</span> <span class="op">==</span> <span class="st">"-"</span>, <span class="st">"UNKNOWN"</span>, <span class="va">PubChem</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html">duplicated</a></span><span class="op">(</span><span class="va">PubChem</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="prepare-features-and-metadata" class="section level1">
 <h1 class="hasAnchor">
 <a href="#prepare-features-and-metadata" class="anchor"></a>Prepare features and metadata</h1>
-<p>Now we have to prepare the metadata and features in order to proceed with the statistical analysis. In this step we assign to each metabolite its PubChem identifier obtained in the previous step.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## negative mode features </span>
-<span class="va">features_negative</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">assay</a></span><span class="op">(</span><span class="va">data_negative_mode</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="op">-</span><span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">features_negative</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">rowData</a></span><span class="op">(</span><span class="va">data_negative_mode</span><span class="op">)</span><span class="op">$</span><span class="va">metabolite</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">rowData</a></span><span class="op">(</span><span class="va">data_negative_mode</span><span class="op">)</span><span class="op">$</span><span class="va">metabolite</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span>
-
-<span class="co">## positive mode features</span>
-<span class="va">features_positive</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">assay</a></span><span class="op">(</span><span class="va">data_positive_mode</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="op">-</span><span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">features_positive</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">rowData</a></span><span class="op">(</span><span class="va">data_positive_mode</span><span class="op">)</span><span class="op">$</span><span class="va">metabolite</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">rowData</a></span><span class="op">(</span><span class="va">data_positive_mode</span><span class="op">)</span><span class="op">$</span><span class="va">metabolite</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span>
-
-<span class="co">## combine positive and negative mode and set PubChem IDs as feature names</span>
-<span class="va">features</span> <span class="op">&lt;-</span> <span class="fu">bind_rows</span><span class="op">(</span><span class="va">features_negative</span>, <span class="va">features_positive</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span><span class="st">"names"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">right_join</span><span class="op">(</span><span class="va">metaboliteNames</span>, by <span class="op">=</span> <span class="st">"names"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">names</span>, <span class="op">-</span><span class="va">KEGG</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">column_to_rownames</a></span><span class="op">(</span><span class="st">"PubChem"</span><span class="op">)</span>
+<p>Now we have to prepare the metadata and features in order to proceed with the statistical analysis. In this step we assign to each metabolite its chemical name provided in Metabolomics Workbench.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## features </span>
+<span class="va">features</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">assay</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">features</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">rowData</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">$</span><span class="va">metabolite</span>
 
 <span class="co">## metadata</span>
-<span class="va">pdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">colData</a></span><span class="op">(</span><span class="va">data_negative_mode</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># or "data_positive_mode". They are equal</span>
+<span class="va">pdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">colData</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span><span class="st">"ID"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>Treatment <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">Treatment</span> <span class="op">==</span> <span class="st">"Baseline urine"</span> <span class="op">~</span> <span class="st">"Baseline"</span>,
-                               <span class="va">Treatment</span> <span class="op">==</span> <span class="st">"Urine after drinking apple juice"</span> <span class="op">~</span> <span class="st">"Apple"</span>,
-                               <span class="va">Treatment</span> <span class="op">==</span> <span class="st">"Urine after drinking cranberry juice"</span> <span class="op">~</span> <span class="st">"Cranberry"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu">relocate</span><span class="op">(</span><span class="va">grouping</span>, .before <span class="op">=</span> <span class="va">Sodium.level</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>grouping <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">grouping</span> <span class="op">==</span> <span class="st">"A(salt sensitive)"</span> <span class="op">~</span> <span class="st">"A"</span>,
+                              <span class="va">grouping</span> <span class="op">==</span> <span class="st">"B(salt insensitive)"</span> <span class="op">~</span> <span class="st">"B"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="statistical-analysis-with-poma" class="section level1">
 <h1 class="hasAnchor">
@@ -249,14 +196,14 @@ Metabolite identifiers of the ST000291 Metabolomics Workbench study.
 <h2 class="hasAnchor">
 <a href="#create-a-msnbasemsnset-object" class="anchor"></a>Create a <code>MSnbase::MSnSet</code> object</h2>
 <p>First, we create a <code>MSnSet</code> object that integrates both metadata and features in the same data structure.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data_msnset</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/POMA/man/PomaMSnSetClass.html">PomaMSnSetClass</a></span><span class="op">(</span>target <span class="op">=</span> <span class="va">pdata</span>, features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">features</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="preprocessing" class="section level2">
 <h2 class="hasAnchor">
 <a href="#preprocessing" class="anchor"></a>Preprocessing</h2>
 <p>Second, we perform the preprocessing step. This step includes the missing value imputation unsing the <span class="math inline">\(k\)</span>-NN algorithm, log Pareto normalization (transformation and scaling) and outlier detection and cleaning. Once these steps are completed, we can proceed to the statistical analysis of these data.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data_preprocessed</span> <span class="op">&lt;-</span> <span class="va">data_msnset</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/POMA/man/PomaImpute.html">PomaImpute</a></span><span class="op">(</span>ZerosAsNA <span class="op">=</span> <span class="cn">TRUE</span>, cutoff <span class="op">=</span> <span class="fl">20</span>, method <span class="op">=</span> <span class="st">"knn"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/POMA/man/PomaNorm.html">PomaNorm</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"log_pareto"</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -265,11 +212,11 @@ Metabolite identifiers of the ST000291 Metabolomics Workbench study.
 <div id="limma-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#limma-model" class="anchor"></a>Limma model</h2>
-<p>We use a limma model <span class="citation">(Ritchie et al. <a href="#ref-limma" role="doc-biblioref">2015</a>)</span> to identify those most significant metabolites between the “<strong>Baseline urine</strong>” and “<strong>Urine after drinking cranberry juice</strong>” groups. With this analysis we expect to find metabolites related to cranberry intake.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<p>We use a limma model <span class="citation">(Ritchie et al. <a href="#ref-limma" role="doc-biblioref">2015</a>)</span> to identify those most significant metabolites between the “<strong>A(salt sensitive)</strong>” and “<strong>B(salt insensitive)</strong>” groups.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">limma_res</span> <span class="op">&lt;-</span> <span class="va">data_preprocessed</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/POMA/man/PomaLimma.html">PomaLimma</a></span><span class="op">(</span>contrast <span class="op">=</span> <span class="st">"Baseline-Cranberry"</span>, adjust <span class="op">=</span> <span class="st">"fdr"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span><span class="st">"PubChemCID"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/POMA/man/PomaLimma.html">PomaLimma</a></span><span class="op">(</span>contrast <span class="op">=</span> <span class="st">"A-B"</span>, adjust <span class="op">=</span> <span class="st">"fdr"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span><span class="st">"ID"</span><span class="op">)</span>
 
 <span class="co"># show the first 10 features</span>
 <span class="va">limma_res</span> <span class="op">%&gt;%</span>
@@ -279,7 +226,7 @@ Metabolite identifiers of the ST000291 Metabolomics Workbench study.
 <table class="table table">
 <thead><tr>
 <th style="text-align:left;">
-PubChemCID
+ID
 </th>
 <th style="text-align:right;">
 logFC
@@ -303,246 +250,267 @@ B
 <tbody>
 <tr>
 <td style="text-align:left;">
-54678503
+Methionine
 </td>
 <td style="text-align:right;">
--2.015867
+0.73090
 </td>
 <td style="text-align:right;">
--2.22e-05
+-0.000050
 </td>
 <td style="text-align:right;">
--7.319346
+5.283703
 </td>
 <td style="text-align:right;">
-0.0e+00
+0.0000019
 </td>
 <td style="text-align:right;">
-0.0000035
+0.0000724
 </td>
 <td style="text-align:right;">
-11.031428
+4.7720246
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-94214
+Leucine
 </td>
 <td style="text-align:right;">
--1.436933
+0.70515
 </td>
 <td style="text-align:right;">
--4.44e-05
+-0.000025
 </td>
 <td style="text-align:right;">
--5.720525
+4.561045
 </td>
 <td style="text-align:right;">
-7.0e-07
+0.0000257
 </td>
 <td style="text-align:right;">
-0.0004658
+0.0005002
 </td>
 <td style="text-align:right;">
-5.827603
+2.2576321
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-5378303
+Lysine
 </td>
 <td style="text-align:right;">
--1.591333
+0.70015
 </td>
 <td style="text-align:right;">
-0.00e+00
+-0.000025
 </td>
 <td style="text-align:right;">
--5.578285
+4.435623
 </td>
 <td style="text-align:right;">
-1.2e-06
+0.0000398
 </td>
 <td style="text-align:right;">
-0.0005079
+0.0005180
 </td>
 <td style="text-align:right;">
-5.367712
+1.8381297
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-71485
+Serine
 </td>
 <td style="text-align:right;">
--1.520600
+0.80015
 </td>
 <td style="text-align:right;">
-4.44e-05
+0.000025
 </td>
 <td style="text-align:right;">
--5.417065
+4.210232
 </td>
 <td style="text-align:right;">
-2.0e-06
+0.0000868
 </td>
 <td style="text-align:right;">
-0.0005552
+0.0007429
 </td>
 <td style="text-align:right;">
-4.848693
+1.0991483
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-5486800
+Isoleucine
 </td>
 <td style="text-align:right;">
-1.175733
+0.61325
 </td>
 <td style="text-align:right;">
-0.00e+00
+-0.000025
 </td>
 <td style="text-align:right;">
-5.403865
+4.182916
 </td>
 <td style="text-align:right;">
-2.1e-06
+0.0000952
 </td>
 <td style="text-align:right;">
-0.0005552
+0.0007429
 </td>
 <td style="text-align:right;">
-4.806317
+1.0109629
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-17531
+Arginine
 </td>
 <td style="text-align:right;">
--1.490867
+0.57610
 </td>
 <td style="text-align:right;">
-2.22e-05
+0.000000
 </td>
 <td style="text-align:right;">
--5.350936
+3.789091
 </td>
 <td style="text-align:right;">
-2.6e-06
+0.0003527
 </td>
 <td style="text-align:right;">
-0.0005552
+0.0022929
 </td>
 <td style="text-align:right;">
-4.636603
+-0.2241608
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-3035199
+Asparagine
 </td>
 <td style="text-align:right;">
--1.298667
+0.56815
 </td>
 <td style="text-align:right;">
--2.22e-05
+0.000025
 </td>
 <td style="text-align:right;">
--5.074320
+3.595709
 </td>
 <td style="text-align:right;">
-6.6e-06
+0.0006549
 </td>
 <td style="text-align:right;">
-0.0011642
+0.0034633
 </td>
 <td style="text-align:right;">
-3.755554
+-0.8036958
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-439361
+Citrulline
 </td>
 <td style="text-align:right;">
--1.061267
+0.55835
 </td>
 <td style="text-align:right;">
--2.22e-05
+0.000125
 </td>
 <td style="text-align:right;">
--5.030209
+3.536125
 </td>
 <td style="text-align:right;">
-7.6e-06
+0.0007897
 </td>
 <td style="text-align:right;">
-0.0011642
+0.0034633
 </td>
 <td style="text-align:right;">
-3.616094
+-0.9783830
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-5353
+Cystathionine 1
 </td>
 <td style="text-align:right;">
--1.349133
+0.58870
 </td>
 <td style="text-align:right;">
-4.44e-05
+0.000050
 </td>
 <td style="text-align:right;">
--5.010060
+3.532309
 </td>
 <td style="text-align:right;">
-8.2e-06
+0.0007992
 </td>
 <td style="text-align:right;">
-0.0011642
+0.0034633
 </td>
 <td style="text-align:right;">
-3.552497
+-0.9895055
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-1132
+Valine
 </td>
 <td style="text-align:right;">
--1.579533
+0.52240
 </td>
 <td style="text-align:right;">
-2.22e-05
+-0.000050
 </td>
 <td style="text-align:right;">
--4.983350
+3.372887
 </td>
 <td style="text-align:right;">
-8.9e-06
+0.0013074
 </td>
 <td style="text-align:right;">
-0.0011642
+0.0050987
 </td>
 <td style="text-align:right;">
-3.468300
+-1.4471096
 </td>
 </tr>
 </tbody>
 </table>
 </div>
+<div id="convert-metabolite-names-to-kegg-identifiers-with-metaboanalyst-web-server" class="section level2">
+<h2 class="hasAnchor">
+<a href="#convert-metabolite-names-to-kegg-identifiers-with-metaboanalyst-web-server" class="anchor"></a>Convert metabolite names to KEGG identifiers with <code>MetaboAnalyst</code> web server</h2>
+<p>In many metabolomics studies, the reproducibility of analyses is severely affected by the poor interoperability of metabolite names and their identifiers. For this reason it is important to develop tools that facilitate the process of converting one type of identifier to another. In order to use the <code>fobitools</code> package, we need some generic identifier (such as PubChem, KEGG or HMDB) that allows us to obtain the corresponding FOBI identifier for each metabolite. However, unlike vignette “<em>Use case ST000291</em>”, the Metabolomics Workbench repository does not provide us with this information for the metabolites quantified in study <a href="https://www.metabolomicsworkbench.org/data/show_metabolites_by_study.php?STUDY_ID=ST000629&amp;SEARCH_TYPE=KNOWN&amp;STUDY_TYPE=MS&amp;RESULT_TYPE=1">ST000629</a>.</p>
+<p>In those cases where we do not have other common identifiers, the authors recommend using the powerful conversion tool provided by <a href="https://www.metaboanalyst.ca/MetaboAnalyst/upload/ConvertView.xhtml">MetaboAnalyst</a>. This tool will allow us to move from the metabolite names to other generic identifiers such as KEGG or HMDB, which will later allow us to obtain the FOBI identifier of these metabolites.</p>
+<p>In order to use the MetaboAnalyst ID conversion tool, we can copy the result of the following <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code> command and paste it directly into MetaboAnalyst (Figure @ref(fig:MAconvertID)).</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">limma_res</span><span class="op">$</span><span class="va">ID</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="figure/MetaboAnalyst_convertID.png" alt="Metabolite names conversion using MetaboAnalyst." width="100%"><p class="caption">
+Metabolite names conversion using MetaboAnalyst.
+</p>
 </div>
-<div id="convert-pubchem-ids-to-fobi-ids" class="section level1">
-<h1 class="hasAnchor">
-<a href="#convert-pubchem-ids-to-fobi-ids" class="anchor"></a>Convert PubChem IDs to FOBI IDs</h1>
-<p>Once we have the results of the statistical analysis and generic identifiers recognized in the FOBI ontology <span class="citation">(Castellano-Escuder et al. <a href="#ref-castellano2020fobi" role="doc-biblioref">2020</a>)</span>, we can proceed to perform one of the main functions provided by the <code>fobitools</code> package, the ID conversion. With the <code><a href="../reference/id_convert.html">fobitools::id_convert()</a></code> command, users can convert different IDs between FOBI, HMDB, KEGG, PubChem, InChIKey, InChICode, ChemSpider, and chemical names. We will then obtain the FOBI IDs from the PubChem IDs (obtained in the previous sections) and add them as a new column to the results of the limma model.</p>
+<p>Then, we can access to the MetaboAnalyst temporary page that is hosting our results (where the following “<em>XXXXXXX</em>” will be your guest URL).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">limma_FOBI_names</span> <span class="op">&lt;-</span> <span class="va">limma_res</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="st">"PubChemCID"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/id_convert.html">id_convert</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">ST000629_MetaboAnalyst_MapNames</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="st">"https://www.metaboanalyst.ca/MetaboAnalyst/resources/users/XXXXXXX/name_map.csv"</span>, delim <span class="op">=</span> <span class="st">","</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="convert-kegg-ids-to-fobi-ids" class="section level1">
+<h1 class="hasAnchor">
+<a href="#convert-kegg-ids-to-fobi-ids" class="anchor"></a>Convert KEGG IDs to FOBI IDs</h1>
+<p>Once we have the results of the statistical analysis and generic identifiers recognized in the FOBI ontology <span class="citation">(Castellano-Escuder et al. <a href="#ref-castellano2020fobi" role="doc-biblioref">2020</a>)</span>, we can proceed to perform one of the main functions provided by the <code>fobitools</code> package, the ID conversion. With the <code><a href="../reference/id_convert.html">fobitools::id_convert()</a></code> command, users can convert different IDs between FOBI, HMDB, KEGG, PubChem, InChIKey, InChICode, ChemSpider, and chemical names. We will then obtain the FOBI IDs from the KEGG IDs (obtained in the previous section via MetaboAnalyst web server) and add them as a new column to the results of the limma model.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">annotated_limma</span> <span class="op">&lt;-</span> <span class="va">ST000629_MetaboAnalyst_MapNames</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>ID <span class="op">=</span> <span class="va">Query</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">right_join</span><span class="op">(</span><span class="va">limma_res</span>, by <span class="op">=</span> <span class="st">"ID"</span><span class="op">)</span>
+
+<span class="va">limma_FOBI_names</span> <span class="op">&lt;-</span> <span class="va">annotated_limma</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="st">"KEGG"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/id_convert.html">id_convert</a></span><span class="op">(</span>to <span class="op">=</span> <span class="st">"FOBI"</span><span class="op">)</span>
 
 <span class="co"># show the ID conversion results</span>
 <span class="va">limma_FOBI_names</span> <span class="op">%&gt;%</span>
@@ -555,44 +523,16 @@ B
 FOBI
 </th>
 <th style="text-align:left;">
-PubChemCID
-</th>
-<th style="text-align:left;">
-ChemSpider
+KEGG
 </th>
 </tr></thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-FOBI:030415
+FOBI:030687
 </td>
 <td style="text-align:left;">
-91
-</td>
-<td style="text-align:left;">
-89
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-FOBI:030711
-</td>
-<td style="text-align:left;">
-1145
-</td>
-<td style="text-align:left;">
-1113
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-FOBI:030555
-</td>
-<td style="text-align:left;">
-5280445
-</td>
-<td style="text-align:left;">
-4444102
+C00386
 </td>
 </tr>
 <tr>
@@ -600,39 +540,47 @@ FOBI:030555
 FOBI:030709
 </td>
 <td style="text-align:left;">
-1123
-</td>
-<td style="text-align:left;">
-10675782
+C00245
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-FOBI:030625
+FOBI:030701
 </td>
 <td style="text-align:left;">
-7533
-</td>
-<td style="text-align:left;">
-15484224
+C00078
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-FOBI:030397
+FOBI:030691
 </td>
 <td style="text-align:left;">
-1794427
+C00099
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FOBI:030692
 </td>
 <td style="text-align:left;">
-1405788
+C00079
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FOBI:030697
+</td>
+<td style="text-align:left;">
+C00082
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">limma_FOBI_names</span> <span class="op">&lt;-</span> <span class="va">limma_FOBI_names</span> <span class="op">%&gt;%</span>
-  <span class="fu">right_join</span><span class="op">(</span><span class="va">limma_res</span>, by <span class="op">=</span> <span class="st">"PubChemCID"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">right_join</span><span class="op">(</span><span class="va">annotated_limma</span>, by <span class="op">=</span> <span class="st">"KEGG"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">FOBI</span>, <span class="va">KEGG</span>, <span class="va">ID</span>, <span class="va">logFC</span>, <span class="va">P.Value</span>, <span class="va">adj.P.Val</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">P.Value</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="enrichment-analysis" class="section level1">
@@ -647,14 +595,14 @@ FOBI:030397
 <a href="#over-representation-analysis-ora" class="anchor"></a>Over representation analysis (ORA)</h2>
 <p>ORA is one of the most used methods to perform enrichment analysis in metabolomics studies due to its simplicity and easy understanding. This method statistically evaluates the fraction of metabolites in a particular pathway found among the set of metabolites statistically selected. Thus, ORA is used to test if certain groups of metabolites are represented more than expected by chance given a feature list.</p>
 <p>However, ORA has a number of limitations. The most important one is the need of using a certain threshold or criteria to select the feature list. This means that metabolites do not meet the selection criteria must be discarded. The second big limitation of ORA is that this method assumes independence of sets and features. In ORA, is assumed that each feature is independent of the other features and each set is independent of the other sets.</p>
-<p>Here, we perform an ORA with the <code>fobitools</code> package, where we will use as a universe all the metabolites of the study present in FOBI and as a list those metabolites with a raw p-value &lt; 0.01 in the limma results table.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">metaboliteList</span> <span class="op">&lt;-</span> <span class="va">limma_FOBI_names</span><span class="op">$</span><span class="va">FOBI</span><span class="op">[</span><span class="va">limma_FOBI_names</span><span class="op">$</span><span class="va">P.Value</span> <span class="op">&lt;</span> <span class="fl">0.01</span><span class="op">]</span>
+<p>Here, we perform an ORA with the <code>fobitools</code> package, where we will use as a universe all the metabolites of the study present in FOBI and as a list those metabolites with a raw p-value &lt; 0.05 in the limma results table.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">metaboliteList</span> <span class="op">&lt;-</span> <span class="va">limma_FOBI_names</span><span class="op">$</span><span class="va">FOBI</span><span class="op">[</span><span class="va">limma_FOBI_names</span><span class="op">$</span><span class="va">P.Value</span> <span class="op">&lt;</span> <span class="fl">0.05</span><span class="op">]</span>
 <span class="va">metaboliteUniverse</span> <span class="op">&lt;-</span> <span class="va">limma_FOBI_names</span><span class="op">$</span><span class="va">FOBI</span>
 
 <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/ora.html">ora</a></span><span class="op">(</span>metaboliteList <span class="op">=</span> <span class="va">metaboliteList</span>,
                metaboliteUniverse <span class="op">=</span> <span class="va">metaboliteUniverse</span>,
-               pvalCutoff <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">%&gt;%</span>
+               pvalCutoff <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html">kbl</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="cn">FALSE</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kable_styling</a></span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"striped"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table table">
@@ -681,7 +629,7 @@ overlapMetabolites
 <tbody>
 <tr>
 <td style="text-align:left;">
-soft drink (dietetic)
+fish
 </td>
 <td style="text-align:right;">
 2
@@ -690,38 +638,197 @@ soft drink (dietetic)
 1
 </td>
 <td style="text-align:right;">
-0.1038407
+0.4642857
 </td>
 <td style="text-align:right;">
-1
+0.8035714
 </td>
 <td style="text-align:left;">
-FOBI:030627
+FOBI:030690
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-olive oil
+dairy food product
 </td>
 <td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0.4623044
+3
 </td>
 <td style="text-align:right;">
 1
+</td>
+<td style="text-align:right;">
+0.6428571
+</td>
+<td style="text-align:right;">
+0.8035714
 </td>
 <td style="text-align:left;">
-FOBI:030340
+FOBI:030692
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+egg food product
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.6428571
+</td>
+<td style="text-align:right;">
+0.8035714
+</td>
+<td style="text-align:left;">
+FOBI:030692
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+legume food product
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.6428571
+</td>
+<td style="text-align:right;">
+0.8035714
+</td>
+<td style="text-align:left;">
+FOBI:030692
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+meat food product
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.6428571
+</td>
+<td style="text-align:right;">
+0.8035714
+</td>
+<td style="text-align:left;">
+FOBI:030692
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nut (whole or part)
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.6428571
+</td>
+<td style="text-align:right;">
+0.8035714
+</td>
+<td style="text-align:left;">
+FOBI:030692
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+soybean (whole)
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.6428571
+</td>
+<td style="text-align:right;">
+0.8035714
+</td>
+<td style="text-align:left;">
+FOBI:030692
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Whole grain cereal products
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.6428571
+</td>
+<td style="text-align:right;">
+0.8035714
+</td>
+<td style="text-align:left;">
+FOBI:030692
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lean meat
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.7857143
+</td>
+<td style="text-align:right;">
+0.8730159
+</td>
+<td style="text-align:left;">
+FOBI:030690
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Red meat
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:left;">
 </td>
 </tr>
 </tbody>
 </table>
-<p>As we can see, due to the limitations of this methodology and the small number of metabolites that meet the set statistical criterion, the results do not show a clear and obvious relationship with the design of the study, as the food groups that appear in the ORA results do not correspond to those foods administered in the intervention.</p>
+<!-- As we can see, due to the limitations of this methodology and the small number of metabolites that meet the set statistical criterion, the results do not show a clear and obvious relationship with the design of the study, as the food groups that appear in the ORA results do not correspond to those foods administered in the intervention. -->
 </div>
 <div id="msea" class="section level2">
 <h2 class="hasAnchor">
@@ -734,7 +841,7 @@ FOBI:030340
 <p>In 2010, a modification of the GSEA methodology was presented for metabolomics studies. This method was called Metabolite Set Enrichment Analysis (MSEA) and its main aim was to help researchers identify and interpret patterns of human and mammalian metabolite concentration changes in a biologically meaningful context <span class="citation">(Xia and Wishart <a href="#ref-xia2010msea" role="doc-biblioref">2010</a>)</span>. MSEA is currently widely used in the metabolomics community and it is implemented and freely available at the known <a href="https://www.metaboanalyst.ca">MetaboAnalyst</a> web-based tool <span class="citation">(Xia and Wishart <a href="#ref-xia2010msea" role="doc-biblioref">2010</a>)</span>.</p>
 <p>As can be seen, GSEA approach is more complex than the ORA methodology, both in terms of methodological aspects and understanding of the method.</p>
 <p>The <code>fobitools</code> package provides a function to perform MSEA using the FOBI information. This function requires a ranked list. Here, we will use the metabolites obtained in the limma model ranked by raw p-values.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">limma_FOBI_msea</span> <span class="op">&lt;-</span> <span class="va">limma_FOBI_names</span> <span class="op">%&gt;%</span>
   <span class="fu">select</span><span class="op">(</span><span class="va">FOBI</span>, <span class="va">P.Value</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">FOBI</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -743,7 +850,7 @@ FOBI:030340
 <span class="va">FOBI_msea</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">limma_FOBI_msea</span><span class="op">$</span><span class="va">P.Value</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">FOBI_msea</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">limma_FOBI_msea</span><span class="op">$</span><span class="va">FOBI</span>
 
-<span class="va">msea_res</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/msea.html">msea</a></span><span class="op">(</span><span class="va">FOBI_msea</span>, pvalCutoff <span class="op">=</span> <span class="fl">0.06</span><span class="op">)</span>
+<span class="va">msea_res</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/msea.html">msea</a></span><span class="op">(</span><span class="va">FOBI_msea</span>, pvalCutoff <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 
 <span class="va">msea_res</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html">kbl</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="cn">FALSE</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -778,54 +885,106 @@ leadingEdge
 <tbody>
 <tr>
 <td style="text-align:left;">
-grape (whole, raw)
+Lean meat
 </td>
 <td style="text-align:right;">
-1
+4
 </td>
 <td style="text-align:right;">
-0.3807304
+0.1797823
 </td>
 <td style="text-align:right;">
-1.0000000
+0.8733352
 </td>
 <td style="text-align:right;">
-2.037782
+1.5962769
 </td>
 <td style="text-align:right;">
-0.0154703
+0.0609391
 </td>
 <td style="text-align:right;">
-0.2797203
+0.6093906
 </td>
 <td style="text-align:left;">
-FOBI:030590
+FOBI:030709, FOBI:030687, FOBI:030688
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-grapefruit (whole, raw)
+Red meat
 </td>
 <td style="text-align:right;">
-1
+3
 </td>
 <td style="text-align:right;">
-0.1978220
+0.0934449
 </td>
 <td style="text-align:right;">
-0.9729730
+0.7746661
 </td>
 <td style="text-align:right;">
-1.982706
+1.4197584
 </td>
 <td style="text-align:right;">
-0.0509491
+0.1928072
 </td>
 <td style="text-align:right;">
-0.2797203
+0.8951049
 </td>
 <td style="text-align:left;">
-FOBI:030523
+FOBI:030709, FOBI:030687, FOBI:030691
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+fish
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.0323604
+</td>
+<td style="text-align:right;">
+0.4285714
+</td>
+<td style="text-align:right;">
+0.7936153
+</td>
+<td style="text-align:right;">
+0.6653347
+</td>
+<td style="text-align:right;">
+0.8951049
+</td>
+<td style="text-align:left;">
+FOBI:030688, FOBI:030690
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Whole grain cereal products
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0156181
+</td>
+<td style="text-align:right;">
+0.2177939
+</td>
+<td style="text-align:right;">
+0.3991588
+</td>
+<td style="text-align:right;">
+0.8951049
+</td>
+<td style="text-align:right;">
+0.8951049
+</td>
+<td style="text-align:left;">
+FOBI:030692, FOBI:030697, FOBI:030701
 </td>
 </tr>
 <tr>
@@ -833,25 +992,25 @@ FOBI:030523
 dairy food product
 </td>
 <td style="text-align:right;">
-5
+3
 </td>
 <td style="text-align:right;">
-0.1882041
+0.0156181
 </td>
 <td style="text-align:right;">
-0.6383555
+0.2177939
 </td>
 <td style="text-align:right;">
-1.663786
+0.3991588
 </td>
 <td style="text-align:right;">
-0.0559441
+0.8951049
 </td>
 <td style="text-align:right;">
-0.2797203
+0.8951049
 </td>
 <td style="text-align:left;">
-FOBI:030701, FOBI:030704, FOBI:030697, FOBI:030692
+FOBI:030692, FOBI:030697, FOBI:030701
 </td>
 </tr>
 <tr>
@@ -859,25 +1018,51 @@ FOBI:030701, FOBI:030704, FOBI:030697, FOBI:030692
 egg food product
 </td>
 <td style="text-align:right;">
-5
+3
 </td>
 <td style="text-align:right;">
-0.1882041
+0.0156181
 </td>
 <td style="text-align:right;">
-0.6383555
+0.2177939
 </td>
 <td style="text-align:right;">
-1.663786
+0.3991588
 </td>
 <td style="text-align:right;">
-0.0559441
+0.8951049
 </td>
 <td style="text-align:right;">
-0.2797203
+0.8951049
 </td>
 <td style="text-align:left;">
-FOBI:030701, FOBI:030704, FOBI:030697, FOBI:030692
+FOBI:030692, FOBI:030697, FOBI:030701
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+legume food product
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0156181
+</td>
+<td style="text-align:right;">
+0.2177939
+</td>
+<td style="text-align:right;">
+0.3991588
+</td>
+<td style="text-align:right;">
+0.8951049
+</td>
+<td style="text-align:right;">
+0.8951049
+</td>
+<td style="text-align:left;">
+FOBI:030692, FOBI:030697, FOBI:030701
 </td>
 </tr>
 <tr>
@@ -885,36 +1070,81 @@ FOBI:030701, FOBI:030704, FOBI:030697, FOBI:030692
 meat food product
 </td>
 <td style="text-align:right;">
-5
+3
 </td>
 <td style="text-align:right;">
-0.1882041
+0.0156181
 </td>
 <td style="text-align:right;">
-0.6383555
+0.2177939
 </td>
 <td style="text-align:right;">
-1.663786
+0.3991588
 </td>
 <td style="text-align:right;">
-0.0559441
+0.8951049
 </td>
 <td style="text-align:right;">
-0.2797203
+0.8951049
 </td>
 <td style="text-align:left;">
-FOBI:030701, FOBI:030704, FOBI:030697, FOBI:030692
+FOBI:030692, FOBI:030697, FOBI:030701
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nut (whole or part)
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0156181
+</td>
+<td style="text-align:right;">
+0.2177939
+</td>
+<td style="text-align:right;">
+0.3991588
+</td>
+<td style="text-align:right;">
+0.8951049
+</td>
+<td style="text-align:right;">
+0.8951049
+</td>
+<td style="text-align:left;">
+FOBI:030692, FOBI:030697, FOBI:030701
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+soybean (whole)
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0156181
+</td>
+<td style="text-align:right;">
+0.2177939
+</td>
+<td style="text-align:right;">
+0.3991588
+</td>
+<td style="text-align:right;">
+0.8951049
+</td>
+<td style="text-align:right;">
+0.8951049
+</td>
+<td style="text-align:left;">
+FOBI:030692, FOBI:030697, FOBI:030701
 </td>
 </tr>
 </tbody>
 </table>
-<p>As we can see, the enrichment analysis with the MSEA method seems to be much more accurate than the ORA method, since the two classes that head the results table (“<em>grape (whole, raw)</em>” and “<em>grapefruit (whole, raw)</em>”) are clearly within the FOBI food group (set) “<em>plant fruit food product</em>”, which is aligned with the study intervention, cranberry juice intake.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/fobi_graph.html">fobi_graph</a></span><span class="op">(</span>terms <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"FOODON:03301123"</span>, <span class="st">"FOODON:03301702"</span><span class="op">)</span>, 
-           get <span class="op">=</span> <span class="st">"anc"</span>, 
-           labels <span class="op">=</span> <span class="cn">TRUE</span>, 
-           labelsize <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></code></pre></div>
-<p><img src="MW_ST000291_enrichment_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 <div id="msea-plot-with-ggplot2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#msea-plot-with-ggplot2" class="anchor"></a>MSEA plot with <code>ggplot2</code>
@@ -930,24 +1160,24 @@ FOBI:030701, FOBI:030704, FOBI:030697, FOBI:030692
         text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">22</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_color_viridis_c</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_size</span><span class="op">(</span>guide <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></code></pre></div>
-<p><img src="MW_ST000291_enrichment_files/figure-html/unnamed-chunk-16-1.png" width="1152"></p>
+<p><img src="MW_ST000629_enrichment_files/figure-html/unnamed-chunk-17-1.png" width="1152"></p>
 </div>
 <div id="network-of-metabolites-found-in-msea" class="section level3">
 <h3 class="hasAnchor">
 <a href="#network-of-metabolites-found-in-msea" class="anchor"></a>Network of metabolites found in MSEA</h3>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">FOBI_terms</span> <span class="op">&lt;-</span> <span class="va">msea_res</span> <span class="op">%&gt;%</span> 
+<code class="sourceCode R"><span class="va">FOBI_terms</span> <span class="op">&lt;-</span> <span class="va">msea_res</span> <span class="op">%&gt;%</span>
   <span class="fu">unnest</span><span class="op">(</span>cols <span class="op">=</span> <span class="va">leadingEdge</span><span class="op">)</span>
 
 <span class="fu">fobitools</span><span class="fu">::</span><span class="va"><a href="../reference/fobi.html">fobi</a></span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">FOBI</span> <span class="op">%in%</span> <span class="va">FOBI_terms</span><span class="op">$</span><span class="va">leadingEdge</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">pull</span><span class="op">(</span><span class="va">id_code</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/fobi_graph.html">fobi_graph</a></span><span class="op">(</span>get <span class="op">=</span> <span class="st">"anc"</span>, 
-             labels <span class="op">=</span> <span class="cn">TRUE</span>, 
-             legend <span class="op">=</span> <span class="cn">TRUE</span>, 
-             labelsize <span class="op">=</span> <span class="fl">6</span>, 
+  <span class="fu"><a href="../reference/fobi_graph.html">fobi_graph</a></span><span class="op">(</span>get <span class="op">=</span> <span class="st">"anc"</span>,
+             labels <span class="op">=</span> <span class="cn">TRUE</span>,
+             legend <span class="op">=</span> <span class="cn">TRUE</span>,
+             labelsize <span class="op">=</span> <span class="fl">6</span>,
              legendSize <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></code></pre></div>
-<p><img src="MW_ST000291_enrichment_files/figure-html/unnamed-chunk-17-1.png" width="1152"></p>
+<p><img src="MW_ST000629_enrichment_files/figure-html/unnamed-chunk-18-1.png" width="1152"></p>
 </div>
 </div>
 </div>
@@ -983,13 +1213,12 @@ FOBI:030701, FOBI:030704, FOBI:030697, FOBI:030692
 <span class="co">#&gt;  [7] BiocGenerics_0.36.1          MatrixGenerics_1.2.1        </span>
 <span class="co">#&gt;  [9] matrixStats_0.58.0           metabolomicsWorkbenchR_1.0.0</span>
 <span class="co">#&gt; [11] POMA_1.1.13                  kableExtra_1.3.4            </span>
-<span class="co">#&gt; [13] ggrepel_0.9.1                rvest_1.0.0                 </span>
-<span class="co">#&gt; [15] forcats_0.5.1                stringr_1.4.0               </span>
-<span class="co">#&gt; [17] dplyr_1.0.5                  purrr_0.3.4                 </span>
-<span class="co">#&gt; [19] readr_1.4.0                  tidyr_1.1.3                 </span>
-<span class="co">#&gt; [21] tibble_3.1.1                 ggplot2_3.3.3               </span>
-<span class="co">#&gt; [23] tidyverse_1.3.1              fobitools_0.99.41           </span>
-<span class="co">#&gt; [25] BiocStyle_2.18.1            </span>
+<span class="co">#&gt; [13] ggrepel_0.9.1                forcats_0.5.1               </span>
+<span class="co">#&gt; [15] stringr_1.4.0                dplyr_1.0.5                 </span>
+<span class="co">#&gt; [17] purrr_0.3.4                  readr_1.4.0                 </span>
+<span class="co">#&gt; [19] tidyr_1.1.3                  tibble_3.1.1                </span>
+<span class="co">#&gt; [21] ggplot2_3.3.3                tidyverse_1.3.1             </span>
+<span class="co">#&gt; [23] fobitools_0.99.41            BiocStyle_2.18.1            </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
 <span class="co">#&gt;   [1] utf8_1.2.1                  tidyselect_1.1.1           </span>
@@ -1019,47 +1248,47 @@ FOBI:030701, FOBI:030704, FOBI:030697, FOBI:030692
 <span class="co">#&gt;  [49] clisymbols_1.2.0            systemfonts_1.0.1          </span>
 <span class="co">#&gt;  [51] mzR_2.24.1                  GlobalOptions_0.1.2        </span>
 <span class="co">#&gt;  [53] splines_4.0.2               ModelMetrics_1.2.2.2       </span>
-<span class="co">#&gt;  [55] impute_1.64.0               selectr_0.4-2              </span>
-<span class="co">#&gt;  [57] broom_0.7.6                 RecordLinkage_0.4-12.1     </span>
-<span class="co">#&gt;  [59] reshape2_1.4.4              BiocManager_1.30.12        </span>
-<span class="co">#&gt;  [61] yaml_2.2.1                  modelr_0.1.8               </span>
-<span class="co">#&gt;  [63] backports_1.2.1             caret_6.0-86               </span>
-<span class="co">#&gt;  [65] tools_4.0.2                 lava_1.6.9                 </span>
-<span class="co">#&gt;  [67] bookdown_0.22               affyio_1.60.0              </span>
-<span class="co">#&gt;  [69] ellipsis_0.3.2              jquerylib_0.1.4            </span>
-<span class="co">#&gt;  [71] ff_4.0.4                    RColorBrewer_1.1-2         </span>
-<span class="co">#&gt;  [73] proxy_0.4-25                MSnbase_2.16.1             </span>
-<span class="co">#&gt;  [75] MultiAssayExperiment_1.16.0 Rcpp_1.0.6                 </span>
-<span class="co">#&gt;  [77] plyr_1.8.6                  zlibbioc_1.36.0            </span>
-<span class="co">#&gt;  [79] RCurl_1.98-1.3              rpart_4.1-15               </span>
-<span class="co">#&gt;  [81] GetoptLong_1.0.5            viridis_0.6.0              </span>
-<span class="co">#&gt;  [83] haven_2.4.1                 cluster_2.1.2              </span>
-<span class="co">#&gt;  [85] fs_1.5.0                    magrittr_2.0.1             </span>
-<span class="co">#&gt;  [87] RSpectra_0.16-0             data.table_1.14.0          </span>
-<span class="co">#&gt;  [89] circlize_0.4.12             reprex_2.0.0               </span>
-<span class="co">#&gt;  [91] pcaMethods_1.82.0           ProtGenerics_1.22.0        </span>
-<span class="co">#&gt;  [93] hms_1.0.0                   patchwork_1.1.1            </span>
-<span class="co">#&gt;  [95] evaluate_0.14               xtable_1.8-4               </span>
-<span class="co">#&gt;  [97] XML_3.99-0.6                readxl_1.3.1               </span>
-<span class="co">#&gt;  [99] gridExtra_2.3               shape_1.4.5                </span>
-<span class="co">#&gt; [101] compiler_4.0.2              ellipse_0.4.2              </span>
-<span class="co">#&gt; [103] ncdf4_1.17                  crayon_1.4.1               </span>
-<span class="co">#&gt; [105] htmltools_0.5.1.1           mgcv_1.8-35                </span>
-<span class="co">#&gt; [107] corpcor_1.6.9               qdapRegex_0.7.2            </span>
-<span class="co">#&gt; [109] lubridate_1.7.10            DBI_1.1.1                  </span>
-<span class="co">#&gt; [111] tweenr_1.0.2                dbplyr_2.1.1               </span>
-<span class="co">#&gt; [113] ComplexHeatmap_2.6.2        MASS_7.3-54                </span>
-<span class="co">#&gt; [115] Matrix_1.3-2                permute_0.9-5              </span>
-<span class="co">#&gt; [117] cli_2.5.0                   vsn_3.58.0                 </span>
-<span class="co">#&gt; [119] gower_0.2.2                 textclean_0.9.3            </span>
-<span class="co">#&gt; [121] evd_2.3-3                   RankProd_3.16.0            </span>
-<span class="co">#&gt; [123] igraph_1.2.6                pkgconfig_2.0.3            </span>
-<span class="co">#&gt; [125] pkgdown_1.6.1               recipes_0.1.16             </span>
-<span class="co">#&gt; [127] MALDIquant_1.19.3           xml2_1.3.2                 </span>
-<span class="co">#&gt; [129] foreach_1.5.1               rARPACK_0.11-0             </span>
-<span class="co">#&gt; [131] svglite_2.0.0               ggcorrplot_0.1.3           </span>
-<span class="co">#&gt; [133] bslib_0.2.4                 XVector_0.30.0             </span>
-<span class="co">#&gt; [135] webshot_0.5.2               prodlim_2019.11.13         </span>
+<span class="co">#&gt;  [55] impute_1.64.0               broom_0.7.6                </span>
+<span class="co">#&gt;  [57] RecordLinkage_0.4-12.1      reshape2_1.4.4             </span>
+<span class="co">#&gt;  [59] BiocManager_1.30.12         yaml_2.2.1                 </span>
+<span class="co">#&gt;  [61] modelr_0.1.8                backports_1.2.1            </span>
+<span class="co">#&gt;  [63] caret_6.0-86                tools_4.0.2                </span>
+<span class="co">#&gt;  [65] lava_1.6.9                  bookdown_0.22              </span>
+<span class="co">#&gt;  [67] affyio_1.60.0               ellipsis_0.3.2             </span>
+<span class="co">#&gt;  [69] jquerylib_0.1.4             ff_4.0.4                   </span>
+<span class="co">#&gt;  [71] RColorBrewer_1.1-2          proxy_0.4-25               </span>
+<span class="co">#&gt;  [73] MSnbase_2.16.1              MultiAssayExperiment_1.16.0</span>
+<span class="co">#&gt;  [75] Rcpp_1.0.6                  plyr_1.8.6                 </span>
+<span class="co">#&gt;  [77] zlibbioc_1.36.0             RCurl_1.98-1.3             </span>
+<span class="co">#&gt;  [79] rpart_4.1-15                GetoptLong_1.0.5           </span>
+<span class="co">#&gt;  [81] viridis_0.6.0               haven_2.4.1                </span>
+<span class="co">#&gt;  [83] cluster_2.1.2               fs_1.5.0                   </span>
+<span class="co">#&gt;  [85] magrittr_2.0.1              RSpectra_0.16-0            </span>
+<span class="co">#&gt;  [87] data.table_1.14.0           circlize_0.4.12            </span>
+<span class="co">#&gt;  [89] reprex_2.0.0                pcaMethods_1.82.0          </span>
+<span class="co">#&gt;  [91] ProtGenerics_1.22.0         hms_1.0.0                  </span>
+<span class="co">#&gt;  [93] patchwork_1.1.1             evaluate_0.14              </span>
+<span class="co">#&gt;  [95] xtable_1.8-4                XML_3.99-0.6               </span>
+<span class="co">#&gt;  [97] readxl_1.3.1                gridExtra_2.3              </span>
+<span class="co">#&gt;  [99] shape_1.4.5                 compiler_4.0.2             </span>
+<span class="co">#&gt; [101] ellipse_0.4.2               ncdf4_1.17                 </span>
+<span class="co">#&gt; [103] crayon_1.4.1                htmltools_0.5.1.1          </span>
+<span class="co">#&gt; [105] mgcv_1.8-35                 corpcor_1.6.9              </span>
+<span class="co">#&gt; [107] qdapRegex_0.7.2             lubridate_1.7.10           </span>
+<span class="co">#&gt; [109] DBI_1.1.1                   tweenr_1.0.2               </span>
+<span class="co">#&gt; [111] dbplyr_2.1.1                ComplexHeatmap_2.6.2       </span>
+<span class="co">#&gt; [113] MASS_7.3-54                 Matrix_1.3-2               </span>
+<span class="co">#&gt; [115] permute_0.9-5               cli_2.5.0                  </span>
+<span class="co">#&gt; [117] vsn_3.58.0                  gower_0.2.2                </span>
+<span class="co">#&gt; [119] textclean_0.9.3             evd_2.3-3                  </span>
+<span class="co">#&gt; [121] RankProd_3.16.0             igraph_1.2.6               </span>
+<span class="co">#&gt; [123] pkgconfig_2.0.3             pkgdown_1.6.1              </span>
+<span class="co">#&gt; [125] recipes_0.1.16              MALDIquant_1.19.3          </span>
+<span class="co">#&gt; [127] xml2_1.3.2                  foreach_1.5.1              </span>
+<span class="co">#&gt; [129] rARPACK_0.11-0              svglite_2.0.0              </span>
+<span class="co">#&gt; [131] ggcorrplot_0.1.3            bslib_0.2.4                </span>
+<span class="co">#&gt; [133] XVector_0.30.0              webshot_0.5.2              </span>
+<span class="co">#&gt; [135] prodlim_2019.11.13          rvest_1.0.0                </span>
 <span class="co">#&gt; [137] ada_2.0-5                   digest_0.6.27              </span>
 <span class="co">#&gt; [139] vegan_2.5-7                 rmarkdown_2.7              </span>
 <span class="co">#&gt; [141] cellranger_1.1.0            fastmatch_1.1-0            </span>

@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.43</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.46</span>
       </span>
     </div>
 
@@ -62,6 +62,10 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/MW_ST000291_enrichment.html">Use case ST000291
+</a>
+    </li>
+    <li>
+      <a href="../articles/MW_ST000629_enrichment.html">Use case ST000629
 </a>
     </li>
     <li>
@@ -105,7 +109,7 @@
       University of Barcelona, Spain.<br><a class="author_email" href="mailto:#"></a><a href="mailto:polcaes@gmail.com" class="email">polcaes@gmail.com</a>
       </address>
                   
-            <h4 class="date">8 mayo 2021</h4>
+            <h4 class="date">10 mayo 2021</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pcastellanoescuder/fobitools/blob/master/vignettes/food_enrichment_analysis.Rmd"><code>vignettes/food_enrichment_analysis.Rmd</code></a></small>
       <div class="hidden name"><code>food_enrichment_analysis.Rmd</code></div>
@@ -114,7 +118,7 @@
 
     
     
-<p><strong>Compiled date</strong>: 2021-05-08</p>
+<p><strong>Compiled date</strong>: 2021-05-10</p>
 <p><strong>Last edited</strong>: 2021-08-05</p>
 <p><strong>License</strong>: GPL-3</p>
 <div id="installation" class="section level1">
@@ -150,7 +154,7 @@
 <code class="sourceCode R"><span class="co"># select 300 random metabolites from FOBI</span>
 <span class="va">idx_universe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="fu">fobitools</span><span class="fu">::</span><span class="va"><a href="../reference/idmap.html">idmap</a></span><span class="op">)</span>, <span class="fl">300</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="va">metaboliteUniverse</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="va"><a href="../reference/idmap.html">idmap</a></span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">idx_universe</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">idx_universe</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">FOBI</span><span class="op">)</span>
 
 <span class="co"># select 10 random metabolites from metaboliteUniverse that are associated with 'Red meat' (FOBI:0193), </span>
@@ -159,7 +163,7 @@
 <span class="va">fobi_subset</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/parse_fobi.html">parse_fobi</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">FOBI</span> <span class="op">%in%</span> <span class="va">metaboliteUniverse</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">id_BiomarkerOf</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"FOBI:0193"</span>, <span class="st">"FOBI:0185"</span>, <span class="st">"FOODON:00001274"</span>, <span class="st">"FOODON:03301702"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>, <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>, <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">metaboliteList</span> <span class="op">&lt;-</span> <span class="va">fobi_subset</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">FOBI</span><span class="op">)</span></code></pre></div>
@@ -192,22 +196,42 @@ overlapMetabolites
 <tbody>
 <tr>
 <td style="text-align:left;">
-egg food product
+dairy food product
+</td>
+<td style="text-align:right;">
+13
 </td>
 <td style="text-align:right;">
 6
 </td>
 <td style="text-align:right;">
+0.0000001
+</td>
+<td style="text-align:right;">
+0.0000046
+</td>
+<td style="text-align:left;">
+FOBI:030692, FOBI:030696, FOBI:030697, FOBI:030695, FOBI:08826 , FOBI:030699
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+egg food product
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
 5
 </td>
 <td style="text-align:right;">
-0.0000000
+0.0000008
 </td>
 <td style="text-align:right;">
-0.0000007
+0.0000128
 </td>
 <td style="text-align:left;">
-FOBI:030692, FOBI:030694, FOBI:030697, FOBI:030693, FOBI:030699
+FOBI:030692, FOBI:030696, FOBI:030697, FOBI:030695, FOBI:030699
 </td>
 </tr>
 <tr>
@@ -215,79 +239,19 @@ FOBI:030692, FOBI:030694, FOBI:030697, FOBI:030693, FOBI:030699
 meat food product
 </td>
 <td style="text-align:right;">
-6
+10
 </td>
 <td style="text-align:right;">
 5
 </td>
 <td style="text-align:right;">
-0.0000000
+0.0000015
 </td>
 <td style="text-align:right;">
-0.0000007
+0.0000155
 </td>
 <td style="text-align:left;">
-FOBI:030692, FOBI:030694, FOBI:030697, FOBI:030693, FOBI:030699
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-dairy food product
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-0.0000003
-</td>
-<td style="text-align:right;">
-0.0000042
-</td>
-<td style="text-align:left;">
-FOBI:030692, FOBI:030694, FOBI:030697, FOBI:030693, FOBI:030699
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-soybean (whole)
-</td>
-<td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-0.0001756
-</td>
-<td style="text-align:right;">
-0.0015808
-</td>
-<td style="text-align:left;">
-FOBI:030692, FOBI:030694, FOBI:030697, FOBI:030693, FOBI:030699
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Lean meat
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-0.0008027
-</td>
-<td style="text-align:right;">
-0.0057793
-</td>
-<td style="text-align:left;">
-FOBI:030709, FOBI:030688
+FOBI:030692, FOBI:030696, FOBI:030697, FOBI:030695, FOBI:030699
 </td>
 </tr>
 <tr>
@@ -295,19 +259,59 @@ FOBI:030709, FOBI:030688
 Red meat
 </td>
 <td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0000019
+</td>
+<td style="text-align:right;">
+0.0000155
+</td>
+<td style="text-align:left;">
+FOBI:030687, FOBI:030708, FOBI:08826 , FOBI:030707
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lean meat
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
 3
 </td>
 <td style="text-align:right;">
-2
+0.0000743
 </td>
 <td style="text-align:right;">
-0.0023703
-</td>
-<td style="text-align:right;">
-0.0142219
+0.0004902
 </td>
 <td style="text-align:left;">
-FOBI:030709, FOBI:030691
+FOBI:030687, FOBI:030708, FOBI:030707
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+soybean (whole)
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.0002192
+</td>
+<td style="text-align:right;">
+0.0012058
+</td>
+<td style="text-align:left;">
+FOBI:030692, FOBI:030696, FOBI:030697, FOBI:030695, FOBI:030699
 </td>
 </tr>
 </tbody>
