@@ -55,7 +55,7 @@ parse_fobi <- function(terms = NULL,
   })
   
   parsed_fobi <- raw_lines %>% 
-    slice(13:n()) %>%
+    dplyr::slice(13:n()) %>%
     rename(V1 = 1, V2 = 2) %>%
     separate_rows(V2, sep = " ! ") %>% 
     mutate(V2 = str_replace_all(V2, pattern = "FOBI_", "FOBI:"),

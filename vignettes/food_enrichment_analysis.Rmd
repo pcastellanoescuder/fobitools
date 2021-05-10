@@ -69,7 +69,7 @@ Here is an example:
 # select 300 random metabolites from FOBI
 idx_universe <- sample(nrow(fobitools::idmap), 300, replace = FALSE)
 metaboliteUniverse <- fobitools::idmap %>%
-  slice(idx_universe) %>%
+  dplyr::slice(idx_universe) %>%
   pull(FOBI)
 
 # select 10 random metabolites from metaboliteUniverse that are associated with 'Red meat' (FOBI:0193), 
@@ -78,7 +78,7 @@ metaboliteUniverse <- fobitools::idmap %>%
 fobi_subset <- fobitools::parse_fobi() %>%
   filter(FOBI %in% metaboliteUniverse) %>%
   filter(id_BiomarkerOf %in% c("FOBI:0193", "FOBI:0185", "FOODON:00001274", "FOODON:03301702")) %>%
-  slice(sample(nrow(.), 10, replace = FALSE))
+  dplyr::slice(sample(nrow(.), 10, replace = FALSE))
 
 metaboliteList <- fobi_subset %>%
   pull(FOBI)

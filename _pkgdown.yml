@@ -28,6 +28,9 @@ navbar:
           Use case ST000291
         href: articles/MW_ST000291_enrichment.html
       - text: |
+          Use case ST000629
+        href: articles/MW_ST000629_enrichment.html
+      - text: |
           Simple food ORA
         href: articles/food_enrichment_analysis.html
       - text: |

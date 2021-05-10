@@ -1,5 +1,5 @@
 ---
-title: "Use case of fobitools using tidyverse and the ST000291 data from Metabolomics Workbench"
+title: "Use case of fobitools using tidyverse and the ST000629 data from Metabolomics Workbench"
 author: 
 - name: Pol Castellano-Escuder
   affiliation: University of Barcelona, Spain.
@@ -8,10 +8,10 @@ date: "`r BiocStyle::doc_date()`"
 output: 
     BiocStyle::html_document
 vignette: >
-  %\VignetteIndexEntry{Use case ST000291}
+  %\VignetteIndexEntry{Use case ST000629}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  %\VignetteDepends{tidyverse, rvest, ggrepel, kableExtra, POMA, metabolomicsWorkbenchR, SummarizedExperiment}
+  %\VignetteDepends{tidyverse, ggrepel, kableExtra, POMA, metabolomicsWorkbenchR, SummarizedExperiment}
 bibliography: ["fobitools.bib"]
 biblio-style: apalike
 link-citations: true
@@ -47,12 +47,11 @@ BiocManager::install("fobitools")
 library(fobitools)
 ```
 
-We will also need some additional [CRAN](https://cran.r-project.org) and [Bioconductor](https://bioconductor.org) packages for performing tasks such as statistical analysis and web scraping.   
+We will also need some additional [CRAN](https://cran.r-project.org) and [Bioconductor](https://bioconductor.org) packages for performing tasks such as statistical analysis.   
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
 # CRAN
 library(tidyverse)
-library(rvest)
 library(ggrepel)
 library(kableExtra)
 
@@ -66,92 +65,40 @@ library(SummarizedExperiment)
 
 The Metabolomics Workbench, available at [www.metabolomicsworkbench.org](www.metabolomicsworkbench.org), is a public repository for metabolomics metadata and experimental data spanning various species and experimental platforms, metabolite standards, metabolite structures, protocols, tutorials, and training material and other educational resources. It provides a computational platform to integrate, analyze, track, deposit and disseminate large volumes of heterogeneous data from a wide variety of metabolomics studies including mass spectrometry (MS) and nuclear magnetic resonance spectrometry (NMR) data spanning over 20 different species covering all the major taxonomic categories including humans and other mammals, plants, insects, invertebrates and microorganisms [@sud2016metabolomics].    
 
-The `metabolomicsWorkbenchR` Bioconductor package allows us to obtain data from the Metabolomics Workbench repository. In this vignette we will use the sample data set [ST000291](https://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Study&StudyID=ST000291). 
+The `metabolomicsWorkbenchR` Bioconductor package allows us to obtain data from the Metabolomics Workbench repository. In this vignette we will use the sample data set [ST000629](https://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Study&StudyID=ST000629). 
 
-## Sumary of the study (ST000291)
+## Sumary of the study (ST000629)
 
-Eighteen healthy female college students between 21-29 years old with a normal BMI of 18.5-25 were recruited. Each subject was provided with a list of foods that contained significant amount of procyanidins, such as **cranberries, apples, grapes, blueberries, chocolate and plums**. They were advised to avoid these foods during the 1-6th day and the rest of the study. On the morning of the 7th day, a first-morning baseline urine sample and blood sample were collected from all human subjects after overnight fasting. **Participants were then randomly allocated into two groups (n=9) to consume cranberry juice or apple juice**. Six bottles (250 ml/bottle) of juice were given to participants to drink in the morning and evening of the 7th, 8th, and 9th day. On the morning of 10th day, all subjects returned to the clinical unit to provide a first-morning urine sample after overnight fasting. The blood sample was also collected from participants 30 min later after they drank another bottle of juice in the morning. After two-weeks of wash out period, participants switched to the alternative regimen and repeated the protocol. One human subject was dropped off this study because she missed part of her appointments. Another two human subjects were removed from urine metabolomics analyses because they failed to provide required urine samples after juice drinking.The present study aimed to investigate overall metabolic changes caused by procyanidins concentrates from cranberries and apples using a global LCMS based metabolomics approach. All plasma and urine samples were stored at -80ºC until analysis.     
+The objective of the study is to identify changes of urinary metabolite profiles associated with different responses to blood pressure to salt. Subjects are derived from The Dietary approaches to stop hypertension (DASH) diet, Sodium Intake and Blood Pressure Trial (Sacks FM _et al_ PMID: 11136953,N Engl J Med. 2001).We choose two groups subjects who meet the following conditions (the two groups are separately named A and B). We chose subjects on the Control diet. These subjects meet the blood pressure criteria described below:Group A subjects conditions: 1) On Control diet. 2) Normotensive subjects: systolic blood pressure from the low sodium visit is less than 140 and the diastolic blood pressure from low sodium visit is less than 90; 3) For group A: Either the systolic blood pressure from the high sodium visit was greater than 10 mmHg higher than the systolic blood pressure from the low sodium visit, or the diastolic blood pressure from the high sodium visit was greater than 10 mmHg higher than the diastolic blood pressure from the low sodium visit; 3) For group B: The systolic blood pressure from the high sodium visit is within 5 mmHg (i.e. +/- 5) from the systolic blood pressure from the low sodium visit, and the diastolic blood pressure from the high sodium visit is within 5 mmHg from the diastolic blood pressure from the low sodium visit. Use gas chromatography/mass spectrometry (GC/MS) analysis, and liquid chromatography/mass spectrometry (LC/MS) analysis to find the differences of metabolic profiles between the high sodium level and the low sodium level, and compare the metabolic profiles of A with the metabolic profiles of B at the low and high sodium level.
 
 ## Download data
 
-This study is composed of two complementary MS analyses, the positive mode (AN000464) and the negative mode (AN000465). Let's download them both!   
+This study includes compounds analyzed via MS analysis and positive ion mode (AN000961). Let's download it!   
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
-data_negative_mode <- do_query(
+data <- do_query(
   context = "study",
   input_item = "analysis_id",
-  input_value = "AN000465",
+  input_value = "AN000961",
   output_item = "SummarizedExperiment")
-
-data_positive_mode <- do_query(
-  context = "study",
-  input_item = "analysis_id",
-  input_value = "AN000464",
-  output_item = "SummarizedExperiment")
-```
-
-## Scraping metabolite names and identifiers with `rvest`
-
-In many metabolomics studies, the reproducibility of analyses is severely affected by the poor interoperability of metabolite names and their identifiers. For this reason it is important to develop tools that facilitate the process of converting one type of identifier to another. In order to use the `fobitools` package, we need some generic identifier (such as PubChem, KEGG or HMDB) that allows us to obtain the corresponding FOBI identifier for each metabolite. The Metabolomics Workbench repository provides us with this information for many of the metabolites quantified in study [ST000291](https://www.metabolomicsworkbench.org/data/show_metabolites_by_study.php?STUDY_ID=ST000291&SEARCH_TYPE=KNOWN&STUDY_TYPE=MS&RESULT_TYPE=1) (Figure \@ref(fig:metabolitenames)). In order to easily obtain this information, we will perform a web scraping operation using the `rvest` package.
-
-```{r metabolitenames, message = FALSE, warning = FALSE, comment = FALSE, echo = FALSE, fig.align = "center", out.width = "100%", fig.cap = 'Metabolite identifiers of the ST000291 Metabolomics Workbench study.'}
-knitr::include_graphics("figure/ST000291_names.png")
-```
-
-Below we obtain the PubChem and KEGG identifiers of the metabolites analyzed in the positive and negative mode directly from the Metabolomics Workbench website. We will then remove those duplicate identifiers.    
-
-```{r, warning = FALSE, message = FALSE, comment = FALSE}
-metaboliteNamesURL <- "https://www.metabolomicsworkbench.org/data/show_metabolites_by_study.php?STUDY_ID=ST000291&SEARCH_TYPE=KNOWN&STUDY_TYPE=MS&RESULT_TYPE=1"
-metaboliteNames <- metaboliteNamesURL %>% 
-  read_html() %>% 
-  html_nodes(".datatable")
-
-metaboliteNames_negative <- metaboliteNames %>%
-  .[[1]] %>%
-  html_table() %>%
-  dplyr::select(`Metabolite Name`, PubChemCompound_ID, `Kegg Id`)
-
-metaboliteNames_positive <- metaboliteNames %>%
-  .[[2]] %>%
-  html_table() %>%
-  dplyr::select(`Metabolite Name`, PubChemCompound_ID, `Kegg Id`)
-
-metaboliteNames <- bind_rows(metaboliteNames_negative, metaboliteNames_positive) %>%
-  dplyr::rename(names = 1, PubChem = 2, KEGG = 3) %>%
-  mutate(KEGG = ifelse(KEGG == "-", "UNKNOWN", KEGG),
-         PubChem = ifelse(PubChem == "-", "UNKNOWN", PubChem)) %>%
-  filter(!duplicated(PubChem))
 ```
 
 # Prepare features and metadata
 
-Now we have to prepare the metadata and features in order to proceed with the statistical analysis. In this step we assign to each metabolite its PubChem identifier obtained in the previous step.
+Now we have to prepare the metadata and features in order to proceed with the statistical analysis. In this step we assign to each metabolite its chemical name provided in Metabolomics Workbench.
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
-## negative mode features 
-features_negative <- assay(data_negative_mode) %>%
-  dplyr::slice(-n())
-rownames(features_negative) <- rowData(data_negative_mode)$metabolite[1:(length(rowData(data_negative_mode)$metabolite)-1)]
-
-## positive mode features
-features_positive <- assay(data_positive_mode) %>%
-  dplyr::slice(-n())
-rownames(features_positive) <- rowData(data_positive_mode)$metabolite[1:(length(rowData(data_positive_mode)$metabolite)-1)]
-
-## combine positive and negative mode and set PubChem IDs as feature names
-features <- bind_rows(features_negative, features_positive) %>%
-  tibble::rownames_to_column("names") %>%
-  right_join(metaboliteNames, by = "names") %>%
-  select(-names, -KEGG) %>%
-  tibble::column_to_rownames("PubChem")
+## features 
+features <- assay(data)
+rownames(features) <- rowData(data)$metabolite
 
 ## metadata
-pdata <- colData(data_negative_mode) %>% # or "data_positive_mode". They are equal
+pdata <- colData(data) %>%
   as.data.frame() %>%
   tibble::rownames_to_column("ID") %>%
-  mutate(Treatment = case_when(Treatment == "Baseline urine" ~ "Baseline",
-                               Treatment == "Urine after drinking apple juice" ~ "Apple",
-                               Treatment == "Urine after drinking cranberry juice" ~ "Cranberry"))
+  relocate(grouping, .before = Sodium.level) %>%
+  mutate(grouping = case_when(grouping == "A(salt sensitive)" ~ "A",
+                              grouping == "B(salt insensitive)" ~ "B"))
 ```
 
 # Statistical analysis with `POMA`
@@ -179,12 +126,12 @@ data_preprocessed <- data_msnset %>%
 
 ## Limma model
 
-We use a limma model [@limma] to identify those most significant metabolites between the "**Baseline urine**" and "**Urine after drinking cranberry juice**" groups. With this analysis we expect to find metabolites related to cranberry intake.   
+We use a limma model [@limma] to identify those most significant metabolites between the "**A(salt sensitive)**" and "**B(salt insensitive)**" groups. 
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
 limma_res <- data_preprocessed %>%
-  PomaLimma(contrast = "Baseline-Cranberry", adjust = "fdr") %>%
-  tibble::rownames_to_column("PubChemCID")
+  PomaLimma(contrast = "A-B", adjust = "fdr") %>%
+  tibble::rownames_to_column("ID")
 
 # show the first 10 features
 limma_res %>%
@@ -193,14 +140,44 @@ limma_res %>%
   kable_styling(latex_options = c("striped"))
 ```
 
-# Convert PubChem IDs to FOBI IDs
+## Convert metabolite names to KEGG identifiers with `MetaboAnalyst` web server
 
-Once we have the results of the statistical analysis and generic identifiers recognized in the FOBI ontology [@castellano2020fobi], we can proceed to perform one of the main functions provided by the `fobitools` package, the ID conversion. With the `fobitools::id_convert()` command, users can convert different IDs between FOBI, HMDB, KEGG, PubChem, InChIKey, InChICode, ChemSpider, and chemical names. We will then obtain the FOBI IDs from the PubChem IDs (obtained in the previous sections) and add them as a new column to the results of the limma model.
+In many metabolomics studies, the reproducibility of analyses is severely affected by the poor interoperability of metabolite names and their identifiers. For this reason it is important to develop tools that facilitate the process of converting one type of identifier to another. In order to use the `fobitools` package, we need some generic identifier (such as PubChem, KEGG or HMDB) that allows us to obtain the corresponding FOBI identifier for each metabolite. However, unlike vignette "_Use case ST000291_", the Metabolomics Workbench repository does not provide us with this information for the metabolites quantified in study [ST000629](https://www.metabolomicsworkbench.org/data/show_metabolites_by_study.php?STUDY_ID=ST000629&SEARCH_TYPE=KNOWN&STUDY_TYPE=MS&RESULT_TYPE=1).    
+
+In those cases where we do not have other common identifiers, the authors recommend using the powerful conversion tool provided by [MetaboAnalyst](https://www.metaboanalyst.ca/MetaboAnalyst/upload/ConvertView.xhtml). This tool will allow us to move from the metabolite names to other generic identifiers such as KEGG or HMDB, which will later allow us to obtain the FOBI identifier of these metabolites.
+
+In order to use the MetaboAnalyst ID conversion tool, we can copy the result of the following `cat()` command and paste it directly into MetaboAnalyst (Figure \@ref(fig:MAconvertID)). 
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE, eval = FALSE}
+cat(limma_res$ID, sep = "\n")
+```
+
+```{r MAconvertID, message = FALSE, warning = FALSE, comment = FALSE, echo = FALSE, fig.align = "center", out.width = "100%", fig.cap = 'Metabolite names conversion using MetaboAnalyst.'}
+knitr::include_graphics("figure/MetaboAnalyst_convertID.png")
+```
+
+Then, we can access to the MetaboAnalyst temporary page that is hosting our results (where the following "_XXXXXXX_" will be your guest URL).  
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE, eval = FALSE}
+ST000629_MetaboAnalyst_MapNames <- readr::read_delim("https://www.metaboanalyst.ca/MetaboAnalyst/resources/users/XXXXXXX/name_map.csv", delim = ",")
+```
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE, echo = FALSE}
+load("data/ST000629_MetaboAnalyst_MapNames.rda")
+```
+
+# Convert KEGG IDs to FOBI IDs
+
+Once we have the results of the statistical analysis and generic identifiers recognized in the FOBI ontology [@castellano2020fobi], we can proceed to perform one of the main functions provided by the `fobitools` package, the ID conversion. With the `fobitools::id_convert()` command, users can convert different IDs between FOBI, HMDB, KEGG, PubChem, InChIKey, InChICode, ChemSpider, and chemical names. We will then obtain the FOBI IDs from the KEGG IDs (obtained in the previous section via MetaboAnalyst web server) and add them as a new column to the results of the limma model.
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
-limma_FOBI_names <- limma_res %>%
-  dplyr::pull("PubChemCID") %>%
-  fobitools::id_convert()
+annotated_limma <- ST000629_MetaboAnalyst_MapNames %>%
+  dplyr::rename(ID = Query) %>%
+  right_join(limma_res, by = "ID")
+
+limma_FOBI_names <- annotated_limma %>%
+  dplyr::pull("KEGG") %>%
+  fobitools::id_convert(to = "FOBI")
 
 # show the ID conversion results
 limma_FOBI_names %>%
@@ -211,7 +188,8 @@ limma_FOBI_names %>%
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
 limma_FOBI_names <- limma_FOBI_names %>%
-  right_join(limma_res, by = "PubChemCID") %>%
+  right_join(annotated_limma, by = "KEGG") %>%
+  dplyr::select(FOBI, KEGG, ID, logFC, P.Value, adj.P.Val) %>%
   dplyr::arrange(-dplyr::desc(P.Value))
 ```
 
@@ -231,20 +209,20 @@ ORA is one of the most used methods to perform enrichment analysis in metabolomi
 
 However, ORA has a number of limitations. The most important one is the need of using a certain threshold or criteria to select the feature list. This means that metabolites do not meet the selection criteria must be discarded. The second big limitation of ORA is that this method assumes independence of sets and features. In ORA, is assumed that each feature is independent of the other features and each set is independent of the other sets.
 
-Here, we perform an ORA with the `fobitools` package, where we will use as a universe all the metabolites of the study present in FOBI and as a list those metabolites with a raw p-value < 0.01 in the limma results table.
+Here, we perform an ORA with the `fobitools` package, where we will use as a universe all the metabolites of the study present in FOBI and as a list those metabolites with a raw p-value < 0.05 in the limma results table.
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
-metaboliteList <- limma_FOBI_names$FOBI[limma_FOBI_names$P.Value < 0.01]
+metaboliteList <- limma_FOBI_names$FOBI[limma_FOBI_names$P.Value < 0.05]
 metaboliteUniverse <- limma_FOBI_names$FOBI
 
 fobitools::ora(metaboliteList = metaboliteList,
                metaboliteUniverse = metaboliteUniverse,
-               pvalCutoff = 0.5) %>%
+               pvalCutoff = 1) %>%
   kbl(row.names = FALSE, booktabs = TRUE) %>%
   kable_styling(latex_options = c("striped"))
 ```
 
-As we can see, due to the limitations of this methodology and the small number of metabolites that meet the set statistical criterion, the results do not show a clear and obvious relationship with the design of the study, as the food groups that appear in the ORA results do not correspond to those foods administered in the intervention.
+<!-- As we can see, due to the limitations of this methodology and the small number of metabolites that meet the set statistical criterion, the results do not show a clear and obvious relationship with the design of the study, as the food groups that appear in the ORA results do not correspond to those foods administered in the intervention. -->
 
 ## MSEA
 
@@ -273,20 +251,11 @@ limma_FOBI_msea <- limma_FOBI_names %>%
 FOBI_msea <- as.vector(limma_FOBI_msea$P.Value)
 names(FOBI_msea) <- limma_FOBI_msea$FOBI
 
-msea_res <- fobitools::msea(FOBI_msea, pvalCutoff = 0.06)
+msea_res <- fobitools::msea(FOBI_msea, pvalCutoff = 1)
 
 msea_res %>%
   kbl(row.names = FALSE, booktabs = TRUE) %>%
   kable_styling(latex_options = c("striped"))
-```
-
-As we can see, the enrichment analysis with the MSEA method seems to be much more accurate than the ORA method, since the two classes that head the results table ("_grape (whole, raw)_" and "_grapefruit (whole, raw)_") are clearly within the FOBI food group (set) "_plant fruit food product_", which is aligned with the study intervention, cranberry juice intake.
-
-```{r, warning = FALSE, message = FALSE, comment = FALSE}
-fobi_graph(terms = c("FOODON:03301123", "FOODON:03301702"), 
-           get = "anc", 
-           labels = TRUE, 
-           labelsize = 6)
 ```
 
 ### MSEA plot with `ggplot2`
@@ -307,16 +276,16 @@ ggplot(msea_res, aes(x = -log10(pval), y = NES, color = NES, size = classSize, l
 ### Network of metabolites found in MSEA
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE, fig.width = 12, fig.height = 10}
-FOBI_terms <- msea_res %>% 
+FOBI_terms <- msea_res %>%
   unnest(cols = leadingEdge)
 
 fobitools::fobi %>%
   filter(FOBI %in% FOBI_terms$leadingEdge) %>%
   pull(id_code) %>%
-  fobi_graph(get = "anc", 
-             labels = TRUE, 
-             legend = TRUE, 
-             labelsize = 6, 
+  fobi_graph(get = "anc",
+             labels = TRUE,
+             legend = TRUE,
+             labelsize = 6,
              legendSize = 20)
 ```
 

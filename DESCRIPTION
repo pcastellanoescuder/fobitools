@@ -1,6 +1,6 @@
 Package: fobitools
 Title: Tools For Manipulating FOBI Ontology
-Version: 0.99.44
+Version: 0.99.45
 Authors@R: 
     c(person(given = "Pol",
              family = "Castellano-Escuder",
@@ -45,9 +45,14 @@ Imports:
 Suggests:
     BiocStyle,
     covr,
+    ggrepel,
     kableExtra,
     knitr,
+    metabolomicsWorkbenchR,
+    POMA,
     rmarkdown,
+    rvest,
+    SummarizedExperiment,
     testthat (>= 2.3.2),
     tidyverse
 RoxygenNote: 7.1.1

@@ -267,7 +267,7 @@ annotate_foods <- function(foods,
     select(-id_code) %>%
     mutate(grouping = paste0(FOOD_ID, "_", name)) %>% 
     group_by(grouping) %>%
-    slice(1) %>%
+    dplyr::slice(1) %>%
     ungroup() %>%
     select(-grouping) %>%
     left_join(reference, by = "name") %>%
