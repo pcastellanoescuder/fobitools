@@ -1,8 +1,9 @@
-# fobitools 0.99.46
+# fobitools 0.99.47
 
 * New package vignette "_Use case ST000291_".     
 * New package vignette "_Use case ST000629_".    
 * Remove AppVeyor and Travis CI and move codecov to GitHub Actions.
+* Updated vignette "_Dietary text annotation_".
 
 # fobitools 0.99.41
 

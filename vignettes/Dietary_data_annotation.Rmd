@@ -11,11 +11,15 @@ vignette: >
   %\VignetteIndexEntry{Dietary text annotation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{tidyverse, kableExtra}
+bibliography: ["fobitools.bib"]
+biblio-style: apalike
+link-citations: true
 ---
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2021-08-15
+**Last edited**: 2021-10-05
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 
@@ -31,75 +35,41 @@ knitr::opts_chunk$set(
 Run the following code to install the Bioconductor version of the package.        
 
 ```{r, eval = FALSE}
-# install.packages("BiocManager")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
 BiocManager::install("fobitools")
 ```
 
-# Load `fobitools` 
+# Load packages 
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
 library(fobitools)
 ```
 
-You can also load some additional packages that will be very useful in this vignette.   
+We will also need some additional [CRAN](https://cran.r-project.org) packages that will be very useful in this vignette.
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
-library(dplyr)
+library(tidyverse)
 library(kableExtra)
 ```
 
-# Create an example dietary free-text data
+# Load food items from a food frequency questionnaire (FFQ) sample data 
 
-In nutritional studies, dietary data are usually collected by using different questionnaires such as FFQs (food frequency questionnaires) or 24h-DRs (24 hours dietary recall). Commonly, the text collected in these questionnaires require a manual pre-processing step before being analyzed.        
+In nutritional studies, dietary data are usually collected by using different questionnaires such as FFQs (food frequency questionnaires) or 24h-DRs (24 hours dietary recall). Commonly, the text collected in these questionnaires require a manual preprocessing step before being analyzed.        
 
-Here is a small example of what a 24h DR could look like in a nutritional study.     
+This is an example of how an FFQ could look like in a common nutritional study.     
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
-# create a dummy dietary data
-free_text <- tibble(id = c(101, 102, 103, 104),
-                    text = c("Yesterday I ate eggs and bacon with a butter toast and black tea", 
-                             "Crisp bread and rice crackers with wholegrain", 
-                             "Beef and veal, one apple", "pizza without meat"))
-```
+load("data/sample_ffq.rda")
 
-```{r, warning = FALSE, message = FALSE, comment = FALSE, echo = FALSE}
-kbl(free_text, 
-    row.names = FALSE,
-    booktabs = TRUE) %>%
+sample_ffq %>%
+  dplyr::slice(1L:10L) %>%
+  kbl(row.names = FALSE, booktabs = TRUE) %>%
   kable_styling(latex_options = c("striped"))
 ```
 
-# Automatic anotation with `fobitools::annotate_foods()`
-
-The `annotate_foods` function allows the automatic annotation of free nutritional text using the FOBI ontology. This function returns a table with the IDs and names of the FOBI terms that match the input text.       
-
-The `annotate_foods` function provides a text mining algorithm composed of 5 sequential layers. In this process, singulars and plurals are analyzed, irrelevant words are removed, each string of the text input is tokenized and each word is analyzed independently, and the semantic similarity between input text and FOBI's text is computed. Finally, along with the table the function also returns the percentage of the annotated input text.     
-
-```{r, warning = FALSE}
-annotated_text <- fobitools::annotate_foods(free_text)
-```
-
-```{r, warning = FALSE, message = FALSE, comment = FALSE, echo = FALSE}
-kbl(annotated_text$annotated, 
-    row.names = FALSE,
-    booktabs = TRUE) %>%
-  kable_styling(latex_options = c("striped"))
-```
-
-# Network visualization of the annotated terms
-
-Then, with the `fobi_graph` function we can visualize the annotated terms with their corresponding FOBI relationships.        
-
-```{r, warning = FALSE, message = FALSE, comment = FALSE, fig.align = "center", fig.height = 8, fig.width = 10}
-terms <- annotated_text$annotated %>% 
-  pull(FOBI_ID)
-
-# create the associated graph
-fobitools::fobi_graph(terms = terms, 
-                      get = "anc",
-                      labels = TRUE,
-                      legend = TRUE)
-```
+<!-- CONTENT -->
 
 # Session Information
 
@@ -109,5 +79,38 @@ sessionInfo()
 
 # References
 
-Pol Castellano-Escuder, Raúl González-Domínguez, David S Wishart, Cristina Andrés-Lacueva, Alex Sánchez-Pla, FOBI: an ontology to represent food intake data and associate it with metabolomic data, Database, Volume 2020, 2020, baaa033. DOI: [https://doi.org/10.1093/databa/baaa033](https://doi.org/10.1093/databa/baaa033)
+<!-- END -->
+
+
+# Automatic anotation with `fobitools::annotate_foods()`
+
+The `annotate_foods` function allows the automatic annotation of free nutritional text using the FOBI ontology. This function returns a table with the IDs and names of the FOBI terms that match the input text.       
+
+The `annotate_foods` function provides a text mining algorithm composed of 5 sequential layers. In this process, singulars and plurals are analyzed, irrelevant words are removed, each string of the text input is tokenized and each word is analyzed independently, and the semantic similarity between input text and FOBI's text is computed. Finally, along with the table the function also returns the percentage of the annotated input text.     
+
+```{r, warning = FALSE}
+# annotated_text <- fobitools::annotate_foods(free_text)
+```
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE, echo = FALSE}
+# kbl(annotated_text$annotated, 
+#     row.names = FALSE,
+#     booktabs = TRUE) %>%
+#   kable_styling(latex_options = c("striped"))
+```
+
+# Network visualization of the annotated terms
+
+Then, with the `fobi_graph` function we can visualize the annotated terms with their corresponding FOBI relationships.        
+
+```{r, warning = FALSE, message = FALSE, comment = FALSE, fig.align = "center", fig.height = 8, fig.width = 10}
+# terms <- annotated_text$annotated %>% 
+#   pull(FOBI_ID)
+# 
+# # create the associated graph
+# fobitools::fobi_graph(terms = terms, 
+#                       get = "anc",
+#                       labels = TRUE,
+#                       legend = TRUE)
+```
 
