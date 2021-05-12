@@ -57,12 +57,6 @@ jobs:
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
-          sudo apt install libboost-all-dev
-          sudo apt-get install libmpfr-dev
-          sudo apt-get install libnetcdf-dev
-          sudo su - -c "R -e \"install.packages('Rmpfr', repos = 'http://cran.rstudio.com/')\""
-          Rscript -e "install.packages('BiocManager')"
-          Rscript -e "BiocManager::install(c('RankProd', 'MSnbase'))"
   
       - name: Install dependencies
         run: |
@@ -74,7 +68,7 @@ jobs:
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
-        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
+        run: rcmdcheck::rcmdcheck(args = c("--no-manual"), error_on = "warning", check_dir = "check") # build_args = c("--no-manual", "--ignore-vignettes", "--no-build-vignettes")
         shell: Rscript {0}
 
       - name: Upload check results
