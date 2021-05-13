@@ -45,7 +45,7 @@ annotate_foods <- function(foods,
   }
   
   foods <- foods %>%
-    rename(FOOD_ID = 1, FOOD_NAME = 2) %>%
+    dplyr::rename(FOOD_ID = 1, FOOD_NAME = 2) %>%
     filter(!duplicated(FOOD_NAME))
   
   dup_ids <- foods %>%
@@ -98,7 +98,7 @@ annotate_foods <- function(foods,
     ungroup() %>%
     filter(!duplicated(FOOD_ID)) %>%
     select(-words) %>%
-    rename(words = words_joint)
+    dplyr::rename(words = words_joint)
   
   remove_patterns2 <- c("\\bproducts\\b",
                         "\\bproduct\\b",
@@ -131,13 +131,16 @@ annotate_foods <- function(foods,
   
   # RAW MATCH
   
-  wordlist <- expand_grid(words = ffq$words, ref = fobi_foods$ref) %>% 
+  wordlist <- expand_grid(words = ffq$words, ref = fobi_foods$ref) %>%
     filter(ref == words)
+    # mutate(detect = stringr::str_detect(words, ref)) %>%
+    # filter(ref == words | detect == "TRUE") %>%
+    # select(-detect)
   
   result0 <- merge(ffq, wordlist, by = "words")
   result0 <- merge(result0, fobi_foods, by = "ref") %>%
-    select(FOOD_ID, FOOD_NAME, id_code, name) %>%
-    filter(!duplicated(FOOD_NAME))
+    select(FOOD_ID, FOOD_NAME, id_code, name) #%>%
+    # filter(!duplicated(FOOD_NAME))
   
   no_matched <- ffq %>% filter(!FOOD_NAME %in% result0$FOOD_NAME)
   
@@ -272,7 +275,7 @@ annotate_foods <- function(foods,
     select(-grouping) %>%
     left_join(reference, by = "name") %>%
     select(FOOD_ID, FOOD_NAME, id_code, name) %>%
-    rename(FOBI_ID = id_code, FOBI_NAME = name) %>%
+    dplyr::rename(FOBI_ID = id_code, FOBI_NAME = name) %>%
     filter(!duplicated(.)) %>%
     as_tibble()
   

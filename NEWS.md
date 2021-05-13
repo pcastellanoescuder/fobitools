@@ -1,9 +1,10 @@
-# fobitools 0.99.53
+# fobitools 0.99.54
 
 * New package vignette "_Use case ST000291_".     
 * New package vignette "_Use case ST000629_".    
 * Remove AppVeyor and Travis CI and move codecov to GitHub Actions.
 * Updated vignette "_Dietary text annotation_".
+* Improvements to the `annotate_foods()` function.
 
 # fobitools 0.99.41
 
