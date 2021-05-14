@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.55</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.56</span>
       </span>
     </div>
 
@@ -119,7 +119,7 @@
     
     
 <p><strong>Compiled date</strong>: 2021-05-14</p>
-<p><strong>Last edited</strong>: 2021-11-05</p>
+<p><strong>Last edited</strong>: 2021-14-05</p>
 <p><strong>License</strong>: GPL-3</p>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
@@ -254,7 +254,7 @@ Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">annotated_text</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/annotate_foods.html">annotate_foods</a></span><span class="op">(</span><span class="va">sample_ffq</span><span class="op">)</span>
 <span class="co">#&gt; 83.44% annotated</span>
-<span class="co">#&gt; 0.535 sec elapsed</span>
+<span class="co">#&gt; 0.541 sec elapsed</span>
 
 <span class="va">annotated_text</span><span class="op">$</span><span class="va">annotated</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">:</span><span class="fl">10L</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -425,7 +425,7 @@ grape (whole, raw)
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">annotated_text_95</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/annotate_foods.html">annotate_foods</a></span><span class="op">(</span><span class="va">sample_ffq</span>, similarity <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>
 <span class="co">#&gt; 80.37% annotated</span>
-<span class="co">#&gt; 0.539 sec elapsed</span>
+<span class="co">#&gt; 0.465 sec elapsed</span>
 
 <span class="va">annotated_text_95</span><span class="op">$</span><span class="va">annotated</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">:</span><span class="fl">10L</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -589,7 +589,7 @@ grape (whole, raw)
 </tr>
 </tbody>
 </table>
-<p>See that by increasing the similarity value from 0.85 (default value) to 0.95 (a more accurate annotation), the percentage of annotated terms decreases from 83.44% to 80.37%. Let’s check those food items annotated with <code>similarity = 0.85</code> but not with <code>similarity = 0.95</code>.</p>
+<p>See that by increasing the similarity value from 0.85 (default value) to 0.95 (a more accurate annotation), the percentage of annotated terms decreases from 89.57% to 86.5%. Let’s check those food items annotated with <code>similarity = 0.85</code> but not with <code>similarity = 0.95</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">annotated_text</span><span class="op">$</span><span class="va">annotated</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">FOOD_ID</span> <span class="op">%in%</span> <span class="va">annotated_text_95</span><span class="op">$</span><span class="va">annotated</span><span class="op">$</span><span class="va">FOOD_ID</span><span class="op">)</span> <span class="op">%&gt;%</span>
