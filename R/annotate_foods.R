@@ -119,10 +119,10 @@ annotate_foods <- function(foods,
     mutate(ref = tolower(name),
            ref = str_replace(ref, "\\(.*\\)", ""),
            ref = str_remove_all(ref, pattern = paste(remove_patterns2, collapse = "|")),
-           ref = str_replace_all(ref, pattern = "\\brice grain\\b", replacement = "rice"), # specific cases
-           ref = str_replace_all(ref, pattern = "\\bsoybean\\b", replacement = "soy"), # specific cases
-           ref = str_replace_all(ref, pattern = "\\bbarley grain \\b", replacement = "barley"), # specific cases
-           ref = str_replace_all(ref, pattern = "\\bpork ribs\\b", replacement = "pork"), # specific cases
+           ref = str_replace_all(ref, pattern = "\\brice grain\\b", replacement = "rice"), # specific case
+           ref = str_replace_all(ref, pattern = "\\bsoybean\\b", replacement = "soy"), # specific case
+           ref = str_replace_all(ref, pattern = "\\bbarley grain \\b", replacement = "barley"), # specific case
+           ref = str_replace_all(ref, pattern = "\\bpork ribs\\b", replacement = "pork"), # specific case
            ref = str_trim(ref),
            ref = str_squish(ref)) %>%
     filter(ref != "")
@@ -132,15 +132,14 @@ annotate_foods <- function(foods,
   # RAW MATCH
   
   wordlist <- expand_grid(words = ffq$words, ref = fobi_foods$ref) %>%
-    filter(ref == words)
-    # mutate(detect = stringr::str_detect(words, ref)) %>%
-    # filter(ref == words | detect == "TRUE") %>%
-    # select(-detect)
+    mutate(detect = stringr::str_detect(words, ref)) %>%
+    filter(ref == words | detect == "TRUE") %>%
+    select(-detect)
   
   result0 <- merge(ffq, wordlist, by = "words")
   result0 <- merge(result0, fobi_foods, by = "ref") %>%
-    select(FOOD_ID, FOOD_NAME, id_code, name) #%>%
-    # filter(!duplicated(FOOD_NAME))
+    select(FOOD_ID, FOOD_NAME, id_code, name) %>%
+    filter(!duplicated(.))
   
   no_matched <- ffq %>% filter(!FOOD_NAME %in% result0$FOOD_NAME)
   
@@ -167,7 +166,9 @@ annotate_foods <- function(foods,
   ffq1 <- bind_rows(ffq_sing, ffq_sing_nospace, ffq_plural, ffq_plural_nospace, ffq_no_space)
   
   wordlist <- expand_grid(words = ffq1$words, ref = fobi_foods$ref) %>% 
-    filter(ref == words)
+    mutate(detect = stringr::str_detect(words, ref)) %>%
+    filter(ref == words | detect == "TRUE") %>%
+    select(-detect)
   
   result1 <- merge(ffq1, wordlist, by = "words")
   result1 <- merge(result1, fobi_foods, by = "ref") %>%
@@ -179,7 +180,7 @@ annotate_foods <- function(foods,
   
   # SPLIT INPUT (SINGULARS AND PLURALS)
   
-  ffq_sep <- ffq %>% 
+  ffq_sep <- ffq %>%
     filter(FOOD_NAME %in% no_matched$FOOD_NAME) %>%
     separate_rows(words, sep = " ")
   
@@ -192,14 +193,16 @@ annotate_foods <- function(foods,
   ffq_sep <- bind_rows(ffq_sep, ffq_sep_sing, ffq_sep_plural)
   
   wordlist <- expand_grid(words = ffq_sep$words, ref = fobi_foods$ref) %>% 
-    filter(ref == words)
+    mutate(detect = stringr::str_detect(words, ref)) %>%
+    filter(ref == words | detect == "TRUE") %>%
+    select(-detect)
   
   result2 <- merge(ffq_sep, wordlist, by = "words")
   result2 <- merge(result2, fobi_foods, by = "ref") %>%
     filter(!duplicated(.)) %>%
     group_by(FOOD_ID) %>%
-    mutate(id_code = paste(id_code, collapse = ";"), # here
-           name = paste(name, collapse = ";")) %>% # here
+    mutate(id_code = paste(id_code, collapse = ";"),
+           name = paste(name, collapse = ";")) %>%
     select(FOOD_ID, FOOD_NAME, id_code, name) %>%
     ungroup() %>%
     filter(!duplicated(.))
@@ -224,13 +227,15 @@ annotate_foods <- function(foods,
   ffq2 <- ffq %>% 
     filter(FOOD_NAME %in% no_matched$FOOD_NAME)
   
-  wordlist <- expand_grid(words = ffq2$words, ref = fobi_foods_sep$ref) %>%
-    filter(ref == words)
+  wordlist <- expand_grid(words = ffq2$words, ref = fobi_foods_sep$ref) %>% 
+    mutate(detect = stringr::str_detect(words, ref)) %>%
+    filter(ref == words | detect == "TRUE") %>%
+    select(-detect)
   
   result3 <- merge(ffq2, wordlist, by = "words")
   result3 <- merge(result3, fobi_foods_sep, by = "ref") %>%
-    filter(!duplicated(FOOD_ID)) %>% 
-    select(FOOD_ID, FOOD_NAME, id_code, name)
+    select(FOOD_ID, FOOD_NAME, id_code, name) %>%
+    filter(!duplicated(.))
   
   no_matched <- ffq %>% filter(!FOOD_NAME %in% result0$FOOD_NAME, 
                                !FOOD_NAME %in% result1$FOOD_NAME,
