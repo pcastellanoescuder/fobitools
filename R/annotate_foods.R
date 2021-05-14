@@ -132,7 +132,7 @@ annotate_foods <- function(foods,
   # RAW MATCH
   
   wordlist <- expand_grid(words = ffq$words, ref = fobi_foods$ref) %>%
-    mutate(detect = stringr::str_detect(words, ref)) %>%
+    mutate(detect = stringr::str_detect(words, paste0("\\b", ref, "\\b"))) %>%
     filter(ref == words | detect == "TRUE") %>%
     select(-detect)
   
@@ -165,8 +165,8 @@ annotate_foods <- function(foods,
   
   ffq1 <- bind_rows(ffq_sing, ffq_sing_nospace, ffq_plural, ffq_plural_nospace, ffq_no_space)
   
-  wordlist <- expand_grid(words = ffq1$words, ref = fobi_foods$ref) %>% 
-    mutate(detect = stringr::str_detect(words, ref)) %>%
+  wordlist <- expand_grid(words = ffq1$words, ref = fobi_foods$ref) %>%
+    mutate(detect = stringr::str_detect(words, paste0("\\b", ref, "\\b"))) %>%
     filter(ref == words | detect == "TRUE") %>%
     select(-detect)
   
@@ -192,8 +192,8 @@ annotate_foods <- function(foods,
   
   ffq_sep <- bind_rows(ffq_sep, ffq_sep_sing, ffq_sep_plural)
   
-  wordlist <- expand_grid(words = ffq_sep$words, ref = fobi_foods$ref) %>% 
-    mutate(detect = stringr::str_detect(words, ref)) %>%
+  wordlist <- expand_grid(words = ffq_sep$words, ref = fobi_foods$ref) %>%
+    mutate(detect = stringr::str_detect(words, paste0("\\b", ref, "\\b"))) %>%
     filter(ref == words | detect == "TRUE") %>%
     select(-detect)
   
@@ -227,8 +227,8 @@ annotate_foods <- function(foods,
   ffq2 <- ffq %>% 
     filter(FOOD_NAME %in% no_matched$FOOD_NAME)
   
-  wordlist <- expand_grid(words = ffq2$words, ref = fobi_foods_sep$ref) %>% 
-    mutate(detect = stringr::str_detect(words, ref)) %>%
+  wordlist <- expand_grid(words = ffq2$words, ref = fobi_foods_sep$ref) %>%
+    mutate(detect = stringr::str_detect(words, paste0("\\b", ref, "\\b"))) %>%
     filter(ref == words | detect == "TRUE") %>%
     select(-detect)
   

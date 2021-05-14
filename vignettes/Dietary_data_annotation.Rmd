@@ -19,7 +19,7 @@ link-citations: true
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2021-11-05
+**Last edited**: 2021-14-05
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 
@@ -97,7 +97,7 @@ annotated_text_95$annotated %>%
   kable_styling(latex_options = c("striped"))
 ```
 
-See that by increasing the similarity value from 0.85 (default value) to 0.95 (a more accurate annotation), the percentage of annotated terms decreases from 83.44% to 80.37%. Let's check those food items annotated with `similarity = 0.85` but not with `similarity = 0.95`.     
+See that by increasing the similarity value from 0.85 (default value) to 0.95 (a more accurate annotation), the percentage of annotated terms decreases from 89.57% to 86.5%. Let's check those food items annotated with `similarity = 0.85` but not with `similarity = 0.95`.     
 
 ```{r, warning = FALSE}
 annotated_text$annotated %>%
