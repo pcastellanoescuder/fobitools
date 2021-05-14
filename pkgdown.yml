@@ -2,9 +2,9 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
+  Dietary_data_annotation: Dietary_data_annotation.html
   MW_ST000291_enrichment: MW_ST000291_enrichment.html
   MW_ST000629_enrichment: MW_ST000629_enrichment.html
-  dietary_data_annotation: dietary_data_annotation.html
   food_enrichment_analysis: food_enrichment_analysis.html
-last_built: 2021-05-10T17:24Z
+last_built: 2021-05-14T09:38Z
 
