@@ -253,8 +253,8 @@ Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage
 <p>This function includes a text mining algorithm composed of 5 sequential layers. In this process, singulars and plurals are analyzed, irrelevant words are removed, each string of the text input is tokenized and each word is analyzed independently, and the semantic similarity between input text and FOBI items is computed. Finally, this function also shows the percentage of the annotated input text.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">annotated_text</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/annotate_foods.html">annotate_foods</a></span><span class="op">(</span><span class="va">sample_ffq</span><span class="op">)</span>
-<span class="co">#&gt; 83.44% annotated</span>
-<span class="co">#&gt; 0.541 sec elapsed</span>
+<span class="co">#&gt; 89.57% annotated</span>
+<span class="co">#&gt; 2.796 sec elapsed</span>
 
 <span class="va">annotated_text</span><span class="op">$</span><span class="va">annotated</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">:</span><span class="fl">10L</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -424,8 +424,8 @@ grape (whole, raw)
 <p>Additionally, the <em>similarity</em> argument indicates the semantic similarity cutoff used at the last layer of the text mining pipeline. It is a numeric value between 1 (exact match) and 0 (very poor match). Users can modify this value to obtain more or less accurated annotations. Authors do not recommend values below 0.85 (default).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">annotated_text_95</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/annotate_foods.html">annotate_foods</a></span><span class="op">(</span><span class="va">sample_ffq</span>, similarity <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>
-<span class="co">#&gt; 80.37% annotated</span>
-<span class="co">#&gt; 0.465 sec elapsed</span>
+<span class="co">#&gt; 86.5% annotated</span>
+<span class="co">#&gt; 2.72 sec elapsed</span>
 
 <span class="va">annotated_text_95</span><span class="op">$</span><span class="va">annotated</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">:</span><span class="fl">10L</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -1002,9 +1002,9 @@ FOBI:030695
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt;  [1] kableExtra_1.3.4  forcats_0.5.1     stringr_1.4.0     dplyr_1.0.5      </span>
+<span class="co">#&gt;  [1] kableExtra_1.3.4  forcats_0.5.1     stringr_1.4.0     dplyr_1.0.6      </span>
 <span class="co">#&gt;  [5] purrr_0.3.4       readr_1.4.0       tidyr_1.1.3       tibble_3.1.1     </span>
-<span class="co">#&gt;  [9] ggplot2_3.3.3     tidyverse_1.3.1   fobitools_0.99.41 BiocStyle_2.18.1 </span>
+<span class="co">#&gt;  [9] ggplot2_3.3.3     tidyverse_1.3.1   fobitools_0.99.56 BiocStyle_2.18.1 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
 <span class="co">#&gt;   [1] fgsea_1.16.0           colorspace_2.0-1       ellipsis_0.3.2        </span>
@@ -1030,7 +1030,7 @@ FOBI:030695
 <span class="co">#&gt;  [61] vroom_1.4.0            ragg_1.1.2             clisymbols_1.2.0      </span>
 <span class="co">#&gt;  [64] hms_1.0.0              parallel_4.0.2         yaml_2.2.1            </span>
 <span class="co">#&gt;  [67] memoise_2.0.0          gridExtra_2.3          sass_0.3.1            </span>
-<span class="co">#&gt;  [70] rpart_4.1-15           stringi_1.5.3          RSQLite_2.2.7         </span>
+<span class="co">#&gt;  [70] rpart_4.1-15           stringi_1.6.1          RSQLite_2.2.7         </span>
 <span class="co">#&gt;  [73] highr_0.9              desc_1.3.0             e1071_1.7-6           </span>
 <span class="co">#&gt;  [76] BiocParallel_1.24.1    lava_1.6.9             ada_2.0-5             </span>
 <span class="co">#&gt;  [79] rlang_0.4.11           pkgconfig_2.0.3        systemfonts_1.0.1     </span>
@@ -1040,7 +1040,7 @@ FOBI:030695
 <span class="co">#&gt;  [91] DBI_1.1.1              withr_2.4.2            pillar_1.6.0          </span>
 <span class="co">#&gt;  [94] haven_2.4.1            survival_3.2-11        nnet_7.3-16           </span>
 <span class="co">#&gt;  [97] modelr_0.1.8           crayon_1.4.1           utf8_1.2.1            </span>
-<span class="co">#&gt; [100] rmarkdown_2.7          viridis_0.6.0          syuzhet_1.0.6         </span>
+<span class="co">#&gt; [100] rmarkdown_2.7          viridis_0.6.1          syuzhet_1.0.6         </span>
 <span class="co">#&gt; [103] readxl_1.3.1           grid_4.0.2             data.table_1.14.0     </span>
 <span class="co">#&gt; [106] blob_1.2.1             webshot_0.5.2          reprex_2.0.0          </span>
 <span class="co">#&gt; [109] digest_0.6.27          xtable_1.8-4           ff_4.0.4              </span>
