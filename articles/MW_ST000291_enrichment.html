@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Use case of fobitools using tidyverse and the ST000291 data from Metabolomics Workbench • fobitools</title>
+<title>Use case: LC-MS Based Approaches to Investigate Metabolomic Differences in the Urine of Young Women after Drinking Cranberry Juice or Apple Juice • fobitools</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Use case of fobitools using tidyverse and the ST000291 data from Metabolomics Workbench">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Use case: LC-MS Based Approaches to Investigate Metabolomic Differences in the Urine of Young Women after Drinking Cranberry Juice or Apple Juice">
 <meta property="og:description" content="fobitools">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.56</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
       </span>
     </div>
 
@@ -61,15 +61,15 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/food_enrichment_analysis.html">Simple food ORA
+</a>
+    </li>
+    <li>
       <a href="../articles/MW_ST000291_enrichment.html">Use case ST000291
 </a>
     </li>
     <li>
       <a href="../articles/MW_ST000629_enrichment.html">Use case ST000629
-</a>
-    </li>
-    <li>
-      <a href="../articles/food_enrichment_analysis.html">Simple food ORA
 </a>
     </li>
     <li>
@@ -103,13 +103,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Use case of fobitools using tidyverse and the ST000291 data from Metabolomics Workbench</h1>
+      <h1 data-toc-skip>Use case: LC-MS Based Approaches to Investigate Metabolomic Differences in the Urine of Young Women after Drinking Cranberry Juice or Apple Juice</h1>
                         <h4 class="author">Pol Castellano-Escuder</h4>
             <address class="author_afil">
       University of Barcelona, Spain.<br><a class="author_email" href="mailto:#"></a><a href="mailto:polcaes@gmail.com" class="email">polcaes@gmail.com</a>
       </address>
                   
-            <h4 class="date">14 mayo 2021</h4>
+            <h4 class="date">27 mayo 2021</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pcastellanoescuder/fobitools/blob/master/vignettes/MW_ST000291_enrichment.Rmd"><code>vignettes/MW_ST000291_enrichment.Rmd</code></a></small>
       <div class="hidden name"><code>MW_ST000291_enrichment.Rmd</code></div>
@@ -118,8 +118,8 @@
 
     
     
-<p><strong>Compiled date</strong>: 2021-05-14</p>
-<p><strong>Last edited</strong>: 2021-10-05</p>
+<p><strong>Compiled date</strong>: 2021-05-27</p>
+<p><strong>Last edited</strong>: 2021-27-05</p>
 <p><strong>License</strong>: GPL-3</p>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">

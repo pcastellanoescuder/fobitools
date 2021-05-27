@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.56</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
       </span>
     </div>
 
@@ -61,15 +61,15 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/food_enrichment_analysis.html">Simple food ORA
+</a>
+    </li>
+    <li>
       <a href="../articles/MW_ST000291_enrichment.html">Use case ST000291
 </a>
     </li>
     <li>
       <a href="../articles/MW_ST000629_enrichment.html">Use case ST000629
-</a>
-    </li>
-    <li>
-      <a href="../articles/food_enrichment_analysis.html">Simple food ORA
 </a>
     </li>
     <li>
@@ -109,7 +109,7 @@
       University of Barcelona, Spain.<br><a class="author_email" href="mailto:#"></a><a href="mailto:polcaes@gmail.com" class="email">polcaes@gmail.com</a>
       </address>
                   
-            <h4 class="date">14 mayo 2021</h4>
+            <h4 class="date">27 mayo 2021</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pcastellanoescuder/fobitools/blob/master/vignettes/Dietary_data_annotation.Rmd"><code>vignettes/Dietary_data_annotation.Rmd</code></a></small>
       <div class="hidden name"><code>Dietary_data_annotation.Rmd</code></div>
@@ -118,7 +118,7 @@
 
     
     
-<p><strong>Compiled date</strong>: 2021-05-14</p>
+<p><strong>Compiled date</strong>: 2021-05-27</p>
 <p><strong>Last edited</strong>: 2021-14-05</p>
 <p><strong>License</strong>: GPL-3</p>
 <div id="installation" class="section level1">
@@ -254,7 +254,7 @@ Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">annotated_text</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/annotate_foods.html">annotate_foods</a></span><span class="op">(</span><span class="va">sample_ffq</span><span class="op">)</span>
 <span class="co">#&gt; 89.57% annotated</span>
-<span class="co">#&gt; 2.796 sec elapsed</span>
+<span class="co">#&gt; 3.037 sec elapsed</span>
 
 <span class="va">annotated_text</span><span class="op">$</span><span class="va">annotated</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">:</span><span class="fl">10L</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -425,7 +425,7 @@ grape (whole, raw)
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">annotated_text_95</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/annotate_foods.html">annotate_foods</a></span><span class="op">(</span><span class="va">sample_ffq</span>, similarity <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>
 <span class="co">#&gt; 86.5% annotated</span>
-<span class="co">#&gt; 2.72 sec elapsed</span>
+<span class="co">#&gt; 2.957 sec elapsed</span>
 
 <span class="va">annotated_text_95</span><span class="op">$</span><span class="va">annotated</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">:</span><span class="fl">10L</span><span class="op">)</span> <span class="op">%&gt;%</span>
