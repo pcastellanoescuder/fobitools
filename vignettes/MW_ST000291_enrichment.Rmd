@@ -1,5 +1,5 @@
 ---
-title: "Use case of fobitools using tidyverse and the ST000291 data from Metabolomics Workbench"
+title: "Use case: LC-MS Based Approaches to Investigate Metabolomic Differences in the Urine of Young Women after Drinking Cranberry Juice or Apple Juice"
 author: 
 - name: Pol Castellano-Escuder
   affiliation: University of Barcelona, Spain.
@@ -19,7 +19,7 @@ link-citations: true
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2021-10-05
+**Last edited**: 2021-27-05
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 
