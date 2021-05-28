@@ -1,4 +1,4 @@
-## fobitools 1.1.1
+## fobitools 1.1.2
 
 * Minor changes in package vignette titles.
 

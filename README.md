@@ -50,7 +50,6 @@ To install Bioconductor version use:
 
 ``` r
 # install.packages("BiocManager")
-BiocManager::install(version = "devel")
 BiocManager::install("fobitools")
 ```
 
@@ -59,9 +58,9 @@ are doing), use:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("pcastellanoescuder/fobitools") # for R version 4.1 (devel)
+devtools::install_github("pcastellanoescuder/fobitools") # for R version 4.1
 
-devtools::install_github("pcastellanoescuder/fobitools", ref = "devel") # for R version 4.0 (release)
+devtools::install_github("pcastellanoescuder/fobitools", ref = "devel") # for R version 4.0
 ```
 
 ## Citation
