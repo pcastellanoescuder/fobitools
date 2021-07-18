@@ -42,9 +42,7 @@ If you need the GitHub version (not recommended unless you know what you are doi
 
 ```{r, eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("pcastellanoescuder/fobitools") # for R version 4.1
-
-devtools::install_github("pcastellanoescuder/fobitools", ref = "devel") # for R version 4.0
+devtools::install_github("pcastellanoescuder/fobitools")
 ```
 
 ## Citation

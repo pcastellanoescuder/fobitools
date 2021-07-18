@@ -1,6 +1,8 @@
-## fobitools 1.1.2
+## fobitools 1.1.5
 
 * Minor changes in package vignette titles.
+* Minor changes in `parse_fobi()` function.
+* Update all data files to FOBI 1.5 version.
 
 # fobitools 1.0.0
 

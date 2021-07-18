@@ -3,7 +3,7 @@
 \docType{data}
 \name{idmap}
 \alias{idmap}
-\title{FOBI Identifier Map File - Jan 10, 2021}
+\title{FOBI Identifier Map File - Jul 18, 2021}
 \format{
 A tibble: 590 FOBI metabolites with 8 different IDs.
 \describe{

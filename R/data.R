@@ -1,4 +1,4 @@
-#' FOBI Identifier Map File - Jan 10, 2021
+#' FOBI Identifier Map File - Jul 18, 2021
 #'
 #' Identifier mappings for FOBI metabolites 
 #'
@@ -16,7 +16,7 @@
 #' @source \url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}
 "idmap"
 
-#' FOBI Table File - Feb 02, 2021
+#' FOBI Table File - Jul 18, 2021
 #'
 #' FOBI table obtained with `parse_fobi()`
 #'
@@ -68,7 +68,7 @@
 #' @source \url{https://github.com/pcastellanoescuder/FoodBiomarkerOntology}
 "foods"
 
-#' FOBI's `ontology_index` object - Feb 08, 2021
+#' FOBI's `ontology_index` object - Jul 18, 2021
 #'
 #' FOBI terms obtained with `ontologyIndex::get_ontology()`
 #'
