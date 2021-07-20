@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.8</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -109,7 +109,7 @@
       University of Barcelona, Spain.<br><a class="author_email" href="mailto:#"></a><a href="mailto:polcaes@gmail.com" class="email">polcaes@gmail.com</a>
       </address>
                   
-            <h4 class="date">27 mayo 2021</h4>
+            <h4 class="date">20 julio 2021</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pcastellanoescuder/fobitools/blob/master/vignettes/food_enrichment_analysis.Rmd"><code>vignettes/food_enrichment_analysis.Rmd</code></a></small>
       <div class="hidden name"><code>food_enrichment_analysis.Rmd</code></div>
@@ -118,8 +118,8 @@
 
     
     
-<p><strong>Compiled date</strong>: 2021-05-27</p>
-<p><strong>Last edited</strong>: 2021-10-05</p>
+<p><strong>Compiled date</strong>: 2021-07-20</p>
+<p><strong>Last edited</strong>: 2021-20-07</p>
 <p><strong>License</strong>: GPL-3</p>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
@@ -160,7 +160,7 @@
 <span class="co"># select 10 random metabolites from metaboliteUniverse that are associated with 'Red meat' (FOBI:0193), </span>
 <span class="co"># 'Lean meat' (FOBI:0185) , 'egg food product' (FOODON:00001274), </span>
 <span class="co"># or 'grape (whole, raw)' (FOODON:03301702)</span>
-<span class="va">fobi_subset</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/parse_fobi.html">parse_fobi</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">fobi_subset</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="va"><a href="../reference/fobi.html">fobi</a></span> <span class="op">%&gt;%</span> <span class="co"># equivalent to `parse_fobi()`</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">FOBI</span> <span class="op">%in%</span> <span class="va">metaboliteUniverse</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">id_BiomarkerOf</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"FOBI:0193"</span>, <span class="st">"FOBI:0185"</span>, <span class="st">"FOODON:00001274"</span>, <span class="st">"FOODON:03301702"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>, <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>
@@ -196,82 +196,22 @@ overlapMetabolites
 <tbody>
 <tr>
 <td style="text-align:left;">
-egg food product
+grapefruit (whole, raw)
+</td>
+<td style="text-align:right;">
+18
 </td>
 <td style="text-align:right;">
 6
 </td>
 <td style="text-align:right;">
-4
+0.0000035
 </td>
 <td style="text-align:right;">
-0.0000056
-</td>
-<td style="text-align:right;">
-0.0001890
+0.0005370
 </td>
 <td style="text-align:left;">
-FOBI:030701, FOBI:030694, FOBI:030705, FOBI:030699
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-dairy food product
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-0.0000128
-</td>
-<td style="text-align:right;">
-0.0002176
-</td>
-<td style="text-align:left;">
-FOBI:030701, FOBI:030694, FOBI:030705, FOBI:030699
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-meat food product
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-0.0000252
-</td>
-<td style="text-align:right;">
-0.0002861
-</td>
-<td style="text-align:left;">
-FOBI:030701, FOBI:030694, FOBI:030705, FOBI:030699
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Lean meat
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-0.0000743
-</td>
-<td style="text-align:right;">
-0.0005051
-</td>
-<td style="text-align:left;">
-FOBI:030688, FOBI:030689, FOBI:030707
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050284, FOBI:050287, FOBI:050030
 </td>
 </tr>
 <tr>
@@ -279,24 +219,364 @@ FOBI:030688, FOBI:030689, FOBI:030707
 Red meat
 </td>
 <td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.0000335
+</td>
+<td style="text-align:right;">
+0.0024466
+</td>
+<td style="text-align:left;">
+FOBI:030706, FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lemon (whole, raw)
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.0000480
+</td>
+<td style="text-align:right;">
+0.0024466
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050287, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+black tea leaf (dry)
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
 4
+</td>
+<td style="text-align:right;">
+0.0000737
+</td>
+<td style="text-align:right;">
+0.0028185
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+kale leaf (raw)
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0001208
+</td>
+<td style="text-align:right;">
+0.0032418
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+orange (whole, raw)
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.0001606
+</td>
+<td style="text-align:right;">
+0.0032418
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030518, FOBI:050284, FOBI:050287, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+black pepper food product
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0001867
+</td>
+<td style="text-align:right;">
+0.0032418
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+water food product
+</td>
+<td style="text-align:right;">
+5
 </td>
 <td style="text-align:right;">
 3
 </td>
 <td style="text-align:right;">
-0.0000743
+0.0002599
 </td>
 <td style="text-align:right;">
-0.0005051
+0.0032418
 </td>
 <td style="text-align:left;">
-FOBI:030691, FOBI:030689, FOBI:030707
+FOBI:030553, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+apple juice
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0002754
+</td>
+<td style="text-align:right;">
+0.0032418
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:050284, FOBI:050287
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+green tea leaf (dry)
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0002754
+</td>
+<td style="text-align:right;">
+0.0032418
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+orange juice
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0002754
+</td>
+<td style="text-align:right;">
+0.0032418
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:050284, FOBI:050287
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+red tea
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0002754
+</td>
+<td style="text-align:right;">
+0.0032418
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+red velvet
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0002754
+</td>
+<td style="text-align:right;">
+0.0032418
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Dark yellow vegetables
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0005106
+</td>
+<td style="text-align:right;">
+0.0055801
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bean (whole)
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0007225
+</td>
+<td style="text-align:right;">
+0.0065027
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+black currant (whole, raw)
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0007225
+</td>
+<td style="text-align:right;">
+0.0065027
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sweet potato vegetable food product
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0007225
+</td>
+<td style="text-align:right;">
+0.0065027
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+celery stalk (raw)
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0008777
+</td>
+<td style="text-align:right;">
+0.0074603
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030518, FOBI:050030
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 soybean (whole)
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.0010752
+</td>
+<td style="text-align:right;">
+0.0086583
+</td>
+<td style="text-align:left;">
+FOBI:030696, FOBI:030320, FOBI:030702, FOBI:030703, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+strawberry (whole, raw)
 </td>
 <td style="text-align:right;">
 17
@@ -305,13 +585,533 @@ soybean (whole)
 4
 </td>
 <td style="text-align:right;">
-0.0007578
+0.0012183
 </td>
 <td style="text-align:right;">
-0.0042939
+0.0093198
 </td>
 <td style="text-align:left;">
-FOBI:030701, FOBI:030694, FOBI:030705, FOBI:030699
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+egg food product
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0013793
+</td>
+<td style="text-align:right;">
+0.0100494
+</td>
+<td style="text-align:left;">
+FOBI:030696, FOBI:030702, FOBI:030703
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cherry (whole, raw)
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0015402
+</td>
+<td style="text-align:right;">
+0.0103640
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tomato (whole, raw)
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0019184
+</td>
+<td style="text-align:right;">
+0.0103640
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bell pepper
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0020322
+</td>
+<td style="text-align:right;">
+0.0103640
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cabbage (whole, raw)
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0020322
+</td>
+<td style="text-align:right;">
+0.0103640
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dairy food product
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0020322
+</td>
+<td style="text-align:right;">
+0.0103640
+</td>
+<td style="text-align:left;">
+FOBI:030696, FOBI:030702, FOBI:030703
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hot pepper vegetable food product
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0020322
+</td>
+<td style="text-align:right;">
+0.0103640
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lettuce vegetable food product
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0020322
+</td>
+<td style="text-align:right;">
+0.0103640
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+onion (whole, raw)
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0020322
+</td>
+<td style="text-align:right;">
+0.0103640
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+yellow bell pepper (whole, raw)
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0020322
+</td>
+<td style="text-align:right;">
+0.0103640
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+almond (whole, raw)
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0028513
+</td>
+<td style="text-align:right;">
+0.0132197
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pea (whole)
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0028513
+</td>
+<td style="text-align:right;">
+0.0132197
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+raspberry (whole, raw)
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0028513
+</td>
+<td style="text-align:right;">
+0.0132197
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:030518
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+broccoli floret (whole, raw)
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0038505
+</td>
+<td style="text-align:right;">
+0.0173274
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+beer
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0040956
+</td>
+<td style="text-align:right;">
+0.0179037
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wine (food product)
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.0048318
+</td>
+<td style="text-align:right;">
+0.0205351
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tea food product
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0050422
+</td>
+<td style="text-align:right;">
+0.0208503
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+apricot (whole, raw)
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0064375
+</td>
+<td style="text-align:right;">
+0.0229055
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+blackberry (whole, raw)
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0064375
+</td>
+<td style="text-align:right;">
+0.0229055
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+carrot root (whole, raw)
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0064375
+</td>
+<td style="text-align:right;">
+0.0229055
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+meat food product
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0064375
+</td>
+<td style="text-align:right;">
+0.0229055
+</td>
+<td style="text-align:left;">
+FOBI:030696, FOBI:030702, FOBI:030703
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+oregano (ground)
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0064375
+</td>
+<td style="text-align:right;">
+0.0229055
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+plum (whole, raw)
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0064375
+</td>
+<td style="text-align:right;">
+0.0229055
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030518, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+soybean oil
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.0095042
+</td>
+<td style="text-align:right;">
+0.0328523
+</td>
+<td style="text-align:left;">
+FOBI:030320, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cumin seed (whole, dried)
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0098772
+</td>
+<td style="text-align:right;">
+0.0328523
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:050030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pear (whole, raw)
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.0098772
+</td>
+<td style="text-align:right;">
+0.0328523
+</td>
+<td style="text-align:left;">
+FOBI:030553, FOBI:030320, FOBI:050030
 </td>
 </tr>
 </tbody>
@@ -352,44 +1152,44 @@ FOBI:030701, FOBI:030694, FOBI:030705, FOBI:030699
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] kableExtra_1.3.4  dplyr_1.0.6       fobitools_0.99.56 BiocStyle_2.18.1 </span>
+<span class="co">#&gt; [1] kableExtra_1.3.4 dplyr_1.0.7      fobitools_1.1.8  BiocStyle_2.18.1</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
 <span class="co">#&gt;   [1] fs_1.5.0               bit64_4.0.5            webshot_0.5.2         </span>
 <span class="co">#&gt;   [4] httr_1.4.2             rprojroot_2.0.2        evd_2.3-3             </span>
-<span class="co">#&gt;   [7] tools_4.0.2            bslib_0.2.4            utf8_1.2.1            </span>
+<span class="co">#&gt;   [7] tools_4.0.2            bslib_0.2.5.1          utf8_1.2.1            </span>
 <span class="co">#&gt;  [10] R6_2.5.0               rpart_4.1-15           DBI_1.1.1             </span>
-<span class="co">#&gt;  [13] colorspace_2.0-1       nnet_7.3-16            tictoc_1.0.1          </span>
-<span class="co">#&gt;  [16] tidyselect_1.1.1       gridExtra_2.3          curl_4.3.1            </span>
-<span class="co">#&gt;  [19] ontologyIndex_2.7      bit_4.0.4              compiler_4.0.2        </span>
-<span class="co">#&gt;  [22] rvest_1.0.0            textshaping_0.3.3      xml2_1.3.2            </span>
-<span class="co">#&gt;  [25] desc_1.3.0             labeling_0.4.2         bookdown_0.22         </span>
-<span class="co">#&gt;  [28] sass_0.3.1             scales_1.1.1           proxy_0.4-25          </span>
-<span class="co">#&gt;  [31] pkgdown_1.6.1          systemfonts_1.0.1      stringr_1.4.0         </span>
-<span class="co">#&gt;  [34] digest_0.6.27          svglite_2.0.0          rmarkdown_2.7         </span>
-<span class="co">#&gt;  [37] pkgconfig_2.0.3        htmltools_0.5.1.1      RecordLinkage_0.4-12.1</span>
-<span class="co">#&gt;  [40] highr_0.9              fastmap_1.1.0          rlang_0.4.11          </span>
-<span class="co">#&gt;  [43] rstudioapi_0.13        RSQLite_2.2.7          jquerylib_0.1.4       </span>
-<span class="co">#&gt;  [46] farver_2.1.0           generics_0.1.0         jsonlite_1.7.2        </span>
-<span class="co">#&gt;  [49] vroom_1.4.0            qdapRegex_0.7.2        BiocParallel_1.24.1   </span>
-<span class="co">#&gt;  [52] magrittr_2.0.1         textclean_0.9.3        ada_2.0-5             </span>
-<span class="co">#&gt;  [55] Matrix_1.3-2           Rcpp_1.0.6             munsell_0.5.0         </span>
-<span class="co">#&gt;  [58] fansi_0.4.2            viridis_0.6.1          lifecycle_1.0.0       </span>
-<span class="co">#&gt;  [61] stringi_1.6.1          yaml_2.2.1             ggraph_2.0.5          </span>
-<span class="co">#&gt;  [64] MASS_7.3-54            grid_4.0.2             blob_1.2.1            </span>
-<span class="co">#&gt;  [67] parallel_4.0.2         ggrepel_0.9.1          crayon_1.4.1          </span>
-<span class="co">#&gt;  [70] lattice_0.20-44        graphlayouts_0.7.1     splines_4.0.2         </span>
-<span class="co">#&gt;  [73] knitr_1.33             pillar_1.6.0           fgsea_1.16.0          </span>
-<span class="co">#&gt;  [76] igraph_1.2.6           clisymbols_1.2.0       fastmatch_1.1-0       </span>
-<span class="co">#&gt;  [79] glue_1.4.2             evaluate_0.14          data.table_1.14.0     </span>
-<span class="co">#&gt;  [82] BiocManager_1.30.12    vctrs_0.3.8            tweenr_1.0.2          </span>
+<span class="co">#&gt;  [13] colorspace_2.0-2       nnet_7.3-16            tictoc_1.0.1          </span>
+<span class="co">#&gt;  [16] tidyselect_1.1.1       gridExtra_2.3          ontologyIndex_2.7     </span>
+<span class="co">#&gt;  [19] bit_4.0.4              compiler_4.0.2         rvest_1.0.0           </span>
+<span class="co">#&gt;  [22] textshaping_0.3.5      xml2_1.3.2             desc_1.3.0            </span>
+<span class="co">#&gt;  [25] labeling_0.4.2         bookdown_0.22.3        sass_0.4.0            </span>
+<span class="co">#&gt;  [28] scales_1.1.1           proxy_0.4-26           pkgdown_1.6.1         </span>
+<span class="co">#&gt;  [31] systemfonts_1.0.2      stringr_1.4.0          digest_0.6.27         </span>
+<span class="co">#&gt;  [34] svglite_2.0.0          rmarkdown_2.9          pkgconfig_2.0.3       </span>
+<span class="co">#&gt;  [37] htmltools_0.5.1.1      RecordLinkage_0.4-12.1 highr_0.9             </span>
+<span class="co">#&gt;  [40] fastmap_1.1.0          rlang_0.4.11           rstudioapi_0.13       </span>
+<span class="co">#&gt;  [43] RSQLite_2.2.7          jquerylib_0.1.4        farver_2.1.0          </span>
+<span class="co">#&gt;  [46] generics_0.1.0         jsonlite_1.7.2         vroom_1.5.3           </span>
+<span class="co">#&gt;  [49] qdapRegex_0.7.2        BiocParallel_1.24.1    magrittr_2.0.1        </span>
+<span class="co">#&gt;  [52] textclean_0.9.3        ada_2.0-5              Matrix_1.3-4          </span>
+<span class="co">#&gt;  [55] Rcpp_1.0.7             munsell_0.5.0          fansi_0.5.0           </span>
+<span class="co">#&gt;  [58] viridis_0.6.1          lifecycle_1.0.0        stringi_1.7.3         </span>
+<span class="co">#&gt;  [61] yaml_2.2.1             ggraph_2.0.5           MASS_7.3-54           </span>
+<span class="co">#&gt;  [64] grid_4.0.2             blob_1.2.1             parallel_4.0.2        </span>
+<span class="co">#&gt;  [67] ggrepel_0.9.1          crayon_1.4.1           lattice_0.20-44       </span>
+<span class="co">#&gt;  [70] graphlayouts_0.7.1     splines_4.0.2          knitr_1.33            </span>
+<span class="co">#&gt;  [73] pillar_1.6.1           fgsea_1.16.0           igraph_1.2.6          </span>
+<span class="co">#&gt;  [76] clisymbols_1.2.0       fastmatch_1.1-0        glue_1.4.2            </span>
+<span class="co">#&gt;  [79] evaluate_0.14          data.table_1.14.0      BiocManager_1.30.16   </span>
+<span class="co">#&gt;  [82] tzdb_0.1.1             vctrs_0.3.8            tweenr_1.0.2          </span>
 <span class="co">#&gt;  [85] gtable_0.3.0           purrr_0.3.4            polyclip_1.10-0       </span>
-<span class="co">#&gt;  [88] tidyr_1.1.3            assertthat_0.2.1       cachem_1.0.4          </span>
-<span class="co">#&gt;  [91] ggplot2_3.3.3          xfun_0.22              ggforce_0.3.3         </span>
+<span class="co">#&gt;  [88] tidyr_1.1.3            assertthat_0.2.1       cachem_1.0.5          </span>
+<span class="co">#&gt;  [91] ggplot2_3.3.5          xfun_0.24              ggforce_0.3.3         </span>
 <span class="co">#&gt;  [94] prodlim_2019.11.13     xtable_1.8-4           tidygraph_1.2.0       </span>
-<span class="co">#&gt;  [97] ff_4.0.4               e1071_1.7-6            ragg_1.1.2            </span>
+<span class="co">#&gt;  [97] ff_4.0.4               e1071_1.7-7            ragg_1.1.3            </span>
 <span class="co">#&gt; [100] class_7.3-19           survival_3.2-11        viridisLite_0.4.0     </span>
-<span class="co">#&gt; [103] tibble_3.1.1           memoise_2.0.0          lava_1.6.9            </span>
+<span class="co">#&gt; [103] tibble_3.1.2           memoise_2.0.0          lava_1.6.9            </span>
 <span class="co">#&gt; [106] ellipsis_0.3.2         ipred_0.9-11</span></code></pre></div>
 </div>
 <div id="references" class="section level1 unnumbered">
