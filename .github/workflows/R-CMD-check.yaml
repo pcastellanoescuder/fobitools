@@ -69,7 +69,7 @@ jobs:
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
           _R_CHECK_FORCE_SUGGESTS_: false
-        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--ignore-vignettes", "--no-build-vignettes"), build_args = c("--no-manual", "--ignore-vignettes", "--no-build-vignettes"), error_on = "warning", check_dir = "check")
+        run: rcmdcheck::rcmdcheck(args = c("--no-manual"), build_args = c("--no-manual"), error_on = "warning", check_dir = "check") # "--ignore-vignettes", "--no-build-vignettes"
         shell: Rscript {0}
 
       - name: Upload check results

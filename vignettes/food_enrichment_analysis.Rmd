@@ -18,7 +18,7 @@ link-citations: true
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2021-10-05
+**Last edited**: 2021-20-07
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 
@@ -75,7 +75,7 @@ metaboliteUniverse <- fobitools::idmap %>%
 # select 10 random metabolites from metaboliteUniverse that are associated with 'Red meat' (FOBI:0193), 
 # 'Lean meat' (FOBI:0185) , 'egg food product' (FOODON:00001274), 
 # or 'grape (whole, raw)' (FOODON:03301702)
-fobi_subset <- fobitools::parse_fobi() %>%
+fobi_subset <- fobitools::fobi %>% # equivalent to `parse_fobi()`
   filter(FOBI %in% metaboliteUniverse) %>%
   filter(id_BiomarkerOf %in% c("FOBI:0193", "FOBI:0185", "FOODON:00001274", "FOODON:03301702")) %>%
   dplyr::slice(sample(nrow(.), 10, replace = FALSE))

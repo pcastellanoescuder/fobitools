@@ -1,4 +1,4 @@
-## fobitools 1.1.6
+## fobitools 1.1.7
 
 * Minor changes in package vignette titles.
 * Minor changes in `parse_fobi()` function.
