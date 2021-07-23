@@ -3,7 +3,7 @@
 \docType{data}
 \name{fobi}
 \alias{fobi}
-\title{FOBI Table File - Jul 18, 2021}
+\title{FOBI Table File - Jul 23, 2021}
 \format{
 A tibble: 4069 FOBI entities with their associated information.
 \describe{
