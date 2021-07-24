@@ -3,7 +3,7 @@
 \docType{data}
 \name{fobi_terms}
 \alias{fobi_terms}
-\title{FOBI's `ontology_index` object - Jul 18, 2021}
+\title{FOBI's `ontology_index` object - Jul 23, 2021}
 \format{
 An ontology_index object with 1201 terms.
 \describe{
