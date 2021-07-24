@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.9</span>
       </span>
     </div>
 
@@ -202,25 +202,25 @@
 <span class='co'># Food enrichment analysis</span>
 <span class='fu'>fobitools</span><span class='fu'>::</span><span class='fu'>msea</span><span class='op'>(</span>metaboliteRanks <span class='op'>=</span> <span class='va'>metaboliteRanks</span>, 
                 pvalCutoff <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 142 x 8</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 141 × 8</span>
 #&gt;    className              classSize log2err    ES   NES   pval  padj leadingEdge
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                      <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span>     
-#&gt; <span style='color: #BCBCBC;'> 1</span> soft drink                     1  0.381  1      2.05 0.015<span style='text-decoration: underline;'>5</span> 0.769 <span style='color: #949494;'>&lt;chr [1]&gt;</span>  
-#&gt; <span style='color: #BCBCBC;'> 2</span> sugar                          2  0.352  0.964  1.75 0.015<span style='text-decoration: underline;'>8</span> 0.769 <span style='color: #949494;'>&lt;chr [2]&gt;</span>  
-#&gt; <span style='color: #BCBCBC;'> 3</span> dairy food product            10  0.106  0.601  1.21 0.158  0.769 <span style='color: #949494;'>&lt;chr [8]&gt;</span>  
-#&gt; <span style='color: #BCBCBC;'> 4</span> Whole grain cereal pr…        26  0.102  0.546  1.18 0.166  0.769 <span style='color: #949494;'>&lt;chr [18]&gt;</span> 
-#&gt; <span style='color: #BCBCBC;'> 5</span> cheese food product            2  0.095<span style='text-decoration: underline;'>9</span> 0.789  1.44 0.185  0.769 <span style='color: #949494;'>&lt;chr [2]&gt;</span>  
-#&gt; <span style='color: #BCBCBC;'> 6</span> pudding                        2  0.095<span style='text-decoration: underline;'>9</span> 0.789  1.44 0.185  0.769 <span style='color: #949494;'>&lt;chr [2]&gt;</span>  
-#&gt; <span style='color: #BCBCBC;'> 7</span> sausage (formed)               2  0.095<span style='text-decoration: underline;'>9</span> 0.789  1.44 0.185  0.769 <span style='color: #949494;'>&lt;chr [2]&gt;</span>  
-#&gt; <span style='color: #BCBCBC;'> 8</span> potato (whole, raw)            6  0.087<span style='text-decoration: underline;'>1</span> 0.626  1.19 0.216  0.769 <span style='color: #949494;'>&lt;chr [2]&gt;</span>  
-#&gt; <span style='color: #BCBCBC;'> 9</span> citrus fruit food pro…         1  0.081<span style='text-decoration: underline;'>8</span> 0.746  1.53 0.238  0.769 <span style='color: #949494;'>&lt;chr [1]&gt;</span>  
-#&gt; <span style='color: #BCBCBC;'>10</span> Red meat                      12  0.076<span style='text-decoration: underline;'>9</span> 0.552  1.13 0.261  0.769 <span style='color: #949494;'>&lt;chr [5]&gt;</span>  
-#&gt; <span style='color: #949494;'># … with 132 more rows</span></div><div class='input'>
+#&gt; <span style='color: #BCBCBC;'> 1</span> soft drink                     1  0.381  1      2.05 0.015<span style='text-decoration: underline;'>5</span> 0.772 <span style='color: #949494;'>&lt;chr [1]&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 2</span> sugar                          2  0.352  0.964  1.75 0.015<span style='text-decoration: underline;'>8</span> 0.772 <span style='color: #949494;'>&lt;chr [2]&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 3</span> dairy food product            10  0.106  0.601  1.21 0.158  0.772 <span style='color: #949494;'>&lt;chr [8]&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 4</span> Whole grain cereal pr…        26  0.102  0.546  1.18 0.166  0.772 <span style='color: #949494;'>&lt;chr [18]&gt;</span> 
+#&gt; <span style='color: #BCBCBC;'> 5</span> cheese food product            2  0.095<span style='text-decoration: underline;'>9</span> 0.789  1.44 0.185  0.772 <span style='color: #949494;'>&lt;chr [2]&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 6</span> pudding                        2  0.095<span style='text-decoration: underline;'>9</span> 0.789  1.44 0.185  0.772 <span style='color: #949494;'>&lt;chr [2]&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 7</span> sausage (formed)               2  0.095<span style='text-decoration: underline;'>9</span> 0.789  1.44 0.185  0.772 <span style='color: #949494;'>&lt;chr [2]&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 8</span> potato (whole, raw)            6  0.087<span style='text-decoration: underline;'>1</span> 0.626  1.19 0.216  0.772 <span style='color: #949494;'>&lt;chr [2]&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'> 9</span> citrus fruit food pro…         1  0.081<span style='text-decoration: underline;'>8</span> 0.746  1.53 0.238  0.772 <span style='color: #949494;'>&lt;chr [1]&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'>10</span> Red meat                      12  0.076<span style='text-decoration: underline;'>9</span> 0.552  1.13 0.261  0.772 <span style='color: #949494;'>&lt;chr [5]&gt;</span>  
+#&gt; <span style='color: #949494;'># … with 131 more rows</span></div><div class='input'>
 <span class='co'># Chemical class enrichment analysis</span>
 <span class='fu'>fobitools</span><span class='fu'>::</span><span class='fu'>msea</span><span class='op'>(</span>metaboliteRanks <span class='op'>=</span> <span class='va'>metaboliteRanks</span>, 
                 subOntology <span class='op'>=</span> <span class='st'>"biomarker"</span>, 
                 pvalCutoff <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 48 x 8</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 48 × 8</span>
 #&gt;    className              classSize log2err    ES   NES   pval  padj leadingEdge
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                      <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span>     
 #&gt; <span style='color: #BCBCBC;'> 1</span> Indole-3-acetic acid …         1  0.238  0.983  1.96 0.036<span style='text-decoration: underline;'>0</span> 0.758 <span style='color: #949494;'>&lt;chr [1]&gt;</span>  
