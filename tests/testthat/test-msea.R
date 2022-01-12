@@ -34,3 +34,4 @@ test_that("msea works", {
   expect_error(fobitools::msea(metabolites))
   
 })
+

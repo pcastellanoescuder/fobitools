@@ -1,3 +1,7 @@
+## fobitools 1.3.1
+
+* Fix bugs in vignettes
+
 ## fobitools 1.1.9
 
 * Minor changes in package vignette titles.
