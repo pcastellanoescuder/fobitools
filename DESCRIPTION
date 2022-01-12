@@ -1,6 +1,6 @@
 Package: fobitools
 Title: Tools For Manipulating FOBI Ontology
-Version: 1.3.0
+Version: 1.3.2
 Authors@R: 
     c(person(given = "Pol",
              family = "Castellano-Escuder",

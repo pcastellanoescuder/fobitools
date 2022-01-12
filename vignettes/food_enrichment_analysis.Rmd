@@ -2,7 +2,7 @@
 title: "Simple food over representation analysis (ORA)"
 author: 
 - name: Pol Castellano-Escuder
-  affiliation: University of Barcelona, Spain.
+  affiliation: Duke University
   email: polcaes@gmail.com
 date: "`r BiocStyle::doc_date()`"
 output: 
@@ -18,7 +18,7 @@ link-citations: true
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2021-20-07
+**Last edited**: 2022-01-12
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 

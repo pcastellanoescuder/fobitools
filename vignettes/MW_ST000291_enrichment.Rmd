@@ -2,7 +2,7 @@
 title: "Use case: LC-MS Based Approaches to Investigate Metabolomic Differences in the Urine of Young Women after Drinking Cranberry Juice or Apple Juice"
 author: 
 - name: Pol Castellano-Escuder
-  affiliation: University of Barcelona, Spain.
+  affiliation: Duke University
   email: polcaes@gmail.com
 date: "`r BiocStyle::doc_date()`"
 output: 
@@ -19,7 +19,7 @@ link-citations: true
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2021-27-05
+**Last edited**: 2022-01-12
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 
@@ -158,12 +158,12 @@ pdata <- colData(data_negative_mode) %>% # or "data_positive_mode". They are equ
 
 `POMA` provides a structured, reproducible and easy-to-use workflow for the visualization, preprocessing, exploration, and statistical analysis of metabolomics and proteomics data. The main aim of this package is to enable a flexible data cleaning and statistical analysis processes in one comprehensible and user-friendly R package. `POMA` uses the standardized `MSnbase` data structures, to achieve the maximum flexibility and reproducibility and makes `POMA` compatible with other Bioconductor packages [@POMA].
 
-## Create a `MSnbase::MSnSet` object
+## Create a `SummarizedExperiment` object
 
-First, we create a `MSnSet` object that integrates both metadata and features in the same data structure.
+First, we create a `SummarizedExperiment` object that integrates both metadata and features in the same data structure.
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
-data_msnset <- PomaMSnSetClass(target = pdata, features = t(features))
+data_sumexp <- PomaSummarizedExperiment(target = pdata, features = t(features))
 ```
 
 ## Preprocessing
@@ -171,7 +171,7 @@ data_msnset <- PomaMSnSetClass(target = pdata, features = t(features))
 Second, we perform the preprocessing step. This step includes the missing value imputation unsing the $k$-NN algorithm, log Pareto normalization (transformation and scaling) and outlier detection and cleaning. Once these steps are completed, we can proceed to the statistical analysis of these data.
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
-data_preprocessed <- data_msnset %>%
+data_preprocessed <- data_sumexp %>%
   PomaImpute(ZerosAsNA = TRUE, cutoff = 20, method = "knn") %>%
   PomaNorm(method = "log_pareto") %>%
   PomaOutliers(coef = 3)
@@ -184,7 +184,8 @@ We use a limma model [@limma] to identify those most significant metabolites bet
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
 limma_res <- data_preprocessed %>%
   PomaLimma(contrast = "Baseline-Cranberry", adjust = "fdr") %>%
-  tibble::rownames_to_column("PubChemCID")
+  dplyr::rename(PubChemCID = feature) %>% 
+  dplyr::mutate(PubChemCID = gsub("X", "", PubChemCID))
 
 # show the first 10 features
 limma_res %>%
