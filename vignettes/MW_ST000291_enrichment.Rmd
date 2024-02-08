@@ -19,7 +19,7 @@ link-citations: true
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2022-01-12
+**Last edited**: 2024-02-07
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 
@@ -163,7 +163,7 @@ pdata <- colData(data_negative_mode) %>% # or "data_positive_mode". They are equ
 First, we create a `SummarizedExperiment` object that integrates both metadata and features in the same data structure.
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
-data_sumexp <- PomaSummarizedExperiment(target = pdata, features = t(features))
+data_sumexp <- PomaCreateObject(metadata = pdata, features = t(features))
 ```
 
 ## Preprocessing
@@ -172,9 +172,9 @@ Second, we perform the preprocessing step. This step includes the missing value 
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
 data_preprocessed <- data_sumexp %>%
-  PomaImpute(ZerosAsNA = TRUE, cutoff = 20, method = "knn") %>%
-  PomaNorm(method = "log_pareto") %>%
-  PomaOutliers(coef = 3)
+  PomaImpute() %>%
+  PomaNorm() %>%
+  PomaOutliers(coef = 3)$data
 ```
 
 ## Limma model
@@ -267,8 +267,8 @@ The `fobitools` package provides a function to perform MSEA using the FOBI infor
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
 limma_FOBI_msea <- limma_FOBI_names %>%
-  select(FOBI, P.Value) %>%
-  filter(!is.na(FOBI)) %>%
+  dplyr::select(FOBI, P.Value) %>%
+  dplyr::filter(!is.na(FOBI)) %>%
   dplyr::arrange(-dplyr::desc(abs(P.Value)))
 
 FOBI_msea <- as.vector(limma_FOBI_msea$P.Value)

@@ -1,31 +1,35 @@
 Package: fobitools
-Title: Tools For Manipulating FOBI Ontology
-Version: 1.11.0
+Title: Tools for Manipulating the FOBI Ontology
+Version: 1.11.1
 Authors@R: 
     c(person(given = "Pol",
              family = "Castellano-Escuder",
              role = c("aut", "cre"),
              email = "polcaes@gmail.com",
              comment = c(ORCID = "0000-0001-6466-877X")),
-      person(given = "Cristina",
-             family = "Andrés-Lacueva",
-             role = "aut",
-             email = "candres@ub.edu",
-             comment = c(ORCID = "0000-0002-8494-4978")),
       person(given = "Alex",
              family = "Sánchez-Pla",
              role = "aut",
              email = "asanchez@ub.edu",
              comment = c(ORCID = "0000-0002-8673-7737"))
              )
-Description: A set of tools for interacting with Food-Biomarker Ontology (FOBI). A collection of basic manipulation tools for biological significance analysis, graphs, and 
-    text mining strategies for annotating nutritional data.
+Description: A set of tools for interacting with the Food-Biomarker Ontology (FOBI). A collection 
+    of basic manipulation tools for biological significance analysis, graphs, and text mining 
+    strategies for annotating nutritional data.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 biocViews:
-    MassSpectrometry, Metabolomics, Software, Visualization, BiomedicalInformatics,
-    GraphAndNetwork, Annotation, Cheminformatics, Pathways, GeneSetEnrichment
+    MassSpectrometry, 
+    Metabolomics, 
+    Software, 
+    Visualization,
+    BiomedicalInformatics,
+    GraphAndNetwork, 
+    Annotation, 
+    Cheminformatics, 
+    Pathways, 
+    GeneSetEnrichment
 Imports:
     clisymbols,
     crayon,
@@ -56,7 +60,7 @@ Suggests:
     SummarizedExperiment,
     testthat (>= 2.3.2),
     tidyverse
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Depends: R (>= 4.1)
 URL: https://github.com/pcastellanoescuder/fobitools/
 BugReports: https://github.com/pcastellanoescuder/fobitools/issues
