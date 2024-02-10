@@ -19,7 +19,7 @@ link-citations: true
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2024-02-07
+**Last edited**: 2024-02-10
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 
@@ -121,7 +121,8 @@ Second, we perform the preprocessing step. This step includes the missing value 
 data_preprocessed <- data_sumexp %>%
   PomaImpute() %>%
   PomaNorm() %>%
-  PomaOutliers(coef = 3)$data
+  PomaOutliers(coef = 3) %>% 
+  magrittr::extract2("data")
 ```
 
 ## Limma model
