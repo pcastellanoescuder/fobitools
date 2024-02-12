@@ -19,7 +19,7 @@ link-citations: true
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2024-02-10
+**Last edited**: 2024-02-12
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 
@@ -103,7 +103,7 @@ pdata <- colData(data) %>%
 
 # Statistical analysis with `POMA`
 
-`POMA` provides a structured, reproducible and easy-to-use workflow for the visualization, preprocessing, exploration, and statistical analysis of metabolomics and proteomics data. The main aim of this package is to enable a flexible data cleaning and statistical analysis processes in one comprehensible and user-friendly R package. `POMA` uses the standardized `MSnbase` data structures, to achieve the maximum flexibility and reproducibility and makes `POMA` compatible with other Bioconductor packages [@POMA].
+`POMA` provides a structured, reproducible and easy-to-use workflow for the visualization, preprocessing, exploration, and statistical analysis of metabolomics and proteomics data. The main aim of this package is to enable a flexible data cleaning and statistical analysis processes in one comprehensible and user-friendly R package. `POMA` uses the standardized `SummarizedExperiment` data structures, to achieve the maximum flexibility and reproducibility and makes `POMA` compatible with other Bioconductor packages [@POMA].
 
 ## Create a `SummarizedExperiment` object
 
@@ -174,7 +174,10 @@ Once we have the results of the statistical analysis and generic identifiers rec
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
 annotated_limma <- ST000629_MetaboAnalyst_MapNames %>%
   dplyr::rename(ID = Query) %>%
-  right_join(limma_res, by = "ID")
+  dplyr::mutate(ID = tolower(ID)) %>% 
+  dplyr::right_join(limma_res %>% 
+                      dplyr::mutate(ID = tolower(ID)),
+                    by = "ID")
 
 limma_FOBI_names <- annotated_limma %>%
   dplyr::pull("KEGG") %>%
@@ -189,9 +192,9 @@ limma_FOBI_names %>%
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
 limma_FOBI_names <- limma_FOBI_names %>%
-  right_join(annotated_limma, by = "KEGG") %>%
-  dplyr::select(FOBI, KEGG, ID, logFC, P.Value, adj.P.Val) %>%
-  dplyr::arrange(-dplyr::desc(P.Value))
+  dplyr::right_join(annotated_limma, by = "KEGG") %>%
+  dplyr::select(FOBI, KEGG, ID, logFC, pvalue, adj_pvalue) %>%
+  dplyr::arrange(-dplyr::desc(pvalue))
 ```
 
 # Enrichment analysis
@@ -213,7 +216,7 @@ However, ORA has a number of limitations. The most important one is the need of 
 Here, we perform an ORA with the `fobitools` package, where we will use as a universe all the metabolites of the study present in FOBI and as a list those metabolites with a raw p-value < 0.05 in the limma results table.
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
-metaboliteList <- limma_FOBI_names$FOBI[limma_FOBI_names$P.Value < 0.05]
+metaboliteList <- limma_FOBI_names$FOBI[limma_FOBI_names$pvalue < 0.05]
 metaboliteUniverse <- limma_FOBI_names$FOBI
 
 fobitools::ora(metaboliteList = metaboliteList,
@@ -245,11 +248,11 @@ The `fobitools` package provides a function to perform MSEA using the FOBI infor
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
 limma_FOBI_msea <- limma_FOBI_names %>%
-  select(FOBI, P.Value) %>%
+  select(FOBI, pvalue) %>%
   filter(!is.na(FOBI)) %>%
-  dplyr::arrange(-dplyr::desc(abs(P.Value)))
+  dplyr::arrange(-dplyr::desc(abs(pvalue)))
 
-FOBI_msea <- as.vector(limma_FOBI_msea$P.Value)
+FOBI_msea <- as.vector(limma_FOBI_msea$pvalue)
 names(FOBI_msea) <- limma_FOBI_msea$FOBI
 
 msea_res <- fobitools::msea(FOBI_msea, pvalCutoff = 1)
