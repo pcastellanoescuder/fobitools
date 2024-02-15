@@ -115,14 +115,12 @@ data_sumexp <- PomaCreateObject(metadata = pdata, features = t(features))
 
 ## Preprocessing
 
-Second, we perform the preprocessing step. This step includes the missing value imputation using the $k$-NN algorithm, log Pareto normalization (transformation and scaling) and outlier detection and cleaning. Once these steps are completed, we can proceed to the statistical analysis of these data.
+Second, we perform the preprocessing step. This step includes the missing value imputation using the $k$-NN algorithm and log Pareto normalization (transformation and scaling). Once these steps are completed, we can proceed to the statistical analysis of these data.
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
 data_preprocessed <- data_sumexp %>%
   PomaImpute() %>%
-  PomaNorm() %>%
-  PomaOutliers(coef = 3) %>% 
-  magrittr::extract2("data")
+  PomaNorm()
 ```
 
 ## Limma model

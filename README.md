@@ -7,13 +7,14 @@
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Actions
 Status](https://github.com/pcastellanoescuder/fobitools/workflows/R-CMD-check/badge.svg)](https://github.com/pcastellanoescuder/fobitools/actions)
+[![Bioc release
+status](https://bioconductor.org/shields/build/release/bioc/fobitools.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/fobitools/)
 [![Bioc devel
 status](https://bioconductor.org/shields/build/devel/bioc/fobitools.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/fobitools/)
 [![Codecov test
-coverage](https://codecov.io/gh/pcastellanoescuder/fobitools/branch/master/graph/badge.svg)](https://codecov.io/gh/pcastellanoescuder/fobitools?branch=master)
-[![CodeFactor](https://www.codefactor.io/repository/github/pcastellanoescuder/fobitools/badge)](https://www.codefactor.io/repository/github/pcastellanoescuder/fobitools)
+coverage](https://codecov.io/gh/pcastellanoescuder/fobitools/branch/main/graph/badge.svg)](https://codecov.io/gh/pcastellanoescuder/fobitools?branch=main)
 [![Last
-Commit](https://img.shields.io/github/last-commit/pcastellanoescuder/fobitools.svg)](https://github.com/pcastellanoescuder/fobitools/commits/master)
+Commit](https://img.shields.io/github/last-commit/pcastellanoescuder/fobitools.svg)](https://github.com/pcastellanoescuder/fobitools/commits/main)
 [![License: GPL
 v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![DOI](https://img.shields.io/badge/DOI-https%3A%2F%2Fdoi.org%2F10.1093%2Fdataba%2Fbaaa033-blue)](https://doi.org/10.1093/databa/baaa033)
@@ -27,16 +28,16 @@ A collection of basic manipulation tools for biological significance
 analysis, graph visualization and text mining strategies for annotating
 nutritional data are provided here:
 
-  - Graph visualization of FOBI
-  - Parse FOBI information from OBO to a readable table format
-  - Compound ID conversion (among metabolite names, FOBI, ChemSpider,
-    KEGG, PubChemCID, InChIKey, InChICode and HMDB IDs)
-  - Biological significance analysis via ORA and MSEA methods:
-      - Chemical class enrichment analysis: ORA and MSEA using FOBI
-        chemical classes as metabolite sets
-      - Food enrichment analysis: ORA and MSEA using FOBI food groups as
-        metabolite sets
-  - Text mining algorithm for annotating free-text dietary data
+- Graph visualization of FOBI
+- Parse FOBI information from OBO to a readable table format
+- Compound ID conversion (among metabolite names, FOBI, ChemSpider,
+  KEGG, PubChemCID, InChIKey, InChICode and HMDB IDs)
+- Biological significance analysis via ORA and MSEA methods:
+  - Chemical class enrichment analysis: ORA and MSEA using FOBI chemical
+    classes as metabolite sets
+  - Food enrichment analysis: ORA and MSEA using FOBI food groups as
+    metabolite sets
+- Text mining algorithm for annotating free-text dietary data
 
 `fobitools` also offers a Shiny app version called
 [fobitoolsGUI](https://github.com/pcastellanoescuder/fobitoolsGUI). This
