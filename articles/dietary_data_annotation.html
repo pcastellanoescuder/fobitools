@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fobitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.11.4</span>
       </span>
     </div>
 
@@ -54,7 +56,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -84,7 +86,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/pcastellanoescuder/fobitools">
+  <a href="https://github.com/pcastellanoescuder/fobitools" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -99,61 +101,71 @@
 
       
 
-      </header><script src="dietary_data_annotation_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="dietary_data_annotation_files/kePrint-0.0.1/kePrint.js"></script><link href="dietary_data_annotation_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+      </header><script src="Dietary_data_annotation_files/kePrint-0.0.1/kePrint.js"></script><link href="Dietary_data_annotation_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Dietary text annotation</h1>
-                        <h4 class="author">Pol Castellano-Escuder</h4>
+                        <h4 data-toc-skip class="author">Pol
+Castellano-Escuder</h4>
             <address class="author_afil">
-      University of Barcelona, Spain.<br><a class="author_email" href="mailto:#"></a><a href="mailto:polcaes@gmail.com" class="email">polcaes@gmail.com</a>
+      Duke
+University<br><a class="author_email" href="mailto:#"></a><a href="mailto:polcaes@gmail.com" class="email">polcaes@gmail.com</a>
       </address>
                   
-            <h4 class="date">24 julio 2021</h4>
+            <h4 data-toc-skip class="date">6 May 2024</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/pcastellanoescuder/fobitools/blob/master/vignettes/Dietary_data_annotation.Rmd"><code>vignettes/Dietary_data_annotation.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/pcastellanoescuder/fobitools/blob/HEAD/vignettes/Dietary_data_annotation.Rmd" class="external-link"><code>vignettes/Dietary_data_annotation.Rmd</code></a></small>
       <div class="hidden name"><code>Dietary_data_annotation.Rmd</code></div>
 
     </div>
 
     
     
-<p><strong>Compiled date</strong>: 2021-07-24</p>
-<p><strong>Last edited</strong>: 2021-14-05</p>
+<p><strong>Compiled date</strong>: 2024-05-06</p>
+<p><strong>Last edited</strong>: 2022-01-12</p>
 <p><strong>License</strong>: GPL-3</p>
-<div id="installation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h1>
-<p>Run the following code to install the Bioconductor version of the package.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>Run the following code to install the Bioconductor version of the
+package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
-
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"fobitools"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"fobitools"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="load-packages" class="section level1">
-<h1 class="hasAnchor">
-<a href="#load-packages" class="anchor"></a>Load packages</h1>
+<div class="section level2">
+<h2 id="load-packages">Load packages<a class="anchor" aria-label="anchor" href="#load-packages"></a>
+</h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pcastellanoescuder/fobitools/">fobitools</a></span><span class="op">)</span></code></pre></div>
-<p>We will also need some additional <a href="https://cran.r-project.org">CRAN</a> packages that will be very useful in this vignette.</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pcastellanoescuder/fobitools/" class="external-link">fobitools</a></span><span class="op">)</span></span></code></pre></div>
+<p>We will also need some additional <a href="https://cran.r-project.org" class="external-link">CRAN</a> packages that will be very
+useful in this vignette.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/" class="external-link">kableExtra</a></span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="load-food-items-from-a-food-frequency-questionnaire-ffq-sample-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#load-food-items-from-a-food-frequency-questionnaire-ffq-sample-data" class="anchor"></a>Load food items from a food frequency questionnaire (FFQ) sample data</h1>
-<p>In nutritional studies, dietary data are usually collected by using different questionnaires such as FFQs (food frequency questionnaires) or 24h-DRs (24 hours dietary recall). Commonly, the text collected in these questionnaires require a manual preprocessing step before being analyzed.</p>
-<p>This is an example of how an FFQ could look like in a common nutritional study.</p>
+<div class="section level2">
+<h2 id="load-food-items-from-a-food-frequency-questionnaire-ffq-sample-data">Load food items from a food frequency questionnaire (FFQ) sample
+data<a class="anchor" aria-label="anchor" href="#load-food-items-from-a-food-frequency-questionnaire-ffq-sample-data"></a>
+</h2>
+<p>In nutritional studies, dietary data are usually collected by using
+different questionnaires such as FFQs (food frequency questionnaires) or
+24h-DRs (24 hours dietary recall). Commonly, the text collected in these
+questionnaires require a manual preprocessing step before being
+analyzed.</p>
+<p>This is an example of how an FFQ could look like in a common
+nutritional study.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"data/sample_ffq.rda"</span><span class="op">)</span>
-
-<span class="va">sample_ffq</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">:</span><span class="fl">10L</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html">kbl</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="cn">FALSE</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kable_styling</a></span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"striped"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<table class="table table">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="st">"data/sample_ffq.rda"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sample_ffq</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">:</span><span class="fl">10L</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="cn">FALSE</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
 ID
@@ -240,27 +252,41 @@ Sausages
 ID_0010
 </td>
 <td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
+Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie,
+sausage rolls, scotch egg
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="automatic-dietary-text-anotation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#automatic-dietary-text-anotation" class="anchor"></a>Automatic dietary text anotation</h1>
-<p>The <code><a href="../reference/annotate_foods.html">fobitools::annotate_foods()</a></code> function allows the automatic annotation of free nutritional text using the FOBI ontology <span class="citation">(Castellano-Escuder et al. <a href="#ref-castellano2020fobi" role="doc-biblioref">2020</a>)</span>. This function provides users with a table of food IDs, food names, FOBI IDs and FOBI names of the FOBI terms that match the input text. The input should be structured as a two column data frame, indicating the food IDs (first column) and food names (second column). Note that food names can be provided both as words and complex strings.</p>
-<p>This function includes a text mining algorithm composed of 5 sequential layers. In this process, singulars and plurals are analyzed, irrelevant words are removed, each string of the text input is tokenized and each word is analyzed independently, and the semantic similarity between input text and FOBI items is computed. Finally, this function also shows the percentage of the annotated input text.</p>
+<div class="section level2">
+<h2 id="automatic-dietary-text-anotation">Automatic dietary text anotation<a class="anchor" aria-label="anchor" href="#automatic-dietary-text-anotation"></a>
+</h2>
+<p>The <code><a href="../reference/annotate_foods.html">fobitools::annotate_foods()</a></code> function allows the
+automatic annotation of free nutritional text using the FOBI ontology
+<span class="citation">(<a href="#ref-castellano2020fobi">Castellano-Escuder et al.
+2020</a>)</span>. This function provides users with a table of food IDs,
+food names, FOBI IDs and FOBI names of the FOBI terms that match the
+input text. The input should be structured as a two column data frame,
+indicating the food IDs (first column) and food names (second column).
+Note that food names can be provided both as words and complex
+strings.</p>
+<p>This function includes a text mining algorithm composed of 5
+sequential layers. In this process, singulars and plurals are analyzed,
+irrelevant words are removed, each string of the text input is tokenized
+and each word is analyzed independently, and the semantic similarity
+between input text and FOBI items is computed. Finally, this function
+also shows the percentage of the annotated input text.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">annotated_text</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/annotate_foods.html">annotate_foods</a></span><span class="op">(</span><span class="va">sample_ffq</span><span class="op">)</span>
-<span class="co">#&gt; 89.57% annotated</span>
-<span class="co">#&gt; 2.786 sec elapsed</span>
-
-<span class="va">annotated_text</span><span class="op">$</span><span class="va">annotated</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">:</span><span class="fl">10L</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html">kbl</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="cn">FALSE</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kable_styling</a></span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"striped"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<table class="table table">
+<code class="sourceCode R"><span><span class="va">annotated_text</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/annotate_foods.html">annotate_foods</a></span><span class="op">(</span><span class="va">sample_ffq</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">89.57% annotated</span></span></span>
+<span><span class="co"><span style="color: #00BB00;">#&gt; </span>1.676 sec elapsed</span></span>
+<span></span>
+<span><span class="va">annotated_text</span><span class="op">$</span><span class="va">annotated</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">:</span><span class="fl">10L</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="cn">FALSE</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
 FOOD_ID
@@ -276,90 +302,6 @@ FOBI_NAME
 </th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-ID_001
-</td>
-<td style="text-align:left;">
-Beef: roast, steak, mince, stew casserole, curry or bolognese
-</td>
-<td style="text-align:left;">
-FOODON:00001041
-</td>
-<td style="text-align:left;">
-beef food product
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ID_001
-</td>
-<td style="text-align:left;">
-Beef: roast, steak, mince, stew casserole, curry or bolognese
-</td>
-<td style="text-align:left;">
-FOODON:00003140
-</td>
-<td style="text-align:left;">
-stew
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ID_0010
-</td>
-<td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
-</td>
-<td style="text-align:left;">
-FOODON:00001274
-</td>
-<td style="text-align:left;">
-egg food product
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ID_0010
-</td>
-<td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
-</td>
-<td style="text-align:left;">
-FOODON:00001006
-</td>
-<td style="text-align:left;">
-meat food product
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ID_0010
-</td>
-<td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
-</td>
-<td style="text-align:left;">
-FOODON:00003270
-</td>
-<td style="text-align:left;">
-pork ribs
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ID_0010
-</td>
-<td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
-</td>
-<td style="text-align:left;">
-FOODON:03315904
-</td>
-<td style="text-align:left;">
-sausage (formed)
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 ID_00100
@@ -416,22 +358,110 @@ FOODON:03301123
 grape (whole, raw)
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+ID_00104
+</td>
+<td style="text-align:left;">
+Melon
+</td>
+<td style="text-align:left;">
+FOODON:03301593
+</td>
+<td style="text-align:left;">
+melon (raw)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ID_00105
+</td>
+<td style="text-align:left;">
+*Peaches, plums, apricots, nectarines
+</td>
+<td style="text-align:left;">
+FOODON:03301107
+</td>
+<td style="text-align:left;">
+nectarine (whole, raw)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ID_00106
+</td>
+<td style="text-align:left;">
+*Strawberries, raspberries, kiwi fruit
+</td>
+<td style="text-align:left;">
+FOODON:03305656
+</td>
+<td style="text-align:left;">
+fruit (dried)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ID_00106
+</td>
+<td style="text-align:left;">
+*Strawberries, raspberries, kiwi fruit
+</td>
+<td style="text-align:left;">
+FOODON:03414363
+</td>
+<td style="text-align:left;">
+kiwi
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ID_00106
+</td>
+<td style="text-align:left;">
+*Strawberries, raspberries, kiwi fruit
+</td>
+<td style="text-align:left;">
+FOODON:00001057
+</td>
+<td style="text-align:left;">
+plant fruit food product
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ID_00107
+</td>
+<td style="text-align:left;">
+Tinned fruit
+</td>
+<td style="text-align:left;">
+FOODON:03305656
+</td>
+<td style="text-align:left;">
+fruit (dried)
+</td>
+</tr>
 </tbody>
 </table>
-<div id="the-similarity-argument" class="section level2">
-<h2 class="hasAnchor">
-<a href="#the-similarity-argument" class="anchor"></a>The similarity argument</h2>
-<p>Additionally, the <em>similarity</em> argument indicates the semantic similarity cutoff used at the last layer of the text mining pipeline. It is a numeric value between 1 (exact match) and 0 (very poor match). Users can modify this value to obtain more or less accurated annotations. Authors do not recommend values below 0.85 (default).</p>
+<div class="section level3">
+<h3 id="the-similarity-argument">The similarity argument<a class="anchor" aria-label="anchor" href="#the-similarity-argument"></a>
+</h3>
+<p>Additionally, the <em>similarity</em> argument indicates the semantic
+similarity cutoff used at the last layer of the text mining pipeline. It
+is a numeric value between 1 (exact match) and 0 (very poor match).
+Users can modify this value to obtain more or less accurated
+annotations. Authors do not recommend values below 0.85 (default).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">annotated_text_95</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/annotate_foods.html">annotate_foods</a></span><span class="op">(</span><span class="va">sample_ffq</span>, similarity <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>
-<span class="co">#&gt; 86.5% annotated</span>
-<span class="co">#&gt; 2.825 sec elapsed</span>
-
-<span class="va">annotated_text_95</span><span class="op">$</span><span class="va">annotated</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">:</span><span class="fl">10L</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html">kbl</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="cn">FALSE</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kable_styling</a></span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"striped"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<table class="table table">
+<code class="sourceCode R"><span><span class="va">annotated_text_95</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/annotate_foods.html">annotate_foods</a></span><span class="op">(</span><span class="va">sample_ffq</span>, similarity <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">86.5% annotated</span></span></span>
+<span><span class="co"><span style="color: #00BB00;">#&gt; </span>1.625 sec elapsed</span></span>
+<span></span>
+<span><span class="va">annotated_text_95</span><span class="op">$</span><span class="va">annotated</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">:</span><span class="fl">10L</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="cn">FALSE</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
 FOOD_ID
@@ -447,90 +477,6 @@ FOBI_NAME
 </th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-ID_001
-</td>
-<td style="text-align:left;">
-Beef: roast, steak, mince, stew casserole, curry or bolognese
-</td>
-<td style="text-align:left;">
-FOODON:00001041
-</td>
-<td style="text-align:left;">
-beef food product
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ID_001
-</td>
-<td style="text-align:left;">
-Beef: roast, steak, mince, stew casserole, curry or bolognese
-</td>
-<td style="text-align:left;">
-FOODON:00003140
-</td>
-<td style="text-align:left;">
-stew
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ID_0010
-</td>
-<td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
-</td>
-<td style="text-align:left;">
-FOODON:00001274
-</td>
-<td style="text-align:left;">
-egg food product
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ID_0010
-</td>
-<td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
-</td>
-<td style="text-align:left;">
-FOODON:00001006
-</td>
-<td style="text-align:left;">
-meat food product
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ID_0010
-</td>
-<td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
-</td>
-<td style="text-align:left;">
-FOODON:00003270
-</td>
-<td style="text-align:left;">
-pork ribs
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ID_0010
-</td>
-<td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
-</td>
-<td style="text-align:left;">
-FOODON:03315904
-</td>
-<td style="text-align:left;">
-sausage (formed)
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 ID_00100
@@ -587,15 +533,103 @@ FOODON:03301123
 grape (whole, raw)
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+ID_00104
+</td>
+<td style="text-align:left;">
+Melon
+</td>
+<td style="text-align:left;">
+FOODON:03301593
+</td>
+<td style="text-align:left;">
+melon (raw)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ID_00105
+</td>
+<td style="text-align:left;">
+*Peaches, plums, apricots, nectarines
+</td>
+<td style="text-align:left;">
+FOODON:03301107
+</td>
+<td style="text-align:left;">
+nectarine (whole, raw)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ID_00106
+</td>
+<td style="text-align:left;">
+*Strawberries, raspberries, kiwi fruit
+</td>
+<td style="text-align:left;">
+FOODON:03305656
+</td>
+<td style="text-align:left;">
+fruit (dried)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ID_00106
+</td>
+<td style="text-align:left;">
+*Strawberries, raspberries, kiwi fruit
+</td>
+<td style="text-align:left;">
+FOODON:03414363
+</td>
+<td style="text-align:left;">
+kiwi
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ID_00106
+</td>
+<td style="text-align:left;">
+*Strawberries, raspberries, kiwi fruit
+</td>
+<td style="text-align:left;">
+FOODON:00001057
+</td>
+<td style="text-align:left;">
+plant fruit food product
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ID_00107
+</td>
+<td style="text-align:left;">
+Tinned fruit
+</td>
+<td style="text-align:left;">
+FOODON:03305656
+</td>
+<td style="text-align:left;">
+fruit (dried)
+</td>
+</tr>
 </tbody>
 </table>
-<p>See that by increasing the similarity value from 0.85 (default value) to 0.95 (a more accurate annotation), the percentage of annotated terms decreases from 89.57% to 86.5%. Let’s check those food items annotated with <code>similarity = 0.85</code> but not with <code>similarity = 0.95</code>.</p>
+<p>See that by increasing the similarity value from 0.85 (default value)
+to 0.95 (a more accurate annotation), the percentage of annotated terms
+decreases from 89.57% to 86.5%. Let’s check those food items annotated
+with <code>similarity = 0.85</code> but not with
+<code>similarity = 0.95</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">annotated_text</span><span class="op">$</span><span class="va">annotated</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">FOOD_ID</span> <span class="op">%in%</span> <span class="va">annotated_text_95</span><span class="op">$</span><span class="va">annotated</span><span class="op">$</span><span class="va">FOOD_ID</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html">kbl</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="cn">FALSE</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kable_styling</a></span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"striped"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<table class="table table">
+<code class="sourceCode R"><span><span class="va">annotated_text</span><span class="op">$</span><span class="va">annotated</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">FOOD_ID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">annotated_text_95</span><span class="op">$</span><span class="va">annotated</span><span class="op">$</span><span class="va">FOOD_ID</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="cn">FALSE</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
 FOOD_ID
@@ -683,42 +717,48 @@ beef hamburger (dish)
 </tr>
 </tbody>
 </table>
-<div id="network-visualization-of-the-annotated-terms" class="section level3">
-<h3 class="hasAnchor">
-<a href="#network-visualization-of-the-annotated-terms" class="anchor"></a>Network visualization of the annotated terms</h3>
-<p>Then, with the <code><a href="../reference/fobi_graph.html">fobitools::fobi_graph()</a></code> function we can visualize the annotated food terms with their corresponding FOBI relationships.</p>
+<div class="section level4">
+<h4 id="network-visualization-of-the-annotated-terms">Network visualization of the annotated terms<a class="anchor" aria-label="anchor" href="#network-visualization-of-the-annotated-terms"></a>
+</h4>
+<p>Then, with the <code><a href="../reference/fobi_graph.html">fobitools::fobi_graph()</a></code> function we can
+visualize the annotated food terms with their corresponding FOBI
+relationships.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">terms</span> <span class="op">&lt;-</span> <span class="va">annotated_text</span><span class="op">$</span><span class="va">annotated</span> <span class="op">%&gt;%</span>
-  <span class="fu">pull</span><span class="op">(</span><span class="va">FOBI_ID</span><span class="op">)</span>
-
-<span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/fobi_graph.html">fobi_graph</a></span><span class="op">(</span>terms <span class="op">=</span> <span class="va">terms</span>,
-                      get <span class="op">=</span> <span class="cn">NULL</span>,
-                      layout <span class="op">=</span> <span class="st">"lgl"</span>,
-                      labels <span class="op">=</span> <span class="cn">TRUE</span>,
-                      legend <span class="op">=</span> <span class="cn">TRUE</span>,
-                      labelsize <span class="op">=</span> <span class="fl">6</span>,
-                      legendSize <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></code></pre></div>
-<p><img src="dietary_data_annotation_files/figure-html/unnamed-chunk-9-1.png" width="1152"></p>
+<code class="sourceCode R"><span><span class="va">terms</span> <span class="op">&lt;-</span> <span class="va">annotated_text</span><span class="op">$</span><span class="va">annotated</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">FOBI_ID</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">fobitools</span><span class="fu">::</span><span class="fu"><a href="../reference/fobi_graph.html">fobi_graph</a></span><span class="op">(</span>terms <span class="op">=</span> <span class="va">terms</span>,</span>
+<span>                      get <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>                      layout <span class="op">=</span> <span class="st">"lgl"</span>,</span>
+<span>                      labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                      legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                      labelsize <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>                      legendSize <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Dietary_data_annotation_files/figure-html/unnamed-chunk-9-1.png" width="1152"></p>
 </div>
 </div>
-<div id="how-do-i-know-which-compounds-are-associated-with-my-study-food-items" class="section level2">
-<h2 class="hasAnchor">
-<a href="#how-do-i-know-which-compounds-are-associated-with-my-study-food-items" class="anchor"></a>How do I know which compounds are associated with my study food items?</h2>
-<p>Most likely we may be interested in knowing the food-related compounds in our study. Well, if so, once the foods are annotated we can obtain the metabolites associated with the annotated foods as follows:</p>
+<div class="section level3">
+<h3 id="how-do-i-know-which-compounds-are-associated-with-my-study-food-items">How do I know which compounds are associated with my study food
+items?<a class="anchor" aria-label="anchor" href="#how-do-i-know-which-compounds-are-associated-with-my-study-food-items"></a>
+</h3>
+<p>Most likely we may be interested in knowing the food-related
+compounds in our study. Well, if so, once the foods are annotated we can
+obtain the metabolites associated with the annotated foods as
+follows:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">inverse_rel</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="va"><a href="../reference/fobi.html">fobi</a></span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">id_BiomarkerOf</span> <span class="op">%in%</span> <span class="va">annotated_text</span><span class="op">$</span><span class="va">annotated</span><span class="op">$</span><span class="va">FOBI_ID</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">id_code</span>, <span class="va">name</span>, <span class="va">id_BiomarkerOf</span>, <span class="va">FOBI</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>METABOLITE_ID <span class="op">=</span> <span class="fl">1</span>, METABOLITE_NAME <span class="op">=</span> <span class="fl">2</span>, FOBI_ID <span class="op">=</span> <span class="fl">3</span>, METABOLITE_FOBI_ID <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-
-<span class="va">annotated_foods_and_metabolites</span> <span class="op">&lt;-</span> <span class="fu">left_join</span><span class="op">(</span><span class="va">annotated_text</span><span class="op">$</span><span class="va">annotated</span>, <span class="va">inverse_rel</span>, by <span class="op">=</span> <span class="st">"FOBI_ID"</span><span class="op">)</span>
-
-<span class="va">annotated_foods_and_metabolites</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">METABOLITE_ID</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">:</span><span class="fl">10L</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html">kbl</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="cn">FALSE</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kable_styling</a></span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"striped"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<table class="table table">
+<code class="sourceCode R"><span><span class="va">inverse_rel</span> <span class="op">&lt;-</span> <span class="fu">fobitools</span><span class="fu">::</span><span class="va"><a href="../reference/fobi.html">fobi</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">id_BiomarkerOf</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">annotated_text</span><span class="op">$</span><span class="va">annotated</span><span class="op">$</span><span class="va">FOBI_ID</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">id_code</span>, <span class="va">name</span>, <span class="va">id_BiomarkerOf</span>, <span class="va">FOBI</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>METABOLITE_ID <span class="op">=</span> <span class="fl">1</span>, METABOLITE_NAME <span class="op">=</span> <span class="fl">2</span>, FOBI_ID <span class="op">=</span> <span class="fl">3</span>, METABOLITE_FOBI_ID <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">annotated_foods_and_metabolites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">annotated_text</span><span class="op">$</span><span class="va">annotated</span>, <span class="va">inverse_rel</span>, by <span class="op">=</span> <span class="st">"FOBI_ID"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">annotated_foods_and_metabolites</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">METABOLITE_ID</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">:</span><span class="fl">10L</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="cn">FALSE</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
 FOOD_ID
@@ -745,317 +785,338 @@ METABOLITE_FOBI_ID
 <tbody>
 <tr>
 <td style="text-align:left;">
-ID_0010
+ID_00100
 </td>
 <td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
+Oranges, satsumas, mandarins, tangerines, clementines
 </td>
 <td style="text-align:left;">
-FOODON:00001274
+FOODON:03309832
 </td>
 <td style="text-align:left;">
-egg food product
+orange (whole, raw)
 </td>
 <td style="text-align:left;">
-CHEBI:16411
+CHEBI:15600
 </td>
 <td style="text-align:left;">
-indole-3-acetic acid
+(+)-catechin
 </td>
 <td style="text-align:left;">
-FOBI:030704
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ID_0010
-</td>
-<td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
-</td>
-<td style="text-align:left;">
-FOODON:00001274
-</td>
-<td style="text-align:left;">
-egg food product
-</td>
-<td style="text-align:left;">
-CHEBI:16828
-</td>
-<td style="text-align:left;">
-L-tryptophan
-</td>
-<td style="text-align:left;">
-FOBI:030701
+FOBI:030460
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-ID_0010
+ID_00100
 </td>
 <td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
+Oranges, satsumas, mandarins, tangerines, clementines
 </td>
 <td style="text-align:left;">
-FOODON:00001274
+FOODON:03309832
 </td>
 <td style="text-align:left;">
-egg food product
+orange (whole, raw)
 </td>
 <td style="text-align:left;">
-CHEBI:17295
+CHEBI:15864
 </td>
 <td style="text-align:left;">
-L-phenylalanine
+luteolin
 </td>
 <td style="text-align:left;">
-FOBI:030692
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ID_0010
-</td>
-<td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
-</td>
-<td style="text-align:left;">
-FOODON:00001274
-</td>
-<td style="text-align:left;">
-egg food product
-</td>
-<td style="text-align:left;">
-CHEBI:17385
-</td>
-<td style="text-align:left;">
-3-(4-hydroxyphenyl)lactic acid
-</td>
-<td style="text-align:left;">
-FOBI:030694
+FOBI:030555
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-ID_0010
+ID_00100
 </td>
 <td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
+Oranges, satsumas, mandarins, tangerines, clementines
 </td>
 <td style="text-align:left;">
-FOODON:00001274
+FOODON:03309832
 </td>
 <td style="text-align:left;">
-egg food product
+orange (whole, raw)
 </td>
 <td style="text-align:left;">
-CHEBI:17439
+CHEBI:16243
 </td>
 <td style="text-align:left;">
-cyanocob(III)alamin
+quercetin
 </td>
 <td style="text-align:left;">
-FOBI:030744
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ID_0010
-</td>
-<td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
-</td>
-<td style="text-align:left;">
-FOODON:00001274
-</td>
-<td style="text-align:left;">
-egg food product
-</td>
-<td style="text-align:left;">
-CHEBI:17847
-</td>
-<td style="text-align:left;">
-p-cresol
-</td>
-<td style="text-align:left;">
-FOBI:030698
+FOBI:030558
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-ID_0010
+ID_00100
 </td>
 <td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
+Oranges, satsumas, mandarins, tangerines, clementines
 </td>
 <td style="text-align:left;">
-FOODON:00001274
+FOODON:03309832
 </td>
 <td style="text-align:left;">
-egg food product
+orange (whole, raw)
 </td>
 <td style="text-align:left;">
-CHEBI:17884
+CHEBI:17620
 </td>
 <td style="text-align:left;">
-N(2)-phenylacetyl-L-glutamine
+ferulic acid
 </td>
 <td style="text-align:left;">
-FOBI:030696
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ID_0010
-</td>
-<td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
-</td>
-<td style="text-align:left;">
-FOODON:00001274
-</td>
-<td style="text-align:left;">
-egg food product
-</td>
-<td style="text-align:left;">
-CHEBI:17895
-</td>
-<td style="text-align:left;">
-L-tyrosine
-</td>
-<td style="text-align:left;">
-FOBI:030697
+FOBI:030406
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-ID_0010
+ID_00100
 </td>
 <td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
+Oranges, satsumas, mandarins, tangerines, clementines
 </td>
 <td style="text-align:left;">
-FOODON:00001274
+FOODON:03309832
 </td>
 <td style="text-align:left;">
-egg food product
+orange (whole, raw)
 </td>
 <td style="text-align:left;">
-CHEBI:25998
+CHEBI:17620
 </td>
 <td style="text-align:left;">
-3-phenyllactic acid
+ferulic acid
 </td>
 <td style="text-align:left;">
-FOBI:030693
+FOBI:030406
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-ID_0010
+ID_00100
 </td>
 <td style="text-align:left;">
-Savoury pies, e.g. meat pie, pork pie, pasties, steak &amp; kidney pie, sausage rolls, scotch egg
+Oranges, satsumas, mandarins, tangerines, clementines
 </td>
 <td style="text-align:left;">
-FOODON:00001274
+FOODON:03309832
 </td>
 <td style="text-align:left;">
-egg food product
+orange (whole, raw)
 </td>
 <td style="text-align:left;">
-CHEBI:27480
+CHEBI:18388
 </td>
 <td style="text-align:left;">
-phenylacetylglycine
+apigenin
 </td>
 <td style="text-align:left;">
-FOBI:030695
+FOBI:030553
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ID_00100
+</td>
+<td style="text-align:left;">
+Oranges, satsumas, mandarins, tangerines, clementines
+</td>
+<td style="text-align:left;">
+FOODON:03309832
+</td>
+<td style="text-align:left;">
+orange (whole, raw)
+</td>
+<td style="text-align:left;">
+CHEBI:28499
+</td>
+<td style="text-align:left;">
+kaempferol
+</td>
+<td style="text-align:left;">
+FOBI:030565
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ID_00100
+</td>
+<td style="text-align:left;">
+Oranges, satsumas, mandarins, tangerines, clementines
+</td>
+<td style="text-align:left;">
+FOODON:03309832
+</td>
+<td style="text-align:left;">
+orange (whole, raw)
+</td>
+<td style="text-align:left;">
+CHEBI:6052
+</td>
+<td style="text-align:left;">
+isorhamnetin
+</td>
+<td style="text-align:left;">
+FOBI:030562
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ID_00100
+</td>
+<td style="text-align:left;">
+Oranges, satsumas, mandarins, tangerines, clementines
+</td>
+<td style="text-align:left;">
+FOODON:03309832
+</td>
+<td style="text-align:left;">
+orange (whole, raw)
+</td>
+<td style="text-align:left;">
+CHEBI:77131
+</td>
+<td style="text-align:left;">
+sinapic acid
+</td>
+<td style="text-align:left;">
+FOBI:030412
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ID_00100
+</td>
+<td style="text-align:left;">
+Oranges, satsumas, mandarins, tangerines, clementines
+</td>
+<td style="text-align:left;">
+FOODON:03309832
+</td>
+<td style="text-align:left;">
+orange (whole, raw)
+</td>
+<td style="text-align:left;">
+CHEBI:77131
+</td>
+<td style="text-align:left;">
+sinapic acid
+</td>
+<td style="text-align:left;">
+FOBI:030412
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="limitations" class="section level1">
-<h1 class="hasAnchor">
-<a href="#limitations" class="anchor"></a>Limitations</h1>
-<p>The FOBI ontology is currently in its first release version, so it does not yet include information on many metabolites, foods and food relationships. All future efforts will be directed at expanding this ontology, leading to a significant increase in the number of metabolites, foods (from FoodOn ontology <span class="citation">(Dooley et al. <a href="#ref-dooley2018foodon" role="doc-biblioref">2018</a>)</span>) and metabolite-food relationships. The <code>fobitools</code> package provides the methodology for easy use of the FOBI ontology regardless of the amount of information it contains. Therefore, future FOBI improvements will also have a direct impact on the <code>fobitools</code> package, increasing its utility and allowing to perform, among others, more accurate, complete and robust dietary text annotations.</p>
+<div class="section level2">
+<h2 id="limitations">Limitations<a class="anchor" aria-label="anchor" href="#limitations"></a>
+</h2>
+<p>The FOBI ontology is currently in its first release version, so it
+does not yet include information on many metabolites, foods and food
+relationships. All future efforts will be directed at expanding this
+ontology, leading to a significant increase in the number of
+metabolites, foods (from FoodOn ontology <span class="citation">(<a href="#ref-dooley2018foodon">Dooley et al. 2018</a>)</span>) and
+metabolite-food relationships. The <code>fobitools</code> package
+provides the methodology for easy use of the FOBI ontology regardless of
+the amount of information it contains. Therefore, future FOBI
+improvements will also have a direct impact on the
+<code>fobitools</code> package, increasing its utility and allowing to
+perform, among others, more accurate, complete and robust dietary text
+annotations.</p>
 </div>
-<div id="session-information" class="section level1">
-<h1 class="hasAnchor">
-<a href="#session-information" class="anchor"></a>Session Information</h1>
+<div class="section level2">
+<h2 id="session-information">Session Information<a class="anchor" aria-label="anchor" href="#session-information"></a>
+</h2>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; R version 4.0.2 (2020-06-22)</span>
-<span class="co">#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)</span>
-<span class="co">#&gt; Running under: macOS  10.16</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Matrix products: default</span>
-<span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib</span>
-<span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; locale:</span>
-<span class="co">#&gt; [1] es_ES.UTF-8/es_ES.UTF-8/es_ES.UTF-8/C/es_ES.UTF-8/es_ES.UTF-8</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attached base packages:</span>
-<span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt;  [1] kableExtra_1.3.4 forcats_0.5.1    stringr_1.4.0    dplyr_1.0.7     </span>
-<span class="co">#&gt;  [5] purrr_0.3.4      readr_1.4.0      tidyr_1.1.3      tibble_3.1.3    </span>
-<span class="co">#&gt;  [9] ggplot2_3.3.5    tidyverse_1.3.1  fobitools_1.1.9  BiocStyle_2.18.1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;   [1] fgsea_1.16.0           colorspace_2.0-2       ellipsis_0.3.2        </span>
-<span class="co">#&gt;   [4] class_7.3-19           qdapRegex_0.7.2        evd_2.3-3             </span>
-<span class="co">#&gt;   [7] rprojroot_2.0.2        fs_1.5.0               rstudioapi_0.13       </span>
-<span class="co">#&gt;  [10] proxy_0.4-26           farver_2.1.0           graphlayouts_0.7.1    </span>
-<span class="co">#&gt;  [13] ggrepel_0.9.1          bit64_4.0.5            prodlim_2019.11.13    </span>
-<span class="co">#&gt;  [16] fansi_0.5.0            lubridate_1.7.10       xml2_1.3.2            </span>
-<span class="co">#&gt;  [19] textclean_0.9.3        splines_4.0.2          cachem_1.0.5          </span>
-<span class="co">#&gt;  [22] knitr_1.33             polyclip_1.10-0        jsonlite_1.7.2        </span>
-<span class="co">#&gt;  [25] RecordLinkage_0.4-12.1 broom_0.7.8            dbplyr_2.1.1          </span>
-<span class="co">#&gt;  [28] ggforce_0.3.3          BiocManager_1.30.16    compiler_4.0.2        </span>
-<span class="co">#&gt;  [31] httr_1.4.2             tictoc_1.0.1           backports_1.2.1       </span>
-<span class="co">#&gt;  [34] assertthat_0.2.1       Matrix_1.3-4           fastmap_1.1.0         </span>
-<span class="co">#&gt;  [37] ontologyIndex_2.7      cli_3.0.1              tweenr_1.0.2          </span>
-<span class="co">#&gt;  [40] htmltools_0.5.1.1      tools_4.0.2            igraph_1.2.6          </span>
-<span class="co">#&gt;  [43] gtable_0.3.0           glue_1.4.2             fastmatch_1.1-3       </span>
-<span class="co">#&gt;  [46] Rcpp_1.0.7             lexicon_1.2.1          cellranger_1.1.0      </span>
-<span class="co">#&gt;  [49] jquerylib_0.1.4        pkgdown_1.6.1          vctrs_0.3.8           </span>
-<span class="co">#&gt;  [52] svglite_2.0.0          ggraph_2.0.5           xfun_0.24             </span>
-<span class="co">#&gt;  [55] rvest_1.0.0            lifecycle_1.0.0        MASS_7.3-54           </span>
-<span class="co">#&gt;  [58] scales_1.1.1           ipred_0.9-11           tidygraph_1.2.0       </span>
-<span class="co">#&gt;  [61] vroom_1.5.3            ragg_1.1.3             clisymbols_1.2.0      </span>
-<span class="co">#&gt;  [64] hms_1.1.0              parallel_4.0.2         yaml_2.2.1            </span>
-<span class="co">#&gt;  [67] memoise_2.0.0          gridExtra_2.3          sass_0.4.0            </span>
-<span class="co">#&gt;  [70] rpart_4.1-15           stringi_1.7.3          RSQLite_2.2.7         </span>
-<span class="co">#&gt;  [73] highr_0.9              desc_1.3.0             e1071_1.7-7           </span>
-<span class="co">#&gt;  [76] BiocParallel_1.24.1    lava_1.6.9             ada_2.0-5             </span>
-<span class="co">#&gt;  [79] rlang_0.4.11           pkgconfig_2.0.3        systemfonts_1.0.2     </span>
-<span class="co">#&gt;  [82] evaluate_0.14          lattice_0.20-44        labeling_0.4.2        </span>
-<span class="co">#&gt;  [85] bit_4.0.4              tidyselect_1.1.1       magrittr_2.0.1        </span>
-<span class="co">#&gt;  [88] bookdown_0.22.3        R6_2.5.0               generics_0.1.0        </span>
-<span class="co">#&gt;  [91] DBI_1.1.1              withr_2.4.2            pillar_1.6.1          </span>
-<span class="co">#&gt;  [94] haven_2.4.1            survival_3.2-11        nnet_7.3-16           </span>
-<span class="co">#&gt;  [97] modelr_0.1.8           crayon_1.4.1           utf8_1.2.1            </span>
-<span class="co">#&gt; [100] tzdb_0.1.2             rmarkdown_2.9          viridis_0.6.1         </span>
-<span class="co">#&gt; [103] syuzhet_1.0.6          readxl_1.3.1           grid_4.0.2            </span>
-<span class="co">#&gt; [106] data.table_1.14.0      blob_1.2.2             webshot_0.5.2         </span>
-<span class="co">#&gt; [109] reprex_2.0.0           digest_0.6.27          xtable_1.8-4          </span>
-<span class="co">#&gt; [112] ff_4.0.4               textshaping_0.3.5      munsell_0.5.0         </span>
-<span class="co">#&gt; [115] viridisLite_0.4.0      bslib_0.2.5.1</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; R version 4.3.2 (2023-10-31)</span></span>
+<span><span class="co">#&gt; Platform: aarch64-apple-darwin20 (64-bit)</span></span>
+<span><span class="co">#&gt; Running under: macOS Sonoma 14.1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Matrix products: default</span></span>
+<span><span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib </span></span>
+<span><span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; locale:</span></span>
+<span><span class="co">#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; time zone: America/New_York</span></span>
+<span><span class="co">#&gt; tzcode source: internal</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; attached base packages:</span></span>
+<span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; other attached packages:</span></span>
+<span><span class="co">#&gt;  [1] kableExtra_1.3.4 lubridate_1.9.3  forcats_1.0.0    stringr_1.5.1   </span></span>
+<span><span class="co">#&gt;  [5] dplyr_1.1.4      purrr_1.0.2      readr_2.1.4      tidyr_1.3.0     </span></span>
+<span><span class="co">#&gt;  [9] tibble_3.2.1     ggplot2_3.4.4    tidyverse_2.0.0  fobitools_1.11.2</span></span>
+<span><span class="co">#&gt; [13] BiocStyle_2.30.0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
+<span><span class="co">#&gt;   [1] DBI_1.2.0              ada_2.0-5              qdapRegex_0.7.8       </span></span>
+<span><span class="co">#&gt;   [4] gridExtra_2.3          rlang_1.1.3            magrittr_2.0.3        </span></span>
+<span><span class="co">#&gt;   [7] e1071_1.7-14           compiler_4.3.2         RSQLite_2.3.4         </span></span>
+<span><span class="co">#&gt;  [10] systemfonts_1.0.5      vctrs_0.6.5            rvest_1.0.3           </span></span>
+<span><span class="co">#&gt;  [13] pkgconfig_2.0.3        crayon_1.5.2           fastmap_1.1.1         </span></span>
+<span><span class="co">#&gt;  [16] labeling_0.4.3         ggraph_2.1.0           utf8_1.2.4            </span></span>
+<span><span class="co">#&gt;  [19] rmarkdown_2.25         tzdb_0.4.0             prodlim_2023.08.28    </span></span>
+<span><span class="co">#&gt;  [22] ragg_1.2.7             bit_4.0.5              xfun_0.41             </span></span>
+<span><span class="co">#&gt;  [25] cachem_1.0.8           jsonlite_1.8.8         blob_1.2.4            </span></span>
+<span><span class="co">#&gt;  [28] highr_0.10             tictoc_1.2             BiocParallel_1.36.0   </span></span>
+<span><span class="co">#&gt;  [31] tweenr_2.0.2           syuzhet_1.0.7          parallel_4.3.2        </span></span>
+<span><span class="co">#&gt;  [34] R6_2.5.1               bslib_0.6.1            stringi_1.8.3         </span></span>
+<span><span class="co">#&gt;  [37] textclean_0.9.3        parallelly_1.36.0      rpart_4.1.23          </span></span>
+<span><span class="co">#&gt;  [40] jquerylib_0.1.4        Rcpp_1.0.12            bookdown_0.37         </span></span>
+<span><span class="co">#&gt;  [43] knitr_1.45             future.apply_1.11.1    clisymbols_1.2.0      </span></span>
+<span><span class="co">#&gt;  [46] timechange_0.2.0       Matrix_1.6-1           splines_4.3.2         </span></span>
+<span><span class="co">#&gt;  [49] nnet_7.3-19            igraph_1.6.0           tidyselect_1.2.0      </span></span>
+<span><span class="co">#&gt;  [52] rstudioapi_0.15.0      yaml_2.3.8             viridis_0.6.4         </span></span>
+<span><span class="co">#&gt;  [55] codetools_0.2-19       listenv_0.9.0          lattice_0.22-5        </span></span>
+<span><span class="co">#&gt;  [58] withr_2.5.2            evaluate_0.23          ontologyIndex_2.11    </span></span>
+<span><span class="co">#&gt;  [61] future_1.33.1          desc_1.4.3             survival_3.5-7        </span></span>
+<span><span class="co">#&gt;  [64] proxy_0.4-27           polyclip_1.10-6        xml2_1.3.6            </span></span>
+<span><span class="co">#&gt;  [67] pillar_1.9.0           BiocManager_1.30.22    lexicon_1.2.1         </span></span>
+<span><span class="co">#&gt;  [70] generics_0.1.3         vroom_1.6.5            hms_1.1.3             </span></span>
+<span><span class="co">#&gt;  [73] munsell_0.5.0          scales_1.3.0           ff_4.0.12             </span></span>
+<span><span class="co">#&gt;  [76] globals_0.16.2         xtable_1.8-4           class_7.3-22          </span></span>
+<span><span class="co">#&gt;  [79] glue_1.7.0             RecordLinkage_0.4-12.4 tools_4.3.2           </span></span>
+<span><span class="co">#&gt;  [82] data.table_1.14.10     webshot_0.5.5          fgsea_1.28.0          </span></span>
+<span><span class="co">#&gt;  [85] fs_1.6.3               graphlayouts_1.0.2     fastmatch_1.1-4       </span></span>
+<span><span class="co">#&gt;  [88] tidygraph_1.3.0        cowplot_1.1.2          grid_4.3.2            </span></span>
+<span><span class="co">#&gt;  [91] ipred_0.9-14           colorspace_2.1-0       ggforce_0.4.1         </span></span>
+<span><span class="co">#&gt;  [94] cli_3.6.2              evd_2.3-6.1            textshaping_0.3.7     </span></span>
+<span><span class="co">#&gt;  [97] fansi_1.0.6            viridisLite_0.4.2      svglite_2.1.3         </span></span>
+<span><span class="co">#&gt; [100] lava_1.7.3             gtable_0.3.4           sass_0.4.8            </span></span>
+<span><span class="co">#&gt; [103] digest_0.6.34          ggrepel_0.9.5          farver_2.1.1          </span></span>
+<span><span class="co">#&gt; [106] memoise_2.0.1          htmltools_0.5.7        pkgdown_2.0.7         </span></span>
+<span><span class="co">#&gt; [109] lifecycle_1.0.4        httr_1.4.7             bit64_4.0.5           </span></span>
+<span><span class="co">#&gt; [112] MASS_7.3-60</span></span></code></pre></div>
 </div>
-<div id="references" class="section level1 unnumbered">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h1>
-<div id="refs" class="references">
-<div id="ref-castellano2020fobi">
-<p>Castellano-Escuder, Pol, Raúl González-Domı́nguez, David S Wishart, Cristina Andrés-Lacueva, and Alex Sánchez-Pla. 2020. “FOBI: An Ontology to Represent Food Intake Data and Associate It with Metabolomic Data.” <em>Database</em> 2020.</p>
+<div class="section level2">
+<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-castellano2020fobi" class="csl-entry">
+Castellano-Escuder, Pol, Raúl González-Domı́nguez, David S Wishart,
+Cristina Andrés-Lacueva, and Alex Sánchez-Pla. 2020. <span>“FOBI: An
+Ontology to Represent Food Intake Data and Associate It with Metabolomic
+Data.”</span> <em>Database</em> 2020.
 </div>
-<div id="ref-dooley2018foodon">
-<p>Dooley, Damion M, Emma J Griffiths, Gurinder S Gosal, Pier L Buttigieg, Robert Hoehndorf, Matthew C Lange, Lynn M Schriml, Fiona SL Brinkman, and William WL Hsiao. 2018. “FoodOn: A Harmonized Food Ontology to Increase Global Food Traceability, Quality Control and Data Integration.” <em>Npj Science of Food</em> 2 (1): 1–10.</p>
+<div id="ref-dooley2018foodon" class="csl-entry">
+Dooley, Damion M, Emma J Griffiths, Gurinder S Gosal, Pier L Buttigieg,
+Robert Hoehndorf, Matthew C Lange, Lynn M Schriml, Fiona SL Brinkman,
+and William WL Hsiao. 2018. <span>“FoodOn: A Harmonized Food Ontology to
+Increase Global Food Traceability, Quality Control and Data
+Integration.”</span> <em>Npj Science of Food</em> 2 (1): 1–10.
 </div>
 </div>
 </div>
@@ -1072,11 +1133,13 @@ FOBI:030695
 
 
       <footer><div class="copyright">
-  <p>Developed by Pol Castellano-Escuder, Cristina Andrés-Lacueva, Alex Sánchez-Pla.</p>
+  <p></p>
+<p>Developed by Pol Castellano-Escuder, Alex Sánchez-Pla.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -1084,6 +1147,8 @@ FOBI:030695
 
   
 
+
+  
 
   </body>
 </html>
