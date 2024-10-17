@@ -19,7 +19,7 @@ link-citations: true
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2024-02-12
+**Last edited**: 2024-10-17
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 

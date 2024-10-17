@@ -1,3 +1,7 @@
+## fobitools 1.13.1
+
+* Fix bugs in vignettes
+
 ## fobitools 1.11.4
 
 * Fix bugs in vignettes
@@ -8,7 +12,7 @@
 * Minor changes in `parse_fobi()` function.
 * Update all data files to FOBI 1.5 version.
 
-# fobitools 1.0.0
+## fobitools 1.0.0
 
 * Released to Bioconductor 3.13.
 

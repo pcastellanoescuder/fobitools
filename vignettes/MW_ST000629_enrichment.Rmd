@@ -19,7 +19,7 @@ link-citations: true
 
 **Compiled date**: `r Sys.Date()`
 
-**Last edited**: 2024-02-12
+**Last edited**: 2024-10-17
 
 **License**: `r packageDescription("fobitools")[["License"]]`
 
@@ -191,7 +191,7 @@ limma_FOBI_names %>%
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
 limma_FOBI_names <- limma_FOBI_names %>%
   dplyr::right_join(annotated_limma, by = "KEGG") %>%
-  dplyr::select(FOBI, KEGG, ID, logFC, pvalue, adj_pvalue) %>%
+  dplyr::select(FOBI, KEGG, ID, log2FC, pvalue, adj_pvalue) %>%
   dplyr::arrange(-dplyr::desc(pvalue))
 ```
 
