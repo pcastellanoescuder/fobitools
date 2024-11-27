@@ -1,4 +1,4 @@
-## fobitools 1.13.1
+## fobitools 1.13.2
 
 * Fix bugs in vignettes
 

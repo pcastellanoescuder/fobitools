@@ -119,7 +119,7 @@ Second, we perform the preprocessing step. This step includes the missing value 
 
 ```{r, warning = FALSE, message = FALSE, comment = FALSE}
 data_preprocessed <- data_sumexp %>%
-  PomaImpute() %>%
+  PomaImpute(group_by = "grouping") %>%
   PomaNorm()
 ```
 

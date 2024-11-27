@@ -11,8 +11,6 @@ Status](https://github.com/pcastellanoescuder/fobitools/workflows/R-CMD-check/ba
 status](https://bioconductor.org/shields/build/release/bioc/fobitools.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/fobitools/)
 [![Bioc devel
 status](https://bioconductor.org/shields/build/devel/bioc/fobitools.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/fobitools/)
-[![Codecov test
-coverage](https://codecov.io/gh/pcastellanoescuder/fobitools/branch/main/graph/badge.svg)](https://codecov.io/gh/pcastellanoescuder/fobitools?branch=main)
 [![Last
 Commit](https://img.shields.io/github/last-commit/pcastellanoescuder/fobitools.svg)](https://github.com/pcastellanoescuder/fobitools/commits/main)
 [![License: GPL
